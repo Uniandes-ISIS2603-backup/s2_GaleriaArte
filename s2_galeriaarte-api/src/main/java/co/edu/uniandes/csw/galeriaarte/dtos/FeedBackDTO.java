@@ -23,4 +23,44 @@ public class FeedBackDTO
     {
         
     }
+    public Long getId()
+    {
+        return id;
+    }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    //public ObraDTO getObra()
+    //{
+      //  return null;
+    //}
+    
+      //public UsuarioDTO getObra()
+    //{
+      //  return null;
+    //}
+    
+    public void setId()
+    {
+        id=this.id;
+    }
+    
+    public void setName()
+    {
+        name=this.name;
+    }
+    
+    public void setObra()
+    {
+        
+    }
+    
+    public void setUsuario()
+    {
+        
+    }
+    
 }
