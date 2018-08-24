@@ -43,22 +43,22 @@ public class FeedBackDTO
       //  return null;
     //}
     
-    public void setId()
+    public void setId(Long pId)
     {
-        id=this.id;
+        this.id=pId;
     }
     
-    public void setName()
+    public void setName(String pString)
     {
-        name=this.name;
+        this.name= pString;
     }
     
-    public void setObra()
+    public void setObra(ObraDTO pObra)
     {
         
     }
     
-    public void setUsuario()
+    public void setUsuario(UsuarioDTO pUsuario)
     {
         
     }
