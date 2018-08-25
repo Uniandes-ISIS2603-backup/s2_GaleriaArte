@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.galeriaarte.dtos;
+
+import UsreDTO;
 
 /**
  *
@@ -15,9 +12,9 @@ public class FeedBackDTO
     
     private String name;
     
-    //private ObraDTO obra;
+    private PaintworkDTO obra;
     
-    //private UserDTO usuario;
+    private UserDTO usuario;
     
     public FeedBackDTO()
     {
@@ -33,15 +30,15 @@ public class FeedBackDTO
         return name;
     }
     
-    //public ObraDTO getObra()
-    //{
-      //  return null;
-    //}
+    public ObraDTO getObra()
+    {
+        return obra;
+    }
     
-      //public UsuarioDTO getObra()
-    //{
-      //  return null;
-    //}
+    public UserDTO getUser()
+    {
+      return usuario;
+    }
     
     public void setId(Long pId)
     {
