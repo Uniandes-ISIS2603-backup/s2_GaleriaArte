@@ -1,6 +1,6 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
-import UsreDTO;
+import UserDTO;
 
 /**
  *

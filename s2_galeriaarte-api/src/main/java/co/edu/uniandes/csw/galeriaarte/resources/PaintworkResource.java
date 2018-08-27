@@ -9,9 +9,12 @@ import co.edu.uniandes.csw.galeriaarte.dtos.PaintworkDTO;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -30,5 +33,13 @@ public class PaintworkResource {
     {
         return paintwork;
     }
+    
+    @GET
+    @Path("paintworks://d+")
+    public PaintworkDTO getPaintworksById(@PathParam("paintwork") Long idPaintwork) throws WebApplicationException
+    {
+        return null;
+    }
+    
     
 }
