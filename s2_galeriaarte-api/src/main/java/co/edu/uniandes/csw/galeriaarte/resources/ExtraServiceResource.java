@@ -3,10 +3,11 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-
 package co.edu.uniandes.csw.galeriaarte.resources;
 
-import co.edu.uniandes.csw.galeriaarte.dtos.MedioPagoDTO;
+
+
+import co.edu.uniandes.csw.galeriaarte.dtos.ExtraServiceDTO;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import javax.ws.rs.Path;
 import javax.ws.rs.Consumes;
@@ -20,52 +21,52 @@ import java.util.logging.Level;
 import javax.ws.rs.PathParam;
 
 /**
- * Clase que implementa el recurso "MedioPago".
+ * Clase que implementa el recurso "ExtraService".
  * @author ja.penat
  * @version 1.0
  */
 
-@Path("medioPagos")
+@Path("extraServices")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class MedioPagoResource
+public class ExtraServiceResource
 {
     
-    private static final Logger LOGGER = Logger.getLogger(MedioPagoResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ExtraServiceResource.class.getName());
     
     
     @Inject
-    // MedioPagoLogic medioPagoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    // ExtraServiceLogic extraServiceLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
     /**
      * Crea un nuevo medio de pago con la informacion que se recibe en el cuerpo de
      * la petición y se regresa un objeto identico con un id auto-generado por
      * la base de datos.
      *
-     * @param medioPago {@link MedioPagoDTO} - El medio de pago  que se desea
+     * @param extraService {@link MedioPagoDTO} - El servicio extra   que se desea
      * guardar.
-     * @return JSON {@link MedioPagoDTO} - El medio de pago  guardado con el atributo
+     * @return JSON {@link ExtraServiceDTO} - El servicio extra  guardado con el atributo
      * id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera cuando ya existe el metodo de pago con el mismo id.
      */
     @POST
-    public MedioPagoDTO createMedioPago(MedioPagoDTO medioPago) throws BusinessLogicException
+    public ExtraServiceDTO createExtraService(ExtraServiceDTO extraService) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "MedioPagoResource createMedioPago: input: {0}", medioPago.toString());
-        return medioPago;
+        LOGGER.log(Level.INFO, "MedioPagoResource createMedioPago: input: {0}", extraService.toString());
+        return extraService;
     }
     
     /**
-     * Borra el medio de pago con el id asociado recibido en la URL.
-     * @param medioPagoId Identificador del medio de pago que se desea borrar.
+     * Borra el servicio extra  con el id asociado recibido en la URL.
+     * @param extraServiceId Identificador del servicio extra que se desea borrar.
      * Este debe ser una cadena de dígitos.
      */
     @DELETE
-    @Path("{medioPagoId: \\d+}")
-    public void deleteMedioPago(@PathParam("medioPagoId") Long medioPagoId) {
-        LOGGER.log(Level.INFO, "MedioPagoResource deleteMedioPago: input: {0}", medioPagoId);
-        LOGGER.info("MedioPagoResource deleteMedioPago: output: void");
+    @Path("{extraServiceId: \\d+}")
+    public void deleteExtraService(@PathParam("extraServiceId") Long extraServiceId) {
+        LOGGER.log(Level.INFO, "ExtraServiceResource deleteExtraService: input: {0}", extraServiceId);
+        LOGGER.info("ExtraServiceResource deleteExtraService: output: void");
     }
 }
