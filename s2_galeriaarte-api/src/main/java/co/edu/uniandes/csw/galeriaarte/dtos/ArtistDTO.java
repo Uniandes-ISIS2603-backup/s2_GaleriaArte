@@ -1,4 +1,5 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
+import CVDTO;
 /**
  *
  * @author Anderson Barragan
@@ -10,12 +11,12 @@ public class ArtistDTO {
     private CVDTO hojaDeVida;
     
     /**
-     * 
+     * Constructor vacío de la clase <b>Artist</b>
      */
     public ArtistDTO(){}
     
     /**
-     * 
+     * Retorna el id del artista en cuestion
      * @return 
      */
     public Long getId(){
@@ -23,7 +24,7 @@ public class ArtistDTO {
     }
     
     /**
-     * 
+     * retorna el nombre (único) del artista en cuestion
      * @return 
      */
     public String getArtistName(){
@@ -39,7 +40,7 @@ public class ArtistDTO {
     }
    
     /**
-     * 
+     * Modifica el id existente
      * @param pId 
      */
     public void setId(Long pId){
@@ -47,7 +48,7 @@ public class ArtistDTO {
     }
     
     /**
-     * 
+     * Modifica el nombre actual
      * @param pName 
      */
     public void setName(String pName){
@@ -55,7 +56,7 @@ public class ArtistDTO {
     }
      
     /**
-     * 
+     * modifica la hoja de vida del artista en cuestion
      * @param pCV 
      */
     public void setCV(CVDTO pCV){
@@ -63,7 +64,7 @@ public class ArtistDTO {
     }
     
     /**
-     * 
+     * aniade una pintura a las pinturas del artista 
      * @param pNewPaintwork 
      */
     public void addPaintwork(PaintworkDTO pNewPaintwork){
@@ -71,7 +72,7 @@ public class ArtistDTO {
     }
     
     /**
-     * 
+     * busca y retorna la pintura con el id especificado
      * @param pPaint
      * @return 
      */
