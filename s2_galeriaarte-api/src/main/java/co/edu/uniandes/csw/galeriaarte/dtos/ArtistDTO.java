@@ -1,5 +1,4 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
-import CVDTO;
 /**
  *
  * @author Anderson Barragan
@@ -44,7 +43,7 @@ public class ArtistDTO {
      * @param pId 
      */
     public void setId(Long pId){
-        this.id=pId;
+        this.userId=pId;
     }
     
     /**
@@ -71,12 +70,5 @@ public class ArtistDTO {
         //this.hojaDeVida.addPaint(pNewPaintwork);
     }
     
-    /**
-     * busca y retorna la pintura con el id especificado
-     * @param pPaint
-     * @return 
-     */
-    public Paintwork getPaintwork(PaintworkDTO pPaint){
-        this.hojaDeVida.getPaint(pPaint);
-    }
+  
 }

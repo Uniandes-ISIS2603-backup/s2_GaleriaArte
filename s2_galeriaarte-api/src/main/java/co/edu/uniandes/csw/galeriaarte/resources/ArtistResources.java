@@ -13,14 +13,14 @@ import javax.ws.rs.WebApplicationException;
 /**
  * @author Anderson Barragan
  */
-@Path(artist)
+@Path("/artists")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class ArtistResources {
 
-    @Inject
-    ArtistLogic artistLogic;
+  //  @Inject
+    //ArtistLogic artistLogic;
 
     @POST
     public ArtistDTO createArtist(ArtistDTO artista) throws BusinessLogicException{
@@ -29,7 +29,7 @@ public class ArtistResources {
     
     @GET
     @Path("artists://d+")
-    public ArtistDTO getArtistsById(@PathParam("artist") Long idArtist) throws WebApplicationException{
+    public ArtistDTO getArtistsById(@PathParam("/artists") Long idArtist) throws WebApplicationException{
         return null;
     }
 }

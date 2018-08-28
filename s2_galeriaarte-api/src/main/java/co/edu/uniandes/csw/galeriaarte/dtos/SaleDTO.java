@@ -10,9 +10,9 @@ public class SaleDTO
 	
 	private ArtistDTO artist;
 	
-	private PaintWorkDTO obra;
+	private PaintworkDTO obra;
 	
-	private MetodoPagoDTO metodo;
+	private MedioPagoDTO metodo;
 	
 	private BuyerDTO buyer;
 	
@@ -41,11 +41,11 @@ public class SaleDTO
 		return artist;
 	}
 	
-	public PaintWorkDTO getObra()
+	public PaintworkDTO getObra()
 	{
 		return obra;
 	}
-	public MetodoPagoDTO getMethod()
+	public MedioPagoDTO getMethod()
 	{
 		return metodo;
 	}
@@ -69,11 +69,11 @@ public class SaleDTO
 	{
 		this.artist= pArt;
 	}
-	public void setObra(PaintWorkDTO pPaint)
+	public void setObra(PaintworkDTO pPaint)
 	{
 		this.obra= pPaint;
 	}
-	public void setMetodoPago(MetodoPagoDTO pMeth)
+	public void setMetodoPago(MedioPagoDTO pMeth)
 	
 	{
 		this.metodo= pMeth;

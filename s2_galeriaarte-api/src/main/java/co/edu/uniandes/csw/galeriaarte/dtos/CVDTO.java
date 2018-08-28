@@ -19,7 +19,7 @@ public class CVDTO {
 	/**
 	 * Obra más conocida del artista
 	 */
-	private ObraDTO obraMasConocidaDTO;
+	private PaintworkDTO obraMasConocidaDTO;
 
 	/**
 	 * Fecha de nacimiento del artista
@@ -67,7 +67,7 @@ public class CVDTO {
 	 * Retorna la Obra más conocida del artista
 	 * @return Obra más conocida del artista
 	 */
-	public ObraDTO getobraMasConocidaDTO() {
+	public PaintworkDTO getobraMasConocidaDTO() {
 		return obraMasConocidaDTO;
 	}
 
@@ -75,7 +75,7 @@ public class CVDTO {
 	 * Modifica la Obra más conocida del artista
 	 * @param obraMasConocidaDTO
 	 */
-	public void setobraMasConocidaDTO(ObraDTO obraMasConocidaDTO) {
+	public void setobraMasConocidaDTO(PaintworkDTO obraMasConocidaDTO) {
 		this.obraMasConocidaDTO = obraMasConocidaDTO;
 	}
 

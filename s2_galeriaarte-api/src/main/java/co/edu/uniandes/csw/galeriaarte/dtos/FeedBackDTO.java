@@ -1,6 +1,5 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
-import UserDTO;
 
 /**
  *
@@ -30,7 +29,7 @@ public class FeedBackDTO
         return name;
     }
     
-    public ObraDTO getObra()
+    public PaintworkDTO getObra()
     {
         return obra;
     }
@@ -50,12 +49,12 @@ public class FeedBackDTO
         this.name= pString;
     }
     
-    public void setObra(ObraDTO pObra)
+    public void setObra(PaintworkDTO pObra)
     {
         
     }
     
-    public void setUsuario(UsuarioDTO pUsuario)
+    public void setUsuario(UserDTO pUsuario)
     {
         
     }
