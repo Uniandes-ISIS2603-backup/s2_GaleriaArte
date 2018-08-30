@@ -5,13 +5,14 @@
  */
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author estudiante
  */
-public class BuyerDTO {
+public class BuyerDTO implements Serializable {
     
     public BuyerDTO(){
         
