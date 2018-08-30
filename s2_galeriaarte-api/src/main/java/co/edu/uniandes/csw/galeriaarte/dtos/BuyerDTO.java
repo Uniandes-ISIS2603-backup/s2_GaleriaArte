@@ -11,45 +11,12 @@ import java.util.ArrayList;
  *
  * @author estudiante
  */
-public class Buyer {
+public class BuyerDTO {
     
-    public Buyer(){
+    public BuyerDTO(){
         
     }
     
-    /**
-     * Compra una pintura
-     * @return 
-     */
     
-    public Boolean buyPaintWork(){
-        
-        return false;
-    }
-    
-    /**
-     * Busca una pintura en la galeria 
-     */
-    
-    public void seekPaintWork(){
-        
-    }
-    
-    /**
-     * Agrega una pintura a la lista de favoritas 
-     */
-    
-    public void addFavoritePaintWork(){
-        
-    }
-    
-    /**
-     * Retorna la lista de pinturas favoritas
-     * @return
-     */
-    
-    public ArrayList getFavoritePaintworks(){
-        return null;
-    }
 }
 
