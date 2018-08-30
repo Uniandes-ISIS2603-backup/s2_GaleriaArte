@@ -21,7 +21,9 @@ import javax.ws.rs.PathParam;
  * @author s.restrepos1
  */
 import co.edu.uniandes.csw.galeriaarte.dtos.FeedBackDTO;
-@Path("feedbacks")
+import javax.ws.rs.GET;
+import javax.ws.rs.WebApplicationException;
+@Path("/feedbacks")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -34,6 +36,18 @@ public class FeedBackResources
     public FeedBackDTO createFeedBack(FeedBackDTO fdbDTO)
     {
         return fdbDTO;
+    }
+    @GET
+    @Path("feedbacks://d+")
+    public FeedBackDTO getArtistsById(@PathParam("/feedbacks") Long idArtist) throws WebApplicationException{
+        return null;
+    }
+    
+    @DELETE
+    @Path("{feedbacksId: \\d+}")
+    public void deleteExtraService(@PathParam("feedbacksId") Long extraServiceId)
+    {
+    
     }
       
 }

@@ -1,6 +1,8 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
-public class SaleDTO 
+import java.io.Serializable;
+
+public class SaleDTO implements Serializable
 {
 	private double price;
 	

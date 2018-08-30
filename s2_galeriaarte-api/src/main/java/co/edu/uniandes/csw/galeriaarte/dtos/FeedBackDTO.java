@@ -1,11 +1,13 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author s.restrepos1
  */
-public class FeedBackDTO 
+public class FeedBackDTO implements Serializable
 {
     private Long id;
     
@@ -51,12 +53,14 @@ public class FeedBackDTO
     
     public void setObra(PaintworkDTO pObra)
     {
-        
+               this.obra= pObra; 
+
     }
     
     public void setUsuario(UserDTO pUsuario)
     {
-        
+               this.usuario= pUsuario; 
+
     }
     
 }
