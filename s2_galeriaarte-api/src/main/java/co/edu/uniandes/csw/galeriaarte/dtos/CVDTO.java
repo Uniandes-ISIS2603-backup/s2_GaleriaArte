@@ -1,5 +1,6 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * @author Laura
  *
  */
-public class CVDTO {
+public class CVDTO implements Serializable {
 
 	//Atributos
 
