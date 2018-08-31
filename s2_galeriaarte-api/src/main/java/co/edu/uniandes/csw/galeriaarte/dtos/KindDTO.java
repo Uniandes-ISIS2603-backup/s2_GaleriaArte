@@ -5,11 +5,58 @@
  */
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
+import java.io.Serializable;
+
 /**
  *
- * @author estudiante
+ * @author LauraManrique
  */
-public class KindDTO {
+public class KindDTO implements Serializable {
 
+    //Atributos
+    
+    /**
+     * Identificación del tipo
+     */
+    private Long  idType;
+    
+    /**
+     * Nombre
+     */
+    private String name;
+    
+    /**
+     * Descripción
+     */
+    private String description;
+    
+    public  KindDTO()
+    {
+        
+    }
+
+    public Long getIdType() {
+        return idType;
+    }
+
+    public void setIdType(Long idType) {
+        this.idType = idType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
 
