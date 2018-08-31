@@ -1,7 +1,6 @@
 package co.edu.uniandes.csw.galeriaarte.resources;
 
 import co.edu.uniandes.csw.galeriaarte.dtos.CVDTO;
-import co.edu.uniandes.csw.galeriaarte.dtos.FeedBackDTO;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
