@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
 <resources>
-    <jdbc-connection-pool name="galeriaart_pool" allow-non-component-callers="false" associate-with-thread="false" 
+    <jdbc-connection-pool name="galeriaarte_pool" allow-non-component-callers="false" associate-with-thread="false" 
                           connection-creation-retry-attempts="0" 
                           connection-creation-retry-interval-in-seconds="10"
                           connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" 
