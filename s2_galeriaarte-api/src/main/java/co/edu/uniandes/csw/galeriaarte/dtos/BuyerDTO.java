@@ -29,7 +29,7 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * @return the password 
+     * @return clave del usuario  
      */
     
     public String getPassword(){
@@ -37,7 +37,7 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * @param the password to set 
+     * @param  nueva contraseña del usuario  
      * 
      */
     
@@ -46,7 +46,7 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * @return name
+     * @return nombre del usuario 
      */
     
     public String getName(){
@@ -55,7 +55,7 @@ public class BuyerDTO implements Serializable {
     
     /**
      * 
-     * @param the  name to set  
+     * @param the  nuevo nombre del usuario  
      */
     
     public void setName(String newName){
@@ -64,21 +64,21 @@ public class BuyerDTO implements Serializable {
     }
     /**
      * 
-     * @return user 
+     * @return login del usuario
      */
     public String getUser(){
         return user;
     }
     
     /**
-     * @param the user to set 
+     * @param nuevo login del usuario  
      */
     public void setUser(String newUser){
         user = newUser;
     }
     
     /**
-     * 
+     * @return País de origen del usuario 
      */
     
     public String getCountry(){
@@ -86,7 +86,7 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * 
+     * @param nuevo país del usuario 
      */
     public void setCountry(String newCountry){
         
@@ -95,7 +95,7 @@ public class BuyerDTO implements Serializable {
     
     
    /**
-    * 
+    * @return tarjeta de credito del usuario 
     */
     
     public String getCreditCard(){
@@ -103,7 +103,7 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * 
+     * @param nueva tarjeta de credito del usuario 
      */
     
     public void setCreditCard(String newCreditCard){
@@ -123,7 +123,7 @@ public class BuyerDTO implements Serializable {
     }
     /**
      * 
-     * @return 
+     * @return el id del usuario 
      */
     
     public String getIdUser(){
@@ -131,25 +131,44 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * 
+     * @param nuevo id del usuario 
      */
     
     public void setIdUser(String newId){
         
         idUser= newId;
     }
+    
+    /**
+     * 
+     * @return email del usuario 
+     */
             
     public String getEmail(){
         return email;
     }
     
+    /**
+     *
+     * @param nuevo email del usuario 
+     */
     public void setEmail(String newEmail){
         email = newEmail;
     }
     
+    /**
+     * 
+     * @return telefono del usuario  
+     */
+    
     public String getPhone(){
         return phone;
     }
+    
+    /**
+     * 
+     * @param nuevo telefono del usuario 
+     */
     
     public void setPhone(String newPhone){
         phone = newPhone;
