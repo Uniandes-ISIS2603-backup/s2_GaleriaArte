@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author estudiante
  */
+@Entity
 class UserEntity extends BaseEntity implements Serializable
 {
     
