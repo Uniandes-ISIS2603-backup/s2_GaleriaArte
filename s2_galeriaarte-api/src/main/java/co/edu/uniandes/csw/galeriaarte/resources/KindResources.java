@@ -20,7 +20,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author LauraManrique
  */
-@Path("/kinds")
+@Path("kinds")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped

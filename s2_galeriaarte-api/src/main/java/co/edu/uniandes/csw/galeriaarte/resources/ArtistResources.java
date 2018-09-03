@@ -13,7 +13,7 @@ import javax.ws.rs.WebApplicationException;
 /**
  * @author Anderson Barragan
  */
-@Path("/artists")
+@Path("artists")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped

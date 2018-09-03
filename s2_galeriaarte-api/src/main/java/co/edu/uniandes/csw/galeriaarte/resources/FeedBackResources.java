@@ -23,7 +23,7 @@ import javax.ws.rs.PathParam;
 import co.edu.uniandes.csw.galeriaarte.dtos.FeedBackDTO;
 import javax.ws.rs.GET;
 import javax.ws.rs.WebApplicationException;
-@Path("/feedbacks")
+@Path("feedbacks")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped

@@ -6,16 +6,23 @@
 package co.edu.uniandes.csw.galeriaarte.resources;
 import co.edu.uniandes.csw.galeriaarte.dtos.BuyerDTO;
 import co.edu.uniandes.csw.galeriaarte.dtos.CVDTO;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author Sara Acosta 
  */
+@Path("buyers")
+@Produces("application/json")
+@Consumes("application/json")
+@RequestScoped
 public class BuyerResources {
     
     @POST
