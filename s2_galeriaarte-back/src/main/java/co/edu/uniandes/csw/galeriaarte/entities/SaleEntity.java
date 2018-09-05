@@ -29,6 +29,7 @@ public class SaleEntity extends BaseEntity implements Serializable
 	
 	private BuyerEntity buyer;
         
+        private Long id;
         public SaleEntity()
 	{
 		

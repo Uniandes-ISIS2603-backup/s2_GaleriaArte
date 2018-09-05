@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class SaleDTO implements Serializable
 {
+        private Long id;
 	private double price;
 	
 	private String description;
