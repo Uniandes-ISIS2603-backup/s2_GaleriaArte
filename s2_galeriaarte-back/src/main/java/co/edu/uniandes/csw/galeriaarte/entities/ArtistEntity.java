@@ -13,7 +13,24 @@ import javax.persistence.Entity;
  * @author 
  */
 @Entity
-class ArtistEntity extends BaseEntity implements Serializable
+public class ArtistEntity extends BaseEntity implements Serializable
 {
-    
+    String name;
+    String image;
+    Long id;
+    public Long getId(){
+        return this.id;
+    }
+    public String getImage(){
+        return this.image;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public void setName(String pName){
+        this.name = pName;
+    }
+    public void setImage(String pImage){
+        this.image = pImage;
+    }
 }
