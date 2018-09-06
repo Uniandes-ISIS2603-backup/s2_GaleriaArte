@@ -1,7 +1,5 @@
 
-import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
-import co.edu.uniandes.csw.galeriaarte.persistence.FeedBackPersistence;
 import co.edu.uniandes.csw.galeriaarte.persistence.SalePersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -27,7 +25,6 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author s.restrepos1
  */
 @RunWith(Arquillian.class)
-
 public class SalePersistenceTest
 {
    @Inject

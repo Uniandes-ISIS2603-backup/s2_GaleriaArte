@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -19,7 +20,7 @@ import javax.persistence.EntityManager;
 public class FeedBackPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(FeedBackPersistence.class.getName());
-    
+        @PersistenceContext(unitName = "InterArtPU")
     protected EntityManager em;
     
     public FeedBackEntity create(FeedBackEntity feedEntity)

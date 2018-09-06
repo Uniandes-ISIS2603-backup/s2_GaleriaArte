@@ -15,7 +15,6 @@ import javax.persistence.Entity;
 @Entity 
 public class FeedBackEntity extends BaseEntity implements Serializable
 {
-    private Long id;
     
     private String name;
     
@@ -27,10 +26,7 @@ public class FeedBackEntity extends BaseEntity implements Serializable
     {
         
     }
-    public Long getId()
-    {
-        return id;
-    }
+  
     
     public String getName()
     {
@@ -47,10 +43,7 @@ public class FeedBackEntity extends BaseEntity implements Serializable
       return usuario;
     }
     
-    public void setId(Long pId)
-    {
-        this.id=pId;
-    }
+
     
     public void setName(String pString)
     {
