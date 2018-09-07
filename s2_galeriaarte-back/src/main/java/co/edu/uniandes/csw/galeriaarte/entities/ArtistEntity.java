@@ -17,10 +17,7 @@ public class ArtistEntity extends BaseEntity implements Serializable
 {
     String name;
     String image;
-    Long id;
-    public Long getId(){
-        return this.id;
-    }
+   
     public String getImage(){
         return this.image;
     }

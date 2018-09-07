@@ -9,7 +9,7 @@ public class SaleDTO implements Serializable
 	
 	private String description;
 	
-	private double taxes;
+	private Double taxes;
 	
 	private ArtistDTO artist;
 	
