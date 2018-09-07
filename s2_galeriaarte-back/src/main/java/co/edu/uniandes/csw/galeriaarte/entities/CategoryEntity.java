@@ -5,10 +5,44 @@
  */
 package co.edu.uniandes.csw.galeriaarte.entities;
 
+import java.io.Serializable;
+
 /**
  *
- * @author estudiante
+ * @author jf.copete
  */
-public class CategoryEntity {
+public class CategoryEntity extends BaseEntity implements Serializable{
+    
+    private String name;
+    private String Description;
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the Description
+     */
+    public String getDescription() {
+        return Description;
+    }
+
+    /**
+     * @param Description the Description to set
+     */
+    public void setDescription(String Description) {
+        this.Description = Description;
+    }
+    
     
 }
