@@ -25,11 +25,16 @@ public class FeedBackDTO implements Serializable
     
     public FeedBackDTO(FeedBackEntity entidad)
     {
+        if(entidad!=null)
+        {
         this.id= entidad.getId();
         this.name= entidad.getName();
+         }
         
     }
-     public FeedBackEntity toEntity() {
+     public FeedBackEntity toEntity() 
+     {
+    
         FeedBackEntity entidad = new FeedBackEntity();
         entidad.setId(this.getId());
         entidad.setName(this.getName());

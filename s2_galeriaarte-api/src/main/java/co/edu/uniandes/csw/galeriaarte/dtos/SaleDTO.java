@@ -28,13 +28,18 @@ public class SaleDTO implements Serializable
 	}
         public SaleDTO( SaleEntity entidad)
         {
+            if(entidad!=null)
+            {
             this.id= entidad.getId();
             this.price= entidad.getPrice();
             this.description= entidad.getDescription();
             this.taxes= entidad.getTaxes();
+            }
         }
 	
-        public SaleEntity toEntity() {
+        public SaleEntity toEntity()
+        {
+            
         SaleEntity entidad = new SaleEntity();
         entidad.setId(this.id);
         entidad.setObra(this.obra.toEntity());

@@ -69,7 +69,7 @@ public class FeedBackEntity extends BaseEntity implements Serializable
      */
     public PaintworkEntity toEntity() {
         PaintworkEntity paintworkEntity = new PaintworkEntity();
-        paintworkEntity.setId(this.id);
+        paintworkEntity.setId(this.getId());
         paintworkEntity.setName(this.name);
         return paintworkEntity;
     }
