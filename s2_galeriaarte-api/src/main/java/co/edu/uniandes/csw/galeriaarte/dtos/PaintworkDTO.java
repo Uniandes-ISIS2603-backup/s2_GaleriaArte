@@ -35,9 +35,9 @@ public class PaintworkDTO implements Serializable {
             this.idPaintwork = paintworkEntity.getId();
             this.name = paintworkEntity.getName();
             this.country=paintworkEntity.getCountry();
-            this.kind = paintworkEntity.getKind();
-            this.category=paintworkEntity.getCategory();
-            this.feedback = paintworkEntity.getFeedback();
+            this.kind = new KindDTO();
+            this.category=new CategoryDTO();
+            this.feedback = new FeedBackDTO();
             this.description = paintworkEntity.getDescription();
             this.value = paintworkEntity.getValor();
             this.verificacionObra = paintworkEntity.getVerificacionObra();
@@ -212,6 +212,15 @@ public class PaintworkDTO implements Serializable {
         PaintworkEntity paintworkEntity = new PaintworkEntity();
         paintworkEntity.setId(this.idPaintwork);
         paintworkEntity.setName(this.name);
+        paintworkEntity.setCountry(this.country);
+        paintworkEntity.setCategory(this.category.toEntity);
+        paintworkEntity.setFeedback(this.feedback.toEntity());
+        paintworkEntity.setDescription(this.description);
+        paintworkEntity.setImagePath(this.imagePath);
+        paintworkEntity.setKind(this.kind.toEntity);
+        paintworkEntity.setValor(this.value);
+        paintworkEntity.setVerificacionObra(this.verificacionObra);
+        paintworkEntity.setVideoPath(this.videoPath);
         return paintworkEntity;
     }
 

@@ -72,6 +72,8 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
      * @return JSONArray {@link EditorialDTO} - Las editoriales encontradas en
      * la aplicación. Si no hay ninguna retorna una lista vacía.
      */
+    
+    
     @GET
     public List<PaintworkDTO> getPaintworks() {
         LOGGER.info("PaintworkResource getPaintworks: input: void");
