@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.galeriaarte.entities;
-
+import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -65,5 +67,22 @@ public class FeedBackEntity extends BaseEntity implements Serializable
     public void setUsuario(UserEntity pUsuario)
     {
         this.usuario= pUsuario;
+    }
+    
+    /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
+    public PaintworkEntity toEntity() {
+        PaintworkEntity paintworkEntity = new PaintworkEntity();
+        paintworkEntity.setId(this.id);
+        paintworkEntity.setName(this.name);
+        return paintworkEntity;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

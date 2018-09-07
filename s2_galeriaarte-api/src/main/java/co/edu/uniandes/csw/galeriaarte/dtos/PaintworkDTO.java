@@ -1,6 +1,8 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
-
 import java.io.Serializable;
+import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -22,7 +24,28 @@ public class PaintworkDTO implements Serializable {
     public PaintworkDTO() {
     }
 
-    
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param paintwirkEntity: Es la entidad que se va a convertir a DTO
+     */
+    public PaintworkDTO (PaintworkEntity paintworkEntity) {
+        if (paintworkEntity != null) {
+            this.idPaintwork = paintworkEntity.getId();
+            this.name = paintworkEntity.getName();
+            this.country=paintworkEntity.getCountry();
+            this.kind = paintworkEntity.getKind();
+            this.category=paintworkEntity.getCategory();
+            this.feedback = paintworkEntity.getFeedback();
+            this.description = paintworkEntity.getDescription();
+            this.value = paintworkEntity.getValor();
+            this.verificacionObra = paintworkEntity.getVerificacionObra();
+            this.imagePath = paintworkEntity.getImagePath();
+            this.videoPath = paintworkEntity.getVideoPath();
+        }
+    }
+
     
     
     /**
@@ -179,8 +202,23 @@ public class PaintworkDTO implements Serializable {
         this.videoPath = videoPath;
     }
     
-    
-    
+        
+    /**
+     * Convertir DTO a Entity
+     *
+     * @return Un Entity con los valores del DTO
+     */
+    public PaintworkEntity toEntity() {
+        PaintworkEntity paintworkEntity = new PaintworkEntity();
+        paintworkEntity.setId(this.idPaintwork);
+        paintworkEntity.setName(this.name);
+        return paintworkEntity;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
     
 }
 

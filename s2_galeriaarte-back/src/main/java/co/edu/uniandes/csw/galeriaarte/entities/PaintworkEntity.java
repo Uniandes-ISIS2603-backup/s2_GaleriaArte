@@ -13,15 +13,15 @@ import javax.persistence.Entity;
  * @author estudiante
  */
 @Entity
-class PaintworkEntity extends BaseEntity implements Serializable
+public class PaintworkEntity extends BaseEntity implements Serializable
 {
     private String name;
     private String country;
-    private KindDTO kind;
-    private CategoryDTO category;
+    private KindEntity kind;
+    private CategoryEntity category;
     private FeedBackEntity feedback;
     private String description;
-    private Long value;
+    private Long valor;
     private Boolean verificacionObra;
     private String imagePath;
     private String videoPath;
@@ -86,15 +86,15 @@ class PaintworkEntity extends BaseEntity implements Serializable
     /**
      * @return the value
      */
-    public Long getValue() {
-        return value;
+    public Long getValor() {
+        return valor;
     }
 
     /**
      * @param value the value to set
      */
-    public void setValue(Long value) {
-        this.value = value;
+    public void setValor(Long value) {
+        this.valor = value;
     }
 
     /**
@@ -137,6 +137,34 @@ class PaintworkEntity extends BaseEntity implements Serializable
      */
     public void setVideoPath(String videoPath) {
         this.videoPath = videoPath;
+    }
+
+    /**
+     * @return the kind
+     */
+    public KindEntity getKind() {
+        return kind;
+    }
+
+    /**
+     * @param kind the kind to set
+     */
+    public void setKind(KindEntity kind) {
+        this.kind = kind;
+    }
+
+    /**
+     * @return the category
+     */
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
     }
     
     
