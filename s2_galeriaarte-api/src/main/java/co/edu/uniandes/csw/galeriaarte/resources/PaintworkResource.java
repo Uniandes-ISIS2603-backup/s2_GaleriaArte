@@ -78,29 +78,29 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
     public List<PaintworkDTO> getPaintworks() {
         LOGGER.info("PaintworkResource getPaintworks: input: void");
         List<PaintworkDTO> listaPaintworks = listEntity2DetailDTO(paintworkLogic.getPaintworks());
-        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaEditoriales.toString());
-        return listaEditoriales;
+        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaPaintworks.toString());
+        return listaPaintworks;
     }
 
     /**
-     * Busca la editorial con el id asociado recibido en la URL y la devuelve.
+     * Busca la obra con el id asociado recibido en la URL y la devuelve.
      *
-     * @param editorialsId Identificador de la editorial que se esta buscando.
+     * @param paintworkId Identificador de la editorial que se esta buscando.
      * Este debe ser una cadena de dígitos.
      * @return JSON {@link EditorialDTO} - La editorial buscada
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la editorial.
      */
     @GET
-    @Path("{editorialsId: \\d+}")
-    public EditorialDTO getEditorial(@PathParam("editorialsId") Long editorialsId) throws WebApplicationException {
-        LOGGER.log(Level.INFO, "EditorialResource getEditorial: input: {0}", editorialsId);
-        EditorialEntity editorialEntity = paintworkLogic.getEditorial(editorialsId);
-        if (editorialEntity == null) {
-            throw new WebApplicationException("El recurso /editorials/" + editorialsId + " no existe.", 404);
+    @Path("{paintworksId: \\d+}")
+    public PaintworkDTO getPaintwork(@PathParam("paintworksId") Long paintworkId) throws WebApplicationException {
+        LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: input: {0}", paintworkId);
+        PaintworkEntity paintworkEntity = paintworkLogic.getPaintWork(paintworkId);
+        if (paintworkEntity == null) {
+            throw new WebApplicationException("El recurso /editorials/" + paintworkId + " no existe.", 404);
         }
-        EditorialDTO detailDTO = new EditorialDTO(editorialEntity);
-        LOGGER.log(Level.INFO, "EditorialResource getEditorial: output: {0}", detailDTO.toString());
+        PaintworkDTO detailDTO = new PaintworkDTO(paintworkEntity);
+        LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: output: {0}", detailDTO.toString());
         return detailDTO;
     }
 
@@ -108,31 +108,31 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
      * Actualiza la editorial con el id recibido en la URL con la informacion
      * que se recibe en el cuerpo de la petición.
      *
-     * @param editorialsId Identificador de la editorial que se desea
+     * @param paintworkId Identificador de la editorial que se desea
      * actualizar. Este debe ser una cadena de dígitos.
-     * @param editorial {@link EditorialDTO} La editorial que se desea guardar.
+     * @param paintwork1 {@link EditorialDTO} La editorial que se desea guardar.
      * @return JSON {@link EditorialDTO} - La editorial guardada.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la editorial a
      * actualizar.
      */
     @PUT
-    @Path("{editorialsId: \\d+}")
-    public EditorialDTO updateEditorial(@PathParam("editorialsId") Long editorialsId, EditorialDTO editorial) throws WebApplicationException {
-        LOGGER.log(Level.INFO, "EditorialResource updateEditorial: input: id:{0} , editorial: {1}", new Object[]{editorialsId, editorial.toString()});
-        editorial.setId(editorialsId);
-        if (paintworkLogic.getEditorial(editorialsId) == null) {
-            throw new WebApplicationException("El recurso /editorials/" + editorialsId + " no existe.", 404);
+    @Path("{painworksId: \\d+}")
+    public PaintworkDTO updatePaintwork(@PathParam("painworksId") Long paintworkId, PaintworkDTO paintwork1) throws WebApplicationException {
+        LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: input: id:{0} , paintwork: {1}", new Object[]{paintworkId, paintwork1.toString()});
+        paintwork1.setIdPaintwork(paintworkId);
+        if (paintworkLogic.getPaintWork(paintworkId) == null) {
+            throw new WebApplicationException("El recurso /paintworks/" + paintworkId + " no existe.", 404);
         }
-        EditorialDTO detailDTO = new EditorialDTO(paintworkLogic.updateEditorial(editorialsId, editorial.toEntity()));
-        LOGGER.log(Level.INFO, "EditorialResource updateEditorial: output: {0}", detailDTO.toString());
+        PaintworkDTO detailDTO = new PaintworkDTO(paintworkLogic.updatePaintWork(paintworkId, paintwork1.toEntity()));
+        LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: output: {0}", detailDTO.toString());
         return detailDTO;
     }
 
     /**
      * Borra la editorial con el id asociado recibido en la URL.
      *
-     * @param editorialsId Identificador de la editorial que se desea borrar.
+     * @param paintworkId Identificador de la editorial que se desea borrar.
      * Este debe ser una cadena de dígitos.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera cuando no se puede eliminar la editorial.
@@ -140,14 +140,14 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
      * Error de lógica que se genera cuando no se encuentra la editorial.
      */
     @DELETE
-    @Path("{editorialsId: \\d+}")
-    public void deleteEditorial(@PathParam("editorialsId") Long editorialsId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "EditorialResource deleteEditorial: input: {0}", editorialsId);
-        if (paintworkLogic.getEditorial(editorialsId) == null) {
-            throw new WebApplicationException("El recurso /editorials/" + editorialsId + " no existe.", 404);
+    @Path("{painworksId: \\d+}")
+    public void deletePaintwork(@PathParam("painworksId") Long paintworkId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: input: {0}", paintworkId);
+        if (paintworkLogic.getPaintWork(paintworkId) == null) {
+            throw new WebApplicationException("El recurso /editorials/" + paintworkId + " no existe.", 404);
         }
-        paintworkLogic.deleteEditorial(editorialsId);
-        LOGGER.info("EditorialResource deleteEditorial: output: void");
+        paintworkLogic.deletePaintWork(paintworkId);
+        LOGGER.info("PaintworkResource updatePaintwork: output: void");
     }
 
     /**
@@ -160,10 +160,10 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
      * que vamos a convertir a DTO.
      * @return la lista de editoriales en forma DTO (json)
      */
-    private List<EditorialDTO> listEntity2DetailDTO(List<EditorialEntity> entityList) {
-        List<EditorialDTO> list = new ArrayList<>();
-        for (EditorialEntity entity : entityList) {
-            list.add(new EditorialDTO(entity));
+    private List<PaintworkDTO> listEntity2DetailDTO(List<PaintworkEntity> entityList) {
+        List<PaintworkDTO> list = new ArrayList<>();
+        for (PaintworkEntity entity : entityList) {
+            list.add(new PaintworkDTO(entity));
         }
         return list;
     }

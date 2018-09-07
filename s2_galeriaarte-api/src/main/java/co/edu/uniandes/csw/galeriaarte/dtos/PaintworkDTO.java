@@ -30,6 +30,8 @@ public class PaintworkDTO implements Serializable {
      *
      * @param paintwirkEntity: Es la entidad que se va a convertir a DTO
      */
+    
+    
     public PaintworkDTO (PaintworkEntity paintworkEntity) {
         if (paintworkEntity != null) {
             this.idPaintwork = paintworkEntity.getId();
