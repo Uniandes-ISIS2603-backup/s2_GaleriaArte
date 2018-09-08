@@ -9,7 +9,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class ArtistDTO implements Serializable{
     
-    private Long userId;    
     private String name;    
     private CVDTO hojaDeVida;
     private String image;
@@ -24,7 +23,6 @@ public class ArtistDTO implements Serializable{
      */
     public ArtistDTO(ArtistEntity ArtistEntity) {
         if (ArtistEntity != null) {
-            this.userId = ArtistEntity.getId();
             this.name = ArtistEntity.getName();
             this.image = ArtistEntity.getImage();
         }
@@ -32,20 +30,11 @@ public class ArtistDTO implements Serializable{
     
     public ArtistEntity toEntity() {
         ArtistEntity artistEntity = new ArtistEntity();
-        artistEntity.setId(this.getId());
         artistEntity.setName(this.getName());
         artistEntity.setImage(this.image);
         return artistEntity;
     }
     
-    
-    /**
-     * Retorna el id del artista en cuestion
-     * @return 
-     */
-    public Long getId(){
-        return userId;
-    }
     
     /**
      * retorna el nombre (único) del artista en cuestion
@@ -67,10 +56,7 @@ public class ArtistDTO implements Serializable{
      * Modifica el id existente
      * @param pId 
      */
-    public void setId(Long pId){
-        this.userId=pId;
-    }
-    
+
     /**
      * Modifica el nombre actual
      * @param pName 
