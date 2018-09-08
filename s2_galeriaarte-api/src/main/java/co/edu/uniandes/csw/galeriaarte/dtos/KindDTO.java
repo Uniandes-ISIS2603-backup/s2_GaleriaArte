@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
+import co.edu.uniandes.csw.galeriaarte.entities.KindEntity;
 import java.io.Serializable;
 
 /**
@@ -57,6 +58,9 @@ public class KindDTO implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public KindEntity toEntity(){
+        return null;
     }
 }
 
