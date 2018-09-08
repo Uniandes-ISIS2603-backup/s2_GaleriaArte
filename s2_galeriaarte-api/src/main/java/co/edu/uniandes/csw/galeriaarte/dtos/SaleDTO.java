@@ -1,5 +1,8 @@
+
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
+import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
+import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
 import java.io.Serializable;
 
 public class SaleDTO implements Serializable
@@ -9,7 +12,7 @@ public class SaleDTO implements Serializable
 	
 	private String description;
 	
-	private double taxes;
+	private Double taxes;
 	
 	private ArtistDTO artist;
 	
@@ -23,7 +26,30 @@ public class SaleDTO implements Serializable
 	{
 		
 	}
+        public SaleDTO( SaleEntity entidad)
+        {
+            if(entidad!=null)
+            {
+            this.id= entidad.getId();
+            this.price= entidad.getPrice();
+            this.description= entidad.getDescription();
+            this.taxes= entidad.getTaxes();
+            }
+        }
 	
+        public SaleEntity toEntity()
+        {
+            
+        SaleEntity entidad = new SaleEntity();
+        entidad.setId(this.id);
+        entidad.setObra(this.obra.toEntity());
+        entidad.setDescription(this.description);
+        entidad.setPrice(this.price);
+        entidad.setTaxes(this.taxes);
+        //falta artist, medioPago, buyer
+        return entidad;
+        }
+        
 	public double getPrice()
 	{
 		return price;

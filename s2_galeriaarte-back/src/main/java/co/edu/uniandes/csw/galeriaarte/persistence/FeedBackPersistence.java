@@ -6,10 +6,13 @@
 package co.edu.uniandes.csw.galeriaarte.persistence;
 
 import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -19,7 +22,7 @@ import javax.persistence.EntityManager;
 public class FeedBackPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(FeedBackPersistence.class.getName());
-    
+    @PersistenceContext(unitName = "InterArtPU")
     protected EntityManager em;
     
     public FeedBackEntity create(FeedBackEntity feedEntity)
@@ -30,8 +33,20 @@ public class FeedBackPersistence {
         LOGGER.log(Level.INFO, "FeedBack creado");
         return feedEntity;
     }
-    
-     public FeedBackEntity update(FeedBackEntity feedEntity) {
+    public List<FeedBackEntity> findAll()
+    {
+        LOGGER.log(Level.INFO, "Consultando todos las calificaciones");
+        TypedQuery query = em.createQuery("select u from FeedBackEntity u", FeedBackEntity.class);
+        return query.getResultList();
+    }
+     public FeedBackEntity find(Long authorsId) 
+     {
+        LOGGER.log(Level.INFO, "Consultando la calificacion con id={0}", authorsId);
+     
+        return em.find(FeedBackEntity.class, authorsId);
+    }
+     public FeedBackEntity update(FeedBackEntity feedEntity) 
+     {
         LOGGER.log(Level.INFO, "Actualizando el feedback con id={0}", feedEntity.getId());
         
         return em.merge(feedEntity);

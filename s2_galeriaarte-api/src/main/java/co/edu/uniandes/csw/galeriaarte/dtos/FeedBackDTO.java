@@ -1,5 +1,6 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
+import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
 import java.io.Serializable;
 
 
@@ -20,6 +21,26 @@ public class FeedBackDTO implements Serializable
     public FeedBackDTO()
     {
         
+    }
+    
+    public FeedBackDTO(FeedBackEntity entidad)
+    {
+        if(entidad!=null)
+        {
+        this.id= entidad.getId();
+        this.name= entidad.getName();
+         }
+        
+    }
+     public FeedBackEntity toEntity() 
+     {
+    
+        FeedBackEntity entidad = new FeedBackEntity();
+        entidad.setId(this.getId());
+        entidad.setName(this.getName());
+        entidad.setObra(this.obra.toEntity());
+        //entidad.setUsuario(this.usuario);
+        return entidad;
     }
     public Long getId()
     {
