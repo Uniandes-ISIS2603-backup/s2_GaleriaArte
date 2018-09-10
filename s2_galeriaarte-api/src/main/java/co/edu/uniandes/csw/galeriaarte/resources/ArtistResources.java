@@ -35,7 +35,7 @@ public class ArtistResources {
     @POST
     public ArtistDTO createArtist(ArtistDTO artist) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ArtistResources createArtist: input: {0}", artist.toString());
-        ArtistDTO artistDTO = new ArtistDTO(artistLogic.createAuthor(artist.toEntity()));
+        ArtistDTO artistDTO = new ArtistDTO(artistLogic.createArtist(artist.toEntity()));
         LOGGER.log(Level.INFO, "ArtistResources createArtist: output: {0}", artistDTO.toString());
         return artistDTO;
     }
