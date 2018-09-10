@@ -9,8 +9,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class ArtistDTO implements Serializable{
     
+    private Long id;
     private String name;    
-    private CVDTO hojaDeVida;
+    //private CVDTO hojaDeVida;
     private String image;
     
     /**
@@ -21,16 +22,18 @@ public class ArtistDTO implements Serializable{
     /**
      * Crea un objeto ArtistDTO a partir de un objeto ArtistEntity.
      */
-    public ArtistDTO(ArtistEntity ArtistEntity) {
-        if (ArtistEntity != null) {
-            this.name = ArtistEntity.getName();
-            this.image = ArtistEntity.getImage();
+    public ArtistDTO(ArtistEntity artistEntity) {
+        if (artistEntity != null) {
+            this.name = artistEntity.getName();
+            this.image = artistEntity.getImage();
+            this.id = artistEntity.getId();
         }
     }
     
     public ArtistEntity toEntity() {
         ArtistEntity artistEntity = new ArtistEntity();
-        artistEntity.setName(this.getName());
+        artistEntity.setId(this.id);
+        artistEntity.setName(this.name);
         artistEntity.setImage(this.image);
         return artistEntity;
     }
@@ -44,18 +47,19 @@ public class ArtistDTO implements Serializable{
         return name;
     }
     
+    public Long getid(){
+        return this.id;
+    }
+    public void setid(Long newId){
+        this.id = newId;
+    }
     /**
      * 
      * @return 
      */
     public CVDTO getCV(){
-        return hojaDeVida;
+        return null;//hojaDeVida;
     }
-   
-    /**
-     * Modifica el id existente
-     * @param pId 
-     */
 
     /**
      * Modifica el nombre actual
@@ -63,14 +67,6 @@ public class ArtistDTO implements Serializable{
      */
     public void setName(String pName){
         this.name= pName;
-    }
-     
-    /**
-     * modifica la hoja de vida del artista en cuestion
-     * @param pCV 
-     */
-    public void setCV(CVDTO pCV){
-        this.hojaDeVida = pCV;
     }
     
     /**

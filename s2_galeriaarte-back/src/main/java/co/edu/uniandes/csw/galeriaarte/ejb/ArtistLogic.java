@@ -29,5 +29,8 @@ public class ArtistLogic {
         return newArtistEntity;
     }
     
+    public ArtistEntity getArtist(Long id){
+        return null;
+    }
     
 }

@@ -6,8 +6,8 @@
 package co.edu.uniandes.csw.galeriaarte.persistence;
 
 import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,8 +19,8 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class CVPersistence {
     
-    
-    @PersistenceContext(unitName = "Interart")
+    private static final Logger LOGGER = Logger.getLogger(FeedBackPersistence.class.getName());
+    @PersistenceContext(unitName = "InterartPU")
     protected EntityManager em;
     
     
