@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
 import java.io.Serializable;
+import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
 
 
 /**
@@ -22,7 +23,7 @@ public class BuyerDTO implements Serializable {
     private String phone;
     private String creditcard;
     private String country;
-    private String idUser;
+    private Long idUser;
     private SaleDTO sale;
     
     
@@ -30,6 +31,19 @@ public class BuyerDTO implements Serializable {
         
     }
     
+    public BuyerDTO(BuyerEntity BuyerE){
+        
+    }
+  
+    public BuyerEntity toEntity() 
+     {
+    
+        BuyerEntity entidad = new BuyerEntity();
+        entidad.setId(this.getIdUser());
+        entidad.setName(this.getName());
+       
+        return entidad;
+    }
     /**
      * @return clave del usuario  
      */
@@ -128,7 +142,7 @@ public class BuyerDTO implements Serializable {
      * @return el id del usuario 
      */
     
-    public String getIdUser(){
+    public Long getIdUser(){
         return idUser;
     }
     
@@ -136,7 +150,7 @@ public class BuyerDTO implements Serializable {
      * @param nuevo id del usuario 
      */
     
-    public void setIdUser(String newId){
+    public void setIdUser(Long newId){
         
         idUser= newId;
     }
