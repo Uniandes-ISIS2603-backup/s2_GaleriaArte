@@ -7,7 +7,10 @@ package co.edu.uniandes.csw.galeriaarte.resources;
 
 import co.edu.uniandes.csw.galeriaarte.dtos.CVDTO;
 import co.edu.uniandes.csw.galeriaarte.dtos.KindDTO;
+import co.edu.uniandes.csw.galeriaarte.ejb.CVLogic;
+import co.edu.uniandes.csw.galeriaarte.ejb.KindLogic;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -26,7 +29,8 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 
 public class KindResources {
-    
+    @Inject 
+KindLogic kindLogic;
      /**
      * Crea un tipo
      *

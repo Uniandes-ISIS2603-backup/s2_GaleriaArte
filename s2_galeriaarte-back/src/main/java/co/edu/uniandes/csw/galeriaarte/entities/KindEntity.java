@@ -5,10 +5,69 @@
  */
 package co.edu.uniandes.csw.galeriaarte.entities;
 
+import java.io.Serializable;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
+
 /**
  *
  * @author estudiante
  */
-public class KindEntity {
+public class KindEntity extends BaseEntity implements Serializable{
+       @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+       
+           @PodamExclude
+@OneToOne(mappedBy="cv", fetch=FetchType.LAZY)
+private PaintworkEntity paintwork;  
+  /**
+     * Identificación del tipo
+     */
+    private Long  idType;
     
+    /**
+     * Nombre
+     */
+    private String name;
+    
+    /**
+     * Descripción
+     */
+    private String description;
+ public  KindEntity()
+    {
+        
+    }
+
+    public Long getIdType() {
+        return idType;
+    }
+
+    public void setIdType(Long idType) {
+        this.idType = idType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public KindEntity toEntity(){
+        return null;
+    }
 }
