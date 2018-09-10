@@ -23,6 +23,8 @@ public class BuyerDTO implements Serializable {
     private String creditcard;
     private String country;
     private String idUser;
+    private SaleDTO sale;
+    
     
     public BuyerDTO(){
         
@@ -172,6 +174,19 @@ public class BuyerDTO implements Serializable {
     
     public void setPhone(String newPhone){
         phone = newPhone;
+    }
+    
+    public SaleDTO getSale(){
+        return sale;
+    }
+    
+    /**
+     * 
+     * @param 
+     */
+    
+    public void setSale(SaleDTO newSale){ 
+        sale = newSale;
     }
 }
 
