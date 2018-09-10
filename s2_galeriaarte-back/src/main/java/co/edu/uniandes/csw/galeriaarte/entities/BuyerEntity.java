@@ -10,10 +10,27 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author estudiante
+ * @author s.acostav
  */
 @Entity
-class BuyerEntity extends BaseEntity implements Serializable
+public class BuyerEntity extends BaseEntity implements Serializable
 {
+    String name;
+    Long id;
     
+    public String getName(){
+        return this.name;
+    }
+    
+    public Long getId(){
+        return this.id;
+    }
+    
+    public void setName(String nName){
+        this.name = nName;
+    }
+    
+    public void setId(Long nId){
+        this.id=nId;
+    }
 }
