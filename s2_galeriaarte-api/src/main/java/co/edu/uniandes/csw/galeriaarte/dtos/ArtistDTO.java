@@ -25,6 +25,7 @@ public class ArtistDTO implements Serializable{
         if (ArtistEntity != null) {
             this.name = ArtistEntity.getName();
             this.image = ArtistEntity.getImage();
+            
         }
     }
     

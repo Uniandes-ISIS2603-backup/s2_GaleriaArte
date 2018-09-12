@@ -18,9 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author estudiante
  */
 public class KindEntity extends BaseEntity implements Serializable{
-       @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+
        
            @PodamExclude
 @OneToOne(mappedBy="cv", fetch=FetchType.LAZY)

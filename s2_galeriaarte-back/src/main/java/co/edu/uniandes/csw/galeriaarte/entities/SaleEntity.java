@@ -15,11 +15,11 @@ import javax.persistence.Entity;
 @Entity
 public class SaleEntity extends BaseEntity implements Serializable
 {
-        private double price;
+        private Double price;
 	
 	private String description;
 	
-	private double taxes;
+	private Double taxes;
 	
 	private ArtistEntity artist;
 	
