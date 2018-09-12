@@ -16,7 +16,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author estudiante
+ * @author s.restrepos1
  */
 @Stateless
 public class FeedBackLogic 
@@ -52,6 +52,17 @@ public class FeedBackLogic
         FeedBackEntity newAuthorEntity = persistence.update(feedEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la calificacion con id = {0}", fdId);
         return newAuthorEntity;
+    }
+      /**
+     * Borrar una calificacion
+     *
+     * @param feedBackId: id de la obra a borrar
+     */
+    public void deleteFeedBack(Long feedBackId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la calificacion con id = {0}", feedBackId);
+        // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
+        persistence.delete(feedBackId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la calificacion con id = {0}", feedBackId);
     }
     
    
