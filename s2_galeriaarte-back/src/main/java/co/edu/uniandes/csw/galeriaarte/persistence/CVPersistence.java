@@ -6,6 +6,9 @@
 package co.edu.uniandes.csw.galeriaarte.persistence;
 
 import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +22,8 @@ public class CVPersistence {
     
     
             @PersistenceContext(unitName = "InterArtPU")
+    private static final Logger LOGGER = Logger.getLogger(FeedBackPersistence.class.getName());
+    @PersistenceContext(unitName = "InterartPU")
     protected EntityManager em;
     
     
