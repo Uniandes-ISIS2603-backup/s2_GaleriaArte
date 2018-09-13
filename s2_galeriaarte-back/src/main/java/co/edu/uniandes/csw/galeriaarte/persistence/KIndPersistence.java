@@ -5,8 +5,14 @@
  */
 package co.edu.uniandes.csw.galeriaarte.persistence;
 
+<<<<<<< HEAD
 import co.edu.uniandes.csw.galeriaarte.ejb.KindLogic;
 import co.edu.uniandes.csw.galeriaarte.entities.KindEntity;
+=======
+
+import co.edu.uniandes.csw.galeriaarte.entities.KindEntity;
+
+>>>>>>> 54b641d6bceba462731e85a62304fc4b3a1c8119
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -19,17 +25,20 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class KIndPersistence {
+<<<<<<< HEAD
         @PersistenceContext(unitName = "InterArtPU")
+=======
+            @PersistenceContext(unitName = "InterArtPU")
+>>>>>>> 54b641d6bceba462731e85a62304fc4b3a1c8119
     protected EntityManager em;
     
         private static final Logger LOGGER = Logger.getLogger(KindLogic.class.getName());
     
 
     public KindEntity create(KindEntity kindEntity) {
-        LOGGER.log(Level.INFO, "Creando un kind");
-  
+       
         em.persist(kindEntity);
-        LOGGER.log(Level.INFO, "Saliendo de crear  un kind");
+
         return kindEntity;
     }
 }

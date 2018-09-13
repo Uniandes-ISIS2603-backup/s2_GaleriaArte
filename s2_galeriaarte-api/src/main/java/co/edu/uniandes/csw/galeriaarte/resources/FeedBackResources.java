@@ -21,6 +21,8 @@ import javax.ws.rs.PathParam;
  * @author s.restrepos1
  */
 import co.edu.uniandes.csw.galeriaarte.dtos.FeedBackDTO;
+import co.edu.uniandes.csw.galeriaarte.ejb.FeedBackLogic;
+import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
 import javax.ws.rs.GET;
 import javax.ws.rs.WebApplicationException;
 @Path("feedbacks")
@@ -29,13 +31,23 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class FeedBackResources 
 {
-    //@Inject
-    //FeedBackLogic feedBackLogic;
+    private static final Logger LOGGER=Logger.getLogger(FeedBackResources.class.getName());
+    
+   @Inject
+    FeedBackLogic feedBackLogic;
     
     @POST
     public FeedBackDTO createFeedBack(FeedBackDTO fdbDTO)
     {
-        return fdbDTO;
+        LOGGER.log(Level.INFO,"FeedBackResource createFeedBack: input: {0}",fdbDTO.toString());
+        FeedBackEntity feedEntity= fdbDTO.toEntity();
+        
+        FeedBackEntity nuevoFeedEntity= feedBackLogic.createFeedBack(feedEntity);
+        
+        FeedBackDTO nuevoFeedDTO= new FeedBackDTO(feedEntity);
+        
+        LOGGER.log(Level.INFO, "FeedBackResource createFeedBack: input: {0}", nuevoFeedDTO.toString());
+        return nuevoFeedDTO;
     }
     @GET
     @Path("feedbacks://d+")

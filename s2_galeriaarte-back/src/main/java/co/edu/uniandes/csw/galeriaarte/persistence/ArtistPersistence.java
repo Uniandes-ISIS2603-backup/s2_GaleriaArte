@@ -14,6 +14,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
+
+
+/**
  *
  * @author Anderson Barragan a.barragan
  */
