@@ -92,6 +92,7 @@ public class CategoryResource {
     @GET
     @Path("{categoryId: \\d+}")
     public CategoryDTO getCategory(@PathParam("categoryId") Long categoryId) throws WebApplicationException {
+        /*
         LOGGER.log(Level.INFO, "CategoryResource getCategoria: input: {0}", categoryId);
         CategoryEntity categoryEntity = categoryLogic.getCategory(categoryId);
         if (categoryEntity == null) {
@@ -100,6 +101,8 @@ public class CategoryResource {
         CategoryDTO detailDTO = new CategoryDTO(categoryEntity);
         LOGGER.log(Level.INFO, "CategoryResource getCategoria: output: {0}", detailDTO.toString());
         return detailDTO;
+        */
+        return null;
     }
 
     /**

@@ -215,11 +215,11 @@ public class PaintworkDTO implements Serializable {
         paintworkEntity.setId(this.idPaintwork);
         paintworkEntity.setName(this.name);
         paintworkEntity.setCountry(this.country);
-        paintworkEntity.setCategory(this.category.toEntity);
+        paintworkEntity.setCategory(this.category.toEntity());
         paintworkEntity.setFeedback(this.feedback.toEntity());
         paintworkEntity.setDescription(this.description);
         paintworkEntity.setImagePath(this.imagePath);
-        paintworkEntity.setKind(this.kind.toEntity);
+       // paintworkEntity.setKind(this.kind.toEntity);
         paintworkEntity.setValor(this.value);
         paintworkEntity.setVerificacionObra(this.verificacionObra);
         paintworkEntity.setVideoPath(this.videoPath);

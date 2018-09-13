@@ -24,6 +24,10 @@ public class CategoryDTO {
             this.name = categoryEntity.getName();
         }
     }
+    
+    public CategoryDTO(){
+    }
+    
 
 
     /**
