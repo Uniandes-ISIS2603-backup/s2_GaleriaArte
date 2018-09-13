@@ -17,9 +17,6 @@ import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
 public class BuyerEntity extends BaseEntity implements Serializable
 {
     String name;
-<<<<<<< HEAD
-=======
-
     String password;
     String user;
     String email;
@@ -31,7 +28,7 @@ public class BuyerEntity extends BaseEntity implements Serializable
     PaintworkEntity paintwork;
     String adress;
 
->>>>>>> 54b641d6bceba462731e85a62304fc4b3a1c8119
+
     
     public BuyerEntity(){
         
@@ -40,12 +37,12 @@ public class BuyerEntity extends BaseEntity implements Serializable
         return this.name;
     }
     
-<<<<<<< HEAD
+
     public void setName(String nName){
         this.name = nName;
     }
  }
-=======
+
 
     public String getCountry(){
     return this.country;
@@ -123,4 +120,4 @@ public class BuyerEntity extends BaseEntity implements Serializable
     }
 
 }
->>>>>>> 54b641d6bceba462731e85a62304fc4b3a1c8119
+
