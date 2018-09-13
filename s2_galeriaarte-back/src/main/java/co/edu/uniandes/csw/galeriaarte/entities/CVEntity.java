@@ -28,9 +28,9 @@ public class CVEntity extends BaseEntity implements Serializable{
 @PodamExclude
 @OneToOne(mappedBy="cv", fetch=FetchType.LAZY)
 private ArtistEntity artist;
-    @Id
+    //@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    //private Long id;
      private String name;
      private String educationDTO;
      private PaintworkEntity obraMasConocidaDTO;

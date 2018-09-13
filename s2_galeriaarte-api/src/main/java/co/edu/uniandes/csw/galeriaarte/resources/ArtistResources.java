@@ -21,10 +21,9 @@ import javax.ws.rs.core.MediaType;
  * @author Anderson Barragan a.barragan
  */
 @Path("artists")
-//@Produces("application/json")
-//@Consumes("application/json")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Produces("application/json")
+@Consumes("application/json")
+
 @RequestScoped
 public class ArtistResources {
 
@@ -34,22 +33,22 @@ public class ArtistResources {
 
     @POST
     public ArtistDTO createArtist(ArtistDTO artist) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "ArtistResources createArtist: input: {0}", artist.toString());
-        ArtistDTO artistDTO = new ArtistDTO(artistLogic.createArtist(artist.toEntity()));
-        LOGGER.log(Level.INFO, "ArtistResources createArtist: output: {0}", artistDTO.toString());
-        return artistDTO;
+        //LOGGER.log(Level.INFO, "ArtistResources createArtist: input: {0}", artist.toString());
+        //ArtistDTO artistDTO = new ArtistDTO(artistLogic.createArtist(artist.toEntity()));
+        //LOGGER.log(Level.INFO, "ArtistResources createArtist: output: {0}", artistDTO.toString());
+        return artist;
     }
 
-    @GET
-    @Path("artistsId://d+")
-    public ArtistDTO getArtists(@PathParam("artistsId") Long artistId) throws WebApplicationException {
-        LOGGER.log(Level.INFO, "ArtistResource getartist: input: {0}", artistId);
-        ArtistEntity artistEntity = artistLogic.getArtist(artistId);
-        if (artistEntity == null) {
-            throw new WebApplicationException("El recurso /authors/" + artistId + " no existe.", 404);
-        }
-        ArtistDTO artistDTO = new ArtistDTO(artistEntity);
-        LOGGER.log(Level.INFO, "AuthorResource getAuthor: output: {0}", artistDTO.toString());
-        return artistDTO;
-    }
+    //@GET
+    //@Path("artistsId://d+")
+    //public ArtistDTO getArtists(@PathParam("/artistsId") Long artistId) throws WebApplicationException {
+    //    LOGGER.log(Level.INFO, "ArtistResource getartist: input: {0}", artistId);
+    //    ArtistEntity artistEntity = artistLogic.getArtist(artistId);
+    //    if (artistEntity == null) {
+    //        throw new WebApplicationException("El recurso /authors/" + artistId + " no existe.", 404);
+    //    }
+    //    ArtistDTO artistDTO = new ArtistDTO(artistEntity);
+    //    LOGGER.log(Level.INFO, "AuthorResource getAuthor: output: {0}", artistDTO.toString());
+    //    return artistDTO;
+    //}
 }

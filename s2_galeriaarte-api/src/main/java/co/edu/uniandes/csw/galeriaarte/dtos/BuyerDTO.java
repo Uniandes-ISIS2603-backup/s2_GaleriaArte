@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.galeriaarte.dtos;
 
 import java.io.Serializable;
 import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
+//import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
 
 
 /**

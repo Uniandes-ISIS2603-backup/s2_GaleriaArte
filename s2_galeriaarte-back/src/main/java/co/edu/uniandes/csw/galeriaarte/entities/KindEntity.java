@@ -18,17 +18,17 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author estudiante
  */
 public class KindEntity extends BaseEntity implements Serializable{
-       @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+      // @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+        //private Long id;
        
-           @PodamExclude
-@OneToOne(mappedBy="cv", fetch=FetchType.LAZY)
-private PaintworkEntity paintwork;  
+          // @PodamExclude
+//@OneToOne(mappedBy="cv", fetch=FetchType.LAZY)
+//private PaintworkEntity paintwork;  
   /**
      * Identificación del tipo
      */
-    private Long  idType;
+    //private Long  idType;
     
     /**
      * Nombre
@@ -44,13 +44,13 @@ private PaintworkEntity paintwork;
         
     }
 
-    public Long getIdType() {
-        return idType;
-    }
+    //public Long getIdType() {
+    //    return idType;
+    //}
 
-    public void setIdType(Long idType) {
-        this.idType = idType;
-    }
+    //public void setIdType(Long idType) {
+    //    this.idType = idType;
+    //}
 
     public String getName() {
         return name;

@@ -16,21 +16,12 @@ import javax.persistence.Entity;
 public class BuyerEntity extends BaseEntity implements Serializable
 {
     String name;
-    Long id;
     
     public String getName(){
         return this.name;
     }
     
-    public Long getId(){
-        return this.id;
-    }
-    
     public void setName(String nName){
         this.name = nName;
     }
-    
-    public void setId(Long nId){
-        this.id=nId;
-    }
-}
+ }

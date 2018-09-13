@@ -49,12 +49,12 @@ public class ArtistLogic {
      * @return Instancia de ArtistEntity con los datos del Artist consultado.
      */
     public ArtistEntity getArtist(Long artistsId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el autor con id = {0}", artistsId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el artista con id = {0}", artistsId);
         ArtistEntity artistEntity = persistence.find(artistsId);
         if (artistEntity == null) {
             LOGGER.log(Level.SEVERE, "La editorial con el id = {0} no existe", artistsId);
         }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el autor con id = {0}", artistsId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el artista con id = {0}", artistsId);
         return artistEntity;
     }
 

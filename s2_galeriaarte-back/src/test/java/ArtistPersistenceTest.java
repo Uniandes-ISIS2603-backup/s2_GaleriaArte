@@ -44,7 +44,7 @@ public class ArtistPersistenceTest {
     }
     
     @Test
-    public void createFeedBackTest()
+    public void createArtistTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
         ArtistEntity newEntity= factory.manufacturePojo(ArtistEntity.class);
