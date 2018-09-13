@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  * Clase que representa un servicio extra  en la persistencia y permite su
@@ -13,6 +14,7 @@ import java.io.Serializable;
  *
  * @author ja.penat
  */
+@Entity
 public class ExtraServiceEntity extends BaseEntity implements Serializable
 {
     private String name;
