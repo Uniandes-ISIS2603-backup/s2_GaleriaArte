@@ -5,15 +5,15 @@
  */
 package co.edu.uniandes.csw.galeriaarte.resources;
 import co.edu.uniandes.csw.galeriaarte.dtos.BuyerDTO;
-import co.edu.uniandes.csw.galeriaarte.dtos.CVDTO;
+import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
+import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.galeriaarte.ejb.BuyerLogic;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -24,19 +24,33 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class BuyerResources {
+    @Inject
+    BuyerLogic buyerLogic;
+    
+    // COMPLETAR
+    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(BuyerResources.class.getName());
     
     @POST
+    public BuyerDTO createBuyer(BuyerDTO buyer) throws BusinessLogicException{
+        //Convierte el DTO (json) es un objeto Entity para ser manejado por la lógica.
     
-    public BuyerDTO createBuyer(BuyerDTO buyer){
-        return null;
+        LOGGER.info("BuyerResource createBuyer: input:"+buyer.toString());
+        BuyerEntity buyerEntity = buyer.toEntity( );
+        // Invoca la lógica para crear el comprador nuevo
+        BuyerEntity nuevoBuyerEntity = buyerLogic.createBuyer(buyerEntity);
+        // Como debe retornar un DTO(jso) se invoca el constructor del DTO con el argumento el entity nuevo
+        BuyerDTO nuevoBuyerDTO = new BuyerDTO(nuevoBuyerEntity);
+        LOGGER.info("BuyerResource createBuyer: output:"+nuevoBuyerDTO.toString());
+        
+        return nuevoBuyerDTO;
     }
     
-    @GET
-    @Path("buyers://d+")
-    public BuyerDTO getBuyerByidUser(@PathParam("/buyers") Long idPaintwork) throws WebApplicationException {
-        return null;
-    }
+
     
+    
+   
+    
+   
     
 }
 

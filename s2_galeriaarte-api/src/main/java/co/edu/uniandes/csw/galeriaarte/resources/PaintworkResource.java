@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.galeriaarte.resources;
 
 import co.edu.uniandes.csw.galeriaarte.dtos.PaintworkDTO;
+import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
 import co.edu.uniandes.csw.galeriaarte.ejb.PaintworkLogic;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;

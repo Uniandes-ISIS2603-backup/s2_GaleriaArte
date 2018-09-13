@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
 import java.io.Serializable;
+import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
+//import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
 
 
 /**
@@ -22,12 +24,62 @@ public class BuyerDTO implements Serializable {
     private String phone;
     private String creditcard;
     private String country;
-    private String idUser;
+    private Long idUser;
+    private SaleDTO sale;
+    private PaintworkDTO paintwork;
     
     public BuyerDTO(){
         
     }
     
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param BuyerEntity: Es la entidad que se va a convertir a DTO
+     */
+    
+    
+    
+    public BuyerDTO (BuyerEntity buyerEntity) {
+        if (buyerEntity != null) {
+            this.adress = buyerEntity.getAdress();
+            this.country = buyerEntity.getCountry();
+            this.creditcard = buyerEntity.getCreditCard();
+            this.email = buyerEntity.getEmail();
+            this.name = buyerEntity.getName();
+            this.password = buyerEntity.getPassword();
+            this.phone = buyerEntity.getPhone();
+            this.user = buyerEntity.getUser();
+            this.paintwork = new PaintworkDTO();
+            this.sale = new SaleDTO();
+           
+        }
+    }
+    
+    /**
+     * Convertir DTO a Entity
+    */
+  
+    public BuyerEntity toEntity() 
+     {
+    
+        BuyerEntity entidad = new BuyerEntity();
+        entidad.setAdress(this.adress);
+        entidad.setCountry(this.country);
+        entidad.setCreditCard(this.creditcard);
+        entidad.setEmail(this.email);
+        entidad.setName(this.name);
+        entidad.setPaintwork(this.paintwork.toEntity());
+        entidad.setPassword(this.password);
+        entidad.setPhone(this.phone);
+        entidad.setSale(this.sale.toEntity());
+        entidad.setUser(this.user);
+        
+        
+       
+        return entidad;
+    }
     /**
      * @return clave del usuario  
      */
@@ -51,6 +103,10 @@ public class BuyerDTO implements Serializable {
     
     public String getName(){
         return name;
+    }
+    
+    public PaintworkDTO getPaintwork(){
+        return paintwork;
     }
     
     /**
@@ -77,6 +133,9 @@ public class BuyerDTO implements Serializable {
         user = newUser;
     }
     
+    public void setPaintwork(PaintworkDTO nPaintwork){
+        paintwork = nPaintwork;
+    }
     /**
      * @return País de origen del usuario 
      */
@@ -126,7 +185,7 @@ public class BuyerDTO implements Serializable {
      * @return el id del usuario 
      */
     
-    public String getIdUser(){
+    public Long getIdUser(){
         return idUser;
     }
     
@@ -134,7 +193,7 @@ public class BuyerDTO implements Serializable {
      * @param nuevo id del usuario 
      */
     
-    public void setIdUser(String newId){
+    public void setIdUser(Long newId){
         
         idUser= newId;
     }
@@ -173,6 +232,18 @@ public class BuyerDTO implements Serializable {
     public void setPhone(String newPhone){
         phone = newPhone;
     }
+    
+    public SaleDTO getSale(){
+        return sale;
+    }
+    
+    /**
+     * 
+     * @param 
+     */
+    
+    public void setSale(SaleDTO newSale){ 
+        sale = newSale;
+    }
 }
-
 

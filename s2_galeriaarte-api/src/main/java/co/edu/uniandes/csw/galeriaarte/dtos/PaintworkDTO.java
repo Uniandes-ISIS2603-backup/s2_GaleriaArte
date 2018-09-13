@@ -220,6 +220,7 @@ public class PaintworkDTO implements Serializable {
         paintworkEntity.setDescription(this.description);
         paintworkEntity.setImagePath(this.imagePath);
        // paintworkEntity.setKind(this.kind.toEntity);
+        paintworkEntity.setKind(this.kind.toEntity());
         paintworkEntity.setValor(this.value);
         paintworkEntity.setVerificacionObra(this.verificacionObra);
         paintworkEntity.setVideoPath(this.videoPath);
