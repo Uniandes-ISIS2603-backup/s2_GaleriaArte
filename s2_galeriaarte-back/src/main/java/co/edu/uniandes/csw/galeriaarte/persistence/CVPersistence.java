@@ -20,14 +20,10 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class CVPersistence {
     
-<<<<<<< HEAD
     private static final Logger LOGGER = Logger.getLogger(CVPersistence.class.getName());
-=======
+
     
             @PersistenceContext(unitName = "InterArtPU")
-    private static final Logger LOGGER = Logger.getLogger(FeedBackPersistence.class.getName());
->>>>>>> 54b641d6bceba462731e85a62304fc4b3a1c8119
-    @PersistenceContext(unitName = "InterartPU")
     protected EntityManager em;
     
     
