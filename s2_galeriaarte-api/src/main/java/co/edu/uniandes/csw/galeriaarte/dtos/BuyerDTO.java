@@ -25,22 +25,57 @@ public class BuyerDTO implements Serializable {
     private String country;
     private Long idUser;
     private SaleDTO sale;
-    
+    private PaintworkDTO paintwork;
     
     public BuyerDTO(){
         
     }
     
-    public BuyerDTO(BuyerEntity BuyerE){
-        
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param BuyerEntity: Es la entidad que se va a convertir a DTO
+     */
+    
+    
+    
+    public BuyerDTO (BuyerEntity buyerEntity) {
+        if (buyerEntity != null) {
+            this.adress = buyerEntity.getAdress();
+            this.country = buyerEntity.getCountry();
+            this.creditcard = buyerEntity.getCreditCard();
+            this.email = buyerEntity.getEmail();
+            this.name = buyerEntity.getName();
+            this.password = buyerEntity.getPassword();
+            this.phone = buyerEntity.getPhone();
+            this.user = buyerEntity.getUser();
+            this.paintwork = new PaintworkDTO();
+            this.sale = new SaleDTO();
+           
+        }
     }
+    
+    /**
+     * Convertir DTO a Entity
+    */
   
     public BuyerEntity toEntity() 
      {
     
         BuyerEntity entidad = new BuyerEntity();
-        entidad.setId(this.getIdUser());
-        entidad.setName(this.getName());
+        entidad.setAdress(this.adress);
+        entidad.setCountry(this.country);
+        entidad.setCreditCard(this.creditcard);
+        entidad.setEmail(this.email);
+        entidad.setName(this.name);
+        entidad.setPaintwork(this.paintwork.toEntity());
+        entidad.setPassword(this.password);
+        entidad.setPhone(this.phone);
+        entidad.setSale(this.sale.toEntity());
+        entidad.setUser(this.user);
+        
+        
        
         return entidad;
     }
@@ -69,6 +104,10 @@ public class BuyerDTO implements Serializable {
         return name;
     }
     
+    public PaintworkDTO getPaintwork(){
+        return paintwork;
+    }
+    
     /**
      * 
      * @param the  nuevo nombre del usuario  
@@ -93,6 +132,9 @@ public class BuyerDTO implements Serializable {
         user = newUser;
     }
     
+    public void setPaintwork(PaintworkDTO nPaintwork){
+        paintwork = nPaintwork;
+    }
     /**
      * @return País de origen del usuario 
      */
@@ -203,5 +245,4 @@ public class BuyerDTO implements Serializable {
         sale = newSale;
     }
 }
-
 
