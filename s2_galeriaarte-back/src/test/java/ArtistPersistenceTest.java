@@ -54,6 +54,4 @@ public class ArtistPersistenceTest {
         ArtistEntity entity= em.find(ArtistEntity.class, result.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
-    
 }
-
