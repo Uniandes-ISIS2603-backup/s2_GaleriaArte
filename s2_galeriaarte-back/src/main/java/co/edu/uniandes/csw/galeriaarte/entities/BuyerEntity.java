@@ -41,7 +41,7 @@ public class BuyerEntity extends BaseEntity implements Serializable
     public void setName(String nName){
         this.name = nName;
     }
- }
+ 
 
 
     public String getCountry(){
@@ -78,11 +78,7 @@ public class BuyerEntity extends BaseEntity implements Serializable
     
     public PaintworkEntity getPaintwork( ){
         return paintwork;
-    }
-    public void setName(String nName){
-        this.name = nName;
-    }
-    
+    }    
 
     public void setAdress(String nAdress){
         this.adress = nAdress;
