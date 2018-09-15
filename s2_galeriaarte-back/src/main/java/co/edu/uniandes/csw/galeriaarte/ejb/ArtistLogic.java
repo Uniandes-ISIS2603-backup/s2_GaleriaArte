@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Anderson Barragan a.barragan
+ * @author a.barragan Anderson Barragan 
  */
 public class ArtistLogic {
     
@@ -52,7 +52,7 @@ public class ArtistLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el artista con id = {0}", artistsId);
         ArtistEntity artistEntity = persistence.find(artistsId);
         if (artistEntity == null) {
-            LOGGER.log(Level.SEVERE, "La editorial con el id = {0} no existe", artistsId);
+            LOGGER.log(Level.SEVERE, "no existe la entidad con id = {0} no existe", artistsId);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar el artista con id = {0}", artistsId);
         return artistEntity;
@@ -65,11 +65,23 @@ public class ArtistLogic {
      * @param artistEntity Instancia de ArtistEntity con los nuevos datos.
      * @return Instancia de rtistEntity con los datos actualizados.
      */
-    public ArtistEntity updateAuthor(Long artistId, ArtistEntity artistEntity) {
+    public ArtistEntity updateArtist(Long artistId, ArtistEntity artistEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", artistId);
         ArtistEntity newArtistEntity = persistence.update(artistEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el artista con id = {0}", artistId);
         return newArtistEntity;
+    }
+    
+    /**
+     * Borrar un Artista
+     *
+     * @param artistId: id del artista a borrar
+     */
+    public void deleteFeedBack(Long artistId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar al artista con id = {0}", artistId);
+        // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
+        persistence.delete(artistId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar al artista con id = {0}", artistId);
     }
 }
 
