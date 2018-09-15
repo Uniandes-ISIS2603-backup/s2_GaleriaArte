@@ -68,7 +68,7 @@ public class MedioPagoPersistence
      * Actualiza un medio de pago.
      *
      * @param medioPagoEntity: el medio de pago  que viene con los nuevos cambios.
-     * Por ejemplo el nombre pudo cambiar. En ese caso, se haria uso del método
+     * Por ejemplo el numero  pudo cambiar. En ese caso, se haria uso del método
      * update.
      * @return el medio de pago  con los cambios aplicados.
      */
