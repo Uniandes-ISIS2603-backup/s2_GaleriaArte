@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  *
- * @author Anderson Barragan
+ * @author a.barragan Anderson Barragan
  */
 public class ArtistDTO implements Serializable{
     
@@ -20,12 +20,13 @@ public class ArtistDTO implements Serializable{
     
     /**
      * Crea un objeto ArtistDTO a partir de un objeto ArtistEntity.
+     * @param artistEntity entidad de artista para crear el DTO
      */
-    public ArtistDTO(ArtistEntity ArtistEntity) {
-        if (ArtistEntity != null) {
-            this.name = ArtistEntity.getName();
-            this.image = ArtistEntity.getImage();
-            
+    public ArtistDTO(ArtistEntity artistEntity) {
+        if (artistEntity != null) {
+            this.name = artistEntity.getName();
+            this.image = artistEntity.getImage();
+            //this.hojaDeVida = artistEntity.getCV();
         }
     }
     

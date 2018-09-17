@@ -7,19 +7,37 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author 
+ * @author a.barragan Anderson Barragan
  */
 @Entity
 public class ArtistEntity extends BaseEntity implements Serializable
 {
-    String name;
-    String image;
-   
+    private String name;
+    private String image;
+    
+    @PodamExclude
+    @OneToOne
+    private CVEntity hojaDeVida;
+    
+    
+    public ArtistEntity(){}
+    
     public String getImage(){
         return this.image;
+    }
+    public void setImage(String pImage){
+        this.image = pImage;
+    }
+    public CVEntity getCV(){
+        return this.hojaDeVida;
+    }
+    public void setCVEntity(CVEntity pCVEntity){
+        this.hojaDeVida = pCVEntity;
     }
     public String getName(){
         return this.name;
@@ -27,7 +45,6 @@ public class ArtistEntity extends BaseEntity implements Serializable
     public void setName(String pName){
         this.name = pName;
     }
-    public void setImage(String pImage){
-        this.image = pImage;
-    }
+    
+    
 }

@@ -7,6 +7,9 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -21,12 +24,20 @@ public class SaleEntity extends BaseEntity implements Serializable
 	
 	private Double taxes;
 	
+        @PodamExclude
+        @OneToOne(mappedBy="sale")
 	private ArtistEntity artist;
 	
+        @PodamExclude
+        @OneToOne(mappedBy="")
 	private PaintworkEntity obra;
-	
+        
+	@PodamExclude
+        @OneToOne
 	private MedioPagoEntity metodo;
 	
+        @PodamExclude
+        @OneToOne
 	private BuyerEntity buyer;
         
         public SaleEntity()

@@ -46,7 +46,10 @@ public class SaleDTO implements Serializable
         entidad.setDescription(this.description);
         entidad.setPrice(this.price);
         entidad.setTaxes(this.taxes);
-        //falta artist, medioPago, buyer
+        entidad.setArtist(this.artist.toEntity());
+        entidad.setMetodoPago(this.metodo.toEntity());
+        entidad.setBuyer(this.buyer.toEntity());
+        
         return entidad;
         }
         
