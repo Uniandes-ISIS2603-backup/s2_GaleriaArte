@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author LauraManrique
  */
 
 @Entity
@@ -32,14 +32,32 @@ private ArtistEntity artist;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //private Long id;
 
-
+     private Long id;
      private String name;
      private String educationDTO;
      private PaintworkEntity obraMasConocidaDTO;
      private String fechaNacimientoDTO;
      private String informacionAdicionalDTO;
      private ArrayList obrasDTO;
-      /**
+    
+     
+    public Long getId()
+    {
+        return this.id;
+    }
+     
+    public void setId(Long pId)
+    {
+        this.id=pId;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    public void setName(String pName){
+        name=pName;
+    }
+     /**
      * Retorna el nivel de educación del artista
      *
      * @return nivel de educación del artista
@@ -71,8 +89,8 @@ private ArtistEntity artist;
      *
      * @param obraMasConocidaDTO
      */
-    public void setobraMasConocidaDTO(PaintworkEntity obraMasConocidaDTO) {
-        this.obraMasConocidaDTO = obraMasConocidaDTO;
+    public void setobraMasConocidaDTO(PaintworkEntity pobraMasConocidaDTO) {
+        this.obraMasConocidaDTO = pobraMasConocidaDTO;
     }
 
     /**
