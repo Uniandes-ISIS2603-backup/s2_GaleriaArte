@@ -4,6 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import co.edu.uniandes.csw.galeriaarte.dtos.SaleDTO;
 import co.edu.uniandes.csw.galeriaarte.ejb.SaleLogic;
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
+import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -28,7 +29,7 @@ public class SaleResources
     @Inject 
     SaleLogic saleLogic;
         @POST
-	public SaleDTO createSaleDTO(SaleDTO pSaleDTO)
+	public SaleDTO createSaleDTO(SaleDTO pSaleDTO) throws BusinessLogicException
 	{
 		LOGGER.log(Level.INFO, "SaleResource createSale: input: {0}",pSaleDTO.toString());
                 SaleEntity saleEntity= pSaleDTO.toEntity();

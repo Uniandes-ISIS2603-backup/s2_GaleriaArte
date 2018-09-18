@@ -2,6 +2,8 @@ package co.edu.uniandes.csw.galeriaarte.dtos;
 
 import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 /**
@@ -17,6 +19,8 @@ public class FeedBackDTO implements Serializable
     private PaintworkDTO obra;
     
     private UserDTO usuario;
+    
+    private String comentario;
     
     public FeedBackDTO()
     {
@@ -39,6 +43,7 @@ public class FeedBackDTO implements Serializable
         entidad.setId(this.getId());
         entidad.setName(this.getName());
         entidad.setObra(this.obra.toEntity());
+        entidad.setComentario(this.comentario);
         //entidad.setUsuario(this.usuario);
         return entidad;
     }
@@ -84,4 +89,18 @@ public class FeedBackDTO implements Serializable
 
     }
     
+    public String getComentario()
+    {
+        return comentario;
+    }
+    
+    public void setComentario(String pComentario)
+    {
+        this.comentario= pComentario;
+    }
+    
+     @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

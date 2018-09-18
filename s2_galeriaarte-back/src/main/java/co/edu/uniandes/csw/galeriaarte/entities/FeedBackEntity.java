@@ -23,6 +23,8 @@ public class FeedBackEntity extends BaseEntity implements Serializable
     
     private String name;
     
+    private String comentario;
+    
     @PodamExclude
     @OneToMany
     private PaintworkEntity obra;
@@ -69,8 +71,16 @@ public class FeedBackEntity extends BaseEntity implements Serializable
         this.usuario= pUsuario;
     }
     
-    
+    public String  getComentario()
+    {
+      return comentario;  
+    }
    
+    public void setComentario(String pComentario)
+    {
+        this.comentario= pComentario;
+    }
+    
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

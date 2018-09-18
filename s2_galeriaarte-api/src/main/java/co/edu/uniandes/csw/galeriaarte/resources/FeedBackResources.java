@@ -37,7 +37,7 @@ public class FeedBackResources
     FeedBackLogic feedBackLogic;
     
     @POST
-    public FeedBackDTO createFeedBack(FeedBackDTO fdbDTO)
+    public FeedBackDTO createFeedBack(FeedBackDTO fdbDTO) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO,"FeedBackResource createFeedBack: input: {0}",fdbDTO.toString());
         FeedBackEntity feedEntity= fdbDTO.toEntity();
@@ -51,15 +51,24 @@ public class FeedBackResources
     }
     @GET
     @Path("feedbacks://d+")
-    public FeedBackDTO getArtistsById(@PathParam("/feedbacks") Long idArtist) throws WebApplicationException{
-        return null;
+    public FeedBackDTO getFeedBack(@PathParam("/feedbacks") Long idFeed) throws WebApplicationException{
+        
+        LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: input: {0}", idFeed);
+        FeedBackEntity feedEntity = feedBackLogic.getFeedBack(idFeed);
+        if (feedEntity == null) {
+            throw new WebApplicationException("El recurso /feedbacks/" + idFeed + " no existe.", 404);
+        }
+        FeedBackDTO detailDTO = new FeedBackDTO(feedEntity);
+        LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: output: {0}", detailDTO.toString());
+        return detailDTO;
     }
     
     @DELETE
     @Path("{feedbacksId: \\d+}")
-    public void deleteExtraService(@PathParam("feedbacksId") Long extraServiceId)
+    public void deleteExtraService(@PathParam("feedbacksId") Long feedId)
     {
-    
+     LOGGER.log(Level.INFO, "FeedBackResource deleteFeedBack: input: {0}", feedId);
+        LOGGER.info("FeedBackResource deleteFeedBack: output: void");
     }
       
 }
