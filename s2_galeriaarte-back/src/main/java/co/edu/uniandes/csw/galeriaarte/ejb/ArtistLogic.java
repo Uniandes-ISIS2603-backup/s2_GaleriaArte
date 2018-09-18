@@ -77,7 +77,7 @@ public class ArtistLogic {
      *
      * @param artistId: id del artista a borrar
      */
-    public void deleteFeedBack(Long artistId) {
+    public void deleteArtist(Long artistId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar al artista con id = {0}", artistId);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
         persistence.delete(artistId);

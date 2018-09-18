@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.galeriaarte.test.logic;
 
 import co.edu.uniandes.csw.galeriaarte.ejb.ArtistLogic;
 import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
+import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.ArtistPersistence;
 import java.util.ArrayList;
@@ -96,14 +97,14 @@ public class ArtistLogicTest {
         for (int i = 0; i < 3; i++) {
             ArtistEntity entity = factory.manufacturePojo(ArtistEntity.class);
             em.persist(entity);
-            //entity.setPaintworks(new ArrayList<>());
+            entity.setPaintworks(new ArrayList<>());
             data.add(entity);
         }
         //ArtistEntity artist = data.get(2);
         //CVEntity entity = factory.manufacturePojo(CVEntity.class);
         //entity.getArtists().add(artist);
         //em.persist(entity);
-        //artist.getObras().add(entity);
+       // artist.getObras().add(entity);
     }
 
     /**
