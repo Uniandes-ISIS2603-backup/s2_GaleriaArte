@@ -1,18 +1,4 @@
-
-import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
-import co.edu.uniandes.csw.galeriaarte.persistence.SalePersistence;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
+package co.edu.uniandes.csw.galeriaarte.test.persistence;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,15 +6,31 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * and open the template in the editor.
  */
 
+
+import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
+import co.edu.uniandes.csw.galeriaarte.persistence.FeedBackPersistence;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Test;
+import org.junit.Assert;
+import uk.co.jemos.podam.api.PodamFactory;
+import org.junit.runner.RunWith;
+import uk.co.jemos.podam.api.PodamFactoryImpl;
+
 /**
  *
  * @author s.restrepos1
  */
 @RunWith(Arquillian.class)
-public class SalePersistenceTest
+public class FeedBackPersistenceTest
 {
-   @Inject
-    private SalePersistence salePersistence;
+    @Inject
+    private FeedBackPersistence feedbackPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -37,8 +39,8 @@ public class SalePersistenceTest
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(SaleEntity.class.getPackage())
-                .addPackage(SalePersistence.class.getPackage())
+                .addPackage(FeedBackEntity.class.getPackage())
+                .addPackage(FeedBackPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
 
@@ -48,11 +50,13 @@ public class SalePersistenceTest
     public void createFeedBackTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        SaleEntity newEntity= factory.manufacturePojo(SaleEntity.class);
-        SaleEntity result= salePersistence.create(newEntity);
+        FeedBackEntity newEntity= factory.manufacturePojo(FeedBackEntity.class);
+        FeedBackEntity result= feedbackPersistence.create(newEntity);
         Assert.assertNotNull(result);
         
-        SaleEntity entity= em.find(SaleEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-    } 
+        FeedBackEntity entity= em.find(FeedBackEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
+    }
+    
+
 }

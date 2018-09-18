@@ -98,7 +98,7 @@ public class CVLogic {
      *
      * @param cvId: id del cv a borrar
      */
-    public void deletePaintWork(Long cvId) {
+    public void deleteCV(Long cvId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar  el cv con id = {0}", cvId);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
         persistence.delete(cvId);

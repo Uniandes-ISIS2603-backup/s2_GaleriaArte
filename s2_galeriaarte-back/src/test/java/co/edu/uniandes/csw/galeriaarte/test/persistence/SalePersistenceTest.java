@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package co.edu.uniandes.csw.galeriaarte.test.persistence;
 
 
-import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
-import co.edu.uniandes.csw.galeriaarte.persistence.FeedBackPersistence;
+import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
+import co.edu.uniandes.csw.galeriaarte.persistence.SalePersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,21 +10,27 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Test;
 import org.junit.Assert;
-import uk.co.jemos.podam.api.PodamFactory;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 /**
  *
  * @author s.restrepos1
  */
 @RunWith(Arquillian.class)
-public class FeedBackPersistenceTest
+public class SalePersistenceTest
 {
-    @Inject
-    private FeedBackPersistence feedbackPersistence;
+   @Inject
+    private SalePersistence salePersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -37,8 +39,8 @@ public class FeedBackPersistenceTest
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(FeedBackEntity.class.getPackage())
-                .addPackage(FeedBackPersistence.class.getPackage())
+                .addPackage(SaleEntity.class.getPackage())
+                .addPackage(SalePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
 
@@ -48,13 +50,11 @@ public class FeedBackPersistenceTest
     public void createFeedBackTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        FeedBackEntity newEntity= factory.manufacturePojo(FeedBackEntity.class);
-        FeedBackEntity result= feedbackPersistence.create(newEntity);
+        SaleEntity newEntity= factory.manufacturePojo(SaleEntity.class);
+        SaleEntity result= salePersistence.create(newEntity);
         Assert.assertNotNull(result);
         
-        FeedBackEntity entity= em.find(FeedBackEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-    }
-    
-
+        SaleEntity entity= em.find(SaleEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+    } 
 }
