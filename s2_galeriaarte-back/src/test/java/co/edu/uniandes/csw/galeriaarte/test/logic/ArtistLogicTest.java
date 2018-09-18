@@ -27,8 +27,8 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *Clase que implementa la conexion con la persistencia para la entidad de
- * @Artist a.barragan Anderson Barragan
+ *Clase que implementa la conexion con la persistencia para la entidad de artist
+ * @author a.barragan Anderson Barragan
  */
 @Stateless
 public class ArtistLogicTest {
@@ -139,7 +139,7 @@ public class ArtistLogicTest {
     }
 
     /**
-     * Prueba para consultar un Author.
+     * Prueba para consultar un Artista.
      */
     @Test
     public void getArtistTest() {

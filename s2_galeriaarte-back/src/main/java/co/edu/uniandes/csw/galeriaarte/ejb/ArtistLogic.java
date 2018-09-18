@@ -33,7 +33,7 @@ public class ArtistLogic {
     /**
      * Obtiene la lista de los registros de Artist.
      *
-     * @return Colección de objetos de AuthorEntity.
+     * @return Colección de objetos de ArtistEntity.
      */
     public List<ArtistEntity> getArtists() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los autores");
