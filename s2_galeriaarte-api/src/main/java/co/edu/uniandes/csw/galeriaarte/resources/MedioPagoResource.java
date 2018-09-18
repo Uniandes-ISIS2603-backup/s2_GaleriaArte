@@ -7,6 +7,7 @@
 package co.edu.uniandes.csw.galeriaarte.resources;
 
 import co.edu.uniandes.csw.galeriaarte.dtos.MedioPagoDTO;
+import co.edu.uniandes.csw.galeriaarte.ejb.MedioPagoLogic;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import javax.ws.rs.Path;
 import javax.ws.rs.Consumes;
@@ -36,7 +37,7 @@ public class MedioPagoResource
     
     
     @Inject
-    // MedioPagoLogic medioPagoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    MedioPagoLogic medioPagoLogic; 
     
     /**
      * Crea un nuevo medio de pago con la informacion que se recibe en el cuerpo de
@@ -54,6 +55,7 @@ public class MedioPagoResource
     public MedioPagoDTO createMedioPago(MedioPagoDTO medioPago) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "MedioPagoResource createMedioPago: input: {0}", medioPago.toString());
+        medioPagoLogic.createMedioPago(medioPago.toEntity());
         return medioPago;
     }
     
