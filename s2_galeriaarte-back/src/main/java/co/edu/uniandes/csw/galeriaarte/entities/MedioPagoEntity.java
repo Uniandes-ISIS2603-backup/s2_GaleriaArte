@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Clase que representa un medio de pago  en la persistencia y permite su
@@ -21,6 +23,10 @@ public class MedioPagoEntity extends BaseEntity implements Serializable
     private String description;
     private Long number;
     private String bank;
+    @PodamExclude
+    @OneToOne	
+    private SaleEntity sale;
+
     
     /**
      * @return the description
@@ -68,5 +74,19 @@ public class MedioPagoEntity extends BaseEntity implements Serializable
     public void setBank(String bank)
     {
         this.bank = bank;
+    }
+
+    /**
+     * @return the sale
+     */
+    public SaleEntity getSale() {
+        return sale;
+    }
+
+    /**
+     * @param sale the sale to set
+     */
+    public void setSale(SaleEntity sale) {
+        this.sale = sale;
     }
 }

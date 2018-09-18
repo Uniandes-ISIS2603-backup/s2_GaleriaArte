@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -35,6 +36,10 @@ public class SaleEntity extends BaseEntity implements Serializable
 	@PodamExclude
         @OneToOne
 	private MedioPagoEntity metodo;
+        
+        @PodamExclude
+        @OneToMany
+	private ExtraServiceEntity services;
 	
         @PodamExclude
         @OneToOne
@@ -107,4 +112,18 @@ public class SaleEntity extends BaseEntity implements Serializable
 	{
 		this.buyer=pBuy;
 	}
+
+    /**
+     * @return the services
+     */
+    public ExtraServiceEntity getServices() {
+        return services;
+    }
+
+    /**
+     * @param services the services to set
+     */
+    public void setServices(ExtraServiceEntity services) {
+        this.services = services;
+    }
 }
