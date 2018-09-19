@@ -52,7 +52,7 @@ public class ArtistResources {
     @GET
     public List<ArtistDTO> getArtists() {
         LOGGER.info("ArtistResource getArtists: input: void");
-        List<ArtistDTO> listaArtistas = listEntity2DTO(artistLogic.getArtists());
+        List<ArtistDTO> listaArtistas = listEntityToDTO(artistLogic.getArtists());
         LOGGER.log(Level.INFO, "ArtistResource getArtists: output: {0}", listaArtistas.toString());
         return listaArtistas;
     }
@@ -75,7 +75,7 @@ public class ArtistResources {
      *
      * @param artistId Identificador del artista que se desea borrar. Este debe
      * ser una cadena de dígitos.
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws BusinessLogicException
      * si el artista tiene obras asociados
      * @throws WebApplicationException {@link WebApplicationExceptionMapper}
      * Error de lógica que se genera cuando no se encuentra el artista a borrar.
@@ -123,7 +123,7 @@ public class ArtistResources {
      * @param entityList Lista de ArtistEntity a convertir.
      * @return Lista de ArtistDTO convertida.
      */
-    private List<ArtistDTO> listEntity2DTO(List<ArtistEntity> entityList) {
+    private List<ArtistDTO> listEntityToDTO(List<ArtistEntity> entityList) {
         List<ArtistDTO> list = new ArrayList<>();
         for (ArtistEntity entity : entityList) {
             list.add(new ArtistDTO(entity));

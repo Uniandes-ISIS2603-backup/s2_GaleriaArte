@@ -20,12 +20,6 @@ import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Anderson Barragan
@@ -79,7 +73,8 @@ public class ArtistPersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from AuthorEntity").executeUpdate();
+        em.createQuery("delete from ArtistEntity").executeUpdate();
+        em.createQuery("delete from CVEntity").executeUpdate();
     }
     
     /**
@@ -90,21 +85,82 @@ public class ArtistPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             ArtistEntity entity = factory.manufacturePojo(ArtistEntity.class);
-
             em.persist(entity);
             data.add(entity);
         }
     }
     
+    /**
+     * Prueba para crear un Artista.
+     */
     @Test
-    public void createArtistTest()
-    {
+    public void createArtistTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        ArtistEntity newEntity= factory.manufacturePojo(ArtistEntity.class);
-        ArtistEntity result= artistPersistence.create(newEntity);
+        ArtistEntity newEntity = factory.manufacturePojo(ArtistEntity.class);
+        ArtistEntity result = artistPersistence.create(newEntity);
+
         Assert.assertNotNull(result);
-        
-        ArtistEntity entity= em.find(ArtistEntity.class, result.getId());
+
+        ArtistEntity entity = em.find(ArtistEntity.class, result.getId());
+
         Assert.assertEquals(newEntity.getName(), entity.getName());
+    }
+
+    /**
+     * Prueba para consultar la lista de Artistas.
+     */
+    @Test
+    public void getArtistsTest() {
+        List<ArtistEntity> list = artistPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (ArtistEntity ent : list) {
+            boolean found = false;
+            for (ArtistEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+
+    /**
+     * Prueba para consultar un Artista.
+     */
+    @Test
+    public void getArtistTest() {
+        ArtistEntity entity = data.get(0);
+        ArtistEntity newEntity = artistPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
+
+    /**
+     * Prueba para actualizar un Artista.
+     */
+    @Test
+    public void updateArtistTest() {
+        ArtistEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        ArtistEntity newEntity = factory.manufacturePojo(ArtistEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        artistPersistence.update(newEntity);
+
+        ArtistEntity resp = em.find(ArtistEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
+
+    /**
+     * Prueba para eliminar un Artista.
+     */
+    @Test
+    public void deleteArtistTest() {
+        ArtistEntity entity = data.get(0);
+        artistPersistence.delete(entity.getId());
+        ArtistEntity deleted = em.find(ArtistEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
 }
