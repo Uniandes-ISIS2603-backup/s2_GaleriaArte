@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.galeriaarte.dtos;
 import java.io.Serializable;
 import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
 //import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 /**
@@ -244,6 +246,12 @@ public class BuyerDTO implements Serializable {
     
     public void setSale(SaleDTO newSale){ 
         sale = newSale;
+    }
+
+    @Override 
+    
+    public String toString(){
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
 
