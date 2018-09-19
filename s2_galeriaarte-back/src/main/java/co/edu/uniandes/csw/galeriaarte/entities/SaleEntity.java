@@ -38,7 +38,7 @@ public class SaleEntity extends BaseEntity implements Serializable
 	private MedioPagoEntity metodo;
         
         @PodamExclude
-        @OneToMany
+        @OneToMany(mappedBy="sale")
 	private ExtraServiceEntity services;
 	
         @PodamExclude
