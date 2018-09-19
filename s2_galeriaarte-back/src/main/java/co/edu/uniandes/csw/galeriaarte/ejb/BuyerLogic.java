@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.List;
 import co.edu.uniandes.csw.galeriaarte.persistence.BuyerPersistence;
 
 /**
@@ -38,5 +39,39 @@ public class BuyerLogic {
         LOGGER.log(Level.INFO, "Termina proceso de creación de comprador");
         
         return buyerEntity;
+    }
+    
+    public List<BuyerEntity> getBuyers(){
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los compradores");
+        List<BuyerEntity> lista = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los autores");
+        return lista;
+    }
+    
+    public BuyerEntity getBuyer(Long buyerID){
+        
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", buyerID);
+        BuyerEntity buyerEntity = persistence.find(buyerID);
+        if(buyerEntity==null){
+            LOGGER.log(Level.SEVERE, "no existe la entidad con id = {0} no existe", buyerID);
+        }
+        
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", buyerID);
+        return buyerEntity;
+    }
+    
+     public BuyerEntity updateBuyer(Long buyerId, BuyerEntity buyerEntity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", buyerId);
+        BuyerEntity buyertEntity = persistence.update(buyerEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el artista con id = {0}", buyerId);
+        return buyerEntity;
+    }
+    
+     
+      
+       public void deleteBuyer(Long buyerId){
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar al comprador con id = {0}", buyerId);
+        persistence.delete(buyerId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar al compador con id = {0}", buyerId);
     }
 }
