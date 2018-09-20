@@ -84,6 +84,7 @@ public class ArtistLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
+        em.createQuery("delete from ArtistEntity").executeUpdate();
         em.createQuery("delete from PaintworkEntity").executeUpdate();
         em.createQuery("delete from CVEntity").executeUpdate();
     }

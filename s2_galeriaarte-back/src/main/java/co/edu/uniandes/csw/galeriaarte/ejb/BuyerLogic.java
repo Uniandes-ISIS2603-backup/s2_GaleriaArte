@@ -62,9 +62,9 @@ public class BuyerLogic {
     
      public BuyerEntity updateBuyer(Long buyerId, BuyerEntity buyerEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", buyerId);
-        BuyerEntity buyertEntity = persistence.update(buyerEntity);
+        BuyerEntity newBuyerEntity = persistence.update(buyerEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el artista con id = {0}", buyerId);
-        return buyerEntity;
+        return newBuyerEntity;
     }
     
      
