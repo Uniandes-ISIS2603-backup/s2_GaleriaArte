@@ -43,13 +43,7 @@ public class KindEntity extends BaseEntity implements Serializable{
         
     }
 
-    //public Long getIdType() {
-    //    return idType;
-    //}
 
-    //public void setIdType(Long idType) {
-    //    this.idType = idType;
-    //}
 
     public String getName() {
         return name;
@@ -66,7 +60,5 @@ public class KindEntity extends BaseEntity implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
-    public KindEntity toEntity(){
-        return null;
-    }
+
 }
