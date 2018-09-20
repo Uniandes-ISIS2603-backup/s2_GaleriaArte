@@ -7,8 +7,7 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
-import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
+import java.util.ArrayList;
 /**
  *
  * @author s.acostav
@@ -16,17 +15,17 @@ import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
 @Entity
 public class BuyerEntity extends BaseEntity implements Serializable
 {
-    String name;
-    String password;
-    String user;
-    String email;
-    String phone;
-    String creditcard;
-    String country;
-    Long idUser;
-    SaleEntity sale;
-    PaintworkEntity paintwork;
-    String adress;
+   private  String name;
+   private  String password;
+    private String user;
+    private String email;
+    private String phone;
+    private String creditcard;
+    private String country;
+    private Long idUser;
+    private ArrayList<SaleEntity> sale;
+    private ArrayList<PaintworkEntity> paintwork;
+    private String adress;
 
 
     
@@ -71,12 +70,12 @@ public class BuyerEntity extends BaseEntity implements Serializable
         return this.user;
     }
     
-    public SaleEntity getSale(){
+    public ArrayList<SaleEntity> getSale(){
         return sale;
     }
 
     
-    public PaintworkEntity getPaintwork( ){
+    public ArrayList<PaintworkEntity> getPaintwork( ){
         return paintwork;
     }    
 
@@ -107,11 +106,11 @@ public class BuyerEntity extends BaseEntity implements Serializable
         user = nUser;
     }
     
-    public void setPaintwork(PaintworkEntity nPaintwork){
+    public void setPaintwork(ArrayList<PaintworkEntity> nPaintwork){
         paintwork = nPaintwork;
     }
     
-    public void setSale(SaleEntity pSale){
+    public void setSale(ArrayList<SaleEntity> pSale){
         sale = pSale;
     }
 
