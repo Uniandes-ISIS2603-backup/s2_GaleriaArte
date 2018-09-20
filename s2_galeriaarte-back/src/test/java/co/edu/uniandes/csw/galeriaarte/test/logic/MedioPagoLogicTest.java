@@ -1,75 +1,61 @@
-package co.edu.uniandes.csw.galeriaarte.test.persistence;
-
-
-import co.edu.uniandes.csw.galeriaarte.entities.MedioPagoEntity;
-import co.edu.uniandes.csw.galeriaarte.persistence.MedioPagoPersistence;
-import java.util.ArrayList;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
-import java.util.List;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
-
 /*
 * To change this license header, choose License Headers in Project Properties.
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-
+package co.edu.uniandes.csw.galeriaarte.test.logic;
+import co.edu.uniandes.csw.galeriaarte.ejb.MedioPagoLogic;
+import co.edu.uniandes.csw.galeriaarte.entities.MedioPagoEntity;
+import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.galeriaarte.persistence.MedioPagoPersistence;
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
+import org.junit.Assert;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import uk.co.jemos.podam.api.PodamFactory;
+import uk.co.jemos.podam.api.PodamFactoryImpl;
 /**
- * Prueba de persistencia de MedioPago.
+ *Pruebas de logica de medioPago
  * @author ja.penat
  */
 @RunWith(Arquillian.class)
-public class MedioPagoPersistenceTest
+public class MedioPagoLogicTest
 {
-    /**
-     * Inyección de la dependencia a la clase MedioPagoPersistence cuyos métodos
-     * se van a probar.
-     */
-    @Inject
-    private MedioPagoPersistence medioPagoPersistence;
+    private PodamFactory factory = new PodamFactoryImpl();
     
-    /**
-     * Contexto de Persistencia que se va a utilizar para acceder a la Base de
-     * datos por fuera de los métodos que se están probando.
-     */
+    @Inject
+    private MedioPagoLogic medioPagoLogic;
+    
     @PersistenceContext
     private EntityManager em;
     
-    /**
-     * Variable para martcar las transacciones del em anterior cuando se
-     * crean/borran datos para las pruebas.
-     */
     @Inject
-            UserTransaction utx;
+    private UserTransaction utx;
     
-    /**
-     * lista que tiene los datos de prueba.
-     */
     private List<MedioPagoEntity> data = new ArrayList<MedioPagoEntity>();
     
+    
     /**
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de MedioPago, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
+     * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
      */
     @Deployment
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(MedioPagoEntity.class.getPackage())
+                .addPackage(MedioPagoLogic.class.getPackage())
                 .addPackage(MedioPagoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
@@ -77,13 +63,13 @@ public class MedioPagoPersistenceTest
     
     /**
      * Configuración inicial de la prueba.
+     *
      */
     @Before
     public void configTest()
     {
         try {
             utx.begin();
-            em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
@@ -99,6 +85,7 @@ public class MedioPagoPersistenceTest
     
     /**
      * Limpia las tablas que están implicadas en la prueba.
+     *
      */
     private void clearData()
     {
@@ -108,55 +95,63 @@ public class MedioPagoPersistenceTest
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
+     *
      */
     private void insertData()
     {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            
             MedioPagoEntity entity = factory.manufacturePojo(MedioPagoEntity.class);
             
             em.persist(entity);
-            
             data.add(entity);
         }
     }
     
     /**
-     * Prueba para crear un medio de pago.
+     * Prueba para crear un medio de pago
+     *
      */
     @Test
-    public void createMedioPagoTest()
+    public void createMedioPagoTest() throws BusinessLogicException
     {
-        PodamFactory factory = new PodamFactoryImpl();
         MedioPagoEntity newEntity = factory.manufacturePojo(MedioPagoEntity.class);
-        MedioPagoEntity result = medioPagoPersistence.create(newEntity);
-        
+        MedioPagoEntity result = medioPagoLogic.createMedioPago(newEntity);
         Assert.assertNotNull(result);
-        
         MedioPagoEntity entity = em.find(MedioPagoEntity.class, result.getId());
-        
-        Assert.assertEquals(newEntity.getNumber(), entity.getNumber());
         Assert.assertEquals(newEntity.getBank(), entity.getBank());
         Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
+        Assert.assertEquals(newEntity.getNumber(), entity.getNumber());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
     
     /**
-     * Prueba para consultar la lista de Medios de pago.
+     * Prueba para crear un medio de pago  con el mismo numero de tarjeta de otro medio de pago que ya
+     * existe.
+     *
+     * @throws
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createMedioPagoConMismoNumberTest() throws BusinessLogicException
+    {
+        MedioPagoEntity newEntity = factory.manufacturePojo(MedioPagoEntity.class);
+        newEntity.setNumber(data.get(0).getNumber());
+        medioPagoLogic.createMedioPago(newEntity);
+    }
+    
+    /**
+     * Prueba para consultar la lista de medios de pago.
      */
     @Test
-    public void getMedioPagosTest()
+    public void getMediosPagoTest()
     {
-        List<MedioPagoEntity> list = medioPagoPersistence.findAll();
+        List<MedioPagoEntity> list = medioPagoLogic.getMediosPago();
         Assert.assertEquals(data.size(), list.size());
-        for (MedioPagoEntity ent : list)
+        for (MedioPagoEntity entity : list)
         {
             boolean found = false;
-            for (MedioPagoEntity entity : data)
+            for (MedioPagoEntity storedEntity : data)
             {
-                if (ent.getId().equals(entity.getId()))
-                {
+                if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
             }
@@ -165,53 +160,54 @@ public class MedioPagoPersistenceTest
     }
     
     /**
-     * Prueba para consultar un MedioPago.
+     * Prueba para consultar un medio de pago.
      */
     @Test
     public void getMedioPagoTest()
     {
         MedioPagoEntity entity = data.get(0);
-        MedioPagoEntity newEntity = medioPagoPersistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getNumber(), newEntity.getNumber());
-        Assert.assertEquals(entity.getDescription(), newEntity.getDescription());
-        Assert.assertEquals(entity.getBank(), newEntity.getBank());
-        Assert.assertEquals(entity.getId(), newEntity.getId());
+        MedioPagoEntity resultEntity = medioPagoLogic.getMedioPago(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getBank(), resultEntity.getBank());
+        Assert.assertEquals(entity.getDescription(), resultEntity.getDescription());
+        Assert.assertEquals(entity.getNumber(), resultEntity.getNumber());
+        
     }
     
     /**
-     * Prueba para eliminar un MedioPago.
+     * Prueba para actualizar un MedioPago.
      */
     @Test
-    public void deleteMedioPagoTest()
+    public void updateMedioPagoTest() throws BusinessLogicException
     {
         MedioPagoEntity entity = data.get(0);
-        medioPagoPersistence.delete(entity.getId());
+        MedioPagoEntity pojoEntity = factory.manufacturePojo(MedioPagoEntity.class);
+        
+        pojoEntity.setId(entity.getId());
+        
+        medioPagoLogic.updateMedioPago(pojoEntity.getId(), pojoEntity);
+        
+        MedioPagoEntity resp = em.find(MedioPagoEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getBank(), resp.getBank());
+        Assert.assertEquals(pojoEntity.getDescription(), resp.getDescription());
+        Assert.assertEquals(pojoEntity.getNumber(), resp.getNumber());
+        
+    }
+    
+    /**
+     * Prueba para eliminar un medio de pago.
+     */
+    @Test
+    public void deleteMedioPagoTest() 
+    {
+        MedioPagoEntity entity = data.get(0);
+        medioPagoLogic.deleteMedioPago(entity.getId());
         MedioPagoEntity deleted = em.find(MedioPagoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
-    /**
-     * Prueba para actualizar un Medio de pago.
-     */
-    @Test
-    public void updateMedioPagoTest() {
-        MedioPagoEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        MedioPagoEntity newEntity = factory.manufacturePojo(MedioPagoEntity.class);
-        
-        newEntity.setId(entity.getId());
-        
-        medioPagoPersistence.update(newEntity);
-        
-        MedioPagoEntity resp = em.find(MedioPagoEntity.class, entity.getId());
-        
-        Assert.assertEquals(newEntity.getNumber(), resp.getNumber());
-        Assert.assertEquals(newEntity.getDescription(), resp.getDescription());
-        Assert.assertEquals(newEntity.getBank(), resp.getBank());
-        Assert.assertEquals(newEntity.getId(), resp.getId());
-    }
-    
-    
 }
+
+
 
