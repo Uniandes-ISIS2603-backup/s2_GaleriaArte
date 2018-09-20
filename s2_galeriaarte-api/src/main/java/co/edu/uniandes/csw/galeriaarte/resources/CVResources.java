@@ -62,8 +62,7 @@ CVLogic cvLogic;
     @GET
     public List<CVDTO> getCVs() {
         LOGGER.info("CVResource getCVs: input: void");
-        List<CVDTO> listaCVs;
-        listaCVs = listEntity2DetailDTO(CVLogic.getCVs());
+        List<CVDTO> listaCVs= new ArrayList();
         LOGGER.log(Level.INFO, "CVResource getCVs: output: {0}", listaCVs.toString());
         return listaCVs;
     }
