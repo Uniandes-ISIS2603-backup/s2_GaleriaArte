@@ -21,18 +21,11 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class KindEntity extends BaseEntity implements Serializable{
-      // @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-        //private Long id;
-       
-          // @PodamExclude
-//@OneToOne(mappedBy="paintwork", fetch=FetchType.LAZY)
-//private PaintworkEntity paintwork;  
-  /**
-     * Identificación del tipo
-     */
-    //private Long  idType;
-    
+   
+
+    @PodamExclude   
+   @OneToOne(mappedBy="paintwork", fetch=FetchType.LAZY)
+    private PaintworkEntity paintwork;  
     /**
      * Nombre
      */
@@ -42,6 +35,9 @@ public class KindEntity extends BaseEntity implements Serializable{
      * Descripción
      */
     private String description;
+    
+
+ 
  public  KindEntity()
     {
         
