@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.galeriaarte.entities;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 
 /**
@@ -14,16 +15,23 @@ import javax.persistence.Entity;
 @Entity
 public class PaintworkEntity extends BaseEntity implements Serializable
 {
+
+   
     private String name;
     private String country;
     private KindEntity kind;
     private CategoryEntity category;
-    private FeedBackEntity feedback;
+    private Collection<FeedBackEntity> feedback;
     private String description;
     private Long valor;
     private Boolean verificacionObra;
     private String imagePath;
     private String videoPath;
+    
+    @javax.persistence.OneToMany(
+    mappedBy = "paintwork",
+            fetch = javax.persistence.FetchType.LAZY
+    )
 
 
     /**
@@ -53,21 +61,6 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     public void setCountry(String country) {
         this.country = country;
     }
-
-    /**
-     * @return the feedback
-     */
-    public FeedBackEntity getFeedback() {
-        return feedback;
-    }
-
-    /**
-     * @param feedback the feedback to set
-     */
-    public void setFeedback(FeedBackEntity feedback) {
-        this.feedback = feedback;
-    }
-
     /**
      * @return the description
      */
@@ -166,5 +159,19 @@ public class PaintworkEntity extends BaseEntity implements Serializable
         this.category = category;
     }
     
+     /**
+     * @return the feedback
+     */
+    public Collection<FeedBackEntity> getFeedback() {
+        return feedback;
+    }
+
+    /**
+     * @param feedback the feedback to set
+     */
+    public void setFeedback(Collection<FeedBackEntity> feedback) {
+        this.feedback = feedback;
+    }
+
     
 }
