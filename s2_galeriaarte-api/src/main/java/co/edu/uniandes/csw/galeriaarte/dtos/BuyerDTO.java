@@ -27,8 +27,7 @@ public class BuyerDTO implements Serializable {
     private String creditcard;
     private String country;
     private Long idUser;
-    private SaleDTO sale;
-    private PaintworkDTO paintwork;
+    
     
     public BuyerDTO(){
         
@@ -53,8 +52,7 @@ public class BuyerDTO implements Serializable {
             this.password = buyerEntity.getPassword();
             this.phone = buyerEntity.getPhone();
             this.user = buyerEntity.getUser();
-            this.paintwork = new PaintworkDTO();
-            this.sale = new SaleDTO();
+            
            
         }
     }
@@ -72,10 +70,8 @@ public class BuyerDTO implements Serializable {
         entidad.setCreditCard(this.creditcard);
         entidad.setEmail(this.email);
         entidad.setName(this.name);
-        entidad.setPaintwork(this.paintwork.toEntity());
         entidad.setPassword(this.password);
         entidad.setPhone(this.phone);
-        entidad.setSale(this.sale.toEntity());
         entidad.setUser(this.user);
         
         
@@ -107,9 +103,7 @@ public class BuyerDTO implements Serializable {
         return name;
     }
     
-    public PaintworkDTO getPaintwork(){
-        return paintwork;
-    }
+   
     
     /**
      * 
@@ -135,9 +129,7 @@ public class BuyerDTO implements Serializable {
         user = newUser;
     }
     
-    public void setPaintwork(PaintworkDTO nPaintwork){
-        paintwork = nPaintwork;
-    }
+   
     /**
      * @return País de origen del usuario 
      */
@@ -233,19 +225,6 @@ public class BuyerDTO implements Serializable {
     
     public void setPhone(String newPhone){
         phone = newPhone;
-    }
-    
-    public SaleDTO getSale(){
-        return sale;
-    }
-    
-    /**
-     * 
-     * @param 
-     */
-    
-    public void setSale(SaleDTO newSale){ 
-        sale = newSale;
     }
 
     @Override 
