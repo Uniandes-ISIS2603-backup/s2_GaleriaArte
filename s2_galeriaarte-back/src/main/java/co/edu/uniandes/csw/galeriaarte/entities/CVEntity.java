@@ -30,7 +30,6 @@ public class CVEntity extends BaseEntity implements Serializable{
 private ArtistEntity artist;
 
 
-     private Long id;
      private String name;
      private String educationDTO;
      private PaintworkEntity obraMasConocidaDTO;
@@ -41,13 +40,10 @@ private ArtistEntity artist;
      
     public Long getId()
     {
-        return this.id;
+        return this.getId();
     }
      
-    public void setId(Long pId)
-    {
-        this.id=pId;
-    }
+  
     
     public String getName(){
         return name;
