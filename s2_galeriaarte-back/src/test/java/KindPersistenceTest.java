@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.galeriaarte.test.persistence;
-import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
-import co.edu.uniandes.csw.galeriaarte.persistence.CVPersistence;
+import co.edu.uniandes.csw.galeriaarte.entities.KindEntity;
 import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -21,22 +19,22 @@ import org.junit.Test;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 import co.edu.uniandes.csw.galeriaarte.persistence.ExtraServicePersistence;
+import co.edu.uniandes.csw.galeriaarte.persistence.KindPersistence;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.runner.RunWith;
 /**
  *
  * @author LauraManrique
  */
-
 @RunWith(Arquillian.class)
-public class CVPersitenceTest {
+public class KindPersistenceTest {
     
-     /**
-     * Inyección de la dependencia a la clase CVPersistence cuyos métodos
+        /**
+     * Inyección de la dependencia a la clase KindPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
-    private CVPersistence cvPersistence;
+    private KindPersistence kindPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -45,22 +43,22 @@ public class CVPersitenceTest {
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CVEntity.class.getPackage())
-                .addPackage(CVPersistence.class.getPackage())
+                .addPackage(KindEntity.class.getPackage())
+                .addPackage(KindPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
 
     }
     
         @Test
-    public void createCVTest()
+    public void createKindTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        CVEntity newEntity= factory.manufacturePojo(CVEntity.class);
-        CVEntity result= cvPersistence.create(newEntity);
+        KindEntity newEntity= factory.manufacturePojo(KindEntity.class);
+        KindEntity result= kindPersistence.create(newEntity);
         Assert.assertNotNull(result);
         
-        CVEntity entity= em.find(CVEntity.class, result.getId());
+        KindEntity entity= em.find(KindEntity.class, result.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
 }
