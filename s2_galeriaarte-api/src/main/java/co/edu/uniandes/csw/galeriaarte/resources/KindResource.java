@@ -48,7 +48,7 @@ KindLogic kindLogic;
       
       KindEntity   nuevoKindEntity = kindLogic.createKind(kindEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        KindDTO nuevoKindDTO = new KindDTO(kindEntity);
+        KindDTO nuevoKindDTO = new KindDTO(nuevoKindEntity);
         LOGGER.log(Level.INFO, "KindResoruces createKind: input: {0}", nuevoKindDTO.toString());
         return nuevoKindDTO;
     }

@@ -46,7 +46,7 @@ CVLogic cvLogic;
       
       CVEntity   nuevoCVEntity = cvLogic.createCV(cvEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        CVDTO nuevoCVDTO = new CVDTO(cvEntity);
+        CVDTO nuevoCVDTO = new CVDTO(nuevoCVEntity);
         LOGGER.log(Level.INFO, "CVResoruces createCV: input: {0}", nuevoCVDTO.toString());
         return nuevoCVDTO;
     }
