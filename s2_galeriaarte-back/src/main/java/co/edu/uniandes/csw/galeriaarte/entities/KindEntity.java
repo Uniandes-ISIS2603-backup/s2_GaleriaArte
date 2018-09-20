@@ -20,5 +20,38 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class KindEntity extends BaseEntity implements Serializable{
    
 
+    @PodamExclude   
+   @OneToOne(mappedBy="paintwork", fetch=FetchType.LAZY)
+    private PaintworkEntity paintwork;  
+    /**
+     * Nombre
+     */
+    private String name;
+    
+    /**
+     * Descripción
+     */
+    private String description;
+
+ public  KindEntity()
+    {
+        
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 }
