@@ -59,14 +59,14 @@ CVLogic cvLogic;
      */
     
     
-//    @GET
-//    public List<CVDTO> getCVs() {
-//        LOGGER.info("CVResource getCVs: input: void");
-//        List<CVDTO> listaCVs;
-//        listaCVs = listEntity2DetailDTO(CVLogic.getCVs());
-//        LOGGER.log(Level.INFO, "CVResource getCVs: output: {0}", listaCVs.toString());
-//        return listaCVs;
-//    }
+    @GET
+    public List<CVDTO> getCVs() {
+        LOGGER.info("CVResource getCVs: input: void");
+        List<CVDTO> listaCVs;
+        listaCVs = listEntity2DetailDTO(CVLogic.getCVs());
+        LOGGER.log(Level.INFO, "CVResource getCVs: output: {0}", listaCVs.toString());
+        return listaCVs;
+    }
 
     /**
      * Busca el cv con el id asociado recibido en la URL y la devuelve.

@@ -61,14 +61,14 @@ KindLogic kindLogic;
      */
     
     
-//    @GET
-//    public List<KindDTO> getkinds() {
-//        LOGGER.info("KindResource getkinds: input: void");
-//        List<KindDTO> listakinds;
-//        listakinds = listEntity2DetailDTO(kindLogic.getkinds());
-//        LOGGER.log(Level.INFO, "KindResource getkinds: output: {0}", listakinds.toString());
-//        return listakinds;
-//    }
+    @GET
+    public List<KindDTO> getkinds() {
+        LOGGER.info("KindResource getkinds: input: void");
+        List<KindDTO> listakinds;
+        listakinds = listEntity2DetailDTO(kindLogic.getKInds());
+        LOGGER.log(Level.INFO, "KindResource getkinds: output: {0}", listakinds.toString());
+        return listakinds;
+    }
 
     /**
      * Busca el Kind con el id asociado recibido en la URL y la devuelve.
@@ -79,19 +79,19 @@ KindLogic kindLogic;
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la editorial.
      */
-//    @GET
-//    @Path("{kindsId: \\d+}")
-//    public KindDTO getKind(@PathParam("kindsId") Long kindId) throws WebApplicationException {
-//        LOGGER.log(Level.INFO, "KindResource getKind: input: {0}", kindId);
-//        KindEntity kindEntity;
-//        kindEntity = kindLogic.getKind(kindId);
-//        if (kindEntity == null) {
-//            throw new WebApplicationException("El recurso /kinds/" + kindId + " no existe.", 404);
-//        }
-//        KindDTO detailDTO = new KindDTO(kindEntity);
-//        LOGGER.log(Level.INFO, "KindResource getKind: output: {0}", detailDTO.toString());
-//        return detailDTO;
-//    }
+    @GET
+    @Path("{kindsId: \\d+}")
+    public KindDTO getKind(@PathParam("kindsId") Long kindId) throws WebApplicationException {
+        LOGGER.log(Level.INFO, "KindResource getKind: input: {0}", kindId);
+        KindEntity kindEntity;
+        kindEntity = kindLogic.getKindV(kindId);
+        if (kindEntity == null) {
+            throw new WebApplicationException("El recurso /kinds/" + kindId + " no existe.", 404);
+        }
+        KindDTO detailDTO = new KindDTO(kindEntity);
+        LOGGER.log(Level.INFO, "KindResource getKind: output: {0}", detailDTO.toString());
+        return detailDTO;
+    }
 
     /**
      * Actualiza la Kind con el id recibido en la URL con la informacion
@@ -135,7 +135,7 @@ KindLogic kindLogic;
         if (kindLogic.getKindV(kindId) == null) {
             throw new WebApplicationException("El recurso /kinds/" + kindId + " no existe.", 404);
         }
-        kindLogic.deletePaintWork(kindId);
+        kindLogic.deleteKind(kindId);
         LOGGER.info("KindResource updateKind: output: void");
     }
 

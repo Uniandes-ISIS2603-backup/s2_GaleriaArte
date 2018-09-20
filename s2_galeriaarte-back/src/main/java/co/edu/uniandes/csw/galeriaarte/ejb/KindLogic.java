@@ -98,7 +98,7 @@ public class KindLogic {
      *
      * @param kindId: id del kind a borrar
      */
-    public void deletePaintWork(Long kindId) {
+    public void deleteKind(Long kindId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar  el kind con id = {0}", kindId);
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
         persistence.delete(kindId);
