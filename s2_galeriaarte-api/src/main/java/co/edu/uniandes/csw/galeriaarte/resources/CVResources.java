@@ -76,19 +76,19 @@ CVLogic cvLogic;
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la editorial.
      */
-//    @GET
-//    @Path("{cvsId: \\d+}")
-//    public CVDTO getCV(@PathParam("cvsId") Long cvId) throws WebApplicationException {
-//        LOGGER.log(Level.INFO, "CVResource getCV: input: {0}", cvId);
-//        CVEntity cvEntity;
-//        cvEntity = CVLogic.getCV(cvId);
-//        if (cvEntity == null) {
-//            throw new WebApplicationException("El recurso /cvs/" + cvId + " no existe.", 404);
-//        }
-//        CVDTO detailDTO = new CVDTO(cvEntity);
-//        LOGGER.log(Level.INFO, "CVResource getCV: output: {0}", detailDTO.toString());
-//        return detailDTO;
-//    }
+    @GET
+    @Path("{cvsId: \\d+}")
+    public CVDTO getCV(@PathParam("cvsId") Long cvId) throws WebApplicationException {
+        LOGGER.log(Level.INFO, "CVResource getCV: input: {0}", cvId);
+        CVEntity cvEntity;
+        cvEntity = cvLogic.getCV(cvId);
+        if (cvEntity == null) {
+            throw new WebApplicationException("El recurso /cvs/" + cvId + " no existe.", 404);
+        }
+        CVDTO detailDTO = new CVDTO(cvEntity);
+        LOGGER.log(Level.INFO, "CVResource getCV: output: {0}", detailDTO.toString());
+        return detailDTO;
+    }
 
     /**
      * Actualiza la cv con el id recibido en la URL con la informacion
