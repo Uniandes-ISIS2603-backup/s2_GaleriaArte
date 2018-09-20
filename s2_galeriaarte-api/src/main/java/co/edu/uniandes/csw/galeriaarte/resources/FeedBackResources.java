@@ -35,7 +35,20 @@ public class FeedBackResources
     
    @Inject
     FeedBackLogic feedBackLogic;
-    
+   
+   
+     /**
+     * Crea una nueva calificacion con la informacion que se recibe en el cuerpo de
+     * la petición y se regresa un objeto identico con un id auto-generado por
+     * la base de datos.
+     *
+     * @param fdbDTO {@link FeedBackDTO} - La calificacion que se desea
+     * guardar.
+     * @return JSON {@link FeedBackDTO} - La calificacion  guardada con el atributo
+     * id autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando ya existe comentario con el mismo id.
+     */
     @POST
     public FeedBackDTO createFeedBack(FeedBackDTO fdbDTO) throws BusinessLogicException
     {
@@ -53,19 +66,23 @@ public class FeedBackResources
     @Path("feedbacks://d+")
     public FeedBackDTO getFeedBack(@PathParam("/feedbacks") Long idFeed) throws WebApplicationException{
         
-        LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: input: {0}", idFeed);
+        LOGGER.log(Level.INFO, "FeedBackResource getFeedBack: input: {0}", idFeed);
         FeedBackEntity feedEntity = feedBackLogic.getFeedBack(idFeed);
         if (feedEntity == null) {
             throw new WebApplicationException("El recurso /feedbacks/" + idFeed + " no existe.", 404);
         }
         FeedBackDTO detailDTO = new FeedBackDTO(feedEntity);
-        LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "FeedBackResource getFeedBack: output: {0}", detailDTO.toString());
         return detailDTO;
     }
-    
+     /**
+     * Borra la calificacion con el id asociado recibido en la URL.
+     * @param feedId Identificador de la calificacion que se desea borrar.
+     * Este debe ser una cadena de dígitos.
+     */
     @DELETE
     @Path("{feedbacksId: \\d+}")
-    public void deleteExtraService(@PathParam("feedbacksId") Long feedId)
+    public void deleteFeedBack(@PathParam("feedbacksId") Long feedId)
     {
      LOGGER.log(Level.INFO, "FeedBackResource deleteFeedBack: input: {0}", feedId);
         LOGGER.info("FeedBackResource deleteFeedBack: output: void");

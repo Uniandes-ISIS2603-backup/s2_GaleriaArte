@@ -6,8 +6,11 @@
 package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -26,11 +29,11 @@ public class SaleEntity extends BaseEntity implements Serializable
 	private Double taxes;
 	
         @PodamExclude
-        @OneToOne(mappedBy="sale")
+        @OneToOne
 	private ArtistEntity artist;
 	
         @PodamExclude
-        @OneToOne(mappedBy="")
+        @OneToOne
 	private PaintworkEntity obra;
         
 	@PodamExclude
@@ -38,17 +41,13 @@ public class SaleEntity extends BaseEntity implements Serializable
 	private MedioPagoEntity metodo;
         
         @PodamExclude
-        @OneToMany(mappedBy="sale")
-	private ExtraServiceEntity services;
+	private List<ExtraServiceEntity> services= new ArrayList();
 	
         @PodamExclude
         @OneToOne
 	private BuyerEntity buyer;
         
-        public SaleEntity()
-	{
-		
-	}
+       
 	
 	public double getPrice()
 	{
@@ -116,14 +115,14 @@ public class SaleEntity extends BaseEntity implements Serializable
     /**
      * @return the services
      */
-    public ExtraServiceEntity getServices() {
+    public List<ExtraServiceEntity> getServices() {
         return services;
     }
 
     /**
      * @param services the services to set
      */
-    public void setServices(ExtraServiceEntity services) {
+    public void setServices(List<ExtraServiceEntity> services) {
         this.services = services;
     }
 }

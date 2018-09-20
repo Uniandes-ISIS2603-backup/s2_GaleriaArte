@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.galeriaarte.ejb;
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.SalePersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -23,7 +24,11 @@ public class SaleLogic
     private static final Logger LOGGER= Logger.getLogger(SaleLogic.class.getName());
     @Inject 
     private SalePersistence persistence;
-    
+/**
+ *
+ * crea una compra siguiendo las reglas de negocio, una compra debe tener un artista, un comprador y una obra asociada, el precio de venta debe ser mayor 
+ * a cero
+ */
     public SaleEntity createSale(SaleEntity saleEntity) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia el proceso de creacion de la venta");
@@ -40,4 +45,7 @@ public class SaleLogic
         LOGGER.log(Level.INFO, "Termina el proceso de creacion de la venta");
         return newSale;
     }
+    
+    
+ 
 }

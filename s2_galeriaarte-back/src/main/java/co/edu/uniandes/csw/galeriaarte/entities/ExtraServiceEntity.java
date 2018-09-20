@@ -23,7 +23,9 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     private String description;
     private double price;
     private boolean availability;
+    
     @PodamExclude
+    @ManyToOne
     private SaleEntity sale;
     /**
      * @return the name

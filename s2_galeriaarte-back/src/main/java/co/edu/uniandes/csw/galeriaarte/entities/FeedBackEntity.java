@@ -26,17 +26,13 @@ public class FeedBackEntity extends BaseEntity implements Serializable
     private String comentario;
     
     @PodamExclude
-    @OneToMany
+    
     private PaintworkEntity obra;
     
     @PodamExclude
-    @ManyToOne
     private UserEntity usuario;
     
-    public FeedBackEntity()
-    {
-        
-    }
+   
   
     
     public String getName()
