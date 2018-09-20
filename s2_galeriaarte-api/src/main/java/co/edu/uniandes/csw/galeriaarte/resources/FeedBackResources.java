@@ -57,7 +57,7 @@ public class FeedBackResources
         
         FeedBackEntity nuevoFeedEntity= feedBackLogic.createFeedBack(feedEntity);
         
-        FeedBackDTO nuevoFeedDTO= new FeedBackDTO(feedEntity);
+        FeedBackDTO nuevoFeedDTO= new FeedBackDTO(nuevoFeedEntity);
         
         LOGGER.log(Level.INFO, "FeedBackResource createFeedBack: input: {0}", nuevoFeedDTO.toString());
         return nuevoFeedDTO;

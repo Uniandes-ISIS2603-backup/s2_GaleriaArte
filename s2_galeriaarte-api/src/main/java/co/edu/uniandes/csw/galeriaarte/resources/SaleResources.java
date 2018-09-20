@@ -48,7 +48,7 @@ public class SaleResources
                 SaleEntity saleEntity= pSaleDTO.toEntity();
                 SaleEntity nuevoSaleEntity= saleLogic.createSale(saleEntity);
                 
-                SaleDTO nuevoSaleDTO = new SaleDTO(saleEntity);
+                SaleDTO nuevoSaleDTO = new SaleDTO(nuevoSaleEntity);
                 LOGGER.log(Level.INFO, "SaleResource createSale: input: {0}", nuevoSaleDTO.toString());
                 return nuevoSaleDTO;
         }
