@@ -39,12 +39,12 @@ public class MedioPagoLogic
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del medio de pago");
         // Verifica que el medio de pago tenga numero, que no tenga menos de 16 digitos y que este no sea negativo.
-        if (medioPagoEntity.getNumber() == null && medioPagoEntity.getNumber().toString().length() != 15 )
+        if (medioPagoEntity != null && (medioPagoEntity.getNumber() == null || medioPagoEntity.getNumber().toString().length() != 15 ))
         {
             throw new BusinessLogicException("El numero del medio de pago no es valido  \"" + medioPagoEntity.getNumber() + "\"");
         }
         // Verifica que el banco no sea nulo
-        else if(medioPagoEntity.getBank() == null && medioPagoEntity.getBank().equals(""))
+        else if(medioPagoEntity != null && (medioPagoEntity.getBank() == null || medioPagoEntity.getBank().equals("")))
         {
             throw new BusinessLogicException("El nombre del banco  no es valido  \"" + medioPagoEntity.getBank() + "\"");
         }
