@@ -5,9 +5,13 @@
  */
 package co.edu.uniandes.csw.galeriaarte.entities;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
+import java.io.Serializable;;
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
+
 /**
  *
  * @author s.acostav
@@ -23,10 +27,16 @@ public class BuyerEntity extends BaseEntity implements Serializable
     private String creditcard;
     private String country;
     private Long idUser;
+    @PodamExclude
+    @OneToMany(mappedBy = "artist",fetch=FetchType.LAZY)
     private ArrayList<SaleEntity> sale;
     private ArrayList<PaintworkEntity> paintwork;
     private String adress;
-
+ 
+    
+    
+    
+    
 
     
     public BuyerEntity(){
