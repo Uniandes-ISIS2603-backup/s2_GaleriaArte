@@ -9,9 +9,6 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -23,42 +20,5 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class KindEntity extends BaseEntity implements Serializable{
    
 
-    @PodamExclude   
-   @OneToOne(mappedBy="paintwork", fetch=FetchType.LAZY)
-    private PaintworkEntity paintwork;  
-    /**
-     * Nombre
-     */
-    private String name;
-    
-    /**
-     * Descripción
-     */
-    private String description;
-    
-
- 
- public  KindEntity()
-    {
-        
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
 }
