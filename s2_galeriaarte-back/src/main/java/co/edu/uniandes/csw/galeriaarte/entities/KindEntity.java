@@ -53,5 +53,8 @@ public class KindEntity extends BaseEntity implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
-
+public void setPaintwor(PaintworkEntity pP)
+{
+    this.paintwork=pP;
+}
 }

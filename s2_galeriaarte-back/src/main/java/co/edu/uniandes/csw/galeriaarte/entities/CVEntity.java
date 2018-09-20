@@ -139,5 +139,10 @@ private ArtistEntity artist;
     public void setobrasDTO(ArrayList obrasDTO) {
         this.obrasDTO = obrasDTO;
     }
+    
+    public void setArtista(ArtistEntity pA)
+    {
+        this.artist=pA;
+    }
 }
 
