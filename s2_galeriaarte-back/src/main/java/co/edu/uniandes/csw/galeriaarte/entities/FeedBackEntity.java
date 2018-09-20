@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -26,10 +27,11 @@ public class FeedBackEntity extends BaseEntity implements Serializable
     private String comentario;
     
     @PodamExclude
-    
+    @ManyToOne
     private PaintworkEntity obra;
     
     @PodamExclude
+    @OneToOne
     private UserEntity usuario;
     
    

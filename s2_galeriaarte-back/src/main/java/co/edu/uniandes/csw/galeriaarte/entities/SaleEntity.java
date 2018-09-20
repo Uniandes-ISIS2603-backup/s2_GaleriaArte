@@ -41,6 +41,7 @@ public class SaleEntity extends BaseEntity implements Serializable
 	private MedioPagoEntity metodo;
         
         @PodamExclude
+        @OneToMany
 	private List<ExtraServiceEntity> services= new ArrayList();
 	
         @PodamExclude
