@@ -11,7 +11,7 @@
     <name>s2_interart</name>
  
     <modules>
-        <module>s2_galeriaarte-back</module>
+        <module>s2_galeriaarte-back</module> 
         <module>s2_galeriaarte-api</module>
     </modules>
     
