@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.galeriaarte.resources;
 
 import co.edu.uniandes.csw.galeriaarte.dtos.ArtistDTO;
+import co.edu.uniandes.csw.galeriaarte.dtos.ArtistDetailDTO;
 import co.edu.uniandes.csw.galeriaarte.ejb.ArtistLogic;
 import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
@@ -37,10 +38,10 @@ public class ArtistResources {
 
     @POST
     public ArtistDTO createArtist(ArtistDTO artist) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "ArtistResource createArtist: input: {0}", artist.toString());
-        ArtistDTO artistDTO = new ArtistDTO(artistLogic.createArtist(artist.toEntity()));
-        LOGGER.log(Level.INFO, "ArtistResource createArtist: output: {0}", artistDTO.toString());
-        return artistDTO;
+        LOGGER.log(Level.INFO, "ArtistResources createArtist: input: {0}", artist.toString());
+        ArtistDTO nuevoArtistDTO = new ArtistDTO(artistLogic.createArtist(artist.toEntity()));
+        LOGGER.log(Level.INFO, "ArtistResources createArtist: output: {0}", nuevoArtistDTO.toString());
+        return nuevoArtistDTO;
       }
 
     /**
@@ -50,26 +51,26 @@ public class ArtistResources {
      * aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<ArtistDTO> getArtists() {
+    public List<ArtistDetailDTO> getArtists() {
         LOGGER.info("ArtistResource getArtists: input: void");
-        List<ArtistDTO> listaArtistas = listEntityToDTO(artistLogic.getArtists());
+        List<ArtistDetailDTO> listaArtistas = listEntityToDTO(artistLogic.getArtists());
         LOGGER.log(Level.INFO, "ArtistResource getArtists: output: {0}", listaArtistas.toString());
         return listaArtistas;
     }
-    
+        
     @GET
     @Path("artistsId://d+")
-    public ArtistDTO getArtist(@PathParam("/artistsId") Long artistId) throws WebApplicationException {
+    public ArtistDetailDTO getArtist(@PathParam("/artistsId") Long artistId) {
         LOGGER.log(Level.INFO, "ArtistResource getArtist: input: {0}", artistId);
         ArtistEntity artistEntity = artistLogic.getArtist(artistId);
-        if (artistEntity == null) {
+        if (artistEntity == null)
             throw new WebApplicationException("El recurso /artists/" + artistId + " no existe.", 404);
-        }
-       ArtistDTO artistDTO = new ArtistDTO(artistEntity);
-        LOGGER.log(Level.INFO, "ArtistResource getArtist: output: {0}", artistDTO.toString());
-        return artistDTO;
+        
+       ArtistDetailDTO artistDetailDTO = new ArtistDetailDTO(artistEntity);
+        LOGGER.log(Level.INFO, "ArtistResource getArtist: output: {0}", artistDetailDTO.toString());
+        return artistDetailDTO;
     }
-    
+       
     /**
      * Borra el artista con el id asociado recibido en la URL.
      *
@@ -84,9 +85,9 @@ public class ArtistResources {
     @Path("{artistsId: \\d+}")
     public void deleteArtist(@PathParam("artistsId") Long artistId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ArtistResource deleteAartist: input: {0}", artistId);
-        if (artistLogic.getArtist(artistId) == null) {
+        if (artistLogic.getArtist(artistId) == null)
             throw new WebApplicationException("El recurso /artists/" + artistId + " no existe.", 404);
-        }
+
         artistLogic.deleteArtist(artistId);
         LOGGER.info("rtistResource deleteArtist: output: void");
     }
@@ -105,17 +106,16 @@ public class ArtistResources {
      */
     @PUT
     @Path("{artistsId: \\d+}")
-    public ArtistDTO updateArtist(@PathParam("artistsId") Long artistId, ArtistDTO artista) {
+    public ArtistDetailDTO updateArtist(@PathParam("artistsId") Long artistId, ArtistDetailDTO artista) {
         LOGGER.log(Level.INFO, "ArtistResource updateArtist: input: artistsId: {0} , artist: {1}", new Object[]{artistId, artista.toString()});
         artista.setId(artistId);
-        if (artistLogic.getArtist(artistId) == null) {
+        if (artistLogic.getArtist(artistId) == null)
             throw new WebApplicationException("El recurso /artists/" + artistId + " no existe.", 404);
-        }
-        ArtistDTO artistDTO = new ArtistDTO(artistLogic.updateArtist(artistId, artista.toEntity()));
-        LOGGER.log(Level.INFO, "ArtistResource updateArtist: output: {0}", artistDTO.toString());
-        return artistDTO;
-    }
-    
+        
+        ArtistDetailDTO artistDetailDTO = new ArtistDetailDTO(artistLogic.updateArtist(artistId, artista.toEntity()));
+        LOGGER.log(Level.INFO, "ArtistResource updateArtist: output: {0}", artistDetailDTO.toString());
+        return artistDetailDTO;
+    }  
     
     /**
      * Convierte una lista de ArtistEntity a una lista de ArtistDTO.
@@ -123,10 +123,10 @@ public class ArtistResources {
      * @param entityList Lista de ArtistEntity a convertir.
      * @return Lista de ArtistDTO convertida.
      */
-    private List<ArtistDTO> listEntityToDTO(List<ArtistEntity> entityList) {
-        List<ArtistDTO> list = new ArrayList<>();
+    private List<ArtistDetailDTO> listEntityToDTO(List<ArtistEntity> entityList) {
+        List<ArtistDetailDTO> list = new ArrayList<>();
         for (ArtistEntity entity : entityList) {
-            list.add(new ArtistDTO(entity));
+            list.add(new ArtistDetailDTO(entity));
         }
         return list;
     }

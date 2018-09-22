@@ -24,7 +24,8 @@ public class ArtistDTO implements Serializable{
      * @param artistEntity entidad de artista para crear el DTO
      */
     public ArtistDTO(ArtistEntity artistEntity) {
-        if (artistEntity != null) {
+         if (artistEntity != null) {
+            this.id = artistEntity.getId();
             this.name = artistEntity.getName();
             this.image = artistEntity.getImage();
             //this.hojaDeVida = artistEntity.getCV();
@@ -33,6 +34,7 @@ public class ArtistDTO implements Serializable{
     
     public ArtistEntity toEntity() {
         ArtistEntity artistEntity = new ArtistEntity();
+        artistEntity.setId(this.getId());
         artistEntity.setName(this.getName());
         artistEntity.setImage(this.image);
         return artistEntity;

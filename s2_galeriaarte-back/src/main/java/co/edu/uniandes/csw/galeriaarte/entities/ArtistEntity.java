@@ -31,11 +31,7 @@ public class ArtistEntity extends BaseEntity implements Serializable
     @OneToMany(mappedBy = "artist",fetch=FetchType.LAZY)
     private List<PaintworkEntity> obras;
     
-    /**
-     * constructor vacio de la clase @Artist
-     */
-    public ArtistEntity(){}
-    
+       
     /**
      * retorna la imagen asociada al artista
      * @return ruta de la imagen
@@ -64,7 +60,7 @@ public class ArtistEntity extends BaseEntity implements Serializable
      * Cambia la hoja de vida por la entrante
      * @param pCVEntity nueva hoja de vida
      */
-    public void setCVEntity(CVEntity pCVEntity){
+    public void setCV(CVEntity pCVEntity){
         this.hojaDeVida = pCVEntity;
     }
     
@@ -93,6 +89,10 @@ public class ArtistEntity extends BaseEntity implements Serializable
      */
     public void setPaintworks(List<PaintworkEntity> paintworks) {
         this.obras = paintworks;
+    }
+
+    public void setObras(List<PaintworkEntity> paintworksEntity) {
+        this.obras = paintworksEntity;
     }
     
     

@@ -27,12 +27,12 @@ public class ArtistPersistence {
     @PersistenceContext(unitName = "InterArtPU")
     protected EntityManager em;
 
-    public ArtistEntity create(ArtistEntity authorEntity) {
+    public ArtistEntity create(ArtistEntity artistEntity) {
         LOGGER.log(Level.INFO, "Creando un artista nuevo");
 
-        em.persist(authorEntity);
+        em.persist(artistEntity);
         LOGGER.log(Level.INFO, "Artista creado");
-        return authorEntity;
+        return artistEntity;
     }
 
     public List<ArtistEntity> findAll() {
