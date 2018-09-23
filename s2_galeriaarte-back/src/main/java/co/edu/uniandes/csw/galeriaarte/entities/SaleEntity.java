@@ -14,7 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
-
+import java.util.Collection;
 /**
  *
  * @author s.restrepos1
@@ -41,7 +41,8 @@ public class SaleEntity extends BaseEntity implements Serializable
 	private MedioPagoEntity metodo;
         
         @PodamExclude
-	private List<ExtraServiceEntity> services= new ArrayList();
+	@OneToMany(mappedBy = "sale")
+	private Collection<ExtraServiceEntity> services;
 	
         @PodamExclude
         @OneToOne
