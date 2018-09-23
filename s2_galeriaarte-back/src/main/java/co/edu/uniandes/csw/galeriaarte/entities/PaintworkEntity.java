@@ -15,12 +15,11 @@ import javax.persistence.Entity;
 @Entity
 public class PaintworkEntity extends BaseEntity implements Serializable
 {
-
    
     private String name;
     private String country;
-    private KindEntity kind;
-    private CategoryEntity category;
+    private Collection<KindEntity> kind;
+    private Collection<CategoryEntity> category;
     private Collection<FeedBackEntity> feedback;
     private String description;
     private Long valor;
@@ -131,33 +130,7 @@ public class PaintworkEntity extends BaseEntity implements Serializable
         this.videoPath = videoPath;
     }
 
-    /**
-     * @return the kind
-     */
-    public KindEntity getKind() {
-        return kind;
-    }
 
-    /**
-     * @param kind the kind to set
-     */
-    public void setKind(KindEntity kind) {
-        this.kind = kind;
-    }
-
-    /**
-     * @return the category
-     */
-    public CategoryEntity getCategory() {
-        return category;
-    }
-
-    /**
-     * @param category the category to set
-     */
-    public void setCategory(CategoryEntity category) {
-        this.category = category;
-    }
     
      /**
      * @return the feedback
@@ -172,6 +145,35 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     public void setFeedback(Collection<FeedBackEntity> feedback) {
         this.feedback = feedback;
     }
+    
+        /**
+     * @return the kind
+     */
+    public Collection<KindEntity> getKind() {
+        return kind;
+    }
+
+    /**
+     * @param kind the kind to set
+     */
+    public void setKind(Collection<KindEntity> kind) {
+        this.kind = kind;
+    }
+    
+        /**
+     * @return the category
+     */
+    public Collection<CategoryEntity> getCategory() {
+        return category;
+    }
+
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(Collection<CategoryEntity> category) {
+        this.category = category;
+    }
+
 
     
 }

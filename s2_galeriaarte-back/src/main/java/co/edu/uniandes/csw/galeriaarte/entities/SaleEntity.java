@@ -116,7 +116,7 @@ public class SaleEntity extends BaseEntity implements Serializable
     /**
      * @return the services
      */
-    public List<ExtraServiceEntity> getServices() {
+    public Collection<ExtraServiceEntity> getServices() {
         return services;
     }
 
