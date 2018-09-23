@@ -5,11 +5,11 @@
  */
 package co.edu.uniandes.csw.galeriaarte.entities;
 
-import java.io.Serializable;;
-import java.util.ArrayList;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import java.util.List;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -29,8 +29,8 @@ public class BuyerEntity extends BaseEntity implements Serializable
     private Long idUser;
     @PodamExclude
     @OneToMany(mappedBy = "artist",fetch=FetchType.LAZY)
-    private ArrayList<SaleEntity> sale;
-    private ArrayList<PaintworkEntity> paintwork;
+    private List<SaleEntity> sale;
+    private List<PaintworkEntity> paintwork;
     private String adress;
  
     
@@ -80,12 +80,12 @@ public class BuyerEntity extends BaseEntity implements Serializable
         return this.user;
     }
     
-    public ArrayList<SaleEntity> getSale(){
+    public List<SaleEntity> getSale(){
         return sale;
     }
 
     
-    public ArrayList<PaintworkEntity> getPaintwork( ){
+    public List<PaintworkEntity> getPaintwork( ){
         return paintwork;
     }    
 
@@ -116,11 +116,11 @@ public class BuyerEntity extends BaseEntity implements Serializable
         user = nUser;
     }
     
-    public void setPaintwork(ArrayList<PaintworkEntity> nPaintwork){
+    public void setPaintwork(List<PaintworkEntity> nPaintwork){
         paintwork = nPaintwork;
     }
     
-    public void setSale(ArrayList<SaleEntity> pSale){
+    public void setSale(List<SaleEntity> pSale){
         sale = pSale;
     }
 
