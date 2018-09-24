@@ -25,7 +25,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author Sara Acosta 
+ * @author Sara Acosta s.acostav
  */
 @Path("buyers")
 @Produces("application/json")
