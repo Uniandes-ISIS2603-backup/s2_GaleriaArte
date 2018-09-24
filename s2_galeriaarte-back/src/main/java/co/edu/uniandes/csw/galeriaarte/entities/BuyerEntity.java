@@ -28,7 +28,7 @@ public class BuyerEntity extends BaseEntity implements Serializable
     private String country;
     private Long idUser;
     @PodamExclude
-    @OneToMany(mappedBy = "artist",fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "buyer",fetch=FetchType.LAZY)
     private List<SaleEntity> sale;
     private List<PaintworkEntity> paintwork;
     private String adress;
