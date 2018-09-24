@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author sara acosta
+ * @author sara acosta s.acostav
  */
 
 @Stateless
