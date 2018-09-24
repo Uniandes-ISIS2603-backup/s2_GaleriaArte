@@ -24,11 +24,11 @@ public class ArtistEntity extends BaseEntity implements Serializable
     private String image;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy="artist", fetch=FetchType.LAZY)
     private CVEntity hojaDeVida;
     
     @PodamExclude
-    @OneToMany(mappedBy = "artist",fetch=FetchType.LAZY)
+    @OneToMany()
     private List<PaintworkEntity> obras;
     
        

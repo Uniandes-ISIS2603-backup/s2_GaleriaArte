@@ -8,8 +8,7 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -21,7 +20,7 @@ public class KindEntity extends BaseEntity implements Serializable{
    
 
     @PodamExclude   
-   @OneToOne(mappedBy="paintwork", fetch=FetchType.LAZY)
+   @ManyToOne
     private PaintworkEntity paintwork;  
     /**
      * Nombre
