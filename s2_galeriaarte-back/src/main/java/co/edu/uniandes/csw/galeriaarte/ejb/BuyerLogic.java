@@ -14,7 +14,7 @@ import co.edu.uniandes.csw.galeriaarte.persistence.BuyerPersistence;
 
 /**
  *
- * @author estudiante
+ * @author s.acostav
  */
 
 @Stateless
