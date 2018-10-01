@@ -3,7 +3,6 @@
   <persistence-unit name="InterArtPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--Toca entity por entity, exclude-unlisted-clases = false no funciona-->
-    <class>co.edu.uniandes.csw.bookstore.entities.EditorialEntity</class>
     <class>co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity</class>
     <class>co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity</class>
     <class>co.edu.uniandes.csw.galeriaarte.entities.CVEntity</class>
