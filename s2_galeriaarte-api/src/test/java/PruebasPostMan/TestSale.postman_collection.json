@@ -32,12 +32,12 @@
 					"raw": "{\n\"price\":1000, \"description\":\"la descripcion\", \"taxes\": 144\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/sales",
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/sales",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_galeriaarte-api",
 						"api",

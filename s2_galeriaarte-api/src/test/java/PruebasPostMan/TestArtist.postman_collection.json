@@ -25,10 +25,10 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:4848/s2_galeriaarte-api/api/artists/123456",
+					"raw": "http://{{ip}}:4848/s2_galeriaarte-api/api/artists/123456",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
 					"port": "4848",
 					"path": [
@@ -68,10 +68,10 @@
 					"raw": "{\n\n\t\"id\":123456, \"nombre\": \"abc\"\n\n}"
 				},
 				"url": {
-					"raw": "http://localhost:4848/s2_galeriaarte-api/api/artists",
+					"raw": "http://{{ip}}:4848/s2_galeriaarte-api/api/artists",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
 					"port": "4848",
 					"path": [
@@ -110,10 +110,10 @@
 					"raw": "\t{\n\t\"id\":123456, \"nombre\": \"abcd\"\n\t}"
 				},
 				"url": {
-					"raw": "http://localhost:4848/s2_galeriaarte-api/api/artists/123456",
+					"raw": "http://{{ip}}:4848/s2_galeriaarte-api/api/artists/123456",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
 					"port": "4848",
 					"path": [
@@ -153,10 +153,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:4848/s2_galeriaarte-api/api/artists/123456",
+					"raw": "http://{{ip}}:4848/s2_galeriaarte-api/api/artists/123456",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
 					"port": "4848",
 					"path": [
