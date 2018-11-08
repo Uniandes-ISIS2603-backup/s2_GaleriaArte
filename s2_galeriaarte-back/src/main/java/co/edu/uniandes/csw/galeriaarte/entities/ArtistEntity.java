@@ -124,7 +124,7 @@ public class ArtistEntity extends BaseEntity implements Serializable {
      *
      * @return hoja de vida del artista.
      */
-    public CVEntity getPrizes() {
+    public CVEntity getCV() {
         return cv;
     }
     
