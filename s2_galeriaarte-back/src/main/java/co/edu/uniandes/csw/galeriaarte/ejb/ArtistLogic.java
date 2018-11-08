@@ -1,28 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.galeriaarte.ejb;
 
 import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
+import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
+import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.ArtistPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la entidad de
+ * Artist.
  *
- * @author a.barragan Anderson Barragan 
+ * @author Anderson Barragán
  */
+@Stateless
 public class ArtistLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(ArtistLogic.class.getName());
 
     @Inject
     private ArtistPersistence persistence;
-      
+
+    /**
+     * Se encarga de crear un Artist en la base de datos.
+     *
+     * @param artistEntity Objeto de ArtistEntity con los datos nuevos
+     * @return Objeto de ArtistEntity con los datos nuevos y su ID.
+     */
     public ArtistEntity createArtist(ArtistEntity artistEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del artista");
         ArtistEntity newArtistEntity = persistence.create(artistEntity);
@@ -36,9 +43,9 @@ public class ArtistLogic {
      * @return Colección de objetos de ArtistEntity.
      */
     public List<ArtistEntity> getArtists() {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los autores");
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los artistas");
         List<ArtistEntity> lista = persistence.findAll();
-        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los autores");
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los artistas");
         return lista;
     }
 
@@ -52,7 +59,7 @@ public class ArtistLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el artista con id = {0}", artistsId);
         ArtistEntity artistEntity = persistence.find(artistsId);
         if (artistEntity == null) {
-            LOGGER.log(Level.SEVERE, "no existe la entidad con id = {0} no existe", artistsId);
+            LOGGER.log(Level.SEVERE, "La editorial con el id = {0} no existe", artistsId);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar el artista con id = {0}", artistsId);
         return artistEntity;
@@ -61,27 +68,32 @@ public class ArtistLogic {
     /**
      * Actualiza la información de una instancia de Artist.
      *
-     * @param artistId Identificador de la instancia a actualizar
+     * @param artistsId Identificador de la instancia a actualizar
      * @param artistEntity Instancia de ArtistEntity con los nuevos datos.
-     * @return Instancia de rtistEntity con los datos actualizados.
+     * @return Instancia de ArtistEntity con los datos actualizados.
      */
-    public ArtistEntity updateArtist(Long artistId, ArtistEntity artistEntity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", artistId);
+    public ArtistEntity updateArtist(Long artistsId, ArtistEntity artistEntity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", artistsId);
         ArtistEntity newArtistEntity = persistence.update(artistEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el artista con id = {0}", artistId);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el artista con id = {0}", artistsId);
         return newArtistEntity;
     }
-    
+
     /**
-     * Borrar un Artista
+     * Elimina una instancia de Artist de la base de datos.
      *
-     * @param artistId: id del artista a borrar
+     * @param artistsId Identificador de la instancia a eliminar.
+     * @throws BusinessLogicException si el artista tiene libros asociados.
      */
-    public void deleteArtist(Long artistId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar al artista con id = {0}", artistId);
-        // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
-        persistence.delete(artistId);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar al artista con id = {0}", artistId);
+    public void deleteArtist(Long artistsId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el artista con id = {0}", artistsId);
+        List<PaintworkEntity> paintworks = getArtist(artistsId).getPaintworks();
+        if (paintworks != null && !paintworks.isEmpty()) {
+            throw new BusinessLogicException("No se puede borrar el artista con id = " + artistsId + " porque tiene obras asociados");
+        }
+        persistence.delete(artistsId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el artista con id = {0}", artistsId);
     }
 }
+
 

@@ -26,6 +26,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class ArtistPersistenceTest {
+    
     @Inject
     private ArtistPersistence artistPersistence;
     
@@ -38,14 +39,12 @@ public class ArtistPersistenceTest {
     private List<ArtistEntity> data = new ArrayList<>();
     
     @Deployment
-    public static JavaArchive createDeployment()
-    {
+    public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(ArtistEntity.class.getPackage())
                 .addPackage(ArtistPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-
     }
       
     /**
@@ -74,7 +73,7 @@ public class ArtistPersistenceTest {
      */
     private void clearData() {
         em.createQuery("delete from ArtistEntity").executeUpdate();
-        em.createQuery("delete from CVEntity").executeUpdate();
+        //em.createQuery("delete from CVEntity").executeUpdate();
     }
     
     /**
@@ -102,7 +101,6 @@ public class ArtistPersistenceTest {
         Assert.assertNotNull(result);
 
         ArtistEntity entity = em.find(ArtistEntity.class, result.getId());
-
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
 
