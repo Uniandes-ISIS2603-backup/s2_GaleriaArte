@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -38,7 +37,7 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     
     @PodamExclude
     @ManyToOne
-    private List<ArtistEntity> artist = new ArrayList<ArtistEntity>();
+    private ArtistEntity artist;
     
     /**
      * @return the name
@@ -80,7 +79,14 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     public void setDescription(String description) {
         this.description = description;
     }
-
+    
+    /**
+     * 
+     */
+public void setArtist(ArtistEntity newArtist){
+    this.artist = newArtist;
+}
+    
     /**
      * @return the value
      */
