@@ -27,11 +27,11 @@ public class ArtistEntity extends BaseEntity implements Serializable {
     private Date birthDate;
 
     @PodamExclude
-    @OneToOne(mappedBy = "artist",fetch=FetchType.LAZY)
+    //@OneToOne(mappedBy = "artist",fetch=FetchType.LAZY)
     private CVEntity cv = new CVEntity();
     
     @PodamExclude
-    @ManyToMany(mappedBy = "artists")
+    @OneToMany(mappedBy = "artists")
     private List<PaintworkEntity> paintworks = new ArrayList<>();
 
     private String name;

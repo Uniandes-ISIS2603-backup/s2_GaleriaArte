@@ -5,8 +5,13 @@
  */
 package co.edu.uniandes.csw.galeriaarte.entities;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,6 +21,10 @@ import javax.persistence.Entity;
 public class PaintworkEntity extends BaseEntity implements Serializable
 {
    
+    @javax.persistence.OneToMany(
+            mappedBy = "paintwork",
+            fetch = javax.persistence.FetchType.LAZY
+    )
     private String name;
     private String country;
     private Collection<KindEntity> kind;
@@ -27,12 +36,10 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     private String imagePath;
     private String videoPath;
     
-    @javax.persistence.OneToMany(
-    mappedBy = "paintwork",
-            fetch = javax.persistence.FetchType.LAZY
-    )
-
-
+    @PodamExclude
+    @ManyToOne
+    private List<ArtistEntity> artist = new ArrayList<ArtistEntity>();
+    
     /**
      * @return the name
      */
