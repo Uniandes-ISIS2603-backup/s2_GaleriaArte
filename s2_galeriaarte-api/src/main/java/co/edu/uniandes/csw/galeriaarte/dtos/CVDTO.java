@@ -47,9 +47,7 @@ public class CVDTO implements Serializable {
     private ArrayList obrasDTO;
 
     //Constructor
-    public CVDTO() {
 
-    }
   public  CVDTO(CVEntity cvEntity)
    {
     if (cvEntity!=null)
@@ -158,9 +156,10 @@ public class CVDTO implements Serializable {
     /**
      * Modifica las obrasDTO del artista
      *
-     * @param informacionAdicionalDTO
+     * @param obrasDTO
      */
-    public void setobrasDTO(ArrayList obrasDTO) {
+    public void setobrasDTO(ArrayList<PaintworkDTO> obrasDTO) {
+        
         this.obrasDTO = obrasDTO;
        
     }
@@ -175,7 +174,7 @@ public class CVDTO implements Serializable {
         cv.seteducationDTO(educationDTO);
         cv.setfechaNacimientoDTO(fechaNacimientoDTO);
         cv.setinformacionAdicionalDTO(informacionAdicionalDTO);
-        cv.setobraMasConocidaDTO(this.obraMasConocidaDTO.toEntity());
+        cv.setobraMasConocida(this.obraMasConocidaDTO.toEntity());
         cv.setobrasDTO(obrasDTO);
         cv.setName(this.name);
        
