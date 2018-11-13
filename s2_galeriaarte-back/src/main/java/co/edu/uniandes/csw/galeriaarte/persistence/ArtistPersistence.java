@@ -63,10 +63,7 @@ public class ArtistPersistence {
         return em.merge(artistEntity);
     }
 
-    /**
-     * metodo para eliminar un artista de la base de datos
-     * @param artistId 
-     */
+    
     public void delete(Long artistId) {
         LOGGER.log(Level.INFO, "Borrando el artista con id={0}", artistId);
         ArtistEntity artistEntity = em.find(ArtistEntity.class, artistId);
