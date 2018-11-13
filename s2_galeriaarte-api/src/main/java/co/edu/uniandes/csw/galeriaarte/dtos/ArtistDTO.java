@@ -4,7 +4,7 @@ import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 /**
- *
+ * Clase que representa al artista
  * @author a.barragan Anderson Barragan
  */
 public class ArtistDTO implements Serializable{
