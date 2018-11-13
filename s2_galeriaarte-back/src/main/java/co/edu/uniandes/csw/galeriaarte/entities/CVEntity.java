@@ -12,8 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import uk.co.jemos.podam.common.PodamExclude;
 
 
@@ -33,12 +31,17 @@ private ArtistEntity artist;
 
      private String name;
      private String educationDTO;
-     private PaintworkEntity obraMasConocida;
+     private PaintworkEntity obraMasConocidaDTO;
      private String fechaNacimientoDTO;
      private String informacionAdicionalDTO;
      private ArrayList obrasDTO;
     
-
+     
+    public Long getId()
+    {
+        return this.getId();
+    }
+     
   
     
     public String getName(){
@@ -70,17 +73,17 @@ private ArtistEntity artist;
      *
      * @return Obra más conocida del artista
      */
-    public PaintworkEntity getobraMasConocida() {
-        return obraMasConocida;
+    public PaintworkEntity getobraMasConocidaDTO() {
+        return obraMasConocidaDTO;
     }
 
     /**
      * Modifica la Obra más conocida del artista
      *
-     * @param pobraMasConocida
+     * @param obraMasConocidaDTO
      */
-    public void setobraMasConocida(PaintworkEntity pobraMasConocida) {
-        this.obraMasConocida = pobraMasConocida;
+    public void setobraMasConocidaDTO(PaintworkEntity pobraMasConocidaDTO) {
+        this.obraMasConocidaDTO = pobraMasConocidaDTO;
     }
 
     /**
@@ -131,7 +134,7 @@ private ArtistEntity artist;
     /**
      * Modifica las obrasDTO del artista
      *
-     * @param obrasDTO
+     * @param informacionAdicionalDTO
      */
     public void setobrasDTO(ArrayList obrasDTO) {
         this.obrasDTO = obrasDTO;
@@ -140,10 +143,6 @@ private ArtistEntity artist;
     public void setArtista(ArtistEntity pA)
     {
         this.artist=pA;
-    }
-        @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
 
