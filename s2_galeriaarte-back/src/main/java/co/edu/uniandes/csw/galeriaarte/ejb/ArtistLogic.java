@@ -13,7 +13,6 @@ import javax.inject.Inject;
 /**
  * Clase que implementa la conexion con la persistencia para la entidad de
  * Artist.
- *
  * @author Anderson Barragán
  */
 @Stateless
