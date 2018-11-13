@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "c6e9ce76-ae82-455c-a0ea-b9fd5e8edcd4",
+		"name": "TestArtist",
+		"description": "lo hago despues",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ObtencionArtista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4381afc2-70d5-4a11-baab-27e364c5b36e",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"se consulta el artista sin errores\"]=responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/artists/123456",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "4848",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"artists",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreacionDeArtista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b170d4c4-c8fd-47ee-8207-40a40bdbc059",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"se crea el artista sin errores\"]=responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\t\"id\":123456, \"nombre\": \"abc\"\n\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/artists",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "4848",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificacionArtista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1e72f8c-fd1f-42d9-80f4-ef1dc4cdd46a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"se modifica el artista sin errores\"]=responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n\t\"id\":123456, \"nombre\": \"abcd\"\n\t}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/artists/123456",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "4848",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"artists",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminacionArtista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df5e4caa-94d7-488e-853e-b237b856bd5f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"se elimina el artista sin errores\"]=responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/artists/123456",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "4848",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"artists",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
