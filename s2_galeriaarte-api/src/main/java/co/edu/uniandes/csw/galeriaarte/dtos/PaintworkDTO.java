@@ -12,9 +12,9 @@ public class PaintworkDTO implements Serializable {
     private Long idPaintwork;
     private String name;
     private String country;
-  //private KindDTO kind;
-  //private CategoryDTO category;
- //  private FeedBackDTO feedback;
+    private KindDTO kind;
+    private CategoryDTO category;
+    private FeedBackDTO feedback;
     private String description;
     private Long value;
     private Boolean verificacionObra;
@@ -37,9 +37,9 @@ public class PaintworkDTO implements Serializable {
             this.idPaintwork = paintworkEntity.getId();
             this.name = paintworkEntity.getName();
             this.country=paintworkEntity.getCountry();
-//            this.kind = new KindDTO();
-   //         this.category=new CategoryDTO();
-     //       this.feedback = new FeedBackDTO();
+            this.kind = new KindDTO();
+            this.category=new CategoryDTO();
+            this.feedback = new FeedBackDTO();
             this.description = paintworkEntity.getDescription();
             this.value = paintworkEntity.getValor();
             this.verificacionObra = paintworkEntity.getVerificacionObra();
@@ -95,44 +95,44 @@ public class PaintworkDTO implements Serializable {
     /**
      * @return the kind
      */
-    //public KindDTO getKind() {
-      //  return kind;
-    //}
+    public KindDTO getKind() {
+        return kind;
+    }
 
     /**
      * @param kind the kind to set
      */
-    //public void setKind(KindDTO kind) {
-       // this.kind = kind;
-    //}
+    public void setKind(KindDTO kind) {
+        this.kind = kind;
+    }
 
     /**
      * @return the category
      */
-    //public CategoryDTO getCategory() {
-      //  return category;
-    //}
+    public CategoryDTO getCategory() {
+        return category;
+    }
 
     /**
      * @param category the category to set
      */
-    //public void setCategory(CategoryDTO category) {
-       // this.category = category;
-    //}
+    public void setCategory(CategoryDTO category) {
+        this.category = category;
+    }
 
     /**
      * @return the feedback
      */
-    //public FeedBackDTO getFeedback() {
-      //  return feedback;
-    //}
+    public FeedBackDTO getFeedback() {
+        return feedback;
+    }
 
     /**
      * @param feedback the feedback to set
      */
-    //public void setFeedback(FeedBackDTO feedback) {
-      //  this.feedback = feedback;
-   // }
+    public void setFeedback(FeedBackDTO feedback) {
+        this.feedback = feedback;
+    }
 
     /**
      * @return the description
