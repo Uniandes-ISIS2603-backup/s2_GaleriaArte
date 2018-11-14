@@ -39,7 +39,7 @@ public class MedioPagoLogic
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del medio de pago");
         // Verifica que el medio de pago tenga numero, que no tenga menos de 16 digitos y que este no sea negativo.
-        if (medioPagoEntity != null && (medioPagoEntity.getNumber() == null || medioPagoEntity.getNumber().toString().length() != 15 ))
+        if (medioPagoEntity == null || Long.toString(medioPagoEntity.getNumber()).length() != 16 )
         {
             throw new BusinessLogicException("El numero del medio de pago no es valido  \"" + medioPagoEntity.getNumber() + "\"");
         }
@@ -77,13 +77,7 @@ public class MedioPagoLogic
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el medio de pago con id = {0}", medioPagoId);
         // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
-        MedioPagoEntity medioPagoEntity = persistence.find(medioPagoId);
-        if (medioPagoEntity == null)
-        {
-            LOGGER.log(Level.SEVERE, "El medio de pago con el id = {0} no existe", medioPagoId);
-        }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el medio de pago con id = {0}", medioPagoId);
-        return medioPagoEntity;
+        return persistence.find(medioPagoId);
     }
     
     /**

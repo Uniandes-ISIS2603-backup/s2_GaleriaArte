@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "2d2c2875-a9e5-4d6f-833b-dc721bf58826",
+		"name": "Medio de pago",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un medio de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bd936b0-fa71-4f8e-9d07-f8f6d0fa3393",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\" : 100,\n   \"description\" : \"Tarjeta de credito\",\n   \"number\": 1000000000000000 ,\n   \"bank\" :  \"Bancolombia\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un medio de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d574ce04-9ff2-443e-979c-106c09995e4f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Medios de pago",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Medio de Pago",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bank\": \"CityBank\",\n    \"description\": \"Tarjeta de credito\",\n    \"id\": 5,\n    \"number\": 1000000000000002\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un Medio de Pago",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
