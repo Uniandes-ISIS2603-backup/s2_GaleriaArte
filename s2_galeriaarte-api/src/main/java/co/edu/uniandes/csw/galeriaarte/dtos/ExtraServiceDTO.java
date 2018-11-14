@@ -44,7 +44,7 @@ public class ExtraServiceDTO
     private Long id;
     private String name;
     private String description;
-    private double price;
+    private Long price;
     private boolean availability;
     
     /**
@@ -100,7 +100,7 @@ public class ExtraServiceDTO
     /**
      * @return the price
      */
-    public double getPrice()
+    public long getPrice()
     {
         return price;
     }
@@ -108,7 +108,7 @@ public class ExtraServiceDTO
     /**
      * @param price the price to set
      */
-    public void setPrice(double price)
+    public void setPrice(Long price)
     {
         this.price = price;
     }

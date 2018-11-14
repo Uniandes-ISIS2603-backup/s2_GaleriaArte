@@ -30,7 +30,7 @@ import javax.ws.rs.WebApplicationException;
  * @author jf.copete
  */
 
-@Path("paintwork")
+@Path("paintworks")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
