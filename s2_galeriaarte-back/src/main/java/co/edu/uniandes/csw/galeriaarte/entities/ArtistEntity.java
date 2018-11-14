@@ -31,7 +31,7 @@ public class ArtistEntity extends BaseEntity implements Serializable {
     private CVEntity cv = new CVEntity();
     
     @PodamExclude
-    @OneToMany(mappedBy = "artists")
+    @OneToMany
     private List<PaintworkEntity> paintworks = new ArrayList<>();
 
     private String name;

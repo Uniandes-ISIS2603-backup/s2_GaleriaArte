@@ -20,7 +20,7 @@ public class ArtistPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(ArtistPersistence.class.getName());
 
-    @PersistenceContext(unitName = "BookStorePU")
+    @PersistenceContext(unitName = "InterArtPU")
     protected EntityManager em;
 
     /**
