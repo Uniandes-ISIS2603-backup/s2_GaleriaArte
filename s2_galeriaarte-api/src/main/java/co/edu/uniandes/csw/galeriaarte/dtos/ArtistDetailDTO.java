@@ -43,7 +43,7 @@ public class ArtistDetailDTO extends ArtistDTO implements Serializable {
         super(artistEntity);
         if (artistEntity != null) {
             obras = new ArrayList<>();
-            for (PaintworkEntity entityPaintworks : artistEntity.getObras())
+            for (PaintworkEntity entityPaintworks : artistEntity.getPaintworks())
                 obras.add(new PaintworkDTO(entityPaintworks));
             
             hojaDeVida = new CVDTO(artistEntity.getCV());
@@ -68,7 +68,7 @@ public class ArtistDetailDTO extends ArtistDTO implements Serializable {
             for (PaintworkDTO dtoPaintwork : obras) {
                 paintworksEntity.add(dtoPaintwork.toEntity());
             }
-            artistEntity.setObras(paintworksEntity);
+            artistEntity.setPaintworks(paintworksEntity);
         }
 
         if (hojaDeVida != null) {
@@ -85,7 +85,7 @@ public class ArtistDetailDTO extends ArtistDTO implements Serializable {
      *
      * @return the paintworks
      */
-    public List<PaintworkDTO> getObras() {
+    public List<PaintworkDTO> getPaintworks() {
         return obras;
     }
 
@@ -94,7 +94,7 @@ public class ArtistDetailDTO extends ArtistDTO implements Serializable {
      *
      * @param obras the paintworks to set
      */
-    public void setObras(List<PaintworkDTO> obras) {
+    public void setPaintworks(List<PaintworkDTO> obras) {
         this.obras = obras;
     }
 

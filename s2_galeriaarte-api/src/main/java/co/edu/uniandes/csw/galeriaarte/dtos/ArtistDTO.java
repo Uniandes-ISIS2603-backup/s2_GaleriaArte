@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
 import java.io.Serializable;
+import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 /**
@@ -10,88 +11,146 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class ArtistDTO implements Serializable{
     
     private Long id;
-    private String name;    
-    private CVDTO hojaDeVida;
+    private String name;
+    private Date birthDate;
+    private String description;
     private String image;
     
     /**
-     * Constructor vacío de la clase <b>Artist</b>
+     * Constructor vacio
      */
-    public ArtistDTO(){}
-    
+    public ArtistDTO() {
+    }
+
     /**
      * Crea un objeto ArtistDTO a partir de un objeto ArtistEntity.
-     * @param artistEntity entidad de artista para crear el DTO
+     *
+     * @param artistEntity Entidad ArtistEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
      */
     public ArtistDTO(ArtistEntity artistEntity) {
-         if (artistEntity != null) {
+        if (artistEntity != null) {
             this.id = artistEntity.getId();
             this.name = artistEntity.getName();
+            this.birthDate = artistEntity.getBirthDate();
+            this.description = artistEntity.getDescription();
             this.image = artistEntity.getImage();
-           // No se que estoy haciendo
         }
     }
-    
+
+    /**
+     * Convierte un objeto ArtistDTO a ArtistEntity.
+     *
+     * @return Nueva objeto ArtistEntity.
+     *
+     */
     public ArtistEntity toEntity() {
         ArtistEntity artistEntity = new ArtistEntity();
         artistEntity.setId(this.getId());
         artistEntity.setName(this.getName());
+        artistEntity.setBirthDate(this.getBirthDate());
+        artistEntity.setDescription(this.description);
         artistEntity.setImage(this.image);
         return artistEntity;
     }
-    
-    public Long getId(){
-        return this.id;
-    }
-    
+
     /**
-     * retorna el nombre (único) del artista en cuestion
-     * @return 
+     * Obtiene el atributo id.
+     *
+     * @return atributo id.
+     *
      */
-    public String getName(){
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Establece el valor del atributo id.
+     *
+     * @param id nuevo valor del atributo
+     *
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * Obtiene el atributo name.
+     *
+     * @return atributo name.
+     *
+     */
+    public String getName() {
         return name;
     }
-    
+
     /**
-     * 
-     * @return 
+     * Establece el valor del atributo name.
+     *
+     * @param name nuevo valor del atributo
+     *
      */
-    public CVDTO getCV(){
-        return hojaDeVida;
+    public void setName(String name) {
+        this.name = name;
     }
-   
+
     /**
-     * Modifica el id existente
-     * @param pId 
+     * Obtiene el atributo birthDate.
+     *
+     * @return atributo birthDate.
+     *
      */
-     public void setId(Long newId){
-        this.id = newId;
+    public Date getBirthDate() {
+        return birthDate;
     }
-     
+
     /**
-     * Modifica el nombre actual
-     * @param pName 
+     * Establece el valor del atributo birthDate.
+     *
+     * @param birthdate nuevo valor del atributo
+     *
      */
-    public void setName(String pName){
-        this.name= pName;
+    public void setBirthDate(Date birthdate) {
+        this.birthDate = birthdate;
     }
-     
+
     /**
-     * modifica la hoja de vida del artista en cuestion
-     * @param pCV 
+     * Obtiene el atributo descripción
+     *
+     * @return the description
      */
-    public void setCV(CVDTO pCV){
-        this.hojaDeVida = pCV;
+    public String getDescription() {
+        return description;
     }
-    
+
     /**
-     * aniade una pintura a las pinturas del artista 
-     * @param pNewPaintwork 
+     * Ontiene el atributo de imagen
+     *
+     * @return the image
      */
-    public void addPaintwork(PaintworkDTO pNewPaintwork){
-        //this.hojaDeVida.addPaint(pNewPaintwork);
+    public String getImage() {
+        return image;
     }
-    
+
+    /**
+     * Establece el atributo de descripción
+     *
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Establece la imagen del autor
+     *
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
