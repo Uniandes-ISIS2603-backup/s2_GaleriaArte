@@ -1,143 +1,99 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
-import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
- * Clase que representa un artista en la persistencia y permite su serialización
  *
- * @author Anderson Barragán
+ * @author a.barragan Anderson Barragan
  */
 @Entity
-public class ArtistEntity extends BaseEntity implements Serializable {
-
-    @Temporal(TemporalType.DATE)
-    //@PodamStrategyValue(DateStrategy.class)
-    private Date birthDate;
-
-    @PodamExclude
-    @OneToOne(mappedBy = "artist",fetch=FetchType.LAZY)
-    private CVEntity cv = new CVEntity();
+public class ArtistEntity extends BaseEntity implements Serializable
+{
+    private String name;
+    private String image;
     
     @PodamExclude
-    @OneToMany
-    private List<PaintworkEntity> paintworks = new ArrayList<>();
-
-    private String name;
-    private String description;
-    private String image;
-
+    @OneToOne(mappedBy="artist", fetch=FetchType.LAZY)
+    private CVEntity hojaDeVida;
+    
+    @PodamExclude
+    @OneToMany()
+    private List<PaintworkEntity> obras;
+    
+       
     /**
-     * Devuelve el nombre del artista.
-     *
-     * @return the name
+     * retorna la imagen asociada al artista
+     * @return ruta de la imagen
      */
-    public String getName() {
-        return name;
+    public String getImage(){
+        return this.image;
     }
-
+    
     /**
-     * Modifica el nombre del artista.
-     *
-     * @param name the name to set
+     * Cambia la imagen actual por la del parametro
+     * @param pImage ruta de la nueva imagen
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setImage(String pImage){
+        this.image = pImage;
     }
-
+    
     /**
-     * Obtiene el atributo birthDate.
-     *
-     * @return atributo birthDate.
+     * retorna la hoja de vida
+     * @return hoja de vida asociada al artist
      */
-    public Date getBirthDate() {
-        return birthDate;
+    public CVEntity getCV(){
+        return this.hojaDeVida;
     }
-
+    
     /**
-     * Establece el valor del atributo birthDate.
-     *
-     * @param birthDate nuevo valor del atributo
+     * Cambia la hoja de vida por la entrante
+     * @param pCVEntity nueva hoja de vida
      */
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setCV(CVEntity pCVEntity){
+        this.hojaDeVida = pCVEntity;
     }
-
+    
     /**
-     * Obtiene la colección de paintworks.
-     *
-     * @return colección paintworks.
+     * 
+     * @return 
      */
-    public List<PaintworkEntity> getPaintworks() {
-        return paintworks;
+    public String getName(){
+        return this.name;
     }
-
+    public void setName(String pName){
+        this.name = pName;
+    }
+    
     /**
-     * Establece el valor de la colección de paintworks.
-     *
+     * Obtiene ls obras.
+     * @return las obras del artista.
+     */
+    public List<PaintworkEntity> getObras() {
+        return obras;
+    }
+    
+    /**
+     * Establece el valor de la lista de obras.
      * @param paintworks nuevo valor de la colección.
      */
     public void setPaintworks(List<PaintworkEntity> paintworks) {
-        this.paintworks = paintworks;
+        this.obras = paintworks;
     }
 
-     /**
-     * Devuelve la descripción del artista
-     *
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * Modifica la descripción del artista
-     *
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * Devuelve la imagen del artista
-     *
-     * @return the image
-     */
-    public String getImage() {
-        return image;
-    }
-
-    /**
-     * Obtiene la hoja de vida.
-     *
-     * @return hoja de vida del artista.
-     */
-    public CVEntity getCV() {
-        return cv;
+    public void setObras(List<PaintworkEntity> paintworksEntity) {
+        this.obras = paintworksEntity;
     }
     
-    /**
-     * Modifica la imagen del artista
-     *
-     * @param image the image to set
-     */
-    public void setImage(String image) {
-        this.image = image;
-    }
-    public void setCV(CVEntity newCV){
-        this.cv = newCV;
-    }
+    
 }
-
