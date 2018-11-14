@@ -28,7 +28,7 @@ public class ArtistEntity extends BaseEntity implements Serializable
     private CVEntity hojaDeVida;
     
     @PodamExclude
-    @OneToMany()
+    @OneToMany(mappedBy="artist", fetch=FetchType.LAZY)
     private List<PaintworkEntity> obras;
     
        
