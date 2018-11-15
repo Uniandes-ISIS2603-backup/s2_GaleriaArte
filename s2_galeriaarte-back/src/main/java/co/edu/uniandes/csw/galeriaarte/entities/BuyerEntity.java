@@ -42,6 +42,14 @@ public class BuyerEntity extends BaseEntity implements Serializable
     public BuyerEntity(){
         
     }
+    
+    public long getIdUser(){
+        return idUser;
+    }
+    
+    public void setIdUser(long id){
+        idUser =id;
+    }
     public String getName(){
         return this.name;
     }

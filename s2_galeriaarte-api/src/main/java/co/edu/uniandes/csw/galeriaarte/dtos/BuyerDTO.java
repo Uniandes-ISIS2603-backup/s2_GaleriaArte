@@ -52,7 +52,7 @@ public class BuyerDTO implements Serializable {
             this.password = buyerEntity.getPassword();
             this.phone = buyerEntity.getPhone();
             this.user = buyerEntity.getUser();
-            
+            this.idUser = buyerEntity.getIdUser();
            
         }
     }
@@ -73,6 +73,7 @@ public class BuyerDTO implements Serializable {
         entidad.setPassword(this.password);
         entidad.setPhone(this.phone);
         entidad.setUser(this.user);
+        entidad.setIdUser(this.idUser);
         
         
        
@@ -184,7 +185,7 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * @param nuevo id del usuario 
+     * @param newId id del usuario 
      */
     
     public void setIdUser(Long newId){

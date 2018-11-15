@@ -4,10 +4,15 @@
 * and open the template in the editor.
 */
 package co.edu.uniandes.csw.galeriaarte.dtos;
-
+import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
+import java.io.Serializable;
 import co.edu.uniandes.csw.galeriaarte.entities.ExtraServiceEntity;
+import java.util.Collection;
+import java.util.List;
+import javax.persistence.OneToOne;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * ExtraServiceDTO Objeto de transferencia de datos de la clase ExtraService. }
@@ -39,14 +44,18 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * </pre>
  * @author ja.penat
  */
-public class ExtraServiceDTO
+public class ExtraServiceDTO implements Serializable 
 {
     private Long id;
     private String name;
     private String description;
     private double price;
     private boolean availability;
+   
     
+    public ExtraServiceDTO(){
+        
+    }
     /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
@@ -166,5 +175,7 @@ public class ExtraServiceDTO
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
     
+    
+   
     
 }
