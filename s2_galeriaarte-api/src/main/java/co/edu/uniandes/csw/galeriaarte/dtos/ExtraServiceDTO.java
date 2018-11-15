@@ -49,7 +49,7 @@ public class ExtraServiceDTO implements Serializable
     private Long id;
     private String name;
     private String description;
-    private double price;
+    private long price;
     private boolean availability;
    
     
@@ -109,7 +109,7 @@ public class ExtraServiceDTO implements Serializable
     /**
      * @return the price
      */
-    public double getPrice()
+    public long getPrice()
     {
         return price;
     }
@@ -117,7 +117,7 @@ public class ExtraServiceDTO implements Serializable
     /**
      * @param price the price to set
      */
-    public void setPrice(double price)
+    public void setPrice(long price)
     {
         this.price = price;
     }

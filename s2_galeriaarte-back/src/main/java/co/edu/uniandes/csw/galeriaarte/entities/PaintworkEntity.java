@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -18,6 +19,8 @@ public class PaintworkEntity extends BaseEntity implements Serializable
    
     private String name;
     private String country;
+    @ManyToOne
+    private BuyerEntity buyer;
     private Collection<KindEntity> kind;
     private Collection<CategoryEntity> category;
     private Collection<FeedBackEntity> feedback;
@@ -174,6 +177,14 @@ public class PaintworkEntity extends BaseEntity implements Serializable
         this.category = category;
     }
 
+    public BuyerEntity getBuyer()
+    {
+        return this.buyer;
+    }
+    public void setBuyer(BuyerEntity buyer)
+    {
+        this.buyer = buyer;
+    }
 
     
 }
