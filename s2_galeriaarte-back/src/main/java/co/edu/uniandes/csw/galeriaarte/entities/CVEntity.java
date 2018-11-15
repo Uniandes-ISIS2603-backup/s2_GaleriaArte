@@ -30,20 +30,13 @@ private ArtistEntity artist;
 
 
      private String name;
-     private String educationDTO;
-     private PaintworkEntity obraMasConocidaDTO;
-     private String fechaNacimientoDTO;
-     private String informacionAdicionalDTO;
-     private ArrayList obrasDTO;
+     private String education;
+     private PaintworkEntity obraMasConocida;
+     private String fechaNacimiento;
+     private String informacionAdicional;
+     private ArrayList obras;
     
-     
-    public Long getId()
-    {
-        return this.getId();
-    }
-     
-  
-    
+
     public String getName(){
         return name;
     }
@@ -55,17 +48,17 @@ private ArtistEntity artist;
      *
      * @return nivel de educación del artista
      */
-    public String geteducationDTO() {
-        return educationDTO;
+    public String getEducation() {
+        return education;
     }
 
     /**
      * Modifica el nivel de educación del artista
      *
-     * @param educationDTO
+     * @param education
      */
-    public void seteducationDTO(String educationDTO) {
-        this.educationDTO = educationDTO;
+    public void setEducation(String education) {
+        this.education = education;
     }
 
     /**
@@ -73,17 +66,17 @@ private ArtistEntity artist;
      *
      * @return Obra más conocida del artista
      */
-    public PaintworkEntity getobraMasConocidaDTO() {
-        return obraMasConocidaDTO;
+    public PaintworkEntity getobraMasConocida() {
+        return obraMasConocida;
     }
 
     /**
      * Modifica la Obra más conocida del artista
      *
-     * @param obraMasConocidaDTO
+     * @param obraMasConocida
      */
-    public void setobraMasConocidaDTO(PaintworkEntity pobraMasConocidaDTO) {
-        this.obraMasConocidaDTO = pobraMasConocidaDTO;
+    public void setobraMasConocida(PaintworkEntity obraMasConocida) {
+        this.obraMasConocida = obraMasConocida;
     }
 
     /**
@@ -91,17 +84,17 @@ private ArtistEntity artist;
      *
      * @return Fecha de nacimiento del artista
      */
-    public String getfechaNacimientoDTO() {
-        return fechaNacimientoDTO;
+    public String getfechaNacimiento() {
+        return fechaNacimiento;
     }
 
     /**
      * Modifica la Fecha de nacimiento del artista
      *
-     * @param fechaNacimientoDTO
+     * @param fechaNacimiento
      */
-    public void setfechaNacimientoDTO(String fechaNacimientoDTO) {
-        this.fechaNacimientoDTO = fechaNacimientoDTO;
+    public void setfechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     /**
@@ -109,35 +102,35 @@ private ArtistEntity artist;
      *
      * @return Información adicional sobre el artista
      */
-    public String getinformacionAdicionalDTO() {
-        return informacionAdicionalDTO;
+    public String getinformacionAdicional() {
+        return informacionAdicional;
     }
 
     /**
      * Modifica la Información adicional sobre el artista
      *
-     * @param informacionAdicionalDTO
+     * @param informacionAdicional
      */
-    public void setinformacionAdicionalDTO(String informacionAdicionalDTO) {
-        this.informacionAdicionalDTO = informacionAdicionalDTO;
+    public void setinformacionAdicional(String informacionAdicional) {
+        this.informacionAdicional = informacionAdicional;
     }
 
     /**
-     * Retorna las obrasDTO del artista
+     * Retorna las obras del artista
      *
-     * @return las obrasDTO del artista
+     * @return las obras del artista
      */
-    public ArrayList getobrasDTO() {
-        return obrasDTO;
+    public ArrayList getobras() {
+        return obras;
     }
 
     /**
-     * Modifica las obrasDTO del artista
+     * Modifica las obras del artista
      *
-     * @param informacionAdicionalDTO
+     * @param informacionAdicional
      */
-    public void setobrasDTO(ArrayList obrasDTO) {
-        this.obrasDTO = obrasDTO;
+    public void setobras(ArrayList obras) {
+        this.obras = obras;
     }
     
     public void setArtista(ArtistEntity pA)

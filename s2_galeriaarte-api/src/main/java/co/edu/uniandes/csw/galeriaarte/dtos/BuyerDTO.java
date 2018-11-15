@@ -53,7 +53,6 @@ public class BuyerDTO implements Serializable {
             this.phone = buyerEntity.getPhone();
             this.user = buyerEntity.getUser();
             this.idUser = buyerEntity.getIdUser();
-           
         }
     }
     

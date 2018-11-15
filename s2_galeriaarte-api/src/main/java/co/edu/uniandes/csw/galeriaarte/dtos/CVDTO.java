@@ -55,12 +55,12 @@ public class CVDTO implements Serializable {
     if (cvEntity!=null)
     {
         this.id=cvEntity.getId();
-        this.educationDTO=cvEntity.geteducationDTO();
-        this.fechaNacimientoDTO=cvEntity.getfechaNacimientoDTO();
-        this.informacionAdicionalDTO=cvEntity.getinformacionAdicionalDTO();
+        this.educationDTO=cvEntity.getEducation();
+        this.fechaNacimientoDTO=cvEntity.getfechaNacimiento();
+        this.informacionAdicionalDTO=cvEntity.getinformacionAdicional();
         this.name=cvEntity.getName();
         this.obraMasConocidaDTO= new PaintworkDTO();
-        this.obrasDTO=cvEntity.getobrasDTO();
+        this.obrasDTO=cvEntity.getobras();
     }
    }
     //Métodos
@@ -172,11 +172,11 @@ public class CVDTO implements Serializable {
     public CVEntity toEntity(){
         CVEntity cv= new CVEntity();
         cv.setId(this.id);
-        cv.seteducationDTO(educationDTO);
-        cv.setfechaNacimientoDTO(fechaNacimientoDTO);
-        cv.setinformacionAdicionalDTO(informacionAdicionalDTO);
-        cv.setobraMasConocidaDTO(this.obraMasConocidaDTO.toEntity());
-        cv.setobrasDTO(obrasDTO);
+        cv.setEducation(educationDTO);
+        cv.setfechaNacimiento(fechaNacimientoDTO);
+        cv.setinformacionAdicional(informacionAdicionalDTO);
+        cv.setobraMasConocida(this.obraMasConocidaDTO.toEntity());
+        cv.setobras(obrasDTO);
         cv.setName(this.name);
        
         return cv;
