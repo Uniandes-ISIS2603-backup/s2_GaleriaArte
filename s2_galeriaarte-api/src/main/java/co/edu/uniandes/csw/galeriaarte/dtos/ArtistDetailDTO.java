@@ -21,11 +21,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class ArtistDetailDTO extends ArtistDTO implements Serializable {
 
-    // relación  cero o muchos obras
-    private List<PaintworkDTO> obras;
+    // relación  cero o muchas paintworks
+    private List<PaintworkDTO> paintworks;
 
     // relación  con su hoja de vida
-    private CVDTO hojaDeVida;
+    private CVDTO cv;
 
     public ArtistDetailDTO() {
         super();
@@ -42,11 +42,11 @@ public class ArtistDetailDTO extends ArtistDTO implements Serializable {
     public ArtistDetailDTO(ArtistEntity artistEntity) {
         super(artistEntity);
         if (artistEntity != null) {
-            obras = new ArrayList<>();
+            paintworks = new ArrayList<>();
             for (PaintworkEntity entityPaintworks : artistEntity.getPaintworks())
-                obras.add(new PaintworkDTO(entityPaintworks));
+                paintworks.add(new PaintworkDTO(entityPaintworks));
             
-            hojaDeVida = new CVDTO(artistEntity.getCV());
+            cv = new CVDTO(artistEntity.getCV());
         }
     }
 
@@ -63,16 +63,16 @@ public class ArtistDetailDTO extends ArtistDTO implements Serializable {
         ArtistEntity artistEntity = super.toEntity();
         
         if(artistEntity != null){
-        if (obras != null) {
+        if (paintworks != null) {
             List<PaintworkEntity> paintworksEntity = new ArrayList<>();
-            for (PaintworkDTO dtoPaintwork : obras) {
+            for (PaintworkDTO dtoPaintwork : paintworks) {
                 paintworksEntity.add(dtoPaintwork.toEntity());
             }
             artistEntity.setPaintworks(paintworksEntity);
         }
 
-        if (hojaDeVida != null) {
-            CVEntity cvEntity = hojaDeVida.toEntity();
+        if (cv != null) {
+            CVEntity cvEntity = cv.toEntity();
             artistEntity.setCV(cvEntity);
         }
         
@@ -81,21 +81,21 @@ public class ArtistDetailDTO extends ArtistDTO implements Serializable {
     }
 
     /**
-     * Obtiene la lista de obras del artista
+     * Obtiene la lista de paintworks del artista
      *
      * @return the paintworks
      */
     public List<PaintworkDTO> getPaintworks() {
-        return obras;
+        return paintworks;
     }
 
     /**
      * Modifica la lista de libros para el artista
      *
-     * @param obras the paintworks to set
+     * @param paintworks the paintworks to set
      */
-    public void setPaintworks(List<PaintworkDTO> obras) {
-        this.obras = obras;
+    public void setPaintworks(List<PaintworkDTO> paintworks) {
+        this.paintworks = paintworks;
     }
 
     /**
@@ -103,8 +103,8 @@ public class ArtistDetailDTO extends ArtistDTO implements Serializable {
      *
      * @return the CV
      */
-    public CVDTO getCV() {
-        return hojaDeVida;
+    public CVDTO getCv() {
+        return cv;
     }
 
     /**
@@ -112,8 +112,8 @@ public class ArtistDetailDTO extends ArtistDTO implements Serializable {
      *
      * @param cv the CV to set
      */
-    public void setCV(CVDTO cv) {
-        this.hojaDeVida = cv;
+    public void setCv(CVDTO cv) {
+        this.cv = cv;
     }
 
     @Override
