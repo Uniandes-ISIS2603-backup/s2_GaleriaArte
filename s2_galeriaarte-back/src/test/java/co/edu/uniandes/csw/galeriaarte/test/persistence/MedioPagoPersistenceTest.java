@@ -57,7 +57,7 @@ public class MedioPagoPersistenceTest
     /**
      * lista que tiene los datos de prueba.
      */
-    private List<MedioPagoEntity> data = new ArrayList<MedioPagoEntity>();
+    private  List<MedioPagoEntity> data = new ArrayList();
     
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
@@ -195,7 +195,8 @@ public class MedioPagoPersistenceTest
      * Prueba para actualizar un Medio de pago.
      */
     @Test
-    public void updateMedioPagoTest() {
+    public void updateMedioPagoTest() 
+    {
         MedioPagoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         MedioPagoEntity newEntity = factory.manufacturePojo(MedioPagoEntity.class);
@@ -211,7 +212,5 @@ public class MedioPagoPersistenceTest
         Assert.assertEquals(newEntity.getBank(), resp.getBank());
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
-    
-    
 }
 

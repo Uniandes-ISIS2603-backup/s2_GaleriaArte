@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.galeriaarte.test.logic;
 import co.edu.uniandes.csw.galeriaarte.ejb.ArtistLogic;
 import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
-import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.ArtistPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +20,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.Assert;import org.junit.Before;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -97,7 +94,7 @@ public class ArtistLogicTest {
         }
         
         CVEntity hoja = factory.manufacturePojo(CVEntity.class);
-        hoja.setArtista(data.get(1));
+        hoja.setArtist(data.get(1));
         em.persist(hoja);
         data.get(1).setCV(hoja);
      }

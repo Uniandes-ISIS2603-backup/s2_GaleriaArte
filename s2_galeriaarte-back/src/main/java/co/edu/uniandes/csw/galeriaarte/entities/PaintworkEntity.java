@@ -17,6 +17,10 @@ import javax.persistence.ManyToOne;
 public class PaintworkEntity extends BaseEntity implements Serializable
 {
    
+    @javax.persistence.OneToMany(
+            mappedBy = "paintwork",
+            fetch = javax.persistence.FetchType.LAZY
+    )
     private String name;
     private String country;
     @ManyToOne
@@ -30,12 +34,6 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     private String imagePath;
     private String videoPath;
     
-    @javax.persistence.OneToMany(
-    mappedBy = "paintwork",
-            fetch = javax.persistence.FetchType.LAZY
-    )
-
-
     /**
      * @return the name
      */
