@@ -88,7 +88,7 @@ public class BuyerResources {
     public BuyerDTO updateBuyer(@PathParam("buyerID") Long buyerID, BuyerDTO buyer){
         
         LOGGER.log(Level.INFO, "BuyerResource updateBuyer: input: buyerID: {0}, buyer: {1}", new Object[]{buyerID, buyer.toString()});
-        buyer.setIdUser(buyerID);
+        buyer.setIdUsuario(buyerID);
         if(buyerLogic.getBuyer(buyerID)==null){
             throw new WebApplicationException("El recurso /buyer/"+buyerID+"no existe", 404);
         }

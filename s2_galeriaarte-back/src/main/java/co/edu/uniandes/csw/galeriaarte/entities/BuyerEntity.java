@@ -21,12 +21,12 @@ public class BuyerEntity extends BaseEntity implements Serializable
 {
    private  String name;
    private  String password;
-    private String user;
+    private String usuario;
     private String email;
     private String phone;
     private String creditcard;
     private String country;
-    private Long idUser;
+    private Long idUsuario;
     @PodamExclude
     @OneToMany(mappedBy = "buyer",fetch=FetchType.LAZY)
     private List<SaleEntity> sale;
@@ -76,8 +76,8 @@ public class BuyerEntity extends BaseEntity implements Serializable
         return adress;
     }
     
-    public String getUser(){
-        return this.user;
+    public String getUsuario(){
+        return this.usuario;
     }
     
     public List<SaleEntity> getSale(){
@@ -112,8 +112,8 @@ public class BuyerEntity extends BaseEntity implements Serializable
         phone = nPhone;
     }
     
-    public void setUser(String nUser){
-        user = nUser;
+    public void setUsuario(String nUsuario){
+        usuario = nUsuario;
     }
     
     public void setPaintwork(List<PaintworkEntity> nPaintwork){

@@ -20,13 +20,13 @@ public class BuyerDTO implements Serializable {
     
     private String password;
     private String name;
-    private String user;
+    private String usuario;
     private String adress;
     private String email;
     private String phone;
     private String creditcard;
     private String country;
-    private Long idUser;
+    private Long idUsuario;
     
     
     public BuyerDTO(){
@@ -51,7 +51,7 @@ public class BuyerDTO implements Serializable {
             this.name = buyerEntity.getName();
             this.password = buyerEntity.getPassword();
             this.phone = buyerEntity.getPhone();
-            this.user = buyerEntity.getUser();
+            this.usuario = buyerEntity.getUsuario();
             
            
         }
@@ -72,7 +72,7 @@ public class BuyerDTO implements Serializable {
         entidad.setName(this.name);
         entidad.setPassword(this.password);
         entidad.setPhone(this.phone);
-        entidad.setUser(this.user);
+        entidad.setUsuario(this.usuario);
         
         
        
@@ -118,15 +118,15 @@ public class BuyerDTO implements Serializable {
      * 
      * @return login del usuario
      */
-    public String getUser(){
-        return user;
+    public String getUsuario(){
+        return usuario;
     }
     
     /**
      * @param nuevo login del usuario  
      */
-    public void setUser(String newUser){
-        user = newUser;
+    public void setUsuario(String newUsuario){
+        usuario = newUsuario;
     }
     
    
@@ -179,17 +179,17 @@ public class BuyerDTO implements Serializable {
      * @return el id del usuario 
      */
     
-    public Long getIdUser(){
-        return idUser;
+    public Long getIdUsuario(){
+        return idUsuario;
     }
     
     /**
      * @param nuevo id del usuario 
      */
     
-    public void setIdUser(Long newId){
+    public void setIdUsuario(Long newId){
         
-        idUser= newId;
+        idUsuario= newId;
     }
     
     /**
