@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
+import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -28,16 +29,12 @@ public class BuyerEntity extends BaseEntity implements Serializable
     private String country;
     private Long idUsuario;
     @PodamExclude
-    @OneToMany(mappedBy = "buyer",fetch=FetchType.LAZY)
+    @OneToMany//(mappedBy = "buyer",fetch=FetchType.LAZY)
     private List<SaleEntity> sale;
+    @PodamExclude
+    @OneToMany
     private List<PaintworkEntity> paintwork;
     private String adress;
- 
-    
-    
-    
-    
-
     
     public BuyerEntity(){
         
@@ -51,8 +48,6 @@ public class BuyerEntity extends BaseEntity implements Serializable
         this.name = nName;
     }
  
-
-
     public String getCountry(){
     return this.country;
     }

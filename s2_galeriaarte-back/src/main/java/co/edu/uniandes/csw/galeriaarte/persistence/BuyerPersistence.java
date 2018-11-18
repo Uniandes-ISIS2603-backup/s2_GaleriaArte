@@ -19,7 +19,6 @@ import javax.persistence.PersistenceContext;
  */
 
 @Stateless
-
 public class BuyerPersistence {
     
     
@@ -38,26 +37,26 @@ public class BuyerPersistence {
     
     public List<BuyerEntity> findAll() {
         LOGGER.log(Level.INFO, "Consultando todos los compradores");
-        // Se crea un query para buscar todas los artistas en la base de datos.
+        // Se crea un query para buscar todas los buyeras en la base de datos.
         TypedQuery query = em.createQuery("select u from BuyerEntity u", BuyerEntity.class);
-        // Note que en el query se hace uso del método getResultList() que obtiene una lista de artistas.
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de buyeras.
         return query.getResultList();
     }
-     public BuyerEntity update(BuyerEntity artistEntity) {
-        LOGGER.log(Level.INFO, "Actualizando el comprador con id={0}", artistEntity.getId());
+     public BuyerEntity update(BuyerEntity buyerEntity) {
+        LOGGER.log(Level.INFO, "Actualizando el comprador con id={0}", buyerEntity.getId());
 
-        return em.merge(artistEntity);
+        return em.merge(buyerEntity);
     }
 
      public BuyerEntity find(Long buyerId) {
-        LOGGER.log(Level.INFO, "Consultando el artista con id={0}", buyerId);
+        LOGGER.log(Level.INFO, "Consultando el comprador con id={0}", buyerId);
 
         return em.find(BuyerEntity.class, buyerId);
     }
     public void delete(Long buyerId) {
         LOGGER.log(Level.INFO, "Borrando el comprador con id={0}", buyerId);
-        BuyerEntity artistEntity = em.find(BuyerEntity.class, buyerId);
+        BuyerEntity buyerEntity = em.find(BuyerEntity.class, buyerId);
 
-        em.remove(artistEntity);
+        em.remove(buyerEntity);
     }
 }

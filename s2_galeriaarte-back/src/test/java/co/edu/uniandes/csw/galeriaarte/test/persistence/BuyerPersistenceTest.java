@@ -52,7 +52,6 @@ public class BuyerPersistenceTest {
                 .addPackage(BuyerPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-
     }
       
     /**
@@ -80,10 +79,7 @@ public class BuyerPersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from BuyerEntity").executeUpdate();
-        em.createQuery("delete from SaleEntity").executeUpdate();
-        em.createQuery("delete from PaintworkEntity").executeUpdate();
-        
+        em.createQuery("delete from BuyerEntity").executeUpdate();      
     }
     
     /**
