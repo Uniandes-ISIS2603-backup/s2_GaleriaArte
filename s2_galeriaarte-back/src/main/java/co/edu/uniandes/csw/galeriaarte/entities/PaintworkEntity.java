@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -26,6 +28,9 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     private Boolean verificacionObra;
     private String imagePath;
     private String videoPath;
+    @PodamExclude
+    @ManyToOne
+    private BuyerEntity buyer;
     
     @javax.persistence.OneToMany(
     mappedBy = "paintwork",
@@ -172,6 +177,20 @@ public class PaintworkEntity extends BaseEntity implements Serializable
      */
     public void setCategory(Collection<CategoryEntity> category) {
         this.category = category;
+    }
+
+    /**
+     * @return the buyer
+     */
+    public BuyerEntity getBuyer() {
+        return buyer;
+    }
+
+    /**
+     * @param buyer the buyer to set
+     */
+    public void setBuyer(BuyerEntity buyer) {
+        this.buyer = buyer;
     }
 
 
