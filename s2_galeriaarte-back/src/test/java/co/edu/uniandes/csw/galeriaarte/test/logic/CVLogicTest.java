@@ -5,30 +5,30 @@
 */
 package co.edu.uniandes.csw.galeriaarte.test.logic;
 import co.edu.uniandes.csw.galeriaarte.ejb.CVLogic;
-import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.CVPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 /**
  *
  * @author LauraManrique y Ja.penat
  */
-@Stateless
+@RunWith(Arquillian.class)
 public class CVLogicTest
 {
     
@@ -102,9 +102,7 @@ public class CVLogicTest
         for (int i = 0; i < 3; i++)
         {
             CVEntity entity = factory.manufacturePojo(CVEntity.class);
-            ArtistEntity artista = factory.manufacturePojo(ArtistEntity.class);
-            entity.setArtist(artista);
-            artista.setCV(entity);
+            
             em.persist(entity);
             data.add(entity);
         }
@@ -118,10 +116,7 @@ public class CVLogicTest
     @Test
     public void createCVTest() throws BusinessLogicException
     {
-        CVEntity newEntity = factory.manufacturePojo(CVEntity.class);
-        ArtistEntity artista = factory.manufacturePojo(ArtistEntity.class);
-        artista.setCV(newEntity);
-        newEntity.setArtist(artista);
+        CVEntity newEntity = factory.manufacturePojo(CVEntity.class);;
         CVEntity result = cvLogic.createCV(newEntity);
         
         Assert.assertNotNull(result);
@@ -131,7 +126,7 @@ public class CVLogicTest
         Assert.assertEquals(newEntity.getFechaNacimiento(), entity.getFechaNacimiento());
         Assert.assertEquals(newEntity.getInformacionAdicional(), entity.getInformacionAdicional());
         Assert.assertEquals(newEntity.getNombreObraMasConocida(), entity.getNombreObraMasConocida());
-        Assert.assertEquals(newEntity.getArtist(), entity.getArtist());
+        
         
     }
     
@@ -172,7 +167,6 @@ public class CVLogicTest
         Assert.assertEquals(entity.getFechaNacimiento(), resultEntity.getFechaNacimiento());
         Assert.assertEquals(entity.getInformacionAdicional(), resultEntity.getInformacionAdicional());
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getArtist(), resultEntity.getArtist());
     }
     
     /**
@@ -183,9 +177,6 @@ public class CVLogicTest
     {
         CVEntity entity = data.get(0);
         CVEntity pojoEntity = factory.manufacturePojo(CVEntity.class);
-        ArtistEntity artista = factory.manufacturePojo(ArtistEntity.class);
-        pojoEntity.setArtist(artista);
-        artista.setCV(pojoEntity);
         
         
         pojoEntity.setId(entity.getId());
@@ -199,7 +190,6 @@ public class CVLogicTest
         Assert.assertEquals(pojoEntity.getEducation(), resultEntity.getEducation());
         Assert.assertEquals(pojoEntity.getFechaNacimiento(), resultEntity.getFechaNacimiento());
         Assert.assertEquals(pojoEntity.getInformacionAdicional(), resultEntity.getInformacionAdicional());
-        Assert.assertEquals(pojoEntity.getArtist(), resultEntity.getArtist());
         
     }
     /**

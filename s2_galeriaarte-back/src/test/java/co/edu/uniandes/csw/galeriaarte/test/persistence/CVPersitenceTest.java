@@ -23,8 +23,8 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 /**
- * Inicialmente la clase la hizo Laura pero estaba casi vacia.
- * @author Ja.penat.
+ *
+ * @author LauraManrique y Ja.penat
  */
 
 @RunWith(Arquillian.class)
