@@ -21,7 +21,7 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
 {
     private String name;
     private String description;
-    private long price;
+    private double price;
     private boolean availability;
     
     @PodamExclude
@@ -62,7 +62,7 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     /**
      * @return the price
      */
-    public long getPrice()
+    public double getPrice()
     {
         return price;
     }
@@ -70,7 +70,7 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     /**
      * @param price the price to set
      */
-    public void setPrice(long price)
+    public void setPrice(double price)
     {
         this.price = price;
     }
