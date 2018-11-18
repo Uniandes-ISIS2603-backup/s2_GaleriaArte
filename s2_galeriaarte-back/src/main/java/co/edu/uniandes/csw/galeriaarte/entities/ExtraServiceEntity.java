@@ -101,7 +101,8 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     /**
      * @param sale the sale to set
      */
-    public void setSale(SaleEntity sale) {
+    public void setSale(SaleEntity sale) 
+    {
         this.sale = sale;
     }
 }

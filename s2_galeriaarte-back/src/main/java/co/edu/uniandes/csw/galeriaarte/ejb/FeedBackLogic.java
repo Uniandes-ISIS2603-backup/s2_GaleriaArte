@@ -46,10 +46,6 @@ public class FeedBackLogic
         {
             throw new BusinessLogicException("La obra no existe");
         }
-        if (feedEntity.getUser()==null)
-        {
-            throw new BusinessLogicException("El usuario no existe");
-        }
         FeedBackEntity newFeedEntity = persistence.create(feedEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la calificacion");
         return newFeedEntity;

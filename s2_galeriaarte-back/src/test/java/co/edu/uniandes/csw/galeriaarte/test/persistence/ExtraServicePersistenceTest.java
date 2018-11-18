@@ -196,7 +196,8 @@ public class ExtraServicePersistenceTest
      * Prueba para actualizar un Medio de pago.
      */
     @Test
-    public void updateExtraServiceTest() {
+    public void updateExtraServiceTest() 
+    {
         ExtraServiceEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         ExtraServiceEntity newEntity = factory.manufacturePojo(ExtraServiceEntity.class);

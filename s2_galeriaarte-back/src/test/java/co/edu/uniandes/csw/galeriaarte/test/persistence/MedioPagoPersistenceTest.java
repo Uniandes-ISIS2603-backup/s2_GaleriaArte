@@ -210,8 +210,6 @@ public class MedioPagoPersistenceTest
         Assert.assertEquals(newEntity.getDescription(), resp.getDescription());
         Assert.assertEquals(newEntity.getBank(), resp.getBank());
         Assert.assertEquals(newEntity.getId(), resp.getId());
-    }
-    
-    
+    } 
 }
 

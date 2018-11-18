@@ -29,12 +29,15 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     @PodamExclude
     @OneToMany
     private Collection<KindEntity> kind;
+    
     @PodamExclude
     @OneToMany
     private Collection<CategoryEntity> category;
+    
     @PodamExclude
     @OneToMany
     private Collection<FeedBackEntity> feedback;
+    
     @PodamExclude
     @ManyToOne
     private BuyerEntity buyer;

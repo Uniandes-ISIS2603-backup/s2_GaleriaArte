@@ -8,10 +8,6 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -27,16 +23,10 @@ public class FeedBackEntity extends BaseEntity implements Serializable
     private String comentario;
     
     @PodamExclude
-@ManyToOne
+    @ManyToOne
     private PaintworkEntity obra;
     
-    @PodamExclude
-    @OneToOne
-    private UserEntity usuario;
-    
-   
-  
-    
+
     public String getName()
     {
         return name;
@@ -46,14 +36,7 @@ public class FeedBackEntity extends BaseEntity implements Serializable
     {
         return obra;
     }
-    
-    public UserEntity getUser()
-    {
-      return usuario;
-    }
-    
-
-    
+   
     public void setName(String pString)
     {
         this.name= pString;
@@ -64,10 +47,7 @@ public class FeedBackEntity extends BaseEntity implements Serializable
        this.obra= pObra; 
     }
     
-    public void setUsuario(UserEntity pUsuario)
-    {
-        this.usuario= pUsuario;
-    }
+  
     
     public String  getComentario()
     {
@@ -77,10 +57,5 @@ public class FeedBackEntity extends BaseEntity implements Serializable
     public void setComentario(String pComentario)
     {
         this.comentario= pComentario;
-    }
-    
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
