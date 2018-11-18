@@ -22,7 +22,6 @@ import javax.inject.Inject;
 public class FeedBackLogic 
 {
     
-
     private static final Logger LOGGER = Logger.getLogger(FeedBackLogic.class.getName());
 
     @Inject
@@ -40,17 +39,15 @@ public class FeedBackLogic
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la calificacion");
         if (feedEntity.getComentario().length()>200)
         {
-            throw new BusinessLogicException("El numero de caracteres del comentario excede 200  \"" + feedEntity.getComentario() + "\"");
-        }
-        if (feedEntity.getObra()==null)
-        {
-            throw new BusinessLogicException("La obra no existe");
+            throw new BusinessLogicException("El numero de caracteres del comentario execede 200  \"" + feedEntity.getComentario() + "\"");
         }
         FeedBackEntity newFeedEntity = persistence.create(feedEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la calificacion");
         return newFeedEntity;
     }
-    public List<FeedBackEntity> getFeedBacks() {
+    
+    public List<FeedBackEntity> getFeedBacks() 
+    {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos las calificaciones");
         List<FeedBackEntity> lista = persistence.findAll();
         LOGGER.log(Level.INFO, "Termina proceso de consultar todos las calificaciones");
@@ -75,7 +72,6 @@ public class FeedBackLogic
         if(feedEntity.getComentario().length()>200)
         {
             throw new BusinessLogicException("El numero de caracteres del comentario excede 200  \"" + feedEntity.getComentario() + "\"");
- 
         }
         FeedBackEntity newAuthorEntity = persistence.update(feedEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la calificacion con id = {0}", fdId);

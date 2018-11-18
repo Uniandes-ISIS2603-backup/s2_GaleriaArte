@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.galeriaarte.test.logic;
 
 import co.edu.uniandes.csw.galeriaarte.ejb.FeedBackLogic;
@@ -12,17 +12,18 @@ import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.FeedBackPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -30,23 +31,23 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author s.restrepos1
  */
-@Stateless
-public class FeedBackLogicTest 
+@RunWith(Arquillian.class)
+public class FeedBackLogicTest
 {
-     private PodamFactory factory = new PodamFactoryImpl();
-
+    private PodamFactory factory = new PodamFactoryImpl();
+    
     @Inject
     private FeedBackLogic feedLogic;
-
+    
     @PersistenceContext
     private EntityManager em;
-
+    
     @Inject
     private UserTransaction utx;
-
-    private List<FeedBackEntity> data = new ArrayList<>();
     
-     /**
+    private List<FeedBackEntity> data = new ArrayList<FeedBackEntity>();
+    
+    /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
      * El jar contiene las clases, el descriptor de la base de datos y el
      * archivo beans.xml para resolver la inyección de dependencias.
@@ -60,7 +61,7 @@ public class FeedBackLogicTest
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
- /**
+    /**
      * Configuración inicial de la prueba.
      */
     @Before
@@ -79,55 +80,62 @@ public class FeedBackLogicTest
             }
         }
     }
-     /**
+    /**
      * Limpia las tablas que están implicadas en la prueba.
      */
-    private void clearData() {
-        em.createQuery("delete from PaintworkEntity").executeUpdate();
-        em.createQuery("delete from CVEntity").executeUpdate();
+    private void clearData()
+    {
+        em.createQuery("delete from FeedBackEntity").executeUpdate();
     }
-
+    
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
-    private void insertData() {
-        for (int i = 0; i < 3; i++) {
+    private void insertData() 
+    {
+        for (int i = 0; i < 3; i++)
+        {
             FeedBackEntity entity = factory.manufacturePojo(FeedBackEntity.class);
-            em.persist(entity);
-            PaintworkEntity obra =new PaintworkEntity();
-            entity.setObra(obra);
+            em.persist(entity); 
             data.add(entity);
         }
-       
+        
     }
     
     /**
      * Prueba para crear un FeedBack.
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
-     */ 
+     */
     @Test
-    public void createFeedBackTest() throws BusinessLogicException 
+    public void createFeedBackTest() throws BusinessLogicException
     {
         FeedBackEntity newEntity = factory.manufacturePojo(FeedBackEntity.class);
         FeedBackEntity result = feedLogic.createFeedBack(newEntity);
+        
         Assert.assertNotNull(result);
+        
         FeedBackEntity entity = em.find(FeedBackEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
     }
     
     /**
      * Prueba para consultar la lista de FeedBack.
      */
     @Test
-    public void getFeedBacksTest() {
+    public void getFeedBacksTest()
+    {
         List<FeedBackEntity> list = feedLogic.getFeedBacks();
         Assert.assertEquals(data.size(), list.size());
-        for (FeedBackEntity entity : list) {
+        for (FeedBackEntity entity : list)
+        {
             boolean found = false;
-            for (FeedBackEntity storedEntity : data) {
-                if (entity.getId().equals(storedEntity.getId())) {
+            for (FeedBackEntity storedEntity : data) 
+            {
+                if (entity.getId().equals(storedEntity.getId()))
+                {
                     found = true;
                 }
             }
@@ -135,36 +143,41 @@ public class FeedBackLogicTest
         }
     }
     
-     /**
+    /**
      * Prueba para consultar un FeedBack.
      */
     @Test
-    public void getFeedBackTest() {
+    public void getFeedBackTest() 
+    {
         FeedBackEntity entity = data.get(0);
         FeedBackEntity resultEntity = feedLogic.getFeedBack(entity.getId());
+    
         Assert.assertNotNull(resultEntity);
+        
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
+        Assert.assertEquals(resultEntity.getComentario(), entity.getComentario());
     }
     
-     /**
+    /**
      * Prueba para actualizar un FeedBack.
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @Test
-    public void updateFeedBackTest() throws BusinessLogicException 
+    public void updateFeedBackTest() throws BusinessLogicException
     {
         FeedBackEntity entity = data.get(0);
         FeedBackEntity pojoEntity = factory.manufacturePojo(FeedBackEntity.class);
-
+        
         pojoEntity.setId(entity.getId());
-
+        
         feedLogic.updateFeedBack(pojoEntity.getId(), pojoEntity);
-
+        
         FeedBackEntity resp = em.find(FeedBackEntity.class, entity.getId());
-
+        
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
+        Assert.assertEquals(pojoEntity.getComentario(), resp.getComentario());     
     }
     /**
      * Prueba para eliminar un FeedBack
@@ -172,11 +185,14 @@ public class FeedBackLogicTest
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @Test
-    public void deleteFeedBackTest() throws BusinessLogicException {
-       FeedBackEntity entity = data.get(0);
-       feedLogic.deleteFeedBack(entity.getId());
+    public void deleteFeedBackTest() throws BusinessLogicException
+    {
+        FeedBackEntity entity = data.get(0);
+        feedLogic.deleteFeedBack(entity.getId());
+        
         FeedBackEntity deleted = em.find(FeedBackEntity.class, entity.getId());
+        
         Assert.assertNull(deleted);
     }
-
+    
 }

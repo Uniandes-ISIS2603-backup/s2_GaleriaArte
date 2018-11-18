@@ -11,8 +11,7 @@ import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.ArtistPersistence;
 import java.util.ArrayList;
-import java.util.List;
-import javax.ejb.Stateless;
+import java.util.List;;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,7 +31,6 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *Clase que implementa la conexion con la persistencia para la entidad de artist
  * @author a.barragan Anderson Barragan
  */
-@Stateless
 @RunWith(Arquillian.class)
 public class ArtistLogicTest {
 

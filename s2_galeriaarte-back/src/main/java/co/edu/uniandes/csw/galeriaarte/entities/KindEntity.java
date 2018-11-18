@@ -37,19 +37,23 @@ public class KindEntity extends BaseEntity implements Serializable
         
     }
     
-    public String getName() {
+    public String getName() 
+    {
         return name;
     }
     
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
     
-    public String getDescription() {
+    public String getDescription() 
+    {
         return description;
     }
     
-    public void setDescription(String description) {
+    public void setDescription(String description)
+    {
         this.description = description;
     }
     

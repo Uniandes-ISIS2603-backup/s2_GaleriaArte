@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.galeriaarte.persistence;
 
 
 import co.edu.uniandes.csw.galeriaarte.ejb.KindLogic;
-import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
 
 
 import co.edu.uniandes.csw.galeriaarte.entities.KindEntity;
@@ -100,7 +99,8 @@ public class KindPersistence {
      * @return null si no existe ningun kind con el nombre del argumento.
      * Si existe alguno devuelve el primero.
      */
-    public KindEntity findByName(String name) {
+    public KindEntity findByName(String name) 
+    {
         LOGGER.log(Level.INFO, "Consultando el kind por nombre ", name);
         // Se crea un query para buscar cvs con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
         TypedQuery query = em.createQuery("Select e From KindEntity e where e.name = :name", KindEntity.class);
@@ -109,11 +109,16 @@ public class KindPersistence {
         // Se invoca el query se obtiene la lista resultado
         List<KindEntity> sameName = query.getResultList();
         KindEntity result;
-        if (sameName == null) {
+        if (sameName == null) 
+        {
             result = null;
-        } else if (sameName.isEmpty()) {
+        }
+        else if (sameName.isEmpty()) 
+        {
             result = null;
-        } else {
+        }
+        else
+        {
             result = sameName.get(0);
         }
         LOGGER.log(Level.INFO, "Saliendo de consultar el kind por nombre ", name);

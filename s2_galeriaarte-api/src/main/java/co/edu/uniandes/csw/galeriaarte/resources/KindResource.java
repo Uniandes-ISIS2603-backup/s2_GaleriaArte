@@ -113,7 +113,7 @@ KindLogic kindLogic;
         if (kindLogic.getKindV(kindId) == null) {
             throw new WebApplicationException("El recurso /kinds/" + kindId + " no existe.", 404);
         }
-        KindDTO detailDTO = new KindDTO(kindLogic.updateKind(kindId, kind1.toEntity()));
+        KindDTO detailDTO = new KindDTO(kindLogic.updateKind( kind1.toEntity()));
         LOGGER.log(Level.INFO, "KindResource updateKind: output: {0}", detailDTO.toString());
         return detailDTO;
     }
