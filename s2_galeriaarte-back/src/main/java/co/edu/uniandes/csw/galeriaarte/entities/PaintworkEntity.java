@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -18,25 +19,25 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class PaintworkEntity extends BaseEntity implements Serializable
 {
    
-    private String name;
-    private String country;
-    private Collection<KindEntity> kind;
-    private Collection<CategoryEntity> category;
-    private Collection<FeedBackEntity> feedback;
-    private String description;
-    private Long valor;
+    private String  name;
+    private String  country;
+    private String  description;
+    private Long    valor;
     private Boolean verificacionObra;
-    private String imagePath;
-    private String videoPath;
+    private String  imagePath;
+    private String  videoPath;
+    @PodamExclude
+    @OneToMany
+    private Collection<KindEntity> kind;
+    @PodamExclude
+    @OneToMany
+    private Collection<CategoryEntity> category;
+    @PodamExclude
+    @OneToMany
+    private Collection<FeedBackEntity> feedback;
     @PodamExclude
     @ManyToOne
     private BuyerEntity buyer;
-    
-    @javax.persistence.OneToMany(
-    mappedBy = "paintwork",
-            fetch = javax.persistence.FetchType.LAZY
-    )
-
 
     /**
      * @return the name

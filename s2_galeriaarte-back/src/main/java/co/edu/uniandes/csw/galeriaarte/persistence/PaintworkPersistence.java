@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -18,20 +19,21 @@ import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
  *
  * @author estudiante
  */
+@Stateless
 public class PaintworkPersistence {
-    private static final Logger LOGGER = Logger.getLogger(FeedBackPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PaintworkPersistence.class.getName());
     @PersistenceContext(unitName = "InterArtPU")
     protected EntityManager em;
     
      /**
      * Método para persisitir la entidad en la base de datos.
      *
-     * @param paintworkEntity objeto editorial que se creará en la base de datos
+     * @param paintworkEntity objeto pintura que se creará en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
     public PaintworkEntity create(PaintworkEntity paintworkEntity) {
         LOGGER.log(Level.INFO, "Creando una pintura nueva");
-        /* Note que hacemos uso de un método propio de EntityManager para persistir la editorial en la base de datos.
+        /* Note que hacemos uso de un método propio de EntityManager para persistir la pintura en la base de datos.
         Es similar a "INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);" en SQL.
          */
         em.persist(paintworkEntity);
@@ -40,9 +42,9 @@ public class PaintworkPersistence {
     }
 
     /**
-     * Devuelve todas las editoriales de la base de datos.
+     * Devuelve todas las pinturas de la base de datos.
      *
-     * @return una lista con todas las editoriales que encuentre en la base de
+     * @return una lista con todas las pinturas que encuentre en la base de
      * datos, "select u from EditorialEntity u" es como un "select * from
      * EditorialEntity;" - "SELECT * FROM table_name" en SQL.
      */
@@ -57,8 +59,8 @@ public class PaintworkPersistence {
     /**
      * Busca si hay alguna obra con el id que se envía de argumento
      *
-     * @param paintworkId: id correspondiente a la editorial buscada.
-     * @return una editorial.
+     * @param paintworkId: id correspondiente a la pintura buscada.
+     * @return una pintura.
      */
     public PaintworkEntity find(Long paintworkId) {
         LOGGER.log(Level.INFO, "Consultando obra con id={0}", paintworkId);
@@ -72,10 +74,10 @@ public class PaintworkPersistence {
     /**
      * Actualiza una obra.
      *
-     * @param paintworkEntity: la editorial que viene con los nuevos cambios.
+     * @param paintworkEntity: la pintura que viene con los nuevos cambios.
      * Por ejemplo el nombre pudo cambiar. En ese caso, se haria uso del método
      * update.
-     * @return una editorial con los cambios aplicados.
+     * @return una pintura con los cambios aplicados.
      */
     public PaintworkEntity update(PaintworkEntity paintworkEntity) {
         LOGGER.log(Level.INFO, "Actualizando obra con id = {0}", paintworkEntity.getId());
@@ -88,14 +90,14 @@ public class PaintworkPersistence {
     }
 
     /**
-     * Borra una editorial de la base de datos recibiendo como argumento el id
-     * de la editorial
+     * Borra una pintura de la base de datos recibiendo como argumento el id
+     * de la pintura
      *
-     * @param paintworkId: id correspondiente a la editorial a borrar.
+     * @param paintworkId: id correspondiente a la pintura a borrar.
      */
     public void delete(Long paintworkId) {
         LOGGER.log(Level.INFO, "Borrando la obra con id = {0}", paintworkId);
-        // Se hace uso de mismo método que esta explicado en public EditorialEntity find(Long id) para obtener la editorial a borrar.
+        // Se hace uso de mismo método que esta explicado en public EditorialEntity find(Long id) para obtener la pintura a borrar.
         PaintworkEntity entity = em.find(PaintworkEntity.class, paintworkId);
         /* Note que una vez obtenido el objeto desde la base de datos llamado "entity", volvemos hacer uso de un método propio del
          EntityManager para eliminar de la base de datos el objeto que encontramos y queremos borrar.
@@ -105,10 +107,10 @@ public class PaintworkPersistence {
     }
 
     /**
-     * Busca si hay alguna editorial con el nombre que se envía de argumento
+     * Busca si hay alguna pintura con el nombre que se envía de argumento
      *
-     * @param name: Nombre de la editorial que se está buscando
-     * @return null si no existe ninguna editorial con el nombre del argumento.
+     * @param name: Nombre de la pintura que se está buscando
+     * @return null si no existe ninguna pintura con el nombre del argumento.
      * Si existe alguna devuelve la primera.
      */
     public PaintworkEntity findByName(String name) {
@@ -130,6 +132,4 @@ public class PaintworkPersistence {
         LOGGER.log(Level.INFO, "Saliendo de consultar la obra por nombre ", name);
         return result;
     }
-            
-    
 }
