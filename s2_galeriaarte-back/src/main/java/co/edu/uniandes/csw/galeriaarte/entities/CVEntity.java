@@ -1,148 +1,132 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
-
 /**
- *
- * @author LauraManrique
+ * Ja.penat, implemente muchos cambios a la estructura de la entidad y sus metodos
+ * @author Laura y  Ja.penat
  */
-
 @Entity
-public class CVEntity extends BaseEntity implements Serializable{
+public class CVEntity extends BaseEntity implements Serializable
+{
+    @PodamExclude
+    @OneToOne
+    private ArtistEntity artist;
     
-        
-@PodamExclude
-@OneToOne()
-private ArtistEntity artist;
-
-
-     private String name;
-     private String educationDTO;
-     private PaintworkEntity obraMasConocidaDTO;
-     private String fechaNacimientoDTO;
-     private String informacionAdicionalDTO;
-     private ArrayList obrasDTO;
+    private String nombreObraMasConocida;
     
-     
-    public Long getId()
-    {
-        return this.getId();
-    }
-     
+    private String education;
+    
+    private String fechaNacimiento;
+    
+    private String informacionAdicional;
+    
+    
   
-    
-    public String getName(){
-        return name;
-    }
-    public void setName(String pName){
-        name=pName;
-    }
-     /**
+    /**
      * Retorna el nivel de educación del artista
-     *
      * @return nivel de educación del artista
      */
-    public String geteducationDTO() {
-        return educationDTO;
+    public String getEducation()
+    {
+        return education;
     }
-
+    
     /**
      * Modifica el nivel de educación del artista
      *
-     * @param educationDTO
+     * @param education
      */
-    public void seteducationDTO(String educationDTO) {
-        this.educationDTO = educationDTO;
+    public void setEducation(String education)
+    {
+        this.education = education;
     }
-
+    
     /**
-     * Retorna la Obra más conocida del artista
+     * Método que retorna El nombre de la Obra más conocida del artista
      *
-     * @return Obra más conocida del artista
+     * @return El nombre de la Obra más conocida del artista
      */
-    public PaintworkEntity getobraMasConocidaDTO() {
-        return obraMasConocidaDTO;
+    public String getNombreObraMasConocida()
+    {
+        return nombreObraMasConocida;
     }
-
+    
     /**
      * Modifica la Obra más conocida del artista
      *
-     * @param obraMasConocidaDTO
+     * @param pNombreObraMasConocida
      */
-    public void setobraMasConocidaDTO(PaintworkEntity pobraMasConocidaDTO) {
-        this.obraMasConocidaDTO = pobraMasConocidaDTO;
+    public void setNombreObraMasConocida(String pNombreObraMasConocida)
+    {
+        this.nombreObraMasConocida = pNombreObraMasConocida;
     }
-
+    
     /**
      * Retorna la Fecha de nacimiento del artista
      *
      * @return Fecha de nacimiento del artista
      */
-    public String getfechaNacimientoDTO() {
-        return fechaNacimientoDTO;
+    public String getFechaNacimiento()
+    {
+        return fechaNacimiento;
     }
-
+    
     /**
      * Modifica la Fecha de nacimiento del artista
      *
-     * @param fechaNacimientoDTO
+     * @param fechaNacimiento
      */
-    public void setfechaNacimientoDTO(String fechaNacimientoDTO) {
-        this.fechaNacimientoDTO = fechaNacimientoDTO;
+    public void setFechaNacimiento(String fechaNacimiento)
+    {
+        this.fechaNacimiento = fechaNacimiento;
     }
-
+    
     /**
      * Retorna la Información adicional sobre el artista
      *
      * @return Información adicional sobre el artista
      */
-    public String getinformacionAdicionalDTO() {
-        return informacionAdicionalDTO;
+    public String getInformacionAdicional()
+    {
+        return informacionAdicional;
     }
-
+    
     /**
      * Modifica la Información adicional sobre el artista
      *
-     * @param informacionAdicionalDTO
+     * @param informacionAdicional
      */
-    public void setinformacionAdicionalDTO(String informacionAdicionalDTO) {
-        this.informacionAdicionalDTO = informacionAdicionalDTO;
-    }
-
-    /**
-     * Retorna las obrasDTO del artista
-     *
-     * @return las obrasDTO del artista
-     */
-    public ArrayList getobrasDTO() {
-        return obrasDTO;
-    }
-
-    /**
-     * Modifica las obrasDTO del artista
-     *
-     * @param informacionAdicionalDTO
-     */
-    public void setobrasDTO(ArrayList obrasDTO) {
-        this.obrasDTO = obrasDTO;
+    public void setInformacionAdicional(String informacionAdicional)
+    {
+        this.informacionAdicional = informacionAdicional;
     }
     
-    public void setArtista(ArtistEntity pA)
+    /**
+     * Método que retorna el artista asociado a la hoja de vida.
+     * @return Artista de la hoja de vida.
+     */
+    public ArtistEntity getArtist()
     {
-        this.artist=pA;
+        return this.artist;
+    }
+    
+    /**
+     * Método que se encarga de cambiar el Artista asociado a la hoja de vida.
+     * @param pArtist, El nuevo artista que se le asigna a la hoja de vida.
+     */
+    public void setArtist(ArtistEntity pArtist)
+    {
+        this.artist = pArtist ;
     }
 }
+
 

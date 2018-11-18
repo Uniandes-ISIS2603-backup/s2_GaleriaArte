@@ -2,67 +2,65 @@ package co.edu.uniandes.csw.galeriaarte.dtos;
 
 import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
 import java.io.Serializable;
-import java.util.ArrayList;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * Clase que representa la hoja de vida de un artista.
  *
- * @author Laura
+ * @author Ja.penat
  *
  */
-public class CVDTO implements Serializable {
-
-    //Comentario para coommit
-  
+public class CVDTO implements Serializable 
+{
     
-    //Atributos
-      private Long id;
+    //ATRIBUTOS
     
-    private String name;
+    
     /**
-     * nivel de educación del artista
+     * Atributo que corresponde al id de de la hoja de vida
      */
-    private String educationDTO;
-
+    private Long id;
+    
     /**
-     * Obra más conocida del artista
+     * Nivel de educación del artista
      */
-    private PaintworkDTO obraMasConocidaDTO;
-
+    private String education;
+    
+    /**
+     * Nombre de la obra más conocida del artista
+     */
+    private String nombreObraMasConocida;
+    
     /**
      * Fecha de nacimiento del artista
      */
-    private String fechaNacimientoDTO;
-
+    private String fechaNacimiento;
+    
     /**
      * Información adicional sobre el artista
      */
-    private String informacionAdicionalDTO;
-
-    /**
-     * obrasDTO del artista
-     */
-    private ArrayList obrasDTO;
-
+    private String informacionAdicional;
+    
     //Constructor
-    public CVDTO() {
-
-    }
-  public  CVDTO(CVEntity cvEntity)
-   {
-    if (cvEntity!=null)
+    public CVDTO()
     {
-        this.id=cvEntity.getId();
-        this.educationDTO=cvEntity.geteducationDTO();
-        this.fechaNacimientoDTO=cvEntity.getfechaNacimientoDTO();
-        this.informacionAdicionalDTO=cvEntity.getinformacionAdicionalDTO();
-        this.name=cvEntity.getName();
-        this.obraMasConocidaDTO= new PaintworkDTO();
-        this.obrasDTO=cvEntity.getobrasDTO();
+        
     }
-   }
+    
+    //METODOS
+    
+    public  CVDTO(CVEntity cvEntity)
+    {
+        if (cvEntity!=null)
+        {
+            this.id = cvEntity.getId();
+            this.education = cvEntity.getEducation();
+            this.fechaNacimiento = cvEntity.getFechaNacimiento();
+            this.informacionAdicional = cvEntity.getInformacionAdicional();
+            this.nombreObraMasConocida= cvEntity.getNombreObraMasConocida();
+        }
+    }
     //Métodos
     
     public Long getId()
@@ -72,116 +70,105 @@ public class CVDTO implements Serializable {
     
     public void setId(Long pId)
     {
-        id=pId;
+        id = pId;
     }
+    
     /**
      * Retorna el nivel de educación del artista
      *
      * @return nivel de educación del artista
      */
-    public String geteducationDTO() {
-        return educationDTO;
+    public String getEducation()
+    {
+        return education;
     }
-
+    
     /**
      * Modifica el nivel de educación del artista
      *
-     * @param educationDTO
+     * @param pEducation, el nuevo nivel de educacion del artista
      */
-    public void seteducationDTO(String educationDTO) {
-        this.educationDTO = educationDTO;
+    public void setEducation(String pEducation)
+    {
+        this.education = pEducation;
     }
-
+    
     /**
      * Retorna la Obra más conocida del artista
      *
      * @return Obra más conocida del artista
      */
-    public PaintworkDTO getobraMasConocidaDTO() {
-        return obraMasConocidaDTO;
+    public String getNombreObraMasConocida()
+    {
+        return nombreObraMasConocida;
     }
-
+    
     /**
      * Modifica la Obra más conocida del artista
      *
-     * @param obraMasConocidaDTO
+     * @param pNombreObraMasConocida, el nombre de la obra mas conocida del artista
      */
-    public void setobraMasConocidaDTO(PaintworkDTO obraMasConocidaDTO) {
-        this.obraMasConocidaDTO = obraMasConocidaDTO;
+    public void setNombreObraMasConocida(String pNombreObraMasConocida)
+    {
+        this.nombreObraMasConocida = pNombreObraMasConocida;
     }
-
     /**
      * Retorna la Fecha de nacimiento del artista
      *
      * @return Fecha de nacimiento del artista
      */
-    public String getfechaNacimientoDTO() {
-        return fechaNacimientoDTO;
+    public String getFechaNacimiento()
+    {
+        return fechaNacimiento;
     }
-
+    
     /**
      * Modifica la Fecha de nacimiento del artista
      *
-     * @param fechaNacimientoDTO
+     * @param pFechaNacimientoDTO
      */
-    public void setfechaNacimientoDTO(String fechaNacimientoDTO) {
-        this.fechaNacimientoDTO = fechaNacimientoDTO;
+    public void setFechaNacimiento(String pFechaNacimientoDTO)
+    {
+        this.fechaNacimiento = pFechaNacimientoDTO;
     }
-
+    
     /**
      * Retorna la Información adicional sobre el artista
      *
      * @return Información adicional sobre el artista
      */
-    public String getinformacionAdicionalDTO() {
-        return informacionAdicionalDTO;
+    public String getInformacionAdicional()
+    {
+        return informacionAdicional;
     }
-
+    
     /**
      * Modifica la Información adicional sobre el artista
      *
-     * @param informacionAdicionalDTO
+     * @param pInformacionAdicional
      */
-    public void setinformacionAdicionalDTO(String informacionAdicionalDTO) {
-        this.informacionAdicionalDTO = informacionAdicionalDTO;
+    public void setInformacionAdicional(String pInformacionAdicional)
+    {
+        this.informacionAdicional = pInformacionAdicional;
     }
-
+    
     /**
-     * Retorna las obrasDTO del artista
-     *
-     * @return las obrasDTO del artista
-     */
-    public ArrayList getobrasDTO() {
-        return obrasDTO;
-    }
-
-    /**
-     * Modifica las obrasDTO del artista
-     *
-     * @param informacionAdicionalDTO
-     */
-    public void setobrasDTO(ArrayList obrasDTO) {
-        this.obrasDTO = obrasDTO;
-       
-    }
-         /**
      * Convertir DTO a Entity
      *
      * @return Un Entity con los valores del DTO
      */
-    public CVEntity toEntity(){
-        CVEntity cv= new CVEntity();
+    public CVEntity toEntity()
+    {
+        CVEntity cv = new CVEntity();
         cv.setId(this.id);
-        cv.seteducationDTO(educationDTO);
-        cv.setfechaNacimientoDTO(fechaNacimientoDTO);
-        cv.setinformacionAdicionalDTO(informacionAdicionalDTO);
-        cv.setobraMasConocidaDTO(this.obraMasConocidaDTO.toEntity());
-        cv.setobrasDTO(obrasDTO);
-        cv.setName(this.name);
-       
+        cv.setEducation(this.education);
+        cv.setFechaNacimiento(this.fechaNacimiento);
+        cv.setInformacionAdicional(this.informacionAdicional);
+        cv.setNombreObraMasConocida(this.nombreObraMasConocida);
+        
         return cv;
     }
-      @Override
+    @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
