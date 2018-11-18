@@ -74,7 +74,6 @@ public class ArtistPersistenceTest {
      */
     private void clearData() {
         em.createQuery("delete from ArtistEntity").executeUpdate();
-        em.createQuery("delete from CVEntity").executeUpdate();
     }
     
     /**
