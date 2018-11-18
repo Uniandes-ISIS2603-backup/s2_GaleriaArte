@@ -139,7 +139,7 @@ public class ExtraServicePersistenceTest
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getAvailability(), entity.getAvailability());
-        Assert.assertEquals(newEntity.getPrice(), entity.getPrice());
+        Assert.assertEquals(newEntity.getPrice(), entity.getPrice(),0.0002);
     }
     
     /**
@@ -175,7 +175,7 @@ public class ExtraServicePersistenceTest
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getDescription(), newEntity.getDescription());
         Assert.assertEquals(entity.getId(), newEntity.getId());
-        Assert.assertEquals(entity.getPrice(), newEntity.getPrice());
+        Assert.assertEquals(entity.getPrice(), newEntity.getPrice(),0.0002);
         Assert.assertEquals(entity.getAvailability(), newEntity.getAvailability());
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
@@ -207,7 +207,7 @@ public class ExtraServicePersistenceTest
         
         ExtraServiceEntity resp = em.find(ExtraServiceEntity.class, entity.getId());
         
-        Assert.assertEquals(newEntity.getPrice(), resp.getPrice());
+        Assert.assertEquals(newEntity.getPrice(),resp.getPrice(),0.0002);
         Assert.assertEquals(newEntity.getDescription(), resp.getDescription());
         Assert.assertEquals(newEntity.getAvailability(), resp.getAvailability());
         Assert.assertEquals(newEntity.getId(), resp.getId());

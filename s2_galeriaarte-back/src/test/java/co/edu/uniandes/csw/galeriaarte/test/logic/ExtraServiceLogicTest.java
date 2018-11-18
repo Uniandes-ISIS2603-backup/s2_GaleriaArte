@@ -122,7 +122,7 @@ public class ExtraServiceLogicTest
         Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getPrice(), entity.getPrice());
+        Assert.assertEquals(newEntity.getPrice(), entity.getPrice(),0.0002);
         
         
     }
@@ -161,7 +161,7 @@ public class ExtraServiceLogicTest
         Assert.assertEquals(entity.getAvailability(), resultEntity.getAvailability());
         Assert.assertEquals(entity.getDescription(), resultEntity.getDescription());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
-        Assert.assertEquals(entity.getPrice(), resultEntity.getPrice());
+        Assert.assertEquals(entity.getPrice(), resultEntity.getPrice(),0.0002);
         
     }
     
