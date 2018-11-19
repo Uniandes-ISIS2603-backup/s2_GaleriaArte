@@ -1,55 +1,10 @@
 {
 	"info": {
-		"_postman_id": "cdb998c0-923d-411d-8fbc-a658143f924c",
+		"_postman_id": "f92910f9-9bc4-4f8f-9a5e-51cfe71e09b4",
 		"name": "Paintwork",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "Obtener obras",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s2_galeriaarte-api",
-						"api",
-						"paintworks"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener un Paintwork",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s2_galeriaarte-api",
-						"api",
-						"paintworks",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "Crear obra de arte",
 			"request": {
@@ -81,18 +36,13 @@
 			"response": []
 		},
 		{
-			"name": "Actualizar un Paintwork",
+			"name": "Obtener obras",
 			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
+				"method": "GET",
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"idPaintwork\" : 100,\n\t\"name\" : \"Mona Risada\",\n\t\"country\" : \"Colombia\",\n\t\"description\" : \"El Retrato de Lisa Gherardini, esposa de Francesco del Giocondo,1​más conocido como La Gioconda (La Joconde en francés) o La Mona Lisa, es una obra pictórica del polímata renacentista italiano Leonardo da Vinci\",\n\t\"value\":  200000 ,\n\t\"verificacionObra\": true,\n\t\"imagePath\" : \"imagen2\",\n\t\"videoPath\" : \"imagen3\"\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks",
@@ -111,11 +61,71 @@
 			"response": []
 		},
 		{
+			"name": "Obtener un Paintwork",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"paintworks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un Paintwork",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idPaintwork\" : 100,\n\t\"name\" : \"Mona Risada\",\n\t\"country\" : \"Colombia\",\n\t\"description\" : \"El Retrato de Lisa Gherardini, esposa de Francesco del Giocondo,1​más conocido como La Gioconda (La Joconde en francés) o La Mona Lisa, es una obra pictórica del polímata renacentista italiano Leonardo da Vinci\",\n\t\"value\":  200000 ,\n\t\"verificacionObra\": true,\n\t\"imagePath\" : \"imagen2\",\n\t\"videoPath\" : \"imagen3\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"paintworks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Borrar un paintwork",
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks/1",
 					"protocol": "http",

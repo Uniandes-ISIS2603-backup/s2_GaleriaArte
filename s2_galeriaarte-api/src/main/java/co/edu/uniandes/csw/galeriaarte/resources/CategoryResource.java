@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.galeriaarte.entities.CategoryEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -24,6 +25,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 
 /**
  *
@@ -73,37 +76,14 @@ public class CategoryResource {
      * la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<CategoryDTO> getCategories() {
+    public List<CategoryDTO> getCategories() 
+    {
         LOGGER.info("CategoryResource getCategories: input: void");
         List<CategoryDTO> listaCategories = listEntity2DetailDTO(categoryLogic.getCategories());
         LOGGER.log(Level.INFO, "CategoryResource getCategories: output: {0}", listaCategories.toString());
         return listaCategories;
     }
 
-    /**
-     * Busca la categoria con el id asociado recibido en la URL y la devuelve.
-     *
-     * @param categoryId Identificador de la categoria que se esta buscando.
-     * Este debe ser una cadena de dígitos.
-     * @return JSON {@link EditorialDTO} - La editorial buscada
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra la categoria.
-     */
-    @GET
-    @Path("{categoryId: \\d+}")
-    public CategoryDTO getCategory(@PathParam("categoryId") Long categoryId) throws WebApplicationException {
-        /*
-        LOGGER.log(Level.INFO, "CategoryResource getCategoria: input: {0}", categoryId);
-        CategoryEntity categoryEntity = categoryLogic.getCategory(categoryId);
-        if (categoryEntity == null) {
-            throw new WebApplicationException("El recurso /categories/" + categoryId + " no existe.", 404);
-        }
-        CategoryDTO detailDTO = new CategoryDTO(categoryEntity);
-        LOGGER.log(Level.INFO, "CategoryResource getCategoria: output: {0}", detailDTO.toString());
-        return detailDTO;
-        */
-        return null;
-    }
 
     /**
      * Actualiza la categoria con el id recibido en la URL con la informacion
@@ -122,7 +102,8 @@ public class CategoryResource {
     public CategoryDTO updateCategory(@PathParam("categoryId") Long categoryId, CategoryDTO category) throws WebApplicationException, BusinessLogicException {
         LOGGER.log(Level.INFO, "CategoryResource updateCategory: input: id:{0} , editorial: {1}", new Object[]{categoryId, category.toString()});
         category.setIdCategory(categoryId);
-        if (categoryLogic.getCategory(categoryId) == null) {
+        if (categoryLogic.getCategory(categoryId) == null)
+        {
             throw new WebApplicationException("El recurso /categories/" + categoryId + " no existe.", 404);
         }
         CategoryDTO detailDTO = new CategoryDTO(categoryLogic.updateCategory(categoryId, category.toEntity()));
@@ -167,5 +148,28 @@ public class CategoryResource {
             list.add(new CategoryDTO(entity));
         }
         return list;
+    }
+    private ExecutorService executorService = java.util.concurrent.Executors.newCachedThreadPool();
+
+    @GET
+    @Path(value = "{categoryId: \\d+}")
+    public void getCategory(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "categoryId") final Long categoryId) {
+        executorService.submit(new Runnable() {
+            public void run() {
+                asyncResponse.resume(doGetCategory(categoryId));
+            }
+        });
+    }
+
+    private CategoryDTO doGetCategory(@PathParam("categoryId") Long categoryId) {
+        LOGGER.log(Level.INFO, "CategoryResource getCategoria: input: {0}", categoryId);
+        CategoryEntity categoryEntity = categoryLogic.getCategory(categoryId);
+        if (categoryEntity == null)
+        {
+            throw new WebApplicationException("El recurso /categories/" + categoryId + " no existe.", 404);
+        }
+        CategoryDTO detailDTO = new CategoryDTO(categoryEntity);
+        LOGGER.log(Level.INFO, "CategoryResource getCategoria: output: {0}", detailDTO.toString());
+        return detailDTO;
     }
 }

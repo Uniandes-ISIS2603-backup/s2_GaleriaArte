@@ -50,27 +50,35 @@
 			"response": []
 		},
 		{
-			"name": "Borrar un medio de pago",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "d574ce04-9ff2-443e-979c-106c09995e4f",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
-						]
-					}
-				}
-			],
+			"name": "Obtener Medios de pago",
 			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "",
-						"value": ""
-					}
-				],
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un Medio de Pago",
+			"request": {
+				"method": "GET",
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
@@ -93,28 +101,6 @@
 			"response": []
 		},
 		{
-			"name": "Obtener Medios de pago",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s2_galeriaarte-api",
-						"api",
-						"medioPagos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Actualizar Medio de Pago",
 			"request": {
 				"method": "PUT",
@@ -129,7 +115,7 @@
 					"raw": "{\n    \"bank\": \"CityBank\",\n    \"description\": \"Tarjeta de credito\",\n    \"id\": 5,\n    \"number\": 1000000000000002\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos/5",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -139,20 +125,41 @@
 						"s2_galeriaarte-api",
 						"api",
 						"medioPagos",
-						"5"
+						"1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener un Medio de Pago",
+			"name": "Borrar un medio de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d574ce04-9ff2-443e-979c-106c09995e4f",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"disabled": false
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos/5",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/medioPagos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -162,7 +169,7 @@
 						"s2_galeriaarte-api",
 						"api",
 						"medioPagos",
-						"5"
+						"1"
 					]
 				}
 			},

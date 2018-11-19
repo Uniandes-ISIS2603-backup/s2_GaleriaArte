@@ -1,18 +1,25 @@
 {
 	"info": {
-		"_postman_id": "28fda628-902e-46db-9ff4-19cdc10e71a5",
+		"_postman_id": "301bdac1-322b-4894-b45a-4329e6a7c43c",
 		"name": "Kind",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Obtener Kinds",
+			"name": "Crear un Tipo",
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"id\" : 0,\n\t\"name\": \"Escultura de Marmol\",\n\t\"description\": \"Escultura de Calamardo hecha en marmol por Bob Esponja\" \n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_galeriaarte-api/api/kinds",
@@ -31,20 +38,13 @@
 			"response": []
 		},
 		{
-			"name": "Crear un Tipo",
+			"name": "Obtener Kinds",
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
+				"method": "GET",
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\" : 0,\n\t\"name\": \"Escultura de Marmol\",\n\t\"description\": \"Escultura de Calamardo hecha en marmol por Bob Esponja\" \n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_galeriaarte-api/api/kinds",

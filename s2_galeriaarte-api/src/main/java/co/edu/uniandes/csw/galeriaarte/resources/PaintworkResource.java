@@ -69,7 +69,7 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
     }
 
     /**
-     * Busca y devuelve todas las editoriales que existen en la aplicacion.
+   * Busca y devuelve todas las obras que existen en la aplicacion.
      *
      * @return JSONArray {@link EditorialDTO} - Las editoriales encontradas en
      * la aplicación. Si no hay ninguna retorna una lista vacía.
@@ -80,7 +80,7 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
     public List<PaintworkDTO> getPaintworks() {
         LOGGER.info("PaintworkResource getPaintworks: input: void");
         List<PaintworkDTO> listaPaintworks = listEntity2DetailDTO(paintworkLogic.getPaintworks());
-        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaPaintworks.toString());
+        LOGGER.log(Level.INFO, "PaintworkResource getPaintworks: output: {0}", listaPaintworks.toString());
         return listaPaintworks;
     }
 
@@ -89,7 +89,7 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
      *
      * @param paintworkId Identificador de la editorial que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @return JSON {@link EditorialDTO} - La editorial buscada
+     * @return JSON {@link PaintworklDTO} - La editorial buscada
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la editorial.
      */

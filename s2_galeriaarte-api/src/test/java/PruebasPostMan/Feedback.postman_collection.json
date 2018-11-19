@@ -1,26 +1,28 @@
 {
 	"info": {
-		"_postman_id": "fda36d61-6fb2-4daa-8dc2-c35309409e47",
-		"name": "Artist",
+		"_postman_id": "e2950248-7234-4ac4-b94d-78af38ced6b5",
+		"name": "Feedback",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Crear Artista",
+			"name": "Crear Comentario",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\" : 100,\n    \"name\" : \"Anderson Cooper\",   \n    \"image\": \"Imagen1\"\n}"
+					"raw": " {\r\n \t\"id\" : 1,\r\n \t\"name\" : \"Mala obra\",\r\n \t\"comentario\" : \"Obra mal hecha\"\r\n }"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/feedbacks",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -29,14 +31,14 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"artists"
+						"feedbacks"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener Artistas",
+			"name": "Obtener Camentarios",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -45,7 +47,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/feedbacks",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -54,14 +56,14 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"artists"
+						"feedbacks"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener un Artista",
+			"name": "Obterner un Comentario",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -70,7 +72,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists/1",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/feedBacks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -79,7 +81,7 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"artists",
+						"feedBacks",
 						"1"
 					]
 				}
@@ -87,21 +89,23 @@
 			"response": []
 		},
 		{
-			"name": "Actualizar Artista",
+			"name": "Actualizar Comentario",
 			"request": {
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\" : 100,\n    \"name\" : \"Anderson Restrepo\",   \n    \"image\": \"Imagen2\"\n}"
+					"raw": "{\r\n \t\"id\" : 1,\r\n \t\"name\" : \"Buena obra\",\r\n \t\"comentario\" : \"Obra bien hecha\"\r\n }"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists/1",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/feedBacks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -110,7 +114,7 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"artists",
+						"feedBacks",
 						"1"
 					]
 				}
@@ -118,7 +122,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrar Artista",
+			"name": "Borrar Comentario",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -127,7 +131,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists/1",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/feedBacks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -136,7 +140,7 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"artists",
+						"feedBacks",
 						"1"
 					]
 				}

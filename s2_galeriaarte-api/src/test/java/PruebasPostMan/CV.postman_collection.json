@@ -1,18 +1,25 @@
 {
 	"info": {
-		"_postman_id": "2b312c1e-f70f-401f-8ae1-0ca7d2121d87",
+		"_postman_id": "676f2d4c-6ad2-45d8-9373-1c6cb2b5d02c",
 		"name": "CV",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Obtener Hojas de Vida",
+			"name": "Crear  Hoja de Vida",
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"id\" : 1,\n\t\"education\" : \"Universidad de los Andes\",\n\t\"nombreObraMasConocida\" : \"Escultura del bobo\",\n\t\"fechaNacimiento\" : \"19-Ago-1998\",\n\t\"informacionAdicional\" : \"Programador de medio tiempo\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs",
@@ -31,20 +38,13 @@
 			"response": []
 		},
 		{
-			"name": "Crear  Hoja de Vida",
+			"name": "Obtener Hojas de Vida",
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
+				"method": "GET",
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\" : 1,\n\t\"education\" : \"Universidad de los Andes\",\n\t\"nombreObraMasConocida\" : \"Escultura del bobo\",\n\t\"fechaNacimiento\" : \"19-Ago-1998\",\n\t\"informacionAdicional\" : \"Programador de medio tiempo\"\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs",

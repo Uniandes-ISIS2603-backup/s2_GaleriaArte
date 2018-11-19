@@ -1,32 +1,10 @@
 {
 	"info": {
-		"_postman_id": "2b54d9da-8ae5-4096-9384-4573c40b83fe",
+		"_postman_id": "9a44acd7-434d-4461-96e0-c6c6286071aa",
 		"name": "Category",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "Obtener categorias",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/categories",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s2_galeriaarte-api",
-						"api",
-						"categories"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "Crear categoria",
 			"request": {
@@ -58,11 +36,39 @@
 			"response": []
 		},
 		{
-			"name": "Borrar Categoria",
+			"name": "Obtener categorias",
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una Categoria",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/s2_galeriaarte-api/api/categories/1",
 					"protocol": "http",
@@ -112,13 +118,16 @@
 			"response": []
 		},
 		{
-			"name": "Obtener una Categoria",
+			"name": "Borrar Categoria",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/categories/3",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/categories/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -128,7 +137,7 @@
 						"s2_galeriaarte-api",
 						"api",
 						"categories",
-						"3"
+						"1"
 					]
 				}
 			},
