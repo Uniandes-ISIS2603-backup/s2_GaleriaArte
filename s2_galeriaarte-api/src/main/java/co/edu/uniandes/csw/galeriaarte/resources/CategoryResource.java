@@ -119,7 +119,7 @@ public class CategoryResource {
      */
     @PUT
     @Path("{categoryId: \\d+}")
-    public CategoryDTO updateCategory(@PathParam("categoryId") Long categoryId, CategoryDTO category) throws WebApplicationException {
+    public CategoryDTO updateCategory(@PathParam("categoryId") Long categoryId, CategoryDTO category) throws WebApplicationException, BusinessLogicException {
         LOGGER.log(Level.INFO, "CategoryResource updateCategory: input: id:{0} , editorial: {1}", new Object[]{categoryId, category.toString()});
         category.setIdCategory(categoryId);
         if (categoryLogic.getCategory(categoryId) == null) {
