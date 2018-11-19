@@ -85,9 +85,14 @@ public class CategoryLogic {
      * por ejemplo el nombre.
      * @return la editorial con los cambios actualizados en la base de datos.
      */
-    public CategoryEntity updateCategory(Long categoryId, CategoryEntity categoryEntity) {
+    public CategoryEntity updateCategory(Long categoryId, CategoryEntity categoryEntity) throws BusinessLogicException 
+    {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la categoria con id = {0}", categoryId);
         // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
+        if (persistence.findByName(categoryEntity.getName()) != null) 
+        {
+            throw new BusinessLogicException("Ya existe una Editorial con el nombre \"" + categoryEntity.getName() + "\"");
+        }
         CategoryEntity newEntity = persistence.update(categoryEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la categoria con id = {0}", categoryEntity.getId());
         return newEntity;
