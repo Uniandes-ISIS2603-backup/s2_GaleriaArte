@@ -65,10 +65,10 @@ public class ArtistLogic {
      * @param artistEntity Instancia de ArtistEntity con los nuevos datos.
      * @return Instancia de rtistEntity con los datos actualizados.
      */
-    public ArtistEntity updateArtist(Long artistId, ArtistEntity artistEntity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", artistId);
+    public ArtistEntity updateArtist(ArtistEntity artistEntity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", artistEntity.getId());
         ArtistEntity newArtistEntity = persistence.update(artistEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el artista con id = {0}", artistId);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el artista con id = {0}", artistEntity.getId());
         return newArtistEntity;
     }
     
