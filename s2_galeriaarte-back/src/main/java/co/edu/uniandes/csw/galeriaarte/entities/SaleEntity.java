@@ -126,4 +126,6 @@ public class SaleEntity extends BaseEntity implements Serializable
     public void setServices(List<ExtraServiceEntity> services) {
         this.services = services;
     }
+
+   
 }

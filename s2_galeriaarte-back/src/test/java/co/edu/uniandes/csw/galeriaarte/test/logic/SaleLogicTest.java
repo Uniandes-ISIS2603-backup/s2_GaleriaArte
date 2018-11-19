@@ -8,6 +8,7 @@ import co.edu.uniandes.csw.galeriaarte.ejb.SaleLogic;
 import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
+import co.edu.uniandes.csw.galeriaarte.entities.MedioPagoEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.SalePersistence;
@@ -47,6 +48,10 @@ public class SaleLogicTest
     private UserTransaction utx;
     
         private List<SaleEntity> data = new ArrayList<>();
+        private List<ArtistEntity> artistData = new ArrayList<>();
+        private List<BuyerEntity> buyerData = new ArrayList<>();
+        private List<PaintworkEntity> paintworkData = new ArrayList<>();
+        
 
 
      /**
@@ -95,19 +100,30 @@ public class SaleLogicTest
      * pruebas.
      */
     private void insertData() {
-        for (int i = 0; i < 3; i++) {
+        for (int i=0; i<3;i++){
+        BuyerEntity buyer = factory.manufacturePojo(BuyerEntity.class);
+            em.persist(buyer);
+            buyerData.add(buyer); 
+            ArtistEntity artist = factory.manufacturePojo(ArtistEntity.class);
+            em.persist(artist);
+            artistData.add(artist);
+            PaintworkEntity paintwork = factory.manufacturePojo(PaintworkEntity.class);
+            em.persist(paintwork);
+            paintworkData.add(paintwork);
+  } 
+
+       for (int i = 0; i < 3; i++) {
             SaleEntity entity = factory.manufacturePojo(SaleEntity.class);
+            entity.setArtist(artistData.get(0));
+            entity.setObra(paintworkData.get(0));
+            entity.setBuyer(buyerData.get(0));
+            MedioPagoEntity md = factory.manufacturePojo(MedioPagoEntity.class);
+            em.persist(md);
+            entity.setMetodoPago(md);
+
             em.persist(entity);
-            PaintworkEntity obra =new PaintworkEntity(); 
-            BuyerEntity comprador= new BuyerEntity();
-            ArtistEntity artista= new ArtistEntity();
-            
-            entity.setArtist(artista);
-            entity.setBuyer(comprador);
-            entity.setObra(obra);
             data.add(entity);
-        }
-       
+  }
     }
     
     /**
@@ -124,6 +140,41 @@ public class SaleLogicTest
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
    
-    
+    @Test
+    public void getSaleTest() {
+        SaleEntity entity = data.get(0);
+        SaleEntity resultEntity = saleLogic.getSale(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+    }
 
+
+     @Test
+    public void updateSaleTest()
+    {
+        SaleEntity entity = data.get(0);
+        SaleEntity pojoEntity = factory.manufacturePojo(SaleEntity.class);
+        
+        
+        pojoEntity.setId(entity.getId());
+        
+        saleLogic.updateSale(pojoEntity.getId(), pojoEntity);
+        
+        SaleEntity resultEntity = em.find(SaleEntity.class, entity.getId());
+        
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(pojoEntity.getId(), resultEntity.getId());
+        
+    }
+    
+    @Test
+    public void deleteSaleTest() throws BusinessLogicException
+    {
+        SaleEntity entity = data.get(0);
+        saleLogic.deleteSale(entity.getId());
+        SaleEntity deleted = em.find(SaleEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
 }

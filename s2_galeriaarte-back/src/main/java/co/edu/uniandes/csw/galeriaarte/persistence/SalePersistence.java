@@ -32,4 +32,22 @@ public class SalePersistence
         LOGGER.log(Level.INFO, "venta creada");
         return saleEntity;
     }
+    
+    public SaleEntity find(Long Id) {
+        LOGGER.log(Level.INFO, "Consultando el comprador con id={0}", Id);
+
+        return em.find(SaleEntity.class, Id);
+    }
+    
+    public SaleEntity update(SaleEntity saleEntity) {
+        LOGGER.log(Level.INFO, "Actualizando el comprador con id={0}", saleEntity.getId());
+
+        return em.merge(saleEntity);
+    }
+    
+    public void delete(Long buyerId) {
+        LOGGER.log(Level.INFO, "Borrando el comprador con id={0}", buyerId);
+        SaleEntity saleEntity = em.find(SaleEntity.class, buyerId);
+        em.remove(saleEntity);
+    }
 }

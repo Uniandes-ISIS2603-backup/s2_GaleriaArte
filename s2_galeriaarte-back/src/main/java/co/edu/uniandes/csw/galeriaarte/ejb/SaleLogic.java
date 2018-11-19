@@ -47,5 +47,28 @@ public class SaleLogic
     }
     
     
+    public SaleEntity getSale(Long saleID){
+        
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", saleID);
+        SaleEntity saleEntity = persistence.find(saleID);
+        if(saleEntity==null){
+            LOGGER.log(Level.SEVERE, "no existe la entidad con id = {0} no existe", saleID);
+        }
+        
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", saleID);
+        return saleEntity;
+    }
  
+     public SaleEntity updateSale(Long Id, SaleEntity saleEntity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", Id);
+        SaleEntity newBuyerEntity = persistence.update(saleEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el artista con id = {0}", Id);
+        return newBuyerEntity;
+    }
+     
+     public void deleteSale(Long saleId){
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar al comprador con id = {0}", saleId);
+        persistence.delete(saleId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar al compador con id = {0}", saleId);
+    }
 }
