@@ -100,7 +100,7 @@ public class SaleLogicTest
      * pruebas.
      */
     private void insertData() {
-        for (int i=0; i<3;i++){
+       /* for (int i=0; i<3;i++){
         BuyerEntity buyer = factory.manufacturePojo(BuyerEntity.class);
             em.persist(buyer);
             buyerData.add(buyer); 
@@ -111,16 +111,16 @@ public class SaleLogicTest
             em.persist(paintwork);
             paintworkData.add(paintwork);
   } 
-
+*/
        for (int i = 0; i < 3; i++) {
             SaleEntity entity = factory.manufacturePojo(SaleEntity.class);
-            entity.setArtist(artistData.get(0));
+           /* entity.setArtist(artistData.get(0));
             entity.setObra(paintworkData.get(0));
             entity.setBuyer(buyerData.get(0));
             MedioPagoEntity md = factory.manufacturePojo(MedioPagoEntity.class);
             em.persist(md);
             entity.setMetodoPago(md);
-
+*/
             em.persist(entity);
             data.add(entity);
   }
