@@ -148,7 +148,7 @@ public class CategoryLogicTest {
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @Test
-    public void updateFeedBackTest() throws BusinessLogicException 
+    public void updateCategoryTest() throws BusinessLogicException 
     {
         CategoryEntity entity = data.get(0);
         CategoryEntity pojoEntity = factory.manufacturePojo(CategoryEntity.class);
@@ -168,7 +168,7 @@ public class CategoryLogicTest {
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @Test
-    public void deleteFeedBackTest() throws BusinessLogicException {
+    public void deleteCategoryTest() throws BusinessLogicException {
        CategoryEntity entity = data.get(0);
        categoryLogic.deleteCategory(entity.getId());
         CategoryEntity deleted = em.find(CategoryEntity.class, entity.getId());
