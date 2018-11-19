@@ -19,9 +19,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.WebApplicationException;
 
-@Path("cvs")
+@Path("CVs")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -34,7 +33,7 @@ CVLogic cvLogic;
     /**
      * Crea una hoja de vida
      *
-     * @param CVDTO
+     * @param cv
      * @return
      */
     @POST
@@ -60,9 +59,10 @@ CVLogic cvLogic;
     
     
     @GET
-    public List<CVDTO> getCVs() {
+    public List<CVDTO> getCVs() 
+    {
         LOGGER.info("CVResource getCVs: input: void");
-        List<CVDTO> listaCVs= new ArrayList();
+        List<CVDTO> listaCVs= listEntity2DetailDTO(cvLogic.getCVs());
         LOGGER.log(Level.INFO, "CVResource getCVs: output: {0}", listaCVs.toString());
         return listaCVs;
     }
@@ -146,9 +146,11 @@ CVLogic cvLogic;
      * que vamos a convertir a DTO.
      * @return la lista de editoriales en forma DTO (json)
      */
-    private List<CVDTO> listEntity2DetailDTO(List<CVEntity> entityList) {
+    private List<CVDTO> listEntity2DetailDTO(List<CVEntity> entityList) 
+    {
         List<CVDTO> list = new ArrayList<>();
-        for (CVEntity entity : entityList) {
+        for (CVEntity entity : entityList)
+        {
             list.add(new CVDTO(entity));
         }
         return list;

@@ -30,11 +30,12 @@ import javax.ws.rs.WebApplicationException;
  * @author jf.copete
  */
 
-@Path("paintwork")
+@Path("paintworks")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class PaintworkResource {
+public class PaintworkResource
+{
     
 private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.getName());
 
@@ -46,16 +47,17 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
      * la petición y se regresa un objeto identico con un id auto-generado por
      * la base de datos.
      *
-     * @param paintwork {@link EditorialDTO} - La editorial que se desea
+     * @param paintwork {@link PaintworklDTO} - La editorial que se desea
      * guardar.
-     * @return JSON {@link EditorialDTO} - La editorial guardada con el atributo
+     * @return JSON {@link PaintworkDTO} - La editorial guardada con el atributo
      * id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera cuando ya existe la editorial.
      */
     @POST
-    public PaintworkDTO createPaintWork(PaintworkDTO paintwork) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "PaintworkResource createPaintWork: input: {0}", paintwork.toString());
+    public PaintworkDTO createPaintWork(PaintworkDTO paintwork) throws BusinessLogicException 
+    {
+        LOGGER.log(Level.INFO, "PaintworkResource createPaintwork: input: {0}", paintwork.toString());
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         PaintworkEntity paintworkEntity = paintwork.toEntity();
         // Invoca la lógica para crear la pintura nueva

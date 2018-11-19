@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "2b312c1e-f70f-401f-8ae1-0ca7d2121d87",
+		"name": "CV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Hojas de Vida",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"CVs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear  Hoja de Vida",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 1,\n\t\"education\" : \"Universidad de los Andes\",\n\t\"nombreObraMasConocida\" : \"Escultura del bobo\",\n\t\"fechaNacimiento\" : \"19-Ago-1998\",\n\t\"informacionAdicional\" : \"Programador de medio tiempo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"CVs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una hoja de vida",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"CVs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Hoja de Vida",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 1,\n\t\"education\" : \"Universidad Nacional\",\n\t\"nombreObraMasConocida\" : \"Edificio de Arquitectura\",\n\t\"fechaNacimiento\" : \"01-Jan-1999\",\n\t\"informacionAdicional\" : \"Ninguna\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"CVs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Hoja de Vida",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"CVs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -113,10 +113,11 @@ public class PaintworkPersistence {
      * @return null si no existe ninguna pintura con el nombre del argumento.
      * Si existe alguna devuelve la primera.
      */
-    public PaintworkEntity findByName(String name) {
+    public PaintworkEntity findByName(String name) 
+    {
         LOGGER.log(Level.INFO, "Consultando la obra por nombre ", name);
         // Se crea un query para buscar obras con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From EditorialEntity e where e.name = :name", PaintworkEntity.class);
+        TypedQuery query = em.createQuery("Select e From PaintworkEntity e where e.name = :name", PaintworkEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado
