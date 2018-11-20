@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
 import co.edu.uniandes.csw.galeriaarte.entities.MedioPagoEntity;
+import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -36,7 +37,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * </pre>
  * @author ja.penat
  */
-public class MedioPagoDTO
+public class MedioPagoDTO  implements Serializable
 {
     private Long id ;
     private String description;

@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
+import java.io.Serializable;
+
 /**
  * *Clase que extiende de {@link MedioPagoDTO} para manejar las relaciones entre
  * los MedioPagoDTO y otros DTOs. Para conocer el contenido de la un medio de pago vaya a la
@@ -24,7 +26,10 @@ package co.edu.uniandes.csw.galeriaarte.dtos;
  * </pre>
  * @author ja.penat
  */
-public class MedioPagoDetailDTO 
+public class MedioPagoDetailDTO  implements Serializable
 {
-    
+    public MedioPagoDetailDTO()
+    {
+        
+    }
 }

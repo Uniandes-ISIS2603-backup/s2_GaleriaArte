@@ -149,19 +149,13 @@ public class CategoryResource {
         }
         return list;
     }
+    
     private ExecutorService executorService = java.util.concurrent.Executors.newCachedThreadPool();
 
     @GET
     @Path(value = "{categoryId: \\d+}")
-    public void getCategory(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "categoryId") final Long categoryId) {
-        executorService.submit(new Runnable() {
-            public void run() {
-                asyncResponse.resume(doGetCategory(categoryId));
-            }
-        });
-    }
-
-    private CategoryDTO doGetCategory(@PathParam("categoryId") Long categoryId) {
+    private CategoryDTO doGetCategory(@PathParam("categoryId") Long categoryId)
+    {
         LOGGER.log(Level.INFO, "CategoryResource getCategoria: input: {0}", categoryId);
         CategoryEntity categoryEntity = categoryLogic.getCategory(categoryId);
         if (categoryEntity == null)

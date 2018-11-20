@@ -27,7 +27,7 @@ public class BuyerEntity extends BaseEntity implements Serializable
     private String phone;
     private String creditcard;
     private String country;
-    private Long idUsuario;
+    
     @PodamExclude
     @OneToMany//(mappedBy = "buyer",fetch=FetchType.LAZY)
     private List<SaleEntity> sale;
@@ -71,9 +71,7 @@ public class BuyerEntity extends BaseEntity implements Serializable
         return adress;
     }
     
-    public String getUsuario(){
-        return this.usuario;
-    }
+
     
     public List<SaleEntity> getSale(){
         return sale;
@@ -107,9 +105,6 @@ public class BuyerEntity extends BaseEntity implements Serializable
         phone = nPhone;
     }
     
-    public void setUsuario(String nUsuario){
-        usuario = nUsuario;
-    }
     
     public void setPaintwork(List<PaintworkEntity> nPaintwork){
         paintwork = nPaintwork;
@@ -117,6 +112,20 @@ public class BuyerEntity extends BaseEntity implements Serializable
     
     public void setSale(List<SaleEntity> pSale){
         sale = pSale;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
 }

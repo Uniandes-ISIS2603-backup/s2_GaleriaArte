@@ -26,7 +26,7 @@ public class BuyerDTO implements Serializable {
     private String phone;
     private String creditcard;
     private String country;
-    private Long idUsuario;
+    private long id; 
     
     
     public BuyerDTO(){
@@ -51,7 +51,8 @@ public class BuyerDTO implements Serializable {
             this.name = buyerEntity.getName();
             this.password = buyerEntity.getPassword();
             this.phone = buyerEntity.getPhone();
-            this.usuario = buyerEntity.getUsuario();
+            this.id = buyerEntity.getId();
+ 
             
            
         }
@@ -67,12 +68,13 @@ public class BuyerDTO implements Serializable {
         BuyerEntity entidad = new BuyerEntity();
         entidad.setAdress(this.adress);
         entidad.setCountry(this.country);
-        entidad.setCreditCard(this.creditcard);
+        entidad.setCreditCard(this.getCreditcard());
         entidad.setEmail(this.email);
         entidad.setName(this.name);
         entidad.setPassword(this.password);
         entidad.setPhone(this.phone);
-        entidad.setUsuario(this.usuario);
+        entidad.setId(this.id);
+ 
         
         
        
@@ -152,20 +154,21 @@ public class BuyerDTO implements Serializable {
     */
     
     public String getCreditCard(){
-        return creditcard;
+        return getCreditcard();
     }
     
     /**
-     * @param nueva tarjeta de credito del usuario 
+     * @param newCreditCard
      */
     
     public void setCreditCard(String newCreditCard){
         
-        creditcard = newCreditCard;
+        setCreditcard(newCreditCard);
     }
     
     /**
      * 
+     * @return 
      */
     public String getAdress(){
         return adress;
@@ -173,23 +176,6 @@ public class BuyerDTO implements Serializable {
     
     public void setAdress(String newAdress){
         adress = newAdress;
-    }
-    /**
-     * 
-     * @return el id del usuario 
-     */
-    
-    public Long getIdUsuario(){
-        return idUsuario;
-    }
-    
-    /**
-     * @param nuevo id del usuario 
-     */
-    
-    public void setIdUsuario(Long newId){
-        
-        idUsuario= newId;
     }
     
     /**
@@ -231,6 +217,34 @@ public class BuyerDTO implements Serializable {
     
     public String toString(){
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    /**
+     * @return the creditcard
+     */
+    public String getCreditcard() {
+        return creditcard;
+    }
+
+    /**
+     * @param creditcard the creditcard to set
+     */
+    public void setCreditcard(String creditcard) {
+        this.creditcard = creditcard;
+    }
+
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(long id) {
+        this.id = id;
     }
 }
 

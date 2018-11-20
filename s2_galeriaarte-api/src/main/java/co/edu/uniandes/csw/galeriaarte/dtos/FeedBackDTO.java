@@ -78,6 +78,7 @@ public class FeedBackDTO implements Serializable
      
      /**
     * establece el identificador de la calificacion
+     * @param pId
     */
     public void setId(Long pId)
     {
@@ -85,6 +86,7 @@ public class FeedBackDTO implements Serializable
     }
     /**
     * establece el nombre de la calificacion
+     * @param pString
     */
     public void setName(String pString)
     {

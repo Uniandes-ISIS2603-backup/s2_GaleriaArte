@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "5431f9b5-6dc5-47b3-94da-d064e73b98b0",
+		"name": "ExtraService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Servicio Extra",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t   \"id\" : 1,\r\n      \"name\": \"Enmarcado\",\r\n     \"description\": \"Se usa un marco de madera donde se pondra la obra de arte\",\r\n      \"price\": 100000,\r\n      \"availability\" : true\r\n   }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/extraServices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"extraServices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Servicios Extra",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/extraServices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"extraServices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un Servicio Extra",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/extraServices/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"extraServices",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Servicio Extra",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t  \"id\" : 1,\r\n      \"name\": \"Sin enmarcar\",\r\n      \"description\": \"Se usa madera donde no se pondra la obra de arte\",\r\n     \"price\": 200000,\r\n     \"availability\" : false\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/extraServices/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"extraServices",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Servicio Extra",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/extraServices/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"extraServices",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

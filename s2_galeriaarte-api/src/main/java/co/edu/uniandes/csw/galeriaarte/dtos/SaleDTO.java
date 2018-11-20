@@ -11,6 +11,20 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class SaleDTO implements Serializable
 {
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
     /**
     * identificador de la compra
     */
@@ -28,21 +42,7 @@ public class SaleDTO implements Serializable
     */
 	private Double taxes;
     /**
-    * artista de la compra
-    */
-	private ArtistDTO artist;
-	 /**
-    * obra de la compra
-    */
-	private PaintworkDTO obra;
-	 /**
-    * metodo de pago de la compra
-    */
-	private MedioPagoDTO metodo;
-	 /**
-    * comprador de la compra
-    */
-	private BuyerDTO buyer;
+
 	 /**
     * constructor vacio de la compra
     */
@@ -70,14 +70,11 @@ public class SaleDTO implements Serializable
         {
             
         SaleEntity entidad = new SaleEntity();
-        entidad.setId(this.id);
-        entidad.setObra(this.obra.toEntity());
+        entidad.setId(this.getId());
         entidad.setDescription(this.description);
         entidad.setPrice(this.price);
         entidad.setTaxes(this.taxes);
-        entidad.setArtist(this.artist.toEntity());
-        entidad.setMetodoPago(this.metodo.toEntity());
-        entidad.setBuyer(this.buyer.toEntity());
+        
         
         return entidad;
         }
@@ -107,38 +104,6 @@ public class SaleDTO implements Serializable
 		return taxes;
 	}
 	     /**
-    * retorna el artista de la compra
-    * @return artist
-    */
-	public ArtistDTO getArtist()
-	{
-		return artist;
-	}
-	     /**
-    * retorna la obra de la compra
-    * @return obra
-    */
-	public PaintworkDTO getObra()
-	{
-		return obra;
-	}
-             /**
-    * retorna el metodo de pago de la compra
-    * @return metodo
-    */
-	public MedioPagoDTO getMethod()
-	{
-		return metodo;
-	}
-             /**
-    * retorna el comprador de la compra
-    * @return buyer
-    */
-	public BuyerDTO getBuyer()
-	{
-		return buyer;
-	}
-             /**
     * establece el precio de la compra
     */
 	public void setPrice(double pPrice)
@@ -159,36 +124,7 @@ public class SaleDTO implements Serializable
 	{
 		this.taxes= pTax;
 	}
-              /**
-    * establece el artista de la compra
-    */
-	public void setArtist(ArtistDTO pArt)
-	{
-		this.artist= pArt;
-	}
-              /**
-    * establece la obra de la compra
-    */
-	public void setObra(PaintworkDTO pPaint)
-	{
-		this.obra= pPaint;
-	}
-              /**
-    * establece el metodo de pago de la compra
-    */
-	public void setMetodoPago(MedioPagoDTO pMeth)
-	
-	{
-		this.metodo= pMeth;
-	}
-	/**
-    * establece el comprador de la compra
-    */
-	public void setBuyer(BuyerDTO pBuy)
-	{
-		this.buyer=pBuy;
-	}
-        
+   
          @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

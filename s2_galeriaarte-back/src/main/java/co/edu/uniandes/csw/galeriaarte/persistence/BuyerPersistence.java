@@ -42,7 +42,8 @@ public class BuyerPersistence {
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de buyeras.
         return query.getResultList();
     }
-     public BuyerEntity update(BuyerEntity buyerEntity) {
+     public BuyerEntity update(BuyerEntity buyerEntity)
+     {
         LOGGER.log(Level.INFO, "Actualizando el comprador con id={0}", buyerEntity.getId());
 
         return em.merge(buyerEntity);

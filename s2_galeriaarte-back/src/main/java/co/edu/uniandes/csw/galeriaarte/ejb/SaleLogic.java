@@ -49,6 +49,7 @@ public class SaleLogic
         LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", saleID);
         return saleEntity;
     }
+   
  
      public SaleEntity updateSale(Long Id, SaleEntity saleEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", Id);
@@ -62,4 +63,12 @@ public class SaleLogic
         persistence.delete(saleId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar al compador con id = {0}", saleId);
     }
+
+    public List<SaleEntity> getSales()
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las sales");
+        List<SaleEntity> sales = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los sales");
+        return sales;
+}
 }

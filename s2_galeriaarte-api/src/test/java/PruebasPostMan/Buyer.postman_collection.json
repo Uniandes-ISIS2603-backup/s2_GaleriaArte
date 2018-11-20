@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "7a9a7c6d-de01-4334-ba8d-c6d164bf3c90",
+		"name": "Buyer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Comprador",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\" : \"contrasena1234\",\n\t\"name\" : \"Sara Laura Acosta\",\n\t\"usuario\": \"Usuario1\",\n\t\"adress\": \"p. sherman, calle wallaby way 42, sydney\",\n\t\"email\" : \"garbinche@hotmail.com\",\n\t\"phone\" : \"12345\" ,\n\t\"creditcard\" : \"MasterCard Platino\",\n\t\"country\": \"Colombia\",\n\t\"idUsuario\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/buyers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"buyers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Comprador",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/buyers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"buyers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un Comprador",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/buyers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"buyers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Comprador",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\" : \"contrasena4321\",\n\t\"name\" : \"Federico Garcia\",\n\t\"usuario\": \"Usuario2\",\n\t\"adress\": \"p. sherman, calle wallaby way 42, sydney\",\n\t\"email\" : \"javier@hotmail.com\",\n\t\"phone\" : \"12345\" ,\n\t\"creditcard\" : \"Credito facil Codensa\",\n\t\"country\": \"Colombia\",\n\t\"idUsuario\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/buyers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"buyers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Comprador",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/buyers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"buyers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

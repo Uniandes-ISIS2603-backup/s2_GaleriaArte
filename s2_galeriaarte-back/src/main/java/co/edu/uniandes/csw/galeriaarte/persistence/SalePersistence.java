@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.galeriaarte.persistence;
 
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -49,5 +51,16 @@ public class SalePersistence
         LOGGER.log(Level.INFO, "Borrando el comprador con id={0}", buyerId);
         SaleEntity saleEntity = em.find(SaleEntity.class, buyerId);
         em.remove(saleEntity);
+    }
+    
+     /**
+     * Devuelve todas los sales  de la base de datos.
+     * @return una lista con todas los sales que encuentre en la base de
+     */
+    public List<SaleEntity> findAll() 
+    {
+        LOGGER.log(Level.INFO, "Consultando todos los sales");
+        TypedQuery query = em.createQuery("select u from SaleEntity u", SaleEntity.class);
+        return query.getResultList();
     }
 }

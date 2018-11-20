@@ -53,13 +53,14 @@ public class BuyerResources {
         return nuevoBuyerDTO;
     }
     
-    @GET 
-    @Path("buyers://d+")
-    public BuyerDTO getBuyer(@PathParam ("/buyers")Long idBuyer) throws WebApplicationException{
-      
+    @GET
+    @Path("{buyerId: \\d+}")
+    public BuyerDTO  getBuyer(@PathParam("buyerId") Long idBuyer)throws WebApplicationException
+    {
         LOGGER.log(Level.INFO, "BuyerResource getBuyer: input: {0}", idBuyer);
         BuyerEntity buyerEntity = buyerLogic.getBuyer(idBuyer);
-        if(buyerEntity==null){
+        if(buyerEntity==null)
+        {
             throw new WebApplicationException("El recurso /buyers/"+idBuyer+"no existe", 404);
         }
         
@@ -69,12 +70,27 @@ public class BuyerResources {
         return buyerDTO;
     }
     
+    /**
+     * Busca y devuelve todas las buyer que existen en la aplicacion.
+     *
+     * @return JSONArray {@link BuyerDTO} - Las categorias encontradas en
+     * la aplicación. Si no hay ninguna retorna una lista vacía.
+     */
+    @GET
+    public List<BuyerDTO> getBuyers() 
+    {
+        LOGGER.info("BuyerResource getBuyers: input: void");
+        List<BuyerDTO> listaBuyers = listEntity2DetailDTO(buyerLogic.getBuyers());
+        LOGGER.log(Level.INFO, "BuyerResource getBuyers: output: {0}", listaBuyers.toString());
+        return listaBuyers;
+    }
+    
     
     @DELETE
     @Path ("{buyerId: \\d+}")
-    
-    public void deleteBuyer(@PathParam ("buyerID") Long buyerID, BuyerDTO buyer){ 
-            LOGGER.log(Level.INFO, "BuyerResource deleteBuyer: input: buyerID: {0}, buyer: {1}", new Object[]{ buyerID, buyer.toString()});
+    public void deleteBuyer(@PathParam ("buyerId") Long buyerID)
+    { 
+             LOGGER.log(Level.INFO, "BuyerResource deleteBuyer input: {0}", buyerID);
             if(buyerLogic.getBuyer(buyerID)==null){
                 throw new WebApplicationException("El recurso /buyer/"+buyerID+"no existe", 404);
             }
@@ -85,11 +101,12 @@ public class BuyerResources {
    
     @PUT 
     @Path("{buyerID: \\d+}")
-    public BuyerDTO updateBuyer(@PathParam("buyerID") Long buyerID, BuyerDTO buyer){
-        
+    public BuyerDTO updateBuyer(@PathParam("buyerID") Long buyerID, BuyerDTO buyer)
+    {    
         LOGGER.log(Level.INFO, "BuyerResource updateBuyer: input: buyerID: {0}, buyer: {1}", new Object[]{buyerID, buyer.toString()});
-        buyer.setIdUsuario(buyerID);
-        if(buyerLogic.getBuyer(buyerID)==null){
+        buyer.setId(buyerID);
+        if(buyerLogic.getBuyer(buyerID)==null)
+        {
             throw new WebApplicationException("El recurso /buyer/"+buyerID+"no existe", 404);
         }
         
@@ -108,5 +125,22 @@ public class BuyerResources {
         return lista;
     }
  
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos BuyerEntity a una lista de
+     * objetos BuyerDTO (json)
+     *
+     * @param entityList corresponde a la lista de Buyers de tipo Entity
+     * que vamos a convertir a DTO.
+     * @return la lista de buyers en forma DTO (json)
+     */
+    private List<BuyerDTO> listEntity2DetailDTO(List<BuyerEntity> entityList) {
+        List<BuyerDTO> list = new ArrayList<>();
+        for (BuyerEntity entity : entityList) {
+            list.add(new BuyerDTO(entity));
+        }
+        return list;
+    }
     
 }
