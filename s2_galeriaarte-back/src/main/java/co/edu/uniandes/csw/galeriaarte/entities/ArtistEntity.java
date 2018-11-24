@@ -26,7 +26,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 public class ArtistEntity extends BaseEntity implements Serializable
 {
     @PodamExclude
-    @OneToOne//(mappedBy="artist", fetch=FetchType.LAZY)
+    @OneToOne(mappedBy="artist", fetch=FetchType.LAZY)
     private CVEntity cv;
     
     @Temporal(TemporalType.DATE)

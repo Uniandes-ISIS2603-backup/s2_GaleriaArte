@@ -22,12 +22,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
-
+/**
+ * Clase que implementa el recurso de "Artista".
+ * @author a.barragan
+ */
 @Path("artists")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-
 public class ArtistResources {
     private static final Logger LOGGER = Logger.getLogger(ArtistResources.class.getName());
     
@@ -62,12 +64,11 @@ ArtistLogic artistLogic;
     
     
     @GET
-    public List<ArtistDTO> getartists() {
-        LOGGER.info("ArtistResource getartists: input: void");
-        List<ArtistDTO> listaartists;
-        listaartists = listEntity2DetailDTO(artistLogic.getArtists());
-        LOGGER.log(Level.INFO, "ArtistResource getartists: output: {0}", listaartists.toString());
-        return listaartists;
+    public List<ArtistDTO> getArtists() {
+        LOGGER.info("ArtistResource getArtists: input: void");
+        List<ArtistDTO> listartistas = listEntity2DTO(artistLogic.getArtists());
+        LOGGER.log(Level.INFO, "ArtistResource getArtists: output: {0}", listartistas.toString());
+        return listartistas;
     }
 
     /**
@@ -149,7 +150,7 @@ ArtistLogic artistLogic;
      * que vamos a convertir a DTO.
      * @return la lista de artistas en forma DTO (json)
      */
-    private List<ArtistDTO> listEntity2DetailDTO(List<ArtistEntity> entityList) {
+    private List<ArtistDTO> listEntity2DTO(List<ArtistEntity> entityList) {
         List<ArtistDTO> list = new ArrayList<>();
         for (ArtistEntity entity : entityList) {
             list.add(new ArtistDTO(entity));

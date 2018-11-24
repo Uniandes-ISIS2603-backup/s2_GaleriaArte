@@ -36,10 +36,10 @@ public class ArtistLogic {
      * @return Colección de objetos de ArtistEntity.
      */
     public List<ArtistEntity> getArtists() {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los autores");
-        List<ArtistEntity> lista = persistence.findAll();
-        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los autores");
-        return lista;
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los artistas");
+        List<ArtistEntity> artistas = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los artistas");
+        return artistas;
     }
 
     /**

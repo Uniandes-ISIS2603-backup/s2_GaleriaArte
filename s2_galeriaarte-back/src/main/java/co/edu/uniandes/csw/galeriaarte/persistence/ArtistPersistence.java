@@ -52,9 +52,7 @@ public class ArtistPersistence {
      */
     public List<ArtistEntity> findAll() {
         LOGGER.log(Level.INFO, "Consultando todos los artistas");
-        // Se crea un query para buscar todas las artistas en la base de datos.
-        TypedQuery query = em.createQuery("select u from ArtistEntity u", ArtistEntity.class);
-        // Note que en el query se hace uso del método getResultList() que obtiene una lista de artistas.
+        TypedQuery query = em.createQuery("SELECT u FROM ArtistEntity u", ArtistEntity.class);
         return query.getResultList();
     }
 
