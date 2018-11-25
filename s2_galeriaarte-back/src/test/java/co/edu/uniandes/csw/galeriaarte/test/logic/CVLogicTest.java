@@ -5,6 +5,7 @@
 */
 package co.edu.uniandes.csw.galeriaarte.test.logic;
 import co.edu.uniandes.csw.galeriaarte.ejb.CVLogic;
+import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.CVPersistence;
@@ -44,6 +45,8 @@ public class CVLogicTest
     private UserTransaction utx;
     
     private List<CVEntity> data = new ArrayList<>();
+    
+    private List<ArtistEntity> dataArtist = new ArrayList<>();
     
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -99,10 +102,16 @@ public class CVLogicTest
      */
     private void insertData()
     {
+        for(int i = 0; i<6 ; i ++)
+        {
+            ArtistEntity entity = factory.manufacturePojo(ArtistEntity.class);
+            em.persist(entity);
+            dataArtist.add(entity);
+        }
         for (int i = 0; i < 3; i++)
         {
             CVEntity entity = factory.manufacturePojo(CVEntity.class);
-            
+            entity.setArtist(dataArtist.get(i));
             em.persist(entity);
             data.add(entity);
         }
@@ -116,16 +125,19 @@ public class CVLogicTest
     @Test
     public void createCVTest() throws BusinessLogicException
     {
-        CVEntity newEntity = factory.manufacturePojo(CVEntity.class);;
-        CVEntity result = cvLogic.createCV(newEntity);
+        CVEntity newEntity = factory.manufacturePojo(CVEntity.class);
+        newEntity.setArtist(dataArtist.get(4));
+        CVEntity  result = cvLogic.createCV(dataArtist.get(4).getId(), newEntity);
         
         Assert.assertNotNull(result);
         CVEntity entity = em.find(CVEntity.class, result.getId());
+        
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getEducation(), entity.getEducation());
-     
         Assert.assertEquals(newEntity.getInformacionAdicional(), entity.getInformacionAdicional());
         Assert.assertEquals(newEntity.getNombreObraMasConocida(), entity.getNombreObraMasConocida());
+        Assert.assertEquals(newEntity.getArtist(), entity.getArtist());
+        
         
         
     }
@@ -160,13 +172,15 @@ public class CVLogicTest
     public void getCVTest()
     {
         CVEntity entity = data.get(0);
-        CVEntity resultEntity = cvLogic.getCV(entity.getId());
+        CVEntity resultEntity = cvLogic.getCV(dataArtist.get(0).getId(),entity.getId());
         
         Assert.assertNotNull(resultEntity);
+        
+        Assert.assertEquals(entity.getNombreObraMasConocida(), resultEntity.getNombreObraMasConocida());
         Assert.assertEquals(entity.getEducation(), resultEntity.getEducation());
-       
         Assert.assertEquals(entity.getInformacionAdicional(), resultEntity.getInformacionAdicional());
         Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getArtist(), resultEntity.getArtist());
     }
     
     /**
@@ -181,17 +195,20 @@ public class CVLogicTest
         
         pojoEntity.setId(entity.getId());
         
-        cvLogic.updateCV(pojoEntity.getId(), pojoEntity);
+        cvLogic.updateCV(dataArtist.get(0).getId(), pojoEntity);
         
         CVEntity resultEntity = em.find(CVEntity.class, entity.getId());
         
         Assert.assertNotNull(resultEntity);
+        
         Assert.assertEquals(pojoEntity.getId(), resultEntity.getId());
         Assert.assertEquals(pojoEntity.getEducation(), resultEntity.getEducation());
-    
         Assert.assertEquals(pojoEntity.getInformacionAdicional(), resultEntity.getInformacionAdicional());
+        Assert.assertEquals(pojoEntity.getNombreObraMasConocida(), resultEntity.getNombreObraMasConocida());
+        Assert.assertEquals(pojoEntity.getArtist(), resultEntity.getArtist());
         
     }
+   
     /**
      * Prueba para eliminar un cv
      *
@@ -201,7 +218,7 @@ public class CVLogicTest
     public void deleteCVTest() throws BusinessLogicException
     {
         CVEntity entity = data.get(0);
-        cvLogic.deleteCV(entity.getId());
+        cvLogic.deleteCV(dataArtist.get(0).getId(), entity.getId());
         CVEntity deleted = em.find(CVEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
