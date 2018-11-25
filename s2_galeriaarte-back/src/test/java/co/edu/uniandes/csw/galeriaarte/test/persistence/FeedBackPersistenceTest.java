@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.galeriaarte.test.persistence;
 
 
 import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
+import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
 import co.edu.uniandes.csw.galeriaarte.persistence.FeedBackPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,11 @@ public class FeedBackPersistenceTest
      */
     private List<FeedBackEntity> data = new ArrayList<FeedBackEntity>();
     
+   /**
+    * Lista que tiene las obras con datos de preuba.
+    */
+    private List<PaintworkEntity> dataObra = new ArrayList<PaintworkEntity>();
+    
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
      * embebido. El jar contiene las clases de FeedBackEntity, el descriptor de la
@@ -108,6 +114,7 @@ public class FeedBackPersistenceTest
     private void clearData()
     {
         em.createQuery("delete from FeedBackEntity").executeUpdate();
+        em.createQuery("delete from PaintworkEntity").executeUpdate();
     }
     
     /**
@@ -117,11 +124,21 @@ public class FeedBackPersistenceTest
     private void insertData()
     {
         PodamFactory factory = new PodamFactoryImpl();
+        
+        for(int i = 0; i<3; i++)
+        {
+            PaintworkEntity entity = factory.manufacturePojo(PaintworkEntity.class);
+            em.persist(entity);
+            dataObra.add(entity);
+        }
         for (int i = 0; i < 3; i++) 
         {
             
             FeedBackEntity entity = factory.manufacturePojo(FeedBackEntity.class);
-            
+            if (i == 0) 
+            {
+                entity.setObra(dataObra.get(0));
+            }
             em.persist(entity);
             
             data.add(entity);
@@ -144,29 +161,9 @@ public class FeedBackPersistenceTest
         
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
-    }
-    
-    /**
-     * Prueba para consultar la lista de FeedBacks.
-     */
-    @Test
-    public void getFeedBacksTest()
-    {
-        List<FeedBackEntity> list = feedBackPersistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (FeedBackEntity ent : list)
-        {
-            boolean found = false;
-            for (FeedBackEntity entity : data)
-            {
-                if (ent.getId().equals(entity.getId()))
-                {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
-        }
+        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());  
+        Assert.assertEquals(newEntity.getObra(), entity.getObra()); 
+        
     }
     
     /**
@@ -176,7 +173,7 @@ public class FeedBackPersistenceTest
     public void getFeedBackTest()
     {
         FeedBackEntity entity = data.get(0);
-        FeedBackEntity newEntity = feedBackPersistence.find(entity.getId());
+        FeedBackEntity newEntity = feedBackPersistence.find(dataObra.get(0).getId(), entity.getId());
 
         Assert.assertNotNull(newEntity);
 
@@ -198,7 +195,7 @@ public class FeedBackPersistenceTest
     }
     
     /**
-     * Prueba para actualizar un Medio de pago.
+     * Prueba para actualizar un FeedBack.
      */
     @Test
     public void updateFeedBackTest() 
@@ -216,5 +213,7 @@ public class FeedBackPersistenceTest
         Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getComentario(), resp.getComentario());
         Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getObra(), resp.getObra());
+        
     }
 }

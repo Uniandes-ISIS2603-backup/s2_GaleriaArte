@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.galeriaarte.persistence;
 
 import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
@@ -16,75 +16,94 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author s.restrepos1
+ * @author ja.penat
  */
 @Stateless
-public class FeedBackPersistence {
-
+public class FeedBackPersistence
+{
+    
     private static final Logger LOGGER = Logger.getLogger(FeedBackPersistence.class.getName());
+    
     @PersistenceContext(unitName = "InterArtPU")
     protected EntityManager em;
-     /**
-     * Método para persisitir la entidad en la base de datos.
-     * @param feedEntity objeto ExtraService que se creará en la base de datos
-     * @return devuelve la entidad creada con un id dado por la base de datos.
+    
+    /**
+     * Crear un comentario
+     *
+     * Crea un nuevo comentario con la información recibida en la entidad.
+     *
+     * @param feedBackEntity La entidad que representa el nuevo comentario
+     * @return La entidad creada
      */
-    public FeedBackEntity create(FeedBackEntity feedEntity)
+    public FeedBackEntity create(FeedBackEntity feedBackEntity)
     {
-        LOGGER.log(Level.INFO, "Creando un nuevo feedback");
-        
-        em.persist(feedEntity);
-        LOGGER.log(Level.INFO, "FeedBack creado");
-        return feedEntity;
+        LOGGER.log(Level.INFO, "Creando un feedback nuevo");
+        em.persist(feedBackEntity);
+        LOGGER.log(Level.INFO, "feedback creado");
+        return feedBackEntity;
     }
     
-     /**
-     * Devuelve todos los feedbacks de la base de datos.
-     * @return una lista con todos los feedbacks extras que encuentre en la base de datos
+    /**
+     * Actualizar un comentario
+     *
+     * Actualiza la entidad que recibe en la base de datos
+     *
+     * @param feedBackEntity La entidad actualizada que se desea guardar
+     * @return La entidad resultante luego de la acutalización
      */
-    public List<FeedBackEntity> findAll()
+    public FeedBackEntity update(FeedBackEntity feedBackEntity)
     {
-        LOGGER.log(Level.INFO, "Consultando todos las calificaciones");
-        TypedQuery query = em.createQuery("select u from FeedBackEntity u", FeedBackEntity.class);
-        return query.getResultList();
-    }
-     /**
-     * Devuelve el feedback con id dado de la base de datos.
-     * @param feedBackId: id correspondiente al fedback buscado.
-     * @return un feedback que encuentre en la base de datos con el id
-     */
-     public FeedBackEntity find(Long feedBackId) 
-     {
-        LOGGER.log(Level.INFO, "Consultando la calificacion con id={0}", feedBackId);
-     
-        return em.find(FeedBackEntity.class, feedBackId);
-    }
-      /**
-     * Actualiza una calificacion.
-     *
-     * @param feedEntity:
-     * @return feedback con los cambios aplicados.
-     */
-     public FeedBackEntity update(FeedBackEntity feedEntity) 
-     {
-        LOGGER.log(Level.INFO, "Actualizando el feedback con id={0}", feedEntity.getId());
-        
-        return em.merge(feedEntity);
-    }
-     
-   /**
-     * Borra una calificacion de la base de datos recibiendo como argumento el id
-     * 
-     *
-     * @param feedId: id correspondiente a la calificacion  borrar.
-     */
-      public void delete(Long feedId) {
-
-        LOGGER.log(Level.INFO, "Borrando el feedback con id={0}", feedId);
-        FeedBackEntity feedEntity = em.find(FeedBackEntity.class, feedId);
-        
-        em.remove(feedEntity);
+        LOGGER.log(Level.INFO, "Actualizando feedback con id = {0}", feedBackEntity.getId());
+        return em.merge(feedBackEntity);
     }
     
+    /**
+     * Eliminar un comentario
+     *
+     * Elimina el comentario asociado al ID que recibe
+     *
+     * @param feedBackId El ID del comentario que se desea borrar
+     */
+    public void delete(Long feedBackId)
+    {
+        LOGGER.log(Level.INFO, "Borrando feedback con id = {0}", feedBackId);
+        FeedBackEntity feedBackEntity = em.find(FeedBackEntity.class, feedBackId);
+        em.remove(feedBackEntity);
+        LOGGER.log(Level.INFO, "Saliendo de borrar El feedback con id = {0}", feedBackId);
+    }
+    
+    /**
+     * Buscar un comentario
+     *
+     * Busca si hay alguna comentario asociado a una obra y con un ID específico
+     *
+     * @param obraId El ID de la obra con respecto al cual se busca
+     * @param feedbackId El ID del comentario buscado
+     * @return El comentario encontrado o null. Nota: Si existe uno o más comentarios
+     * devuelve siempre la primera que encuentra
+     */
+    public FeedBackEntity find(Long obraId, Long feedbackId)
+    {
+        LOGGER.log(Level.INFO, "Consultando el comentario con id = {0} de la obra con id = " + obraId, feedbackId);
+        TypedQuery<FeedBackEntity> q = em.createQuery("select p from FeedBackEntity p where (p.obra.id = :obraId) and (p.id = :feedbackId)", FeedBackEntity.class);
+        q.setParameter("obraId", obraId);
+        q.setParameter("feedbackId", feedbackId);
+        List<FeedBackEntity> results = q.getResultList();
+        FeedBackEntity comentario = null;
+        if (results == null)
+        {
+            comentario = null;
+        }
+        else if (results.isEmpty())
+        {
+            comentario  = null;
+        }
+        else if (results.size() >= 1)
+        {
+            comentario = results.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar el comenatario con id = {0} del  la obra con id =" + obraId, feedbackId);
+        return comentario;
+    }
     
 }

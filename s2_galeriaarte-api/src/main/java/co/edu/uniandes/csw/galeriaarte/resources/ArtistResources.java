@@ -176,7 +176,8 @@ ArtistLogic artistLogic;
      * que vamos a convertir a DTO.
      * @return la lista de artistas en forma DTO (json)
      */
-    private List<ArtistDTO> listEntity2DTO(List<ArtistEntity> entityList) {
+    private List<ArtistDTO> listEntity2DTO(List<ArtistEntity> entityList)
+    {
         List<ArtistDTO> list = new ArrayList<>();
         for (ArtistEntity entity : entityList) {
             list.add(new ArtistDTO(entity));

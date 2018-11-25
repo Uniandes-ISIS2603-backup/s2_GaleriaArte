@@ -6,11 +6,11 @@
 package co.edu.uniandes.csw.galeriaarte.entities;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -30,16 +30,16 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     private String  videoPath;
    
     @PodamExclude
-    @OneToOne(mappedBy="obra", fetch=FetchType.LAZY)
-    private Collection<KindEntity> kind;
+    @OneToMany(mappedBy="obra", fetch=FetchType.LAZY)
+    private List<KindEntity> kind;
     
     @PodamExclude
-    @OneToOne(mappedBy="obra", fetch=FetchType.LAZY)
-    private Collection<CategoryEntity> category;
+    @OneToMany(mappedBy="obra", fetch=FetchType.LAZY)
+    private List<CategoryEntity> category;
     
     @PodamExclude
-    @OneToOne(mappedBy="obra", fetch=FetchType.LAZY)
-    private Collection<FeedBackEntity> feedback;
+    @OneToMany(mappedBy="obra", fetch=FetchType.LAZY)
+    private List<FeedBackEntity> feedback;
     
     @PodamExclude
     @ManyToOne
@@ -152,42 +152,44 @@ public class PaintworkEntity extends BaseEntity implements Serializable
      /**
      * @return the feedback
      */
-    public Collection<FeedBackEntity> getFeedback() {
+    public List<FeedBackEntity> getFeedback() {
         return feedback;
     }
 
     /**
      * @param feedback the feedback to set
      */
-    public void setFeedback(Collection<FeedBackEntity> feedback) {
+    public void setFeedback(List<FeedBackEntity> feedback) 
+    {
         this.feedback = feedback;
     }
     
         /**
      * @return the kind
      */
-    public Collection<KindEntity> getKind() {
+    public List<KindEntity> getKind() {
         return kind;
     }
 
     /**
      * @param kind the kind to set
      */
-    public void setKind(Collection<KindEntity> kind) {
+    public void setKind(List<KindEntity> kind) {
         this.kind = kind;
     }
     
         /**
      * @return the category
      */
-    public Collection<CategoryEntity> getCategory() {
+    public List<CategoryEntity> getCategory() {
         return category;
     }
 
     /**
      * @param category the category to set
      */
-    public void setCategory(Collection<CategoryEntity> category) {
+    public void setCategory(List<CategoryEntity> category) 
+    {
         this.category = category;
     }
 

@@ -146,10 +146,32 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
     public void deletePaintwork(@PathParam("painworksId") Long paintworkId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: input: {0}", paintworkId);
         if (paintworkLogic.getPaintWork(paintworkId) == null) {
-            throw new WebApplicationException("El recurso /editorials/" + paintworkId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /paintworks/" + paintworkId + " no existe.", 404);
         }
         paintworkLogic.deletePaintWork(paintworkId);
         LOGGER.info("PaintworkResource updatePaintwork: output: void");
+    }
+    
+     /**
+     * Conexión con el servicio de comentarios para una obra. {@link PaintworksResources}
+     *
+     * Este método conecta la ruta de /paintworks con las rutas de /feedbacks que
+     * dependen del cv, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de las hojas de vida.
+     *
+     * @param paintworksId Id de la obra a la que se le trata de acceder sus comentario
+     * @return El servicio de comentarios para ests obra en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la obra.
+     */
+    @Path("{paintworksId: \\d+}/feedBacks")
+    public Class<FeedBackResources> getFeedBackResources(@PathParam("paintworksId") Long paintworksId) 
+    {
+        if (paintworkLogic.getPaintWork(paintworksId) == null)
+        {
+            throw new WebApplicationException("El recurso /paintworks/" + paintworksId + "/feedbacks.", 404);
+        }
+        return FeedBackResources.class;
     }
 
     /**

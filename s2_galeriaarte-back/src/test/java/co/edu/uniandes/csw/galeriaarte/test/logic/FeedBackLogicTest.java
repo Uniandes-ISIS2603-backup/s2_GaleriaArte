@@ -34,10 +34,11 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class FeedBackLogicTest
 {
+    
     private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
-    private FeedBackLogic feedLogic;
+    private FeedBackLogic feedBackLogic;
     
     @PersistenceContext
     private EntityManager em;
@@ -46,6 +47,9 @@ public class FeedBackLogicTest
     private UserTransaction utx;
     
     private List<FeedBackEntity> data = new ArrayList<FeedBackEntity>();
+    
+    private List<PaintworkEntity> dataPaintwork = new ArrayList<PaintworkEntity>();
+    
     
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -61,6 +65,7 @@ public class FeedBackLogicTest
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
+    
     /**
      * Configuración inicial de la prueba.
      */
@@ -80,59 +85,74 @@ public class FeedBackLogicTest
             }
         }
     }
+    
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData()
     {
         em.createQuery("delete from FeedBackEntity").executeUpdate();
+        em.createQuery("delete from PaintworkEntity").executeUpdate();
+        
     }
     
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
-    private void insertData() 
+    private void insertData()
     {
         for (int i = 0; i < 3; i++)
         {
-            FeedBackEntity entity = factory.manufacturePojo(FeedBackEntity.class);
-            em.persist(entity); 
-            data.add(entity);
+            PaintworkEntity entity = factory.manufacturePojo(PaintworkEntity.class);
+            
+            em.persist(entity);
+            dataPaintwork.add(entity);
         }
         
+        for (int i = 0; i < 3; i++)
+        {
+            FeedBackEntity entity = factory.manufacturePojo(FeedBackEntity.class);
+            entity.setObra(dataPaintwork.get(1));
+            em.persist(entity);
+            data.add(entity);
+        }
     }
     
     /**
-     * Prueba para crear un FeedBack.
+     * Prueba para crear un feedBack.
+     *
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @Test
     public void createFeedBackTest() throws BusinessLogicException
     {
         FeedBackEntity newEntity = factory.manufacturePojo(FeedBackEntity.class);
-        FeedBackEntity result = feedLogic.createFeedBack(newEntity);
-        
+        newEntity.setObra(dataPaintwork.get(1));
+        FeedBackEntity result = feedBackLogic.createFeedBack(dataPaintwork.get(1).getId(), newEntity);
         Assert.assertNotNull(result);
-        
         FeedBackEntity entity = em.find(FeedBackEntity.class, result.getId());
+        
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
+        Assert.assertEquals(newEntity.getObra(), entity.getObra());
     }
     
     /**
-     * Prueba para consultar la lista de FeedBack.
+     * Prueba para consultar la lista de feedBacks.
+     *
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @Test
-    public void getFeedBacksTest()
+    public void getFeedBacksTest() throws BusinessLogicException
     {
-        List<FeedBackEntity> list = feedLogic.getFeedBacks();
+        List<FeedBackEntity> list = feedBackLogic.getFeedBacks(dataPaintwork.get(1).getId());
         Assert.assertEquals(data.size(), list.size());
         for (FeedBackEntity entity : list)
         {
             boolean found = false;
-            for (FeedBackEntity storedEntity : data) 
+            for (FeedBackEntity storedEntity : data)
             {
                 if (entity.getId().equals(storedEntity.getId()))
                 {
@@ -144,43 +164,46 @@ public class FeedBackLogicTest
     }
     
     /**
-     * Prueba para consultar un FeedBack.
+     * Prueba para consultar un feedBack.
      */
     @Test
-    public void getFeedBackTest() 
+    public void getfeedBackTest() 
     {
         FeedBackEntity entity = data.get(0);
-        FeedBackEntity resultEntity = feedLogic.getFeedBack(entity.getId());
-    
+        FeedBackEntity resultEntity = feedBackLogic.getFeedBack(dataPaintwork.get(1).getId(), entity.getId());
         Assert.assertNotNull(resultEntity);
         
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
-        Assert.assertEquals(resultEntity.getComentario(), entity.getComentario());
+        Assert.assertEquals(entity.getComentario(), resultEntity.getComentario());
+        Assert.assertEquals(entity.getObra(), resultEntity.getObra());
+        
     }
     
     /**
-     * Prueba para actualizar un FeedBack.
-     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
+     * Prueba para actualizar un feedBack.
      */
     @Test
-    public void updateFeedBackTest() throws BusinessLogicException
+    public void updateFeedBackTest()
     {
         FeedBackEntity entity = data.get(0);
         FeedBackEntity pojoEntity = factory.manufacturePojo(FeedBackEntity.class);
         
         pojoEntity.setId(entity.getId());
         
-        feedLogic.updateFeedBack(pojoEntity.getId(), pojoEntity);
+        feedBackLogic.updateFeedBack(dataPaintwork.get(1).getId(), pojoEntity);
         
         FeedBackEntity resp = em.find(FeedBackEntity.class, entity.getId());
         
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertEquals(pojoEntity.getComentario(), resp.getComentario());     
-    }
+        Assert.assertEquals(pojoEntity.getComentario(), resp.getComentario());
+        Assert.assertEquals(pojoEntity.getObra(), resp.getObra());
+                
+                }
+    
     /**
-     * Prueba para eliminar un FeedBack
+     * Prueba para eliminar un feedBack.
      *
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
@@ -188,11 +211,8 @@ public class FeedBackLogicTest
     public void deleteFeedBackTest() throws BusinessLogicException
     {
         FeedBackEntity entity = data.get(0);
-        feedLogic.deleteFeedBack(entity.getId());
-        
+        feedBackLogic.deleteFeedBack(dataPaintwork.get(1).getId(), entity.getId());
         FeedBackEntity deleted = em.find(FeedBackEntity.class, entity.getId());
-        
         Assert.assertNull(deleted);
     }
-    
 }

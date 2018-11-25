@@ -1,13 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.galeriaarte.ejb;
 
 import co.edu.uniandes.csw.galeriaarte.entities.FeedBackEntity;
+import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.FeedBackPersistence;
+import co.edu.uniandes.csw.galeriaarte.persistence.PaintworkPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,79 +21,100 @@ import javax.inject.Inject;
  * @author s.restrepos1
  */
 @Stateless
-public class FeedBackLogic 
+public class FeedBackLogic
 {
     
+    
     private static final Logger LOGGER = Logger.getLogger(FeedBackLogic.class.getName());
-
+    
     @Inject
     private FeedBackPersistence persistence;
-
+    
+    @Inject
+    private PaintworkPersistence paintworkPersistence;
+    
     /**
-     * Se encarga de crear un FeedBack en la base de datos.
+     * Se encarga de crear un feedBack en la base de datos.
      *
-     * @param feedEntity Objeto de FeedBackEntity con los datos nuevos
-     * @return Objeto de FeedBackEntity con los datos nuevos y su ID.
-     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
-     */
-    public FeedBackEntity createFeedBack(FeedBackEntity feedEntity) throws BusinessLogicException
-    {
-        LOGGER.log(Level.INFO, "Inicia proceso de creación de la calificacion");
-        if (feedEntity.getComentario().length()>200)
-        {
-            throw new BusinessLogicException("El numero de caracteres del comentario execede 200  \"" + feedEntity.getComentario() + "\"");
-        }
-        FeedBackEntity newFeedEntity = persistence.create(feedEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de creación de la calificacion");
-        return newFeedEntity;
-    }
-    
-    public List<FeedBackEntity> getFeedBacks() 
-    {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos las calificaciones");
-        List<FeedBackEntity> lista = persistence.findAll();
-        LOGGER.log(Level.INFO, "Termina proceso de consultar todos las calificaciones");
-        return lista;
-    }
-    public FeedBackEntity getFeedBack(Long feedId)
-    {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar la calificacion con id = {0}", feedId);
-        // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
-        FeedBackEntity feedEntity = persistence.find(feedId);
-        if (feedEntity == null)
-        {
-            LOGGER.log(Level.SEVERE, "La calificacion con el id = {0} no existe", feedId);
-        }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar la calificacion con id = {0}", feedId);
-        return feedEntity;
-    }
-    
-    public FeedBackEntity updateFeedBack(Long fdId, FeedBackEntity feedEntity) throws BusinessLogicException
-    {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la calificacion con id = {0}", fdId);
-        if(feedEntity.getComentario().length()>200)
-        {
-            throw new BusinessLogicException("El numero de caracteres del comentario excede 200  \"" + feedEntity.getComentario() + "\"");
-        }
-        FeedBackEntity newAuthorEntity = persistence.update(feedEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar la calificacion con id = {0}", fdId);
-        return newAuthorEntity;
-    }
-      /**
-     * Borrar una calificacion
+     * @param feedBackEntity Objeto de feedBackEntity con los datos nuevos
+     * @param paintworksId id del paintwork el cual sera padre del nuevo feedBack.
+     * @return Objeto de feedBackEntity con los datos nuevos y su ID.
+     * @throws BusinessLogicException si paintworksId no es el mismo que tiene el
+     * entity.
      *
-     * @param feedBackId: id de la obra a borrar
      */
-    public void deleteFeedBack(Long feedBackId) 
+    public FeedBackEntity createFeedBack(Long paintworksId, FeedBackEntity feedBackEntity) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar la calificacion con id = {0}", feedBackId);
-        // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
-        if(persistence.find(feedBackId) != null )
-        {
-        persistence.delete(feedBackId);
-        }
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la calificacion con id = {0}", feedBackId);
+        LOGGER.log(Level.INFO, "Inicia proceso de crear feedBack");
+        PaintworkEntity paintwork = paintworkPersistence.find(paintworksId);
+        feedBackEntity.setObra(paintwork);
+        LOGGER.log(Level.INFO, "Termina proceso de creación del feedBack");
+        return persistence.create(feedBackEntity);
     }
     
-   
+    /**
+     * Obtiene la lista de los registros de feedBack que pertenecen a un paintwork.
+     *
+     * @param paintworksId id del paintwork el cual es padre de los feedBacks.
+     * @return Colección de objetos de feedBackEntity.
+     */
+    public List<FeedBackEntity> getFeedBacks(Long paintworksId)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar los feedBacks asociados al paintwork con id = {0}", paintworksId);
+        PaintworkEntity paintworkEntity = paintworkPersistence.find(paintworksId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar los feedBacks asociados al paintwork con id = {0}", paintworksId);
+        return paintworkEntity.getFeedback();
+    }
+    
+    /**
+     * Obtiene los datos de una instancia de feedBack a partir de su ID. La
+     * existencia del elemento padre paintwork se debe garantizar.
+     *
+     * @param paintworksId El id del paintwork buscado
+     * @param feedBacksId Identificador de la Reseña a consultar
+     * @return Instancia de feedBackEntity con los datos del feedBack consultado.
+     *
+     */
+    public FeedBackEntity getFeedBack(Long paintworksId, Long feedBacksId)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el feedBack con id = {0} del paintwork con id = " + paintworksId, feedBacksId);
+        return persistence.find(paintworksId, feedBacksId);
+    }
+    
+    /**
+     * Actualiza la información de una instancia de feedBack.
+     *
+     * @param feedBackEntity Instancia de feedBackEntity con los nuevos datos.
+     * @param paintworksId id del paintwork el cual sera padre del feedBack actualizado.
+     * @return Instancia de feedBackEntity con los datos actualizados.
+     *
+     */
+    public FeedBackEntity updateFeedBack(Long paintworksId, FeedBackEntity feedBackEntity)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el feedBack con id = {0} del paintwork con id = " + paintworksId, feedBackEntity.getId());
+        PaintworkEntity paintworkEntity = paintworkPersistence.find(paintworksId);
+        feedBackEntity.setObra(paintworkEntity);
+        persistence.update(feedBackEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el feedBack con id = {0} del paintwork con id = " + paintworksId, feedBackEntity.getId());
+        return feedBackEntity;
+    }
+    
+    /**
+     * Elimina una instancia de feedBack de la base de datos.
+     *
+     * @param feedBacksId Identificador de la instancia a eliminar.
+     * @param paintworksId id del paintwork el cual es padre del feedBack.
+     * @throws BusinessLogicException Si la reseña no esta asociada al paintwork.
+     *
+     */
+    public void deleteFeedBack(Long paintworksId, Long feedBacksId) throws BusinessLogicException
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el feedBack con id = {0} del paintwork con id = " + paintworksId, feedBacksId);
+        FeedBackEntity old = getFeedBack(paintworksId, feedBacksId);
+        if (old == null) {
+            throw new BusinessLogicException("El feedBack con id = " + feedBacksId + " no esta asociado a el paintwork con id = " + paintworksId);
+        }
+        persistence.delete(old.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el feedBack con id = {0} del paintwork con id = " + paintworksId, feedBacksId);
+    }
 }

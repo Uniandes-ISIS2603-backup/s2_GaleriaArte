@@ -22,7 +22,7 @@
 					"raw": " {\r\n \t\"id\" : 1,\r\n \t\"name\" : \"Mala obra\",\r\n \t\"comentario\" : \"Obra mal hecha\"\r\n }"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/feedbacks",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks/1/feedBacks",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -31,7 +31,9 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"feedbacks"
+						"paintworks",
+						"1",
+						"feedBacks"
 					]
 				}
 			},
@@ -47,7 +49,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/feedbacks",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks/1/feedBacks",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -56,7 +58,9 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"feedbacks"
+						"paintworks",
+						"1",
+						"feedBacks"
 					]
 				}
 			},
@@ -72,7 +76,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/feedBacks/1",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks/1/feedBacks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -81,6 +85,8 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
+						"paintworks",
+						"1",
 						"feedBacks",
 						"1"
 					]
@@ -105,7 +111,7 @@
 					"raw": "{\r\n \t\"id\" : 1,\r\n \t\"name\" : \"Buena obra\",\r\n \t\"comentario\" : \"Obra bien hecha\"\r\n }"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/feedBacks/1",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks/1/feedBacks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -114,6 +120,8 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
+						"paintworks",
+						"1",
 						"feedBacks",
 						"1"
 					]
@@ -131,7 +139,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/feedBacks/1",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/paintworks/1/feedBacks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -140,6 +148,8 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
+						"paintworks",
+						"1",
 						"feedBacks",
 						"1"
 					]
