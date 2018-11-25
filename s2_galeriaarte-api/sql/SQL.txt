@@ -1,24 +1,25 @@
-insert into CVENTITY (ID, EDUCATION, FECHANACIMIENTO, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (1, 'Florida Metropolitan University, Tampa College Lakeland', '2018-04-25 00:14:22', 'Info del artista', 'Aongstroemia Moss');
-insert into CVENTITY (ID, EDUCATION, FECHANACIMIENTO, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (2, 'National College of Ireland', '2018-08-20 05:58:39', 'Info del artista', 'Hairy Gumweed');
-insert into CVENTITY (ID, EDUCATION, FECHANACIMIENTO, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (3, 'Duquesne University', '2018-11-15 00:53:58', 'Info del artista', 'Black Garlic');
-insert into CVENTITY (ID, EDUCATION, FECHANACIMIENTO, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (4, 'Ecole Superieur d''Ingenieurs Leonard de Vinci', '2018-10-02 00:46:39', 'Info del artista', 'Plumeless Thistle');
-insert into CVENTITY (ID, EDUCATION, FECHANACIMIENTO, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (5, 'Benson Idahosa University', '2018-07-10 14:53:44', 'Info del artista', 'Forest Johnnyberry');
-insert into CVENTITY (ID, EDUCATION, FECHANACIMIENTO, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (6, 'Universidad de Los Andes', '2018-07-31 09:33:59', 'Info del artista', 'Big-flower Broom');
-insert into CVENTITY (ID, EDUCATION, FECHANACIMIENTO, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (7, 'Ferrum College', '2017-12-08 08:07:51', 'Info del artista', 'Grayleaf Red Raspberry');
-insert into CVENTITY (ID, EDUCATION, FECHANACIMIENTO, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (8, 'Charles Sturt University', '2018-09-20 17:53:41', 'Info del artista', 'Zigzag Silkgrass');
-insert into CVENTITY (ID, EDUCATION, FECHANACIMIENTO, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (9, 'Kobe Design University', '2018-02-17 04:12:09', 'Info del artista', 'Serpentine Fleabane');
-insert into CVENTITY (ID, EDUCATION, FECHANACIMIENTO, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (10, 'University of Bucharest', '2018-03-18 02:03:00', 'Info del artista', 'Massachusetts Blackberry');
 
-insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME, CV_ID) values (1, '2018-06-15 17:26:30', 'H.', 'http://dummyimage.com/170x180.bmp/5fa2dd/ffffff', 'Janella Ison', 2);
-insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME, CV_ID) values (2, '2018-11-15 23:50:12', 'H', 'http://dummyimage.com/121x191.jpg/dddddd/000000', 'Nettie McIleen', 1);
-insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME, CV_ID) values (3, '2018-06-24 05:27:37', 'H', 'http://dummyimage.com/146x107.jpg/5fa2dd/ffffff', 'Julee Palmer', 3);
-insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME, CV_ID) values (4, '2018-03-20 07:54:00', 'H', 'http://dummyimage.com/245x228.bmp/cc0000/ffffff', 'Tobe Verbeek', 6);
-insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME, CV_ID) values (5, '2018-02-19 20:35:46', 'H', 'http://dummyimage.com/204x103.bmp/cc0000/ffffff', 'Valerye Wolfart', 7);
-insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME, CV_ID) values (6, '2018-03-01 20:13:53', 'H', 'http://dummyimage.com/194x181.jpg/5fa2dd/ffffff', 'Stinky Jarrette', 4);
-insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME, CV_ID) values (7, '2018-06-21 10:21:04', 'H', 'http://dummyimage.com/235x167.jpg/5fa2dd/ffffff', 'Silvester Fidele', 8);
-insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME, CV_ID) values (8, '2017-12-04 08:55:29', 'H', 'http://dummyimage.com/153x145.jpg/dddddd/000000', 'Marcie Maultby', 9);
-insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME, CV_ID) values (9, '2018-04-15 00:43:33', 'H', 'http://dummyimage.com/112x156.jpg/5fa2dd/ffffff', 'Ludwig Roughley', 10);
-insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME, CV_ID) values (10, '2018-11-16 22:56:21','H', 'http://dummyimage.com/165x106.bmp/dddddd/000000', 'Opaline Padley', 5);
+insert into CVENTITY (ID, EDUCATION, INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (1, 'Florida Metropolitan University, Tampa College Lakeland',  'Info del artista', 'Aongstroemia Moss');
+insert into CVENTITY (ID, EDUCATION,  INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (2, 'National College of Ireland', 'Info del artista', 'Hairy Gumweed');
+insert into CVENTITY (ID, EDUCATION,  INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (3, 'Duquesne University',  'Info del artista', 'Black Garlic');
+insert into CVENTITY (ID, EDUCATION,  INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (4, 'Ecole Superieur d''Ingenieurs Leonard de Vinci', 'Info del artista', 'Plumeless Thistle');
+insert into CVENTITY (ID, EDUCATION,  INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (5, 'Benson Idahosa University',  'Info del artista', 'Forest Johnnyberry');
+insert into CVENTITY (ID, EDUCATION,  INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (6, 'Universidad de Los Andes', 'Info del artista', 'Big-flower Broom');
+insert into CVENTITY (ID, EDUCATION,  INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (7, 'Ferrum College',  'Info del artista', 'Grayleaf Red Raspberry');
+insert into CVENTITY (ID, EDUCATION,  INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (8, 'Charles Sturt University',  'Info del artista', 'Zigzag Silkgrass');
+insert into CVENTITY (ID, EDUCATION,  INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (9, 'Kobe Design University', 'Info del artista', 'Serpentine Fleabane');
+insert into CVENTITY (ID, EDUCATION,  INFORMACIONADICIONAL, NOMBREOBRAMASCONOCIDA) values (10, 'University of Bucharest',  'Info del artista', 'Massachusetts Blackberry');
+
+insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME) values (1, '2018-06-15 17:26:30', 'H.', 'http://dummyimage.com/170x180.bmp/5fa2dd/ffffff', 'Janella Ison');
+insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME) values (2, '2018-11-15 23:50:12', 'H', 'http://dummyimage.com/121x191.jpg/dddddd/000000', 'Nettie McIleen');
+insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME) values (3, '2018-06-24 05:27:37', 'H', 'http://dummyimage.com/146x107.jpg/5fa2dd/ffffff', 'Julee Palmer');
+insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME) values (4, '2018-03-20 07:54:00', 'H', 'http://dummyimage.com/245x228.bmp/cc0000/ffffff', 'Tobe Verbeek');
+insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME) values (5, '2018-02-19 20:35:46', 'H', 'http://dummyimage.com/204x103.bmp/cc0000/ffffff', 'Valerye Wolfart');
+insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME) values (6, '2018-03-01 20:13:53', 'H', 'http://dummyimage.com/194x181.jpg/5fa2dd/ffffff', 'Stinky Jarrette');
+insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME) values (7, '2018-06-21 10:21:04', 'H', 'http://dummyimage.com/235x167.jpg/5fa2dd/ffffff', 'Silvester Fidele');
+insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME) values (8, '2017-12-04 08:55:29', 'H', 'http://dummyimage.com/153x145.jpg/dddddd/000000', 'Marcie Maultby');
+insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME) values (9, '2018-04-15 00:43:33', 'H', 'http://dummyimage.com/112x156.jpg/5fa2dd/ffffff', 'Ludwig Roughley');
+insert into ARTISTENTITY (ID, BIRTHDATE, DESCRIPTION, IMAGE, NAME) values (10, '2018-11-16 22:56:21','H', 'http://dummyimage.com/165x106.bmp/dddddd/000000', 'Opaline Padley';
 
 
 insert into BUYERENTITY (ID, ADRESS, COUNTRY, CREDITCARD, EMAIL, USUARIO, NAME, PASSWORD, PHONE) values (1, '9214 Wayridge Crossing', 'Philippines', 'error: Access denied to method >.', 'dobal0@a8.net', 'dobal0', 'Drew Obal', 'NoOqJW39iK4a', '851-668-5629');
@@ -52,7 +53,9 @@ insert into CATEGORYENTITY (ID, DESCRIPTION, NAME, OBRA_ID) values (6, 'Honorabl
 insert into CATEGORYENTITY (ID, DESCRIPTION, NAME, OBRA_ID) values (7, 'Dr', 'Comedy', 1);
 insert into CATEGORYENTITY (ID, DESCRIPTION, NAME, OBRA_ID) values (8, 'Mrs', 'Fantasy', 2);
 insert into CATEGORYENTITY (ID, DESCRIPTION, NAME, OBRA_ID) values (9, 'Mr', 'War', 5);
-insert into CATEGORYENTITY (ID, DESCRIPTION, NAME, OBRA_ID) values (10, 'Rev', 'Horror', 6);insert into MEDIOPAGOENTITY (ID, BANK, DESCRIPTION, NUMBER, SALE_ID) values (1, 'Rohan-Marvin', 'Rev', 64, 3);
+insert into CATEGORYENTITY (ID, DESCRIPTION, NAME, OBRA_ID) values (10, 'Rev', 'Horror', 6);
+
+insert into MEDIOPAGOENTITY (ID, BANK, DESCRIPTION, NUMBER) values (1, 'Rohan-Marvin', 'Rev', 64);
 
 insert into MEDIOPAGOENTITY (ID, BANK, DESCRIPTION, NUMBER) values (1, 'Corkery, Mann and Daniel', 'Mrs', 22);
 insert into MEDIOPAGOENTITY (ID, BANK, DESCRIPTION, NUMBER) values (2, 'Donnelly, Blick and Dietrich', 'Dr', 30);

@@ -25,7 +25,6 @@ public class CVEntity extends BaseEntity implements Serializable
     
     private String education;
     
-    private String fechaNacimiento;
     
     private String informacionAdicional;
     
@@ -68,26 +67,6 @@ public class CVEntity extends BaseEntity implements Serializable
     public void setNombreObraMasConocida(String pNombreObraMasConocida)
     {
         this.nombreObraMasConocida = pNombreObraMasConocida;
-    }
-    
-    /**
-     * Retorna la Fecha de nacimiento del artista
-     *
-     * @return Fecha de nacimiento del artista
-     */
-    public String getFechaNacimiento()
-    {
-        return fechaNacimiento;
-    }
-    
-    /**
-     * Modifica la Fecha de nacimiento del artista
-     *
-     * @param fechaNacimiento
-     */
-    public void setFechaNacimiento(String fechaNacimiento)
-    {
-        this.fechaNacimiento = fechaNacimiento;
     }
     
     /**

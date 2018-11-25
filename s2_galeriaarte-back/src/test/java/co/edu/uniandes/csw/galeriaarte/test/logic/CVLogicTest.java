@@ -123,7 +123,7 @@ public class CVLogicTest
         CVEntity entity = em.find(CVEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getEducation(), entity.getEducation());
-        Assert.assertEquals(newEntity.getFechaNacimiento(), entity.getFechaNacimiento());
+     
         Assert.assertEquals(newEntity.getInformacionAdicional(), entity.getInformacionAdicional());
         Assert.assertEquals(newEntity.getNombreObraMasConocida(), entity.getNombreObraMasConocida());
         
@@ -164,7 +164,7 @@ public class CVLogicTest
         
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getEducation(), resultEntity.getEducation());
-        Assert.assertEquals(entity.getFechaNacimiento(), resultEntity.getFechaNacimiento());
+       
         Assert.assertEquals(entity.getInformacionAdicional(), resultEntity.getInformacionAdicional());
         Assert.assertEquals(entity.getId(), resultEntity.getId());
     }
@@ -188,7 +188,7 @@ public class CVLogicTest
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(pojoEntity.getId(), resultEntity.getId());
         Assert.assertEquals(pojoEntity.getEducation(), resultEntity.getEducation());
-        Assert.assertEquals(pojoEntity.getFechaNacimiento(), resultEntity.getFechaNacimiento());
+    
         Assert.assertEquals(pojoEntity.getInformacionAdicional(), resultEntity.getInformacionAdicional());
         
     }

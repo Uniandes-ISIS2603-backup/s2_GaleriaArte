@@ -56,7 +56,7 @@ public class CVDTO implements Serializable
         {
             this.id = cvEntity.getId();
             this.education = cvEntity.getEducation();
-            this.fechaNacimiento = cvEntity.getFechaNacimiento();
+       
             this.informacionAdicional = cvEntity.getInformacionAdicional();
             this.nombreObraMasConocida= cvEntity.getNombreObraMasConocida();
         }
@@ -162,7 +162,7 @@ public class CVDTO implements Serializable
         CVEntity cv = new CVEntity();
         cv.setId(this.id);
         cv.setEducation(this.education);
-        cv.setFechaNacimiento(this.fechaNacimiento);
+      
         cv.setInformacionAdicional(this.informacionAdicional);
         cv.setNombreObraMasConocida(this.nombreObraMasConocida);
         

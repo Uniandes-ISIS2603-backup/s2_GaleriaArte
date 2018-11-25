@@ -39,7 +39,7 @@ public class CVLogic
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cv");
         
-        if ( cvEntity.getEducation() != null && cvEntity.getFechaNacimiento() != null && cvEntity.getInformacionAdicional() != null   )
+        if ( cvEntity.getEducation() != null &&  cvEntity.getInformacionAdicional() != null   )
         {
             persistence.create(cvEntity);
             LOGGER.log(Level.INFO, "Termina proceso de creación del cv");
