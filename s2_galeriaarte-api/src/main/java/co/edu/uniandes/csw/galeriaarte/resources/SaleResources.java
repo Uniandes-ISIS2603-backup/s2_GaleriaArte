@@ -49,15 +49,15 @@ public class SaleResources
      * Error de lógica que se genera cuando ya existe el metodo de pago con el mismo id.
      */
     @POST
-    public SaleDTO createSale(SaleDTO Sale) throws BusinessLogicException
+    public void createSale(SaleDTO Sale) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "SaleResource createSale: input: {0}", Sale.toString());
         SaleEntity SaleEntity = Sale.toEntity();
-        SaleEntity nuevoSaleEntity = SaleLogic.createSale(SaleEntity);
+        //SaleEntity nuevoSaleEntity = SaleLogic.createSale(SaleEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        SaleDTO nuevoSaleDTO = new SaleDTO(nuevoSaleEntity);
-        LOGGER.log(Level.INFO, "SaleResource createSale: output: {0}", nuevoSaleDTO.toString());
-        return nuevoSaleDTO;
+//        SaleDTO nuevoSaleDTO = new SaleDTO(nuevoSaleEntity);
+       // LOGGER.log(Level.INFO, "SaleResource createSale: output: {0}", nuevoSaleDTO.toString());
+      //return nuevoSaleDTO;
     }
     
     /**
