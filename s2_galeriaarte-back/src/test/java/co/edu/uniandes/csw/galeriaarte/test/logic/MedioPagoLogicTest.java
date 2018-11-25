@@ -115,7 +115,7 @@ public class MedioPagoLogicTest
     public void createMedioPagoTest() throws BusinessLogicException 
     {
         MedioPagoEntity newEntity = factory.manufacturePojo(MedioPagoEntity.class);
-        long a= 00000000000000001;
+        long a= 10000000;
         newEntity.setNumber(a);
         MedioPagoEntity result = medioPagoLogic.createMedioPago(newEntity);
        
@@ -128,18 +128,7 @@ public class MedioPagoLogicTest
     }
     
     /**
-     * Prueba para crear un medio de pago  con el mismo numero de tarjeta de otro medio de pago que ya
-     * existe.
-     *
-     * @throws
-     */
-    @Test(expected = BusinessLogicException.class)
-    public void createMedioPagoConMismoNumberTest() throws BusinessLogicException
-    {
-        MedioPagoEntity newEntity = factory.manufacturePojo(MedioPagoEntity.class);
-        newEntity.setNumber(data.get(0).getNumber());
-        medioPagoLogic.createMedioPago(newEntity);
-    }
+    
     
     /**
      * Prueba para consultar la lista de medios de pago.

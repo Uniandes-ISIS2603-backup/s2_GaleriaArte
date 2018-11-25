@@ -5,9 +5,13 @@
  */
 package co.edu.uniandes.csw.galeriaarte.ejb;
 
+import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.galeriaarte.persistence.ArtistPersistence;
 import co.edu.uniandes.csw.galeriaarte.persistence.SalePersistence;
+import co.edu.uniandes.csw.galeriaarte.persistence.BuyerPersistence;
+import co.edu.uniandes.csw.galeriaarte.persistence.PaintworkPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,17 +28,38 @@ public class SaleLogic
     private static final Logger LOGGER= Logger.getLogger(SaleLogic.class.getName());
     @Inject 
     private SalePersistence persistence;
+    
+    @Inject
+    private ArtistPersistence artistPersistence ;
+    
+    @Inject
+    private BuyerPersistence buyerPersistence ;
+    
+    @Inject
+    private PaintworkPersistence paintworkPersistence ;
 /**
  *
  * crea una compra siguiendo las reglas de negocio, una compra debe tener un artista, un comprador y una obra asociada, el precio de venta debe ser mayor 
  * a cero
  */
-    public SaleEntity createSale(SaleEntity saleEntity) throws BusinessLogicException
+    public SaleEntity createSale(SaleEntity saleEntity, long artistId, long buyerId, long paintworkId) throws BusinessLogicException
     {
         
-        SaleEntity newSale= persistence.create(saleEntity);
-        LOGGER.log(Level.INFO, "Termina el proceso de creacion de la venta");
-        return newSale;
+        LOGGER.log(Level.INFO, "Inicia proceso de creación del cv");
+       saleEntity.setArtist(artistPersistence.find(artistId));
+       saleEntity.setBuyer(buyerPersistence.find(buyerId));
+       
+        if ( saleEntity.getPrice() > 0 &&  saleEntity.getArtist() != null &&saleEntity.getBuyer()!=null&&saleEntity.getObra()!=null)
+        {
+            persistence.create(saleEntity);
+            LOGGER.log(Level.INFO, "Termina proceso de creación del cv");
+            return saleEntity;
+        }
+        else
+        {
+            LOGGER.log(Level.INFO, "No se termino la creacion porque los datos no eran validos");
+            throw new BusinessLogicException("No pueden haber campos nulos\"" );
+        }
     }
     
     
