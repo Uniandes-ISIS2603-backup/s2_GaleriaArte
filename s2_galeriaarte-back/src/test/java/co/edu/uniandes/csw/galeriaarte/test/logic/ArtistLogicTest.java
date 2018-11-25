@@ -14,11 +14,6 @@ import java.util.Random;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -121,6 +116,7 @@ public class ArtistLogicTest
         Assert.assertEquals(newEntity.getBirthDate(), entity.getBirthDate());
         Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getImage(), entity.getImage());
     }
     
     /**
@@ -152,8 +148,8 @@ public class ArtistLogicTest
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getDescription(), resultEntity.getDescription());
-      
-        
+         Assert.assertEquals(entity.getImage(), resultEntity.getImage());
+         Assert.assertEquals(entity.getBirthDate(), resultEntity.getBirthDate());
     }
     
     /**
@@ -168,13 +164,15 @@ public class ArtistLogicTest
         ArtistEntity pojoEntity = factory.manufacturePojo(ArtistEntity.class);
         
         pojoEntity.setId(entity.getId());
-        
+        pojoEntity.setName(entity.getName());
         artistLogic.updateArtist(pojoEntity);
         
         ArtistEntity resp = em.find(ArtistEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getDescription(), resp.getDescription());
+              Assert.assertEquals(pojoEntity.getImage(), resp.getImage());
+         Assert.assertEquals(pojoEntity.getBirthDate(), resp.getBirthDate());
         
         
     }

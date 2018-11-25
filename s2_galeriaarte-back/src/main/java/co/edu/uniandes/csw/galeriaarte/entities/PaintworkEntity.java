@@ -7,13 +7,15 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author estudiante y ja.penat
  */
 @Entity
 public class PaintworkEntity extends BaseEntity implements Serializable
@@ -26,26 +28,32 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     private Boolean verificacionObra;
     private String  imagePath;
     private String  videoPath;
+   
     @PodamExclude
-    @OneToMany
+    @OneToOne(mappedBy="obra", fetch=FetchType.LAZY)
     private Collection<KindEntity> kind;
     
     @PodamExclude
-    @OneToMany
+    @OneToOne(mappedBy="obra", fetch=FetchType.LAZY)
     private Collection<CategoryEntity> category;
     
     @PodamExclude
-    @OneToMany
+    @OneToOne(mappedBy="obra", fetch=FetchType.LAZY)
     private Collection<FeedBackEntity> feedback;
     
     @PodamExclude
     @ManyToOne
     private BuyerEntity buyer;
 
+    @PodamExclude
+    @ManyToOne
+    private ArtistEntity artist;
+    
     /**
      * @return the name
      */
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
@@ -195,6 +203,20 @@ public class PaintworkEntity extends BaseEntity implements Serializable
      */
     public void setBuyer(BuyerEntity buyer) {
         this.buyer = buyer;
+    }
+
+    /**
+     * @return the artist
+     */
+    public ArtistEntity getArtist() {
+        return artist;
+    }
+
+    /**
+     * @param artist the artist to set
+     */
+    public void setArtist(ArtistEntity artist) {
+        this.artist = artist;
     }
 
 

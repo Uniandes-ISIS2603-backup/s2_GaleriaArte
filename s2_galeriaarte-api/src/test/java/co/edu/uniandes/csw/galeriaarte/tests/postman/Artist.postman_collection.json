@@ -17,7 +17,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\" : 100,\n    \"name\" : \"Anderson Cooper\",   \n    \"image\": \"Imagen1\"\n}"
+					"raw": "{\n        \"birthDate\": \"2018-06-15T00:00:00-05:00\",\n        \"description\": \"J.\",\n        \"id\": 1,\n        \"image\": \"http://dummyimage.com/170x180.bmp/5fa2dd/ffffff\",\n        \"name\": \"Julio Pena\"\n    }"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists",
@@ -98,7 +98,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\" : 100,\n    \"name\" : \"Anderson Restrepo\",   \n    \"image\": \"Imagen2\"\n}"
+					"raw": "{\n    \"birthDate\": \"2018-06-15T00:00:00-05:00\",\n    \"description\": \"Actualizacion de prueba\",\n    \"id\": 1,\n    \"image\": \"no hay imagen\",\n    \"name\": \"Julio Peña\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists/1",

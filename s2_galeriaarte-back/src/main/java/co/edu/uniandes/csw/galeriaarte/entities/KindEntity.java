@@ -21,7 +21,7 @@ public class KindEntity extends BaseEntity implements Serializable
     
     @PodamExclude
     @ManyToOne
-    private PaintworkEntity paintwork;
+    private PaintworkEntity obra;
     /**
      * Nombre
      */
@@ -57,12 +57,12 @@ public class KindEntity extends BaseEntity implements Serializable
         this.description = description;
     }
     
-    public PaintworkEntity getPaintwork()
+    public PaintworkEntity getObra()
     {
-        return this.paintwork;
+        return this.obra;
     }
-    public void setPaintwor(PaintworkEntity pP)
+    public void setObra(PaintworkEntity pObra)
     {
-        this.paintwork=pP;
+        this.obra=pObra;
     }
 }

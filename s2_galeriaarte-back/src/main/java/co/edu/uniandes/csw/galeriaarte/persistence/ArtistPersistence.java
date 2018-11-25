@@ -104,4 +104,6 @@ public class ArtistPersistence {
         Es similar a "delete from ArtistEntity where id=id;" - "DELETE FROM table_name WHERE condition;" en SQL.*/
         em.remove(artistEntity);
     }
+    
+   
 }

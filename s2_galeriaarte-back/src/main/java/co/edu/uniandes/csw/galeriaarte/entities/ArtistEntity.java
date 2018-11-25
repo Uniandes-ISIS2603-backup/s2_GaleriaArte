@@ -46,7 +46,8 @@ public class ArtistEntity extends BaseEntity implements Serializable
      *
      * @return the name
      */
-    public String getName() {
+    public String getName() 
+    {
         return name;
     }
 
@@ -55,7 +56,8 @@ public class ArtistEntity extends BaseEntity implements Serializable
      *
      * @param name the name to set
      */
-    public void setName(String name) {
+    public void setName(String name) 
+    {
         this.name = name;
     }
 

@@ -19,6 +19,7 @@ public class CategoryEntity extends BaseEntity implements Serializable{
     
     private String name;
     private String Description;
+    
     @PodamExclude
     @ManyToOne
     private PaintworkEntity obra;
