@@ -172,7 +172,7 @@ public class CVLogicTest
     public void getCVTest()
     {
         CVEntity entity = data.get(0);
-        CVEntity resultEntity = cvLogic.getCV(dataArtist.get(0).getId(),entity.getId());
+        CVEntity resultEntity = cvLogic.getCV(dataArtist.get(0).getId());
         
         Assert.assertNotNull(resultEntity);
         
@@ -218,7 +218,7 @@ public class CVLogicTest
     public void deleteCVTest() throws BusinessLogicException
     {
         CVEntity entity = data.get(0);
-        cvLogic.deleteCV(dataArtist.get(0).getId(), entity.getId());
+        cvLogic.deleteCV(dataArtist.get(0).getId());
         CVEntity deleted = em.find(CVEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

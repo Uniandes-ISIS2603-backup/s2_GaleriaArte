@@ -105,10 +105,12 @@ ArtistLogic artistLogic;
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la artista a
      * actualizar.
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @PUT
     @Path("{artistsId: \\d+}")
-    public ArtistDTO updateArtist(@PathParam("artistsId") Long artistId, ArtistDTO artistdto) throws WebApplicationException {
+    public ArtistDTO updateArtist(@PathParam("artistsId") Long artistId, ArtistDTO artistdto) throws WebApplicationException, BusinessLogicException 
+    {
         LOGGER.log(Level.INFO, "ArtistResource updateArtist: input: id:{0} , Artist: {1}", new Object[]{artistId, artistdto.toString()});
         artistdto.setId(artistId);
         if (artistLogic.getArtist(artistId) == null) {
@@ -138,6 +140,30 @@ ArtistLogic artistLogic;
         }
         artistLogic.deleteArtist(artistId);
         LOGGER.info("ArtistResource updateArtist: output: void");
+    }
+    
+    
+    /**
+     * Conexión con el servicio de hojas de vida para un artista. {@link ArtistResources}
+     *
+     * Este método conecta la ruta de /artists con las rutas de /cv que
+     * dependen del cv, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de las hojas de vida.
+     *
+     * @param artistId El ID del artista con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de hoja de vida para ese libro en paricular.\
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el artist.
+     */
+    @Path("{artistsId: \\d+}/cvs")
+    public Class<CVResources> getCVResources(@PathParam("artistsId") Long artistId) 
+    {
+        if (artistLogic.getArtist(artistId) == null)
+        {
+            throw new WebApplicationException("El recurso /artists/" + artistId + "/cv no existe.", 404);
+        }
+        return CVResources.class;
     }
 
     /**

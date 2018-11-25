@@ -22,7 +22,7 @@
 					"raw": "{\n\t\"id\" : 1,\n\t\"education\" : \"Universidad de los Andes\",\n\t\"nombreObraMasConocida\" : \"Escultura del bobo\",\n\t\"fechaNacimiento\" : \"19-Ago-1998\",\n\t\"informacionAdicional\" : \"Programador de medio tiempo\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists/1/cvs",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -31,32 +31,9 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"CVs"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener Hojas de Vida",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s2_galeriaarte-api",
-						"api",
-						"CVs"
+						"artists",
+						"1",
+						"cvs"
 					]
 				}
 			},
@@ -72,7 +49,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs/1",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists/1/cvs",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -81,8 +58,9 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"CVs",
-						"1"
+						"artists",
+						"1",
+						"cvs"
 					]
 				}
 			},
@@ -105,7 +83,7 @@
 					"raw": "{\n\t\"id\" : 1,\n\t\"education\" : \"Universidad Nacional\",\n\t\"nombreObraMasConocida\" : \"Edificio de Arquitectura\",\n\t\"fechaNacimiento\" : \"01-Jan-1999\",\n\t\"informacionAdicional\" : \"Ninguna\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs/1",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists/1/cvs/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -114,7 +92,9 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"CVs",
+						"artists",
+						"1",
+						"cvs",
 						"1"
 					]
 				}
@@ -131,7 +111,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_galeriaarte-api/api/CVs/1",
+					"raw": "http://localhost:8080/s2_galeriaarte-api/api/artists/1/cvs/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -140,7 +120,9 @@
 					"path": [
 						"s2_galeriaarte-api",
 						"api",
-						"CVs",
+						"artists",
+						"1",
+						"cvs",
 						"1"
 					]
 				}

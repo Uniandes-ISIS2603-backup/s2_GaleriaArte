@@ -46,8 +46,13 @@ public class CVLogic
     public CVEntity createCV(Long artistId, CVEntity cvEntity) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cv");
+        ArtistEntity artista = artistPersistence.find(artistId);
         cvEntity.setArtist(artistPersistence.find(artistId));
-        if ( cvEntity.getEducation() != null &&  cvEntity.getInformacionAdicional() != null   )
+        if(artista.getCV() != null)
+        {
+            throw  new BusinessLogicException("El artista ya tiene una hoja de vida asociada");
+        }
+        else if ( cvEntity.getEducation() != null &&  cvEntity.getInformacionAdicional() != null   )
         {
             persistence.create(cvEntity);
             LOGGER.log(Level.INFO, "Termina proceso de creación del cv");
@@ -74,16 +79,15 @@ public class CVLogic
     }
     /**
      * Obtener un cv por medio de su id.
-     * @param artistId id del artista asociado a la hoja de vida
-     * @param cvID: id del cv para ser buscado.
+     * @param artistId id del artista asociado a la hoja de vida.
      * @return cv solicitado por medio del id de su artista.
      */
-    public CVEntity getCV(Long artistId, Long cvID) 
+    public CVEntity getCV(Long artistId) 
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el cv con id = {0}", cvID);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la hoja de vida");
         // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         ArtistEntity artista = artistPersistence.find(artistId);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar la obra con id = {0}", cvID);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la hoja de vida");
         return artista.getCV();
     }
     
@@ -109,20 +113,19 @@ public class CVLogic
  /**
      * Elimina una instancia de CV de la base de datos.
      *
-     * @param cvId Identificador de la instancia a eliminar.
      * @param artistId id del artista el cual es padre del CV.
      * @throws BusinessLogicException Si la reseña no esta asociada al libro.
      *
      */
-    public void deleteCV(Long artistId, Long cvId) throws BusinessLogicException 
+    public void deleteCV(Long artistId) throws BusinessLogicException 
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el CV con id = {0} del artista con id = " + cvId, artistId);
-        CVEntity old = getCV(artistId, cvId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la hoja de vida del artista con id = " , artistId);
+        CVEntity old = getCV(artistId);
         if (old == null) 
         {
-            throw new BusinessLogicException("La hojo de vida  con id = " + cvId + " no esta asociado al artista con id = " + artistId);
+            throw new BusinessLogicException("La hojo de vida  del artista con id = " + artistId + "no existe");
         }
         persistence.delete(old.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la hoja de vida con id = {0} del artista con id = " + cvId, artistId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la hoja de vida para el artista del artista con id = " , artistId);
     }
 }
