@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.galeriaarte.dtos;
 
 import java.io.Serializable;
 import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
-//import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -68,7 +67,7 @@ public class BuyerDTO implements Serializable {
         BuyerEntity entidad = new BuyerEntity();
         entidad.setAdress(this.adress);
         entidad.setCountry(this.country);
-        entidad.setCreditCard(this.getCreditcard());
+        entidad.setCreditCard(this.creditcard);
         entidad.setEmail(this.email);
         entidad.setName(this.name);
         entidad.setPassword(this.password);
@@ -153,18 +152,13 @@ public class BuyerDTO implements Serializable {
     * @return tarjeta de credito del usuario 
     */
     
-    public String getCreditCard(){
-        return getCreditcard();
-    }
+  
     
     /**
      * @param newCreditCard
      */
     
-    public void setCreditCard(String newCreditCard){
-        
-        setCreditcard(newCreditCard);
-    }
+    
     
     /**
      * 
@@ -222,14 +216,14 @@ public class BuyerDTO implements Serializable {
     /**
      * @return the creditcard
      */
-    public String getCreditcard() {
+    public String getCreditCard() {
         return creditcard;
     }
 
     /**
      * @param creditcard the creditcard to set
      */
-    public void setCreditcard(String creditcard) {
+    public void setCreditCard(String creditcard) {
         this.creditcard = creditcard;
     }
 
