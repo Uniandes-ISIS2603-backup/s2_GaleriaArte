@@ -1,3 +1,4 @@
+
 package co.edu.uniandes.csw.galeriaarte.dtos;
 import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
 import java.io.Serializable;

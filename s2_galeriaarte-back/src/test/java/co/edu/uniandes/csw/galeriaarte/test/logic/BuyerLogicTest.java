@@ -97,7 +97,7 @@ public class BuyerLogicTest
         for (int i = 0; i < 3; i++) {
             BuyerEntity entity = factory.manufacturePojo(BuyerEntity.class);
             em.persist(entity);
-            entity.setPaintwork(new ArrayList());
+            entity.setPaintworks(new ArrayList());
             data.add(entity);
         }
         

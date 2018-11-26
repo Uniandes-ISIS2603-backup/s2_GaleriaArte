@@ -26,6 +26,8 @@ public class BuyerDTO implements Serializable {
     private String creditcard;
     private String country;
     private long id; 
+   
+    
     
     
     public BuyerDTO(){
@@ -51,9 +53,8 @@ public class BuyerDTO implements Serializable {
             this.password = buyerEntity.getPassword();
             this.phone = buyerEntity.getPhone();
             this.id = buyerEntity.getId();
- 
             
-           
+   
         }
     }
     

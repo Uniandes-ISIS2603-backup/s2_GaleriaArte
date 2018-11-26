@@ -29,11 +29,11 @@ public class BuyerEntity extends BaseEntity implements Serializable
     private String country;
     
     @PodamExclude
-    @OneToMany//(mappedBy = "buyer",fetch=FetchType.LAZY)
-    private List<SaleEntity> sale;
+    @OneToMany(mappedBy = "buyer")
+    private List<SaleEntity> sales;
     @PodamExclude
-    @OneToMany
-    private List<PaintworkEntity> paintwork;
+    @OneToMany (mappedBy = "buyer")
+    private List<PaintworkEntity> paintworks;
     private String adress;
     
     public BuyerEntity(){
@@ -73,13 +73,13 @@ public class BuyerEntity extends BaseEntity implements Serializable
     
 
     
-    public List<SaleEntity> getSale(){
-        return sale;
+    public List<SaleEntity> getSales(){
+        return sales;
     }
 
     
-    public List<PaintworkEntity> getPaintwork( ){
-        return paintwork;
+    public List<PaintworkEntity> getPaintworks( ){
+        return paintworks;
     }    
 
     public void setAdress(String nAdress){
@@ -106,12 +106,12 @@ public class BuyerEntity extends BaseEntity implements Serializable
     }
     
     
-    public void setPaintwork(List<PaintworkEntity> nPaintwork){
-        paintwork = nPaintwork;
+    public void setPaintworks(List<PaintworkEntity> nPaintwork){
+        paintworks = nPaintwork;
     }
     
-    public void setSale(List<SaleEntity> pSale){
-        sale = pSale;
+    public void setSales(List<SaleEntity> pSale){
+        sales = pSale;
     }
 
     /**
