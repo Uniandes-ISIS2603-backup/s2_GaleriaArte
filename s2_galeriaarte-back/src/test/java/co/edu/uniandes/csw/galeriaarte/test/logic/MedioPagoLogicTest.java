@@ -110,6 +110,7 @@ public class MedioPagoLogicTest
     /**
      * Prueba para crear un medio de pago
      *
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @Test
     public void createMedioPagoTest() throws BusinessLogicException 
