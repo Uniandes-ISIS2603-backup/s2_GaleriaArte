@@ -7,6 +7,7 @@
 package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -21,7 +22,7 @@ public class KindEntity extends BaseEntity implements Serializable
     
     @PodamExclude
     @ManyToMany
-    private PaintworkEntity obra;
+    private List<PaintworkEntity> obra;
     /**
      * Nombre
      */
@@ -56,13 +57,22 @@ public class KindEntity extends BaseEntity implements Serializable
     {
         this.description = description;
     }
+
+    /**
+     * @return the obra
+     */
+    public List<PaintworkEntity> getObra() 
+    {
+        return obra;
+    }
+
+    /**
+     * @param obra the obra to set
+     */
+    public void setObra(List<PaintworkEntity> obra) 
+    {
+        this.obra = obra;
+    }
     
-    public PaintworkEntity getObra()
-    {
-        return this.obra;
-    }
-    public void setObra(PaintworkEntity pObra)
-    {
-        this.obra=pObra;
-    }
+  
 }

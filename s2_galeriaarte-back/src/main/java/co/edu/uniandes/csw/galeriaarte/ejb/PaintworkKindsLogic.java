@@ -5,8 +5,13 @@
  */
 package co.edu.uniandes.csw.galeriaarte.ejb;
 
+import co.edu.uniandes.csw.galeriaarte.entities.KindEntity;
+import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
+import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.KindPersistence;
 import co.edu.uniandes.csw.galeriaarte.persistence.PaintworkPersistence;
+import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -26,96 +31,107 @@ public class PaintworkKindsLogic
     private KindPersistence kindPersistence;
 
     @Inject
-    private PaintworkPersistence authorPersistence;
+    private PaintworkPersistence paintworkPersistence;
 
     /**
-     * Asocia un Book existente a un Author
+     * Asocia un kind  existente a un Paintwork
      *
-     * @param authorsId Identificador de la instancia de Author
-     * @param booksId Identificador de la instancia de Book
-     * @return Instancia de BookEntity que fue asociada a Author
+     * @param paintworksId Identificador de la instancia de 
+     * @param kindsId Identificador de la instancia de kind
+     * @return Instancia de kindEntity que fue asociada a paintwork
      */
-    public BookEntity addBook(Long authorsId, Long booksId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociarle un libro al autor con id = {0}", authorsId);
-        AuthorEntity authorEntity = authorPersistence.find(authorsId);
-        BookEntity bookEntity = bookPersistence.find(booksId);
-        bookEntity.getAuthors().add(authorEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociarle un libro al autor con id = {0}", authorsId);
-        return bookPersistence.find(booksId);
+    public KindEntity addKind(Long paintworksId, Long kindsId) 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociarle un tipo al obra con id = {0}", paintworksId);
+        PaintworkEntity paintworkEntity = paintworkPersistence.find(paintworksId);
+        KindEntity kindEntity = kindPersistence.find(kindsId);
+        kindEntity.getObra().add(paintworkEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de asociarle un tipo al obra con id = {0}", paintworksId);
+        return kindPersistence.find(kindsId);
     }
 
     /**
-     * Obtiene una colección de instancias de BookEntity asociadas a una
-     * instancia de Author
+     * Obtiene una colección de instancias de kindEntity asociadas a una
+     * instancia de paintwork
      *
-     * @param authorsId Identificador de la instancia de Author
-     * @return Colección de instancias de BookEntity asociadas a la instancia de
-     * Author
+     * @param paintworksId Identificador de la instancia de paintwork
+     * @return Colección de instancias de kindEntity asociadas a la instancia de
+     * paintwork
      */
-    public List<BookEntity> getBooks(Long authorsId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros del autor con id = {0}", authorsId);
-        return authorPersistence.find(authorsId).getBooks();
+    public List<KindEntity> getKinds(Long paintworksId) 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los tipos del obra con id = {0}", paintworksId);
+        return paintworkPersistence.find(paintworksId).getKind();
     }
 
     /**
-     * Obtiene una instancia de BookEntity asociada a una instancia de Author
+     * Obtiene una instancia de kindEntity asociada a una instancia de paintwork
      *
-     * @param authorsId Identificador de la instancia de Author
-     * @param booksId Identificador de la instancia de Book
-     * @return La entidadd de Libro del autor
-     * @throws BusinessLogicException Si el libro no está asociado al autor
+     * @param paintworksId Identificador de la instancia de paintwork
+     * @param kindsId Identificador de la instancia de kind
+     * @return La entidadd de tipo del obra
+     * @throws BusinessLogicException Si el tipo no está asociado al obra
      */
-    public BookEntity getBook(Long authorsId, Long booksId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0} del autor con id = " + authorsId, booksId);
-        List<BookEntity> books = authorPersistence.find(authorsId).getBooks();
-        BookEntity bookEntity = bookPersistence.find(booksId);
-        int index = books.indexOf(bookEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el libro con id = {0} del autor con id = " + authorsId, booksId);
-        if (index >= 0) {
-            return books.get(index);
+    public KindEntity getKind(Long paintworksId, Long kindsId) throws BusinessLogicException 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el tipo con id = {0} del obra con id = " + paintworksId, kindsId);
+        List<KindEntity> kinds = paintworkPersistence.find(paintworksId).getKind();
+        KindEntity kindEntity = kindPersistence.find(kindsId);
+        int index = kinds.indexOf(kindEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el tipo con id = {0} del obra con id = " + paintworksId, kindsId);
+        if (index >= 0)
+        {
+            return kinds.get(index);
         }
-        throw new BusinessLogicException("El libro no está asociado al autor");
+        throw new BusinessLogicException("El tipo no está asociado al obra");
     }
 
     /**
-     * Remplaza las instancias de Book asociadas a una instancia de Author
+     * Remplaza las instancias de kind asociadas a una instancia de paintwork
      *
-     * @param authorId Identificador de la instancia de Author
-     * @param books Colección de instancias de BookEntity a asociar a instancia
-     * de Author
-     * @return Nueva colección de BookEntity asociada a la instancia de Author
+     * @param paintworkId Identificador de la instancia de paintwork
+     * @param kinds Colección de instancias de kindEntity a asociar a instancia
+     * de paintwork
+     * @return Nueva colección de kindEntity asociada a la instancia de paintwork
      */
-    public List<BookEntity> replaceBooks(Long authorId, List<BookEntity> books) {
-        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los libros asocidos al author con id = {0}", authorId);
-        AuthorEntity authorEntity = authorPersistence.find(authorId);
-        List<BookEntity> bookList = bookPersistence.findAll();
-        for (BookEntity book : bookList) {
-            if (books.contains(book)) {
-                if (!book.getAuthors().contains(authorEntity)) {
-                    book.getAuthors().add(authorEntity);
+    public List<KindEntity> replaceKinds(Long paintworkId, List<KindEntity> kinds) 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los tipos asocidos al paintwork con id = {0}", paintworkId);
+        PaintworkEntity paintworkEntity = paintworkPersistence.find(paintworkId);
+        List<KindEntity> kindList = kindPersistence.findAll();
+        for (KindEntity kind : kindList)
+        {
+            if (kinds.contains(kind)) 
+            {
+                if (!kind.getObra().contains(paintworkEntity)) 
+                {
+                    kind.getObra().add(paintworkEntity);
                 }
-            } else {
-                book.getAuthors().remove(authorEntity);
+            } 
+            else 
+            {
+                kind.getObra().remove(paintworkEntity);
             }
         }
-        authorEntity.setBooks(books);
-        LOGGER.log(Level.INFO, "Termina proceso de reemplazar los libros asocidos al author con id = {0}", authorId);
-        return authorEntity.getBooks();
+        paintworkEntity.setKind(kinds);
+        LOGGER.log(Level.INFO, "Termina proceso de reemplazar los tipos asocidos al paintwork con id = {0}", paintworkId);
+        return paintworkEntity.getKind();
     }
 
     /**
-     * Desasocia un Book existente de un Author existente
+     * Desasocia un kind existente de un paintwork existente
      *
-     * @param authorsId Identificador de la instancia de Author
-     * @param booksId Identificador de la instancia de Book
+     * @param paintworksId Identificador de la instancia de paintwork
+     * @param kindsId Identificador de la instancia de kind
      */
-    public void removeBook(Long authorsId, Long booksId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un libro del author con id = {0}", authorsId);
-        AuthorEntity authorEntity = authorPersistence.find(authorsId);
-        BookEntity bookEntity = bookPersistence.find(booksId);
-        bookEntity.getAuthors().remove(authorEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar un libro del author con id = {0}", authorsId);
+    public void removeKind(Long paintworksId, Long kindsId)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un tipo del paintwork con id = {0}", paintworksId);
+        PaintworkEntity paintworkEntity = paintworkPersistence.find(paintworksId);
+        KindEntity kindEntity = kindPersistence.find(kindsId);
+        kindEntity.getObra().remove(paintworkEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar un tipo del paintwork con id = {0}", paintworksId);
     }
 }
     
-}
+

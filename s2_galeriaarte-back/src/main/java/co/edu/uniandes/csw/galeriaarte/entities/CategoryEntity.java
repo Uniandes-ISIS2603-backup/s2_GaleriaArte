@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -22,7 +23,7 @@ public class CategoryEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @ManyToMany
-    private PaintworkEntity obra;
+    private List<PaintworkEntity> obra;
 
     /**
      * @return the name
@@ -55,16 +56,18 @@ public class CategoryEntity extends BaseEntity implements Serializable{
     /**
      * @return the obra
      */
-    public PaintworkEntity getObra() {
+    public List<PaintworkEntity> getObra() {
         return obra;
     }
 
     /**
      * @param obra the obra to set
      */
-    public void setObra(PaintworkEntity obra) {
+    public void setObra(List<PaintworkEntity> obra) {
         this.obra = obra;
     }
+
+   
     
     
 }
