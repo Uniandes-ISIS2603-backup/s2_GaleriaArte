@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -34,11 +35,11 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     private List<KindEntity> kind;
     
     @PodamExclude
-    @OneToMany(mappedBy="obra", fetch=FetchType.LAZY)
+    @ManyToMany(mappedBy="obra", fetch=FetchType.LAZY)
     private List<CategoryEntity> category;
     
     @PodamExclude
-    @OneToMany(mappedBy="obra", fetch=FetchType.LAZY)
+    @ManyToMany(mappedBy="obra", fetch=FetchType.LAZY)
     private List<FeedBackEntity> feedback;
     
     @PodamExclude

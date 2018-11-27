@@ -18,7 +18,8 @@ import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
  *
  * @author estudiante
  */
-public class BuyerPaintworksLogic {
+public class BuyerPaintworksLogic
+{
     
      private static final Logger LOGGER = Logger.getLogger(BuyerPaintworksLogic.class.getName());
 

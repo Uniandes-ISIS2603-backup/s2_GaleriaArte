@@ -6,14 +6,13 @@
 package co.edu.uniandes.csw.galeriaarte.resources;
 import co.edu.uniandes.csw.galeriaarte.dtos.PaintworkDTO;
 import co.edu.uniandes.csw.galeriaarte.dtos.PaintworkDetailDTO;
-import co.edu.uniandes.csw.galeriaarte.ejb.BuyerLogic;
 import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
 import co.edu.uniandes.csw.galeriaarte.ejb.BuyerPaintworksLogic;
 import co.edu.uniandes.csw.galeriaarte.ejb.PaintworkLogic;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;

@@ -15,59 +15,7 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-/**
- * Clase que extiende de {@link PaintworkDTO} para manejar las relaciones entre los
- * FeedbackDTO y otros DTOs. Para conocer el contenido de un paintwork vaya a la
- * documentacion de {@link PaintworkDTO}
- *
- * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
- * <pre>
- *   {
- *      "id": number,
- *      "name": string,
- *      "birthDate": date,
- *      "image": string,
- *      "books": [{@link BookDTO}]
- *   }
- * </pre> Por ejemplo un autor se representa asi:<br>
- *
- * <pre>
- *
- *   {
- *      "id": 1,
- *      "name": "Gabriel García Márquez",
- *      "birthDate": "23091935",
- *      "image": "mifoto.com",
- *      "books" : [
- *          {
- *              "id" : 1,
- *              "name" : "Cien años de soledad",
- *              "description": "El libro se compone de 20 capítulos no titulados, en los cuales se narra una historia con una estructura cíclica temporal, puesto que los acontecimientos del pueblo y de la familia Buendía, así como los nombres de los personajes, se repiten una y otra vez, fusionando la fantasía con la realidad.",
- *              "isbn" : "0307474720",
- *              "image" : "http://goo.gl/IWNdCX",
- *              "publishDate" : "01071967"
- *          },
- *          {
- *              "id" : 2,
- *              "name" : "El coronel no tiene quien le escriba",
- *              "description" : "...",
- *              "isbn" : "0307474721",
- *              "image" : "http://goo.gl/IWNdCX",
- *              "publishDate" : "01071967"
- *          }
- *      ] ,
- *      "prizes" : [
- *              "id" : 3,
- *              "name" : "Premio Nobel",
- *              "description": "Premio dado al mejor escritor del aÃ±o",
- *              "fechaEntrega": "1927-03-03T00:00:00-05:00",
- *      ]
- *   }
- *
- * </pre>
- *
- * @author ISIS2603
- */
+
 
 public class PaintworkDetailDTO extends PaintworkDTO implements Serializable 
 {
