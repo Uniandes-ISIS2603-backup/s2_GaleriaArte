@@ -30,7 +30,7 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     private String  videoPath;
    
     @PodamExclude
-    @OneToMany(mappedBy="obra", fetch=FetchType.LAZY)
+    @ManyToMany(mappedBy="obra", fetch=FetchType.LAZY)
     private List<KindEntity> kind;
     
     @PodamExclude
@@ -38,7 +38,7 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     private List<CategoryEntity> category;
     
     @PodamExclude
-    @ManyToMany(mappedBy="obra", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy="obra", fetch=FetchType.LAZY)
     private List<FeedBackEntity> feedback;
     
     @PodamExclude
