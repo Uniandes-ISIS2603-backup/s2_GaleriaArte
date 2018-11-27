@@ -16,6 +16,20 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author s.acostav
  */
 public class BuyerDTO implements Serializable {
+
+    /**
+     * @return the creditcard
+     */
+    public String getCreditcard() {
+        return creditcard;
+    }
+
+    /**
+     * @param creditcard the creditcard to set
+     */
+    public void setCreditcard(String creditcard) {
+        this.creditcard = creditcard;
+    }
     
     private String password;
     private String name;
@@ -68,7 +82,7 @@ public class BuyerDTO implements Serializable {
         BuyerEntity entidad = new BuyerEntity();
         entidad.setAdress(this.adress);
         entidad.setCountry(this.country);
-        entidad.setCreditCard(this.creditcard);
+        entidad.setCreditCard(this.getCreditcard());
         entidad.setEmail(this.email);
         entidad.setName(this.name);
         entidad.setPassword(this.password);
@@ -218,14 +232,14 @@ public class BuyerDTO implements Serializable {
      * @return the creditcard
      */
     public String getCreditCard() {
-        return creditcard;
+        return getCreditcard();
     }
 
     /**
      * @param creditcard the creditcard to set
      */
     public void setCreditCard(String creditcard) {
-        this.creditcard = creditcard;
+        this.setCreditcard(creditcard);
     }
 
     /**
