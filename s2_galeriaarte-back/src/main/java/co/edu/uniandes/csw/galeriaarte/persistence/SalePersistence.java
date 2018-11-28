@@ -59,8 +59,10 @@ public class SalePersistence
      */
     public List<SaleEntity> findAll() 
     {
-        LOGGER.log(Level.INFO, "Consultando todos los sales");
-        TypedQuery query = em.createQuery("select u from SaleEntity u", SaleEntity.class);
+         LOGGER.log(Level.INFO, "Consultando todas los sale");
+        // Se crea un query para buscar todas las obras en la base de datos.
+        TypedQuery query = em.createQuery("select u from PaintworkEntity u", SaleEntity.class);
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de obras.
         return query.getResultList();
     }
 }

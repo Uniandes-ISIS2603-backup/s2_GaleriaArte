@@ -116,6 +116,21 @@ public class BuyerResources {
         return buyerDTO;
     }
     
+    @Path("{buyersId: \\d+}/sales")
+    public Class<BuyerSalesResource> getBuyerSalesResource(@PathParam("buyersId") Long buyersId) {
+        if (buyerLogic.getBuyer(buyersId) == null) {
+            throw new WebApplicationException("El recurso /buyers/" + buyersId + " no existe.", 404);
+        }
+        return BuyerSalesResource.class;
+    }
+    
+    @Path("{buyersId: \\d+}/paintworks")
+    public Class<BuyerPaintworksResources> getBuyerPaintworksResource(@PathParam("buyersId") Long buyersId) {
+        if (buyerLogic.getBuyer(buyersId) == null) {
+            throw new WebApplicationException("El recurso /buyers/" + buyersId + " no existe.", 404);
+        }
+        return BuyerPaintworksResources.class;
+    }
   
     /**
      * Convierte una lista de entidades a DTO.
@@ -134,5 +149,7 @@ public class BuyerResources {
         }
         return list;
     }
+    
+    
     
 }

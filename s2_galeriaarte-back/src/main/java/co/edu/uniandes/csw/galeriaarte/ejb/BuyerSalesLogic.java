@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author estudiante
+ * @author s.acostav
  */
 public class BuyerSalesLogic {
     

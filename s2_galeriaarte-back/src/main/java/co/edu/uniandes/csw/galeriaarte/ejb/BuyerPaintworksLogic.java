@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 /**
  *
- * @author estudiante
+ * @author s.acostav
  */
 @Stateless
 public class BuyerPaintworksLogic
