@@ -13,7 +13,6 @@
     <class>co.edu.uniandes.csw.galeriaarte.entities.MedioPagoEntity</class>
     <class>co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity</class>
     <class>co.edu.uniandes.csw.galeriaarte.entities.SaleEntity</class>
-    <class>co.edu.uniandes.csw.galeriaarte.entities.UserEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>

@@ -24,7 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.galeriaarte.tests.postman;
 
 
-import co.edu.uniandes.csw.galeriaarte.dtos.PaintworkDTO;
+import co.edu.uniandes.csw.galeriaarte.dtos.ArtistDTO;
 import co.edu.uniandes.csw.galeriaarte.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.galeriaarte.resources.ArtistResources;
 import co.edu.uniandes.csw.postman.tests.PostmanTestBuilder;
@@ -61,7 +61,7 @@ public class GaleriaArteIT {
                         .withTransitivity().asFile())
                 // Se agregan los compilados de los paquetes de servicios
                 .addPackage(ArtistResources.class.getPackage()) //No importa cual recurso usar, lo importante es agregar el paquet
-                .addPackage(PaintworkDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
+                .addPackage(ArtistDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
                 .addPackage(BusinessLogicExceptionMapper.class.getPackage())
                 // El archivo que contiene la configuracion a la base de datos.
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
@@ -88,8 +88,6 @@ public class GaleriaArteIT {
                 Assert.assertEquals("Error en Requests de: " + nombre, desiredResult, tp.getRequests_failed());
 
                 Assert.assertEquals("Error en Test-Scripts de: " + nombre, desiredResult, tp.getTest_scripts_failed());
-
-                Assert.assertEquals("Error en Prerequest-Scripts de: " + nombre, desiredResult, tp.getPrerequest_scripts_failed());
 
                 Assert.assertEquals("Error en Assertions de: " + nombre, desiredResult, tp.getAssertions_failed());
 
