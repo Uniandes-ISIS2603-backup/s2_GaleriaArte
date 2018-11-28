@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -233,5 +235,11 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     
     public SaleEntity getSale(){
         return sale;
+    }
+    
+      @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

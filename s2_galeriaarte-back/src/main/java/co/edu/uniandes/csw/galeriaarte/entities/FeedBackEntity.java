@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.galeriaarte.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -57,5 +59,10 @@ public class FeedBackEntity extends BaseEntity implements Serializable
     public void setComentario(String pComentario)
     {
         this.comentario= pComentario;
+    }
+      @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
