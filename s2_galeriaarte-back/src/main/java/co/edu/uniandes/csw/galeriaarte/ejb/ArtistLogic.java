@@ -34,10 +34,6 @@ public class ArtistLogic
         {
             throw new BusinessLogicException("El nombre del artista no es valido \"" + artistEntity.getName() + "\"");
         }
-        else if( artistEntity.getBirthDate() == null)
-        {
-            throw new BusinessLogicException("Es necesario agregar la fecha de nacimiento");
-        }
         ArtistEntity newArtistEntity = persistence.create(artistEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del artista");
         return newArtistEntity;
