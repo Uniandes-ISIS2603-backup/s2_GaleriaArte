@@ -41,6 +41,10 @@ public class SaleDTO implements Serializable
     * taxes de la compra
     */
 	private Double taxes;
+        
+        private MedioPagoDTO medioPago;
+        
+        private PaintworkDTO obra;
     /**
 
 	 /**
@@ -61,7 +65,19 @@ public class SaleDTO implements Serializable
             this.price= entidad.getPrice();
             this.description= entidad.getDescription();
             this.taxes= entidad.getTaxes();
+            if (entidad.getMetodoPago()!= null) {
+                this.medioPago= new MedioPagoDTO(entidad.getMetodoPago());
+            } else {
+                this.medioPago = null;
             }
+
+            if (entidad.getObra()!= null) {
+                this.obra= new PaintworkDTO(entidad.getObra());
+            } else {
+                this.obra = null;
+            }
+            }
+ 
         }
 	 /**
     * metodo que transforma el dto en una entidad
@@ -74,7 +90,12 @@ public class SaleDTO implements Serializable
         entidad.setDescription(this.description);
         entidad.setPrice(this.price);
         entidad.setTaxes(this.taxes);
-        
+        if (this.medioPago != null) {
+            entidad.setMetodoPago(this.medioPago.toEntity());
+        }
+        if (this.obra != null) {
+            entidad.setObra(this.obra.toEntity());
+        }
         
         return entidad;
         }
@@ -125,6 +146,22 @@ public class SaleDTO implements Serializable
 		this.taxes= pTax;
 	}
    
+        
+        public void setMedioPago(MedioPagoDTO md){
+            medioPago = md;
+        }
+        
+        public MedioPagoDTO getMedioPago(){
+            return medioPago;
+        }
+        
+        public void setPaintwork(PaintworkDTO obraP){
+            obra = obraP;
+        }
+        
+        public PaintworkDTO getPaintwork(){
+            return obra;
+        }
          @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

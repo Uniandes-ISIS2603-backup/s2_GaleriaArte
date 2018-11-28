@@ -27,7 +27,7 @@ import javax.ws.rs.WebApplicationException;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 /**
  *
- * @author estudiante
+ * @author s.acostav
  */
 
 @Consumes(MediaType.APPLICATION_JSON)

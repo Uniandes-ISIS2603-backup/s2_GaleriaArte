@@ -17,6 +17,7 @@ public class PaintworkDTO implements Serializable {
     private Boolean verificacionObra;
     private String imagePath;
     private String videoPath;
+    private SaleDTO sale;
 
     public PaintworkDTO() {
     }
@@ -38,7 +39,13 @@ public class PaintworkDTO implements Serializable {
             this.verificacionObra = paintworkEntity.getVerificacionObra();
             this.imagePath = paintworkEntity.getImagePath();
             this.videoPath = paintworkEntity.getVideoPath();
+            if (paintworkEntity.getSale()!= null) {
+                this.sale= new SaleDTO(paintworkEntity.getSale());
+            } else {
+                this.sale = null;
+            }
         }
+        
     }
 
     
@@ -155,6 +162,13 @@ public class PaintworkDTO implements Serializable {
         this.videoPath = videoPath;
     }
     
+    public void setSale (SaleDTO saleP){
+        sale = saleP;
+    }
+    
+    public SaleDTO getSale(){
+        return sale;
+    }
         
     /**
      * Convertir DTO a Entity
@@ -173,6 +187,9 @@ public class PaintworkDTO implements Serializable {
         paintworkEntity.setValor(this.value);
         paintworkEntity.setVerificacionObra(this.verificacionObra);
         paintworkEntity.setVideoPath(this.videoPath);
+        if (this.sale != null) {
+            paintworkEntity.setSale(this.sale.toEntity());
+        }
         return paintworkEntity;
     }
 

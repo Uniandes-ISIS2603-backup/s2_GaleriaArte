@@ -29,8 +29,7 @@ public class SaleLogic
     @Inject 
     private SalePersistence persistence;
     
-    @Inject
-    private ArtistPersistence artistPersistence ;
+    
     
     @Inject
     private BuyerPersistence buyerPersistence ;
@@ -42,14 +41,13 @@ public class SaleLogic
  * crea una compra siguiendo las reglas de negocio, una compra debe tener un artista, un comprador y una obra asociada, el precio de venta debe ser mayor 
  * a cero
  */
-    public SaleEntity createSale(SaleEntity saleEntity, long artistId, long buyerId, long paintworkId) throws BusinessLogicException
+    public SaleEntity createSale(SaleEntity saleEntity,  long buyerId, long paintworkId) throws BusinessLogicException
     {
         
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cv");
-       saleEntity.setArtist(artistPersistence.find(artistId));
        saleEntity.setBuyer(buyerPersistence.find(buyerId));
        
-        if ( saleEntity.getPrice() > 0 &&  saleEntity.getArtist() != null &&saleEntity.getBuyer()!=null&&saleEntity.getObra()!=null)
+        if ( saleEntity.getPrice() > 0 &&saleEntity.getBuyer()!=null&&saleEntity.getObra()!=null)
         {
             persistence.create(saleEntity);
             LOGGER.log(Level.INFO, "Termina proceso de creación del cv");

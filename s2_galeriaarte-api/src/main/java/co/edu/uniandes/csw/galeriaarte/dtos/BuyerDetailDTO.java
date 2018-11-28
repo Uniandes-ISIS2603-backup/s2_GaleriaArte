@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
- * @author estudiante
+ * @author s.acostav
  */
 public class BuyerDetailDTO extends BuyerDTO implements Serializable{
     

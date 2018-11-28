@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -32,7 +33,7 @@ public class BuyerEntity extends BaseEntity implements Serializable
     @OneToMany(mappedBy = "buyer")
     private List<SaleEntity> sales;
     @PodamExclude
-    @OneToMany (mappedBy = "buyer")
+    @OneToOne (mappedBy = "buyer")
     private List<PaintworkEntity> paintworks;
     private String adress;
     

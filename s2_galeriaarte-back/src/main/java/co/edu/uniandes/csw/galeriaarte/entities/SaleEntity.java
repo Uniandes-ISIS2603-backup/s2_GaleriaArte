@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 import java.util.Collection;
+import javax.persistence.ManyToOne;
 /**
  *
  * @author s.restrepos1
@@ -28,12 +29,9 @@ public class SaleEntity extends BaseEntity implements Serializable
 	
 	private Double taxes;
 	
+       
         @PodamExclude
-        @OneToOne
-	private ArtistEntity artist;
-	
-        @PodamExclude
-        @OneToOne
+        @OneToOne(mappedBy = "sale")
 	private PaintworkEntity obra;
         
 	@PodamExclude
@@ -45,7 +43,7 @@ public class SaleEntity extends BaseEntity implements Serializable
 	private Collection<ExtraServiceEntity> services;
 	
         @PodamExclude
-        @OneToOne
+        @ManyToOne
 	private BuyerEntity buyer;
         
        
@@ -65,16 +63,12 @@ public class SaleEntity extends BaseEntity implements Serializable
 		return taxes;
 	}
 	
-	public ArtistEntity getArtist()
-	{
-		return artist;
-	}
 	
 	public PaintworkEntity getObra()
 	{
 		return obra;
 	}
-	public MedioPagoEntity getMethod()
+	public MedioPagoEntity getMetodoPago()
 	{
 		return metodo;
 	}
@@ -94,10 +88,7 @@ public class SaleEntity extends BaseEntity implements Serializable
 	{
 		this.taxes= pTax;
 	}
-	public void setArtist(ArtistEntity pArt)
-	{
-		this.artist= pArt;
-	}
+	
 	public void setObra(PaintworkEntity pPaint)
 	{
 		this.obra= pPaint;

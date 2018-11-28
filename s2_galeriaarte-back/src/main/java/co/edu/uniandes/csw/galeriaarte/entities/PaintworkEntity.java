@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -48,6 +49,10 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     @PodamExclude
     @ManyToOne
     private ArtistEntity artist;
+    
+    @PodamExclude 
+    @OneToOne
+    private SaleEntity sale;
     
     /**
      * @return the name
@@ -222,5 +227,11 @@ public class PaintworkEntity extends BaseEntity implements Serializable
     }
 
 
+    public void setSale(SaleEntity saleP){
+        sale = saleP;
+    }
     
+    public SaleEntity getSale(){
+        return sale;
+    }
 }
