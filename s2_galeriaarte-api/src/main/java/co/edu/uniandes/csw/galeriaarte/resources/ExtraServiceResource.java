@@ -61,12 +61,12 @@ public class ExtraServiceResource
     @POST
     public ExtraServiceDTO createExtraService(ExtraServiceDTO extraService) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "ExtraServiceResource createExtraService: input: {0}", extraService.toString());
+        LOGGER.log(Level.INFO, "ExtraServiceResource createExtraService: input: {0}", extraService);
         ExtraServiceEntity extraServiceEntity = extraService.toEntity();
         ExtraServiceEntity nuevoExtraServiceEntity = extraServiceLogic.createExtraService(extraServiceEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         ExtraServiceDTO nuevoExtraServiceDTO = new ExtraServiceDTO(nuevoExtraServiceEntity);
-        LOGGER.log(Level.INFO, "ExtraServiceResource createExtraService: output: {0}", nuevoExtraServiceDTO.toString());
+        LOGGER.log(Level.INFO, "ExtraServiceResource createExtraService: output: {0}", nuevoExtraServiceDTO);
         return nuevoExtraServiceDTO;
     }
     
@@ -80,7 +80,7 @@ public class ExtraServiceResource
     public List<ExtraServiceDTO> getExtraServices() {
         LOGGER.info("ExtraServiceResource getExtraService: input: void");
         List<ExtraServiceDTO> listaExtraService = listEntity2DTO(extraServiceLogic.getExtraServices());
-        LOGGER.log(Level.INFO, "ExtraServiceResource getExtraService: output: {0}", listaExtraService.toString());
+        LOGGER.log(Level.INFO, "ExtraServiceResource getExtraService: output: {0}", listaExtraService);
         return listaExtraService;
     }
 
@@ -104,7 +104,7 @@ public class ExtraServiceResource
             throw new WebApplicationException("El recurso /extraServices/" + extraServiceId + " no esta.", 404);
         }
         ExtraServiceDTO detailDTO = new ExtraServiceDTO(extraServiceEntity);
-        LOGGER.log(Level.INFO, "ExtraServiceResource getExtraService: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "ExtraServiceResource getExtraService: output: {0}", detailDTO);
         return detailDTO;
     }
 
@@ -124,14 +124,14 @@ public class ExtraServiceResource
     @Path("{extraServiceId: \\d+}")
     public ExtraServiceDTO updateExtraService(@PathParam("extraServiceId") Long extraServiceId, ExtraServiceDTO extraService) throws WebApplicationException, BusinessLogicException 
     {
-        LOGGER.log(Level.INFO, "ExtraServiceResource updateExtraService: input: id:{0} , xtraService: {1}", new Object[]{extraServiceId, extraService.toString()});
+        LOGGER.log(Level.INFO, "ExtraServiceResource updateExtraService: input: id:{0} , xtraService: {1}", new Object[]{extraServiceId, extraService});
         extraService.setId(extraServiceId);
         if (extraServiceLogic.getExtraService(extraServiceId) == null) 
         {
             throw new WebApplicationException("El recurso /extraServices/" + extraServiceId + " no se encuentra.", 404);
         }
         ExtraServiceDTO detailDTO = new ExtraServiceDTO(extraServiceLogic.updateExtraService(extraServiceId, extraService.toEntity()));
-        LOGGER.log(Level.INFO, "ExtraServiceResource updateExtraService: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "ExtraServiceResource updateExtraService: output: {0}", detailDTO);
         return detailDTO;
     }
 

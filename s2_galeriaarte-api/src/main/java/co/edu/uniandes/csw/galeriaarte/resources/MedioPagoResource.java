@@ -60,12 +60,12 @@ public class MedioPagoResource
     @POST
     public MedioPagoDTO createMedioPago(MedioPagoDTO medioPago) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "MedioPagoResource createMedioPago: input: {0}", medioPago.toString());
+        LOGGER.log(Level.INFO, "MedioPagoResource createMedioPago: input: {0}", medioPago);
         MedioPagoEntity MedioPagoEntity = medioPago.toEntity();
         MedioPagoEntity nuevoMedioPagoEntity = medioPagoLogic.createMedioPago(MedioPagoEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         MedioPagoDTO nuevoMedioPagoDTO = new MedioPagoDTO(nuevoMedioPagoEntity);
-        LOGGER.log(Level.INFO, "MedioPagoResource createMedioPago: output: {0}", nuevoMedioPagoDTO.toString());
+        LOGGER.log(Level.INFO, "MedioPagoResource createMedioPago: output: {0}", nuevoMedioPagoDTO);
         return nuevoMedioPagoDTO;
     }
     
@@ -79,7 +79,7 @@ public class MedioPagoResource
     public List<MedioPagoDTO> getMediosPago() {
         LOGGER.info("MedioPagoResource MedioPago: input: void");
         List<MedioPagoDTO> listaMedioPago = listEntity2DTO(medioPagoLogic.getMediosPago());
-        LOGGER.log(Level.INFO, "MedioPagoResource getMediosPago: output: {0}", listaMedioPago.toString());
+        LOGGER.log(Level.INFO, "MedioPagoResource getMediosPago: output: {0}", listaMedioPago);
         return listaMedioPago;
     }
     
@@ -103,7 +103,7 @@ public class MedioPagoResource
             throw new WebApplicationException("El recurso /MedioPagos/" + medioPagoId + " no se encontro", 404);
         }
         MedioPagoDTO detailDTO = new MedioPagoDTO(medioPagoEntity);
-        LOGGER.log(Level.INFO, "MedioPagoResource getMedioPago: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "MedioPagoResource getMedioPago: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -123,14 +123,14 @@ public class MedioPagoResource
     @Path("{medioPagoId: \\d+}")
     public MedioPagoDTO updateMedioPago(@PathParam("medioPagoId") Long medioPagoId, MedioPagoDTO medioPago) throws WebApplicationException, BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "MedioPagoResource updateMedioPago: input: id:{0} , MedioPago {1}", new Object[]{medioPagoId, medioPago.toString()});
+        LOGGER.log(Level.INFO, "MedioPagoResource updateMedioPago: input: id:{0} , MedioPago {1}", new Object[]{medioPagoId, medioPago});
         medioPago.setId(medioPagoId);
         if (medioPagoLogic.getMedioPago(medioPagoId) == null)
         {
             throw new WebApplicationException("El recurso con el path /medioPagos/" + medioPagoId + " no esta.", 404);
         }
         MedioPagoDTO detailDTO = new MedioPagoDTO(medioPagoLogic.updateMedioPago(medioPagoId, medioPago.toEntity()));
-        LOGGER.log(Level.INFO, "MedioPagoResource updateMedioPago: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "MedioPagoResource updateMedioPago: output: {0}", detailDTO);
         return detailDTO;
     }
     

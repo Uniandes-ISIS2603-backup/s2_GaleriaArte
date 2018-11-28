@@ -51,13 +51,9 @@ public class SaleResources
     @POST
     public void createSale(SaleDTO Sale) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "SaleResource createSale: input: {0}", Sale.toString());
-        SaleEntity SaleEntity = Sale.toEntity();
-        //SaleEntity nuevoSaleEntity = SaleLogic.createSale(SaleEntity);
-        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-//        SaleDTO nuevoSaleDTO = new SaleDTO(nuevoSaleEntity);
-       // LOGGER.log(Level.INFO, "SaleResource createSale: output: {0}", nuevoSaleDTO.toString());
-      //return nuevoSaleDTO;
+        LOGGER.log(Level.INFO, "SaleResource createSale: input: {0}", Sale);
+          Sale.toEntity();
+        
     }
     
     /**
@@ -94,7 +90,7 @@ public class SaleResources
             throw new WebApplicationException("El recurso /Sales/" + SaleId + " no esta.", 404);
         }
         SaleDTO detailDTO = new SaleDTO(SaleEntity);
-        LOGGER.log(Level.INFO, "SaleResource getSale: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "SaleResource getSale: output: {0}", detailDTO);
         return detailDTO;
     }
     
@@ -121,7 +117,7 @@ public class SaleResources
             throw new WebApplicationException("El recurso no esta", 404);
         }
         SaleDTO detailDTO = new SaleDTO(SaleLogic.updateSale(saleId, sale.toEntity()));
-        LOGGER.log(Level.INFO, "SaleResource updateSale: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "SaleResource updateSale: output: {0}", detailDTO);
         return detailDTO;
     }
     

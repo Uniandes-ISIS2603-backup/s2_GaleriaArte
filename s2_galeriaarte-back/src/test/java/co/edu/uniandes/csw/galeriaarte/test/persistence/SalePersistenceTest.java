@@ -107,6 +107,11 @@ public class SalePersistenceTest
         
         SaleEntity entity= em.find(SaleEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getPrice(), entity.getPrice(),0.0002);
+        Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
+        Assert.assertEquals(newEntity.getTaxes(), entity.getTaxes(),0.0002);
+        
+        
     } 
     
      /**
@@ -118,6 +123,9 @@ public class SalePersistenceTest
         SaleEntity newEntity = salePersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
+         Assert.assertEquals(newEntity.getPrice(), entity.getPrice(),0.0002);
+        Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
+        Assert.assertEquals(newEntity.getTaxes(), entity.getTaxes(), 0.0002);
     }
 
     /**
@@ -136,6 +144,9 @@ public class SalePersistenceTest
         SaleEntity resp = em.find(SaleEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getId(), resp.getId());
+         Assert.assertEquals(newEntity.getPrice(), resp.getPrice(),0.0002);
+        Assert.assertEquals(newEntity.getDescription(), resp.getDescription());
+        Assert.assertEquals(newEntity.getTaxes(), resp.getTaxes(),0.0002);
     }
 
     /**

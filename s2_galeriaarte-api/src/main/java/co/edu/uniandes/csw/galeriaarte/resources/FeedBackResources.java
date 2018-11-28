@@ -176,23 +176,5 @@ public class FeedBackResources
         }
         return list;
     }
-    /**
-     * Convierte una lista de entidades a DTO.
-     *
-     * Este método convierte una lista de objetos FeedBacklEntity a una lista de
-     * objetos FeedBackDTO (json)
-     *
-     * @param entityList corresponde a la lista de comentarios de tipo Entity
-     * que vamos a convertir a DTO.
-     * @return la lista de comentarios en forma DTO (json)
-     */
-    private List<FeedBackDTO> listEntity2DetailDTO(List<FeedBackEntity> entityList)
-    {
-        List<FeedBackDTO> list = new ArrayList<>();
-        for (FeedBackEntity entity : entityList)
-        {
-            list.add(new FeedBackDTO(entity));
-        }
-        return list;
-    }
+  
 }
