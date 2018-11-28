@@ -5,10 +5,10 @@
  */
 package co.edu.uniandes.csw.galeriaarte.ejb;
 
-import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
+
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.galeriaarte.persistence.ArtistPersistence;
+
 import co.edu.uniandes.csw.galeriaarte.persistence.SalePersistence;
 import co.edu.uniandes.csw.galeriaarte.persistence.BuyerPersistence;
 import co.edu.uniandes.csw.galeriaarte.persistence.PaintworkPersistence;
@@ -41,21 +41,17 @@ public class SaleLogic
  * crea una compra siguiendo las reglas de negocio, una compra debe tener un artista, un comprador y una obra asociada, el precio de venta debe ser mayor 
  * a cero
      * @param saleEntity
-     * @param artistId
      * @param buyerId
      * @return 
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException 
  */
-
     public SaleEntity createSale(SaleEntity saleEntity,  long buyerId, long paintworkId) throws BusinessLogicException
-
-
     {
-        
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cv");
        saleEntity.setBuyer(buyerPersistence.find(buyerId));
+       saleEntity.setObra(paintworkPersistence.find(paintworkId));
        
-        if ( saleEntity.getPrice() > 0 &&saleEntity.getBuyer()!=null&&saleEntity.getObra()!=null)
+        if ( saleEntity.getPrice() > 0 && saleEntity.getBuyer() != null && saleEntity.getObra()!= null)
         {
             persistence.create(saleEntity);
             LOGGER.log(Level.INFO, "Termina proceso de creación del cv");
@@ -65,7 +61,7 @@ public class SaleLogic
         {
             LOGGER.log(Level.INFO, "No se termino la creacion porque los datos no eran validos");
             throw new BusinessLogicException("No pueden haber campos nulos\"" );
-        }
+    }
     }
     
     

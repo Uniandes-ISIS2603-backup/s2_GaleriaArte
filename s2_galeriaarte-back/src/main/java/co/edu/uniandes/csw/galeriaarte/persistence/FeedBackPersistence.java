@@ -84,25 +84,21 @@ public class FeedBackPersistence
      */
     public FeedBackEntity find(Long obraId, Long feedbackId)
     {
-        LOGGER.log(Level.INFO, "Consultando el comentario con id = {0} de la obra con id = " + obraId, feedbackId);
+        LOGGER.log(Level.INFO, "Consultando el comentario con id {0} de la obra con id = {1}", new Object[]{feedbackId, obraId});
         TypedQuery<FeedBackEntity> q = em.createQuery("select p from FeedBackEntity p where (p.obra.id = :obraId) and (p.id = :feedbackId)", FeedBackEntity.class);
         q.setParameter("obraId", obraId);
         q.setParameter("feedbackId", feedbackId);
         List<FeedBackEntity> results = q.getResultList();
         FeedBackEntity comentario = null;
-        if (results == null)
+        if (results == null || results.isEmpty())
         {
-            comentario = null;
-        }
-        else if (results.isEmpty())
-        {
-            comentario  = null;
+          return comentario;  
         }
         else if (results.size() >= 1)
         {
             comentario = results.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar el comenatario con id = {0} del  la obra con id =" + obraId, feedbackId);
+        LOGGER.log(Level.INFO, "Saliendo del comentario con id {0} de la obra con id = {1}", new Object[]{feedbackId, obraId});
         return comentario;
     }
     

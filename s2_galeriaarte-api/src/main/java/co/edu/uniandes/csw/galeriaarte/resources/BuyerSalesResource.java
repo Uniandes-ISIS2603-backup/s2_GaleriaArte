@@ -5,15 +5,13 @@
  */
 package co.edu.uniandes.csw.galeriaarte.resources;
 
-import co.edu.uniandes.csw.galeriaarte.dtos.PaintworkDTO;
-import co.edu.uniandes.csw.galeriaarte.dtos.PaintworkDetailDTO;
+
 import co.edu.uniandes.csw.galeriaarte.dtos.SaleDTO;
 import co.edu.uniandes.csw.galeriaarte.dtos.SaleDetailDTO;
-import co.edu.uniandes.csw.galeriaarte.ejb.BuyerPaintworksLogic;
-import co.edu.uniandes.csw.galeriaarte.ejb.PaintworkLogic;
+
 import co.edu.uniandes.csw.galeriaarte.ejb.BuyerSalesLogic;
 import co.edu.uniandes.csw.galeriaarte.ejb.SaleLogic;
-import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
+
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -52,7 +50,7 @@ public class BuyerSalesResource {
     public SaleDTO addSale(@PathParam("buyersId") Long buyersId, @PathParam("salesId") Long salesId) {
         LOGGER.log(Level.INFO, "BuyerSalesResource addSale: input: buyersID: {0} , salesId: {1}", new Object[]{buyersId, salesId});
         if (saleLogic.getSale(salesId) == null) {
-            throw new WebApplicationException("El recurso /sales/" + salesId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /sales/" + salesId + " no esta.", 404);
         }
         
         SaleDTO saleDTO = new SaleDTO(buyerSalesLogic.addSale(buyersId, salesId));
@@ -73,7 +71,7 @@ public class BuyerSalesResource {
     public SaleDetailDTO getSale(@PathParam("buyersId") Long buyersId, @PathParam("salesId") Long salesId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "BuyerSalesResource getSale: input: buyersID: {0} , salesId: {1}", new Object[]{buyersId, salesId});
         if (saleLogic.getSale(salesId) == null) {
-            throw new WebApplicationException("El recurso /buyers/" + buyersId + "/sales/" + salesId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /buyers/" + buyersId + "/sales/" + salesId + " no se encontro", 404);
         }
         SaleDetailDTO saleDetailDTO = new SaleDetailDTO(buyerSalesLogic.getSale(buyersId, salesId));
         LOGGER.log(Level.INFO, "BuyerSalesResource getSale: output: {0}", saleDetailDTO);

@@ -66,7 +66,7 @@ public class SaleResources
     public List<SaleDTO> getSales() {
         LOGGER.info("SaleResource Sale: input: void");
         List<SaleDTO> listaSale = listEntity2DTO(SaleLogic.getSales());
-        LOGGER.log(Level.INFO, "SaleResource getSales: output: {0}", listaSale.toString());
+        LOGGER.log(Level.INFO, "SaleResource getSales: output: {0}", listaSale);
         return listaSale;
     }
     
@@ -125,8 +125,6 @@ public class SaleResources
     /**
      * Borra el la venta con el id asociado recibido en la URL.
      * @param saleId
-     * @param SaleId Identificador del la venta que se desea borrar.
-     * Este debe ser una cadena de dígitos.
      */
     @DELETE
     @Path("{SaleId: \\d+}")

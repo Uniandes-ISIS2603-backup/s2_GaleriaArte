@@ -141,6 +141,7 @@ public class SaleLogicTest
         SaleEntity  result = saleLogic.createSale(newEntity,b.getId(), p.getId());
 
 
+
         Assert.assertNotNull(result);
         SaleEntity entity = em.find(SaleEntity.class, result.getId());
         Assert.assertNotNull(result);
@@ -153,7 +154,10 @@ public class SaleLogicTest
         SaleEntity resultEntity = saleLogic.getSale(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getDescription(), resultEntity.getDescription());
+        Assert.assertEquals(entity.getPrice(), resultEntity.getPrice(),0.0002);
+        Assert.assertEquals(entity.getTaxes(), resultEntity.getTaxes(),0.0002);
+        
     }
 
 
@@ -172,6 +176,9 @@ public class SaleLogicTest
         
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(pojoEntity.getId(), resultEntity.getId());
+         Assert.assertEquals(pojoEntity.getDescription(), resultEntity.getDescription());
+        Assert.assertEquals(pojoEntity.getPrice(), resultEntity.getPrice(),0.0002);
+        Assert.assertEquals(pojoEntity.getTaxes(), resultEntity.getTaxes(),0.0002);
         
     }
     
