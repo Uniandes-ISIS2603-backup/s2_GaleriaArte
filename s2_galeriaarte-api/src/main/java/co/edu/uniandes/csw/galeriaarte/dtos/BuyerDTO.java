@@ -46,15 +46,15 @@ public class BuyerDTO implements Serializable {
         
     }
     
+   
+    
     /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
      *
      * @param BuyerEntity: Es la entidad que se va a convertir a DTO
      */
-    
-    
-    
+
     public BuyerDTO (BuyerEntity buyerEntity) {
         if (buyerEntity != null) {
             this.adress = buyerEntity.getAdress();
@@ -69,6 +69,8 @@ public class BuyerDTO implements Serializable {
             
         }
     }
+   
+    
     
     /**
      * Convertir DTO a Entity
@@ -142,6 +144,7 @@ public class BuyerDTO implements Serializable {
     public void setUsuario(String newUsuario){
         usuario = newUsuario;
     }
+    
     
     
     /**
@@ -220,6 +223,12 @@ public class BuyerDTO implements Serializable {
     public long getId() {
         return id;
     }
+    
+    
+    
+    
+    
+    
     
     /**
      * @param id the id to set
