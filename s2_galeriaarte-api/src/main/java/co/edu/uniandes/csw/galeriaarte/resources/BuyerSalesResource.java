@@ -5,15 +5,13 @@
  */
 package co.edu.uniandes.csw.galeriaarte.resources;
 
-import co.edu.uniandes.csw.galeriaarte.dtos.PaintworkDTO;
-import co.edu.uniandes.csw.galeriaarte.dtos.PaintworkDetailDTO;
+
 import co.edu.uniandes.csw.galeriaarte.dtos.SaleDTO;
 import co.edu.uniandes.csw.galeriaarte.dtos.SaleDetailDTO;
-import co.edu.uniandes.csw.galeriaarte.ejb.BuyerPaintworksLogic;
-import co.edu.uniandes.csw.galeriaarte.ejb.PaintworkLogic;
+
 import co.edu.uniandes.csw.galeriaarte.ejb.BuyerSalesLogic;
 import co.edu.uniandes.csw.galeriaarte.ejb.SaleLogic;
-import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
+
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import java.util.ArrayList;

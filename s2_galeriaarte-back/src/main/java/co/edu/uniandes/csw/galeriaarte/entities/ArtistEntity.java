@@ -34,7 +34,7 @@ public class ArtistEntity extends BaseEntity implements Serializable
     private Date birthDate;
     
     @PodamExclude
-    @OneToMany()
+    @OneToMany(mappedBy="artist")
     private List<PaintworkEntity> paintworks;
     
     private String name;
