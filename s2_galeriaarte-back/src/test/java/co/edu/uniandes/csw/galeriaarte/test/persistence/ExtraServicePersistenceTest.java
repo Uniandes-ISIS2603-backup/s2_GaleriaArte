@@ -165,6 +165,21 @@ public class ExtraServicePersistenceTest
     }
     
     /**
+     * Prueba para consultar un servicio extra por su nombre
+     */
+    @Test
+    public void getExtraServiceByName()
+    {
+        ExtraServiceEntity entity = data.get(0);
+        ExtraServiceEntity newEntity = extraServicePersistence.findByName(entity.getName());
+         Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getDescription(), newEntity.getDescription());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getPrice(), newEntity.getPrice(),0.0002);
+        Assert.assertEquals(entity.getAvailability(), newEntity.getAvailability());
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
+    /**
      * Prueba para consultar un ExtraService.
      */
     @Test

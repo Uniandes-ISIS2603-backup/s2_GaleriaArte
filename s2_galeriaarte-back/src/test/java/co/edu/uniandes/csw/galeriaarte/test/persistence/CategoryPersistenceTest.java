@@ -160,6 +160,22 @@ public class CategoryPersistenceTest
     }
     
     /**
+     * Prueba para consultar la categoria por su nombre
+     */
+    @Test
+    public void getCategoryByName()
+    {
+        CategoryEntity entity = data.get(0);
+        CategoryEntity newEntity = categoryPersistence.findByName(entity.getName());
+        
+         Assert.assertNotNull(newEntity);
+      
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
+    }
+    
+    /**
      * Prueba para consultar una Categoria.
      */
     @Test

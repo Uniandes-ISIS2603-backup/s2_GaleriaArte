@@ -164,6 +164,21 @@ public class KindPersistenceTest
     }
     
     /**
+     * Prueba para consultar un kind por su nombre
+     */
+    
+    @Test
+    public void getKindByNameTest()
+    {
+        KindEntity entity = data.get(0);
+        KindEntity newEntity = kindPersistence.findByName(entity.getName()); 
+         Assert.assertNotNull(newEntity);
+        
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
+    }
+    /**
      * Prueba para consultar un Kind.
      */
     @Test
@@ -177,7 +192,7 @@ public class KindPersistenceTest
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
-        //No verifica que el Artista no sea nulo.
+ 
     }
     
     /**

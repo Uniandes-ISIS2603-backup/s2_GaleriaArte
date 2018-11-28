@@ -140,7 +140,7 @@ public class SaleLogicTest
     public void createSaleTest() throws BusinessLogicException 
     {
         SaleEntity newEntity = factory.manufacturePojo(SaleEntity.class);
-        SaleEntity  result = saleLogic.createSale(newEntity,artistData.get(0).getId(),buyerData.get(0).getId(), paintworkData.get(0).getId());
+        SaleEntity  result = saleLogic.createSale(newEntity,artistData.get(0).getId(),buyerData.get(0).getId());
         
         Assert.assertNotNull(result);
         SaleEntity entity = em.find(SaleEntity.class, result.getId());

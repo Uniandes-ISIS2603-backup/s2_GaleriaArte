@@ -103,7 +103,7 @@ public class ExtraServicePersistence
      */
     public ExtraServiceEntity findByName(String name)
     {
-        LOGGER.log(Level.INFO, "Consultando el servicio extra por nombre ", name);
+        LOGGER.log(Level.INFO, "Consultando el servicio extra por nombre  ={0} ", name);
         TypedQuery query = em.createQuery("Select e From ExtraServiceEntity e where e.name = :name", ExtraServiceEntity.class);
         query = query.setParameter("name", name);
         List<ExtraServiceEntity> sameName = query.getResultList();
@@ -119,7 +119,7 @@ public class ExtraServicePersistence
         {
             result = sameName.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar el servicio extra por nombre ", name);
+        LOGGER.log(Level.INFO, "Saliendo de consultar el servicio extra por nombre   ={0}", name);
         return result;
     }
 }
