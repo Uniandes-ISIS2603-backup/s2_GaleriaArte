@@ -163,18 +163,6 @@ public class BuyerDTO implements Serializable {
     }
     
     
-   /**
-    * @return tarjeta de credito del usuario 
-    */
-    
-  
-    
-    /**
-     * @param newCreditCard
-     */
-    
-    
-    
     /**
      * 
      * @return 
@@ -226,20 +214,6 @@ public class BuyerDTO implements Serializable {
     
     public String toString(){
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
-
-    /**
-     * @return the creditcard
-     */
-    public String getCreditCard() {
-        return getCreditcard();
-    }
-
-    /**
-     * @param creditcard the creditcard to set
-     */
-    public void setCreditCard(String creditcard) {
-        this.setCreditcard(creditcard);
     }
 
     /**
