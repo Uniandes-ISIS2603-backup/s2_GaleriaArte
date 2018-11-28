@@ -59,7 +59,7 @@ public class ArtistPaintworksResource
     {
         LOGGER.log(Level.INFO, "artistPaintworkResource addpaintwork: input: artistsID: {0} , PaintworkId: {1}", new Object[]{artistsId, paintworkId});
         if (paintworkLogic.getPaintWork(paintworkId) == null) {
-            throw new WebApplicationException("El recurso /Paintwork/" + paintworkId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Paintwork/" + paintworkId + " no esta", 404);
         }
         PaintworkDTO paintworkDTO = new PaintworkDTO(artistPaintworkLogic.addPaintwork(paintworkId, artistsId));
         LOGGER.log(Level.INFO, "artistPaintworkResource addpaintwork: output: {0}", paintworkDTO);
@@ -127,7 +127,7 @@ public class ArtistPaintworksResource
         LOGGER.log(Level.INFO, "artistPaintworkResource replacePaintwork: input: artistsId: {0} , Paintwork: {1}", new Object[]{artistsId, paintworks});
         for (PaintworkDetailDTO paintwork : paintworks) {
             if (paintworkLogic.getPaintWork(paintwork.getIdPaintwork()) == null) {
-                throw new WebApplicationException("El recurso /Paintwork/" + paintwork.getIdPaintwork() + " no existe.", 404);
+                throw new WebApplicationException("El recurso /Paintwork/" + paintwork.getIdPaintwork() + " no se encontro", 404);
             }
         }
         List<PaintworkDetailDTO> listaDetailDTOs = paintworkListEntity2DTO(artistPaintworkLogic.replacePaintworks(artistsId, paintworkListDTO2Entity(paintworks)));
