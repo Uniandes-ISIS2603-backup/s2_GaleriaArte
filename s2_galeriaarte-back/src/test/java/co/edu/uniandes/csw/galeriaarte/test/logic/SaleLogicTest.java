@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.MedioPagoEntity;
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
+import co.edu.uniandes.csw.galeriaarte.entities.CategoryEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.SalePersistence;
 import java.util.ArrayList;
@@ -109,8 +110,6 @@ public class SaleLogicTest
             BuyerEntity entityB = factory.manufacturePojo(BuyerEntity.class);
             em.persist(entityB);
             buyerData.add(entityB);
-            entityB.setPaintworks(new ArrayList());
-            entityB.setSales(new ArrayList());
             PaintworkEntity entityP = factory.manufacturePojo(PaintworkEntity.class);
             em.persist(entityP);
             paintworkData.add(entityP);
@@ -137,7 +136,9 @@ public class SaleLogicTest
     {
         SaleEntity newEntity = factory.manufacturePojo(SaleEntity.class);
 
-        SaleEntity  result = saleLogic.createSale(newEntity, buyerData.get(0).getId(), paintworkData.get(0).getId());
+        BuyerEntity b = buyerData.get(1);
+        PaintworkEntity p = paintworkData.get(1);
+        SaleEntity  result = saleLogic.createSale(newEntity,b.getId(), p.getId());
 
 
         Assert.assertNotNull(result);

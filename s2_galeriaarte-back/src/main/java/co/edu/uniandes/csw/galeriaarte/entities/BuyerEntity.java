@@ -33,7 +33,7 @@ public class BuyerEntity extends BaseEntity implements Serializable
     @OneToMany(mappedBy = "buyer")
     private List<SaleEntity> sales;
     @PodamExclude
-    @OneToOne (mappedBy = "buyer")
+    @OneToMany (mappedBy = "buyer")
     private List<PaintworkEntity> paintworks;
     private String adress;
     
