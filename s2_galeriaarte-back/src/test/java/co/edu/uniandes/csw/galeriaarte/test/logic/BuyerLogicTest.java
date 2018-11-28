@@ -114,6 +114,7 @@ public class BuyerLogicTest
         BuyerEntity entity = em.find(BuyerEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getPassword(), entity.getPassword());
     }
 
     /**
