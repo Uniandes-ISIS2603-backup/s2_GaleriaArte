@@ -52,7 +52,7 @@ public class BuyerSalesResource {
     public SaleDTO addSale(@PathParam("buyersId") Long buyersId, @PathParam("salesId") Long salesId) {
         LOGGER.log(Level.INFO, "BuyerSalesResource addSale: input: buyersID: {0} , salesId: {1}", new Object[]{buyersId, salesId});
         if (saleLogic.getSale(salesId) == null) {
-            throw new WebApplicationException("El recurso /sales/" + salesId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /sales/" + salesId + " no esta.", 404);
         }
         
         SaleDTO saleDTO = new SaleDTO(buyerSalesLogic.addSale(buyersId, salesId));
@@ -73,7 +73,7 @@ public class BuyerSalesResource {
     public SaleDetailDTO getSale(@PathParam("buyersId") Long buyersId, @PathParam("salesId") Long salesId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "BuyerSalesResource getSale: input: buyersID: {0} , salesId: {1}", new Object[]{buyersId, salesId});
         if (saleLogic.getSale(salesId) == null) {
-            throw new WebApplicationException("El recurso /buyers/" + buyersId + "/sales/" + salesId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /buyers/" + buyersId + "/sales/" + salesId + " no se encontro", 404);
         }
         SaleDetailDTO saleDetailDTO = new SaleDetailDTO(buyerSalesLogic.getSale(buyersId, salesId));
         LOGGER.log(Level.INFO, "BuyerSalesResource getSale: output: {0}", saleDetailDTO);

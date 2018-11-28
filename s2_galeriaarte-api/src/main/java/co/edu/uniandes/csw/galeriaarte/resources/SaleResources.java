@@ -66,7 +66,7 @@ public class SaleResources
     public List<SaleDTO> getSales() {
         LOGGER.info("SaleResource Sale: input: void");
         List<SaleDTO> listaSale = listEntity2DTO(SaleLogic.getSales());
-        LOGGER.log(Level.INFO, "SaleResource getSales: output: {0}", listaSale.toString());
+        LOGGER.log(Level.INFO, "SaleResource getSales: output: {0}", listaSale);
         return listaSale;
     }
     

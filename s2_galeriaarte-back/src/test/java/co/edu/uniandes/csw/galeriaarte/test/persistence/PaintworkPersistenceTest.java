@@ -132,6 +132,7 @@ public class PaintworkPersistenceTest {
     {
          PaintworkEntity entity = data.get(0);
         PaintworkEntity newEntity = paintworkPersistence.findByName(entity.getName());
+        
         Assert.assertNotNull(newEntity);
        
           Assert.assertEquals(newEntity.getId(), entity.getId());

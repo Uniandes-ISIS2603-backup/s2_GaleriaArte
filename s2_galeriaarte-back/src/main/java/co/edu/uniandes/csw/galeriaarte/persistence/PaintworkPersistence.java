@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
+
 
 /**
  *
@@ -117,7 +117,7 @@ public class PaintworkPersistence {
     {
         LOGGER.log(Level.INFO, "Consultando la obra por nombre ", name);
         // Se crea un query para buscar obras con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From PaintworkEntity e where e.name = :name", PaintworkEntity.class);
+        TypedQuery query = em.createQuery("Select e From PaintworkEntity e where e.name = :name = {0}", PaintworkEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado
@@ -130,7 +130,7 @@ public class PaintworkPersistence {
         } else {
             result = sameName.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar la obra por nombre ", name);
+        LOGGER.log(Level.INFO, "Saliendo de consultar la obra por nombre ={0}", name);
         return result;
     }
 }
