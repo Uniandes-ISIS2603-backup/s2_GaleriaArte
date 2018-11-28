@@ -142,6 +142,29 @@ KindLogic kindLogic;
         kindLogic.deleteKind(kindId);
         LOGGER.info("KindResource updateKind: output: void");
     }
+    
+     /**
+     * Conexión con el servicio de obras para un tipo.
+     * {@link KindPaintworksResource}
+     *
+     * Este método conecta la ruta de /Kinds con las rutas de /paintworks que
+     * dependen del tipo, es una redirección al servicio que maneja el segmento
+     * de la URL .
+     *
+     * @param kindsId El ID del tipo con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de obras para ese tipo en paricular.\
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el tipo.
+     */
+    @Path("{KindsId: \\d+}/paintworks")
+    public Class<KindPaintworksResource> getKindPainworksResource(@PathParam("KindsId") Long kindsId)
+    {
+        if (kindLogic.getKindV(kindsId) == null) {
+            throw new WebApplicationException("El recurso /Kinds/" + kindsId + " no esta disponible.", 404);
+        }
+        return KindPaintworksResource.class;
+    }
 
     /**
      * Convierte una lista de entidades a DTO.

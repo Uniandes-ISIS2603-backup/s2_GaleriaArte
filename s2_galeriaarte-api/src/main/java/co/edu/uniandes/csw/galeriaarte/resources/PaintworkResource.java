@@ -173,7 +173,49 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
         }
         return FeedBackResources.class;
     }
-
+    
+    /**
+     * Conexión con el servicio de tipos  para una obra.
+     * {@link PaintworkKindsResource}
+     *
+     * Este método conecta la ruta de /paintworks con las rutas de /kinds que
+     * dependen del autor, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de los tipos.
+     *
+     * @param paintworkId El ID de la obra con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de tipos para ese autor en paricular.
+     */
+    @Path("{paintworksId: \\d+}/kinds")
+    public Class<PaintworkKindsResource> getPaintworkKindsResource(@PathParam("paintworksId") Long paintworkId)
+    {
+        if (paintworkLogic.getPaintWork(paintworkId) == null) {
+            throw new WebApplicationException("El recurso /painworks/" + paintworkId + " no aparece.", 404);
+        }
+        return PaintworkKindsResource.class;
+    }
+    
+     /**
+     * Conexión con el servicio de artista para una paintwork.
+     * {@link paintworkartistsResource}
+     *
+     * Este método conecta la ruta de /paintworks con las rutas de /artists que
+     * dependen de la paintwork, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los artista de una paintwork.
+     *
+     * @param paintworksId El ID de la paintwork con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de artista para esta paintwork en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la paintwork.
+     */
+    @Path("{paintworksId: \\d+}/artists")
+    public Class<PaintworkArtistResource> getPaintworkArtistResource(@PathParam("paintworksId") Long paintworksId) {
+        if (paintworkLogic.getPaintWork(paintworksId) == null) {
+            throw new WebApplicationException("El recurso para" + paintworksId + " no esta disponible", 404);
+        }
+        return PaintworkArtistResource.class;
+    }
     /**
      * Convierte una lista de entidades a DTO.
      *

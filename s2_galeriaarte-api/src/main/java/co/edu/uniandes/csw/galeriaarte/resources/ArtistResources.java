@@ -168,6 +168,29 @@ ArtistLogic artistLogic;
         }
         return CVResources.class;
     }
+    
+     /**
+     * Conexión con el servicio de obras para una artist.
+     * {@link artistpaintworksResource}
+     *
+     * Este método conecta la ruta de /artists con las rutas de /paintworks que
+     * dependen de la artist, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los obras de una artist.
+     *
+     * @param artistsId El ID de la artist con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de obras para esta artist en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la artist.
+     */
+    @Path("{artistsId: \\d+}/paintworks")
+    public Class<ArtistPaintworksResource> getArtistPaintworksResource(@PathParam("artistsId") Long artistsId)
+    {
+        if (artistLogic.getArtist(artistsId) == null) {
+            throw new WebApplicationException("El recurso /artists/" + artistsId + " inaccesible.", 404);
+        }
+        return ArtistPaintworksResource.class;
+    }
 
     /**
      * Convierte una lista de entidades a DTO.
