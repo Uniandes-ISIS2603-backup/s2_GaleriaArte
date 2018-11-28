@@ -108,7 +108,7 @@ public class SaleResources
      */
     @PUT
     @Path("{SaleId: \\d+}")
-    public SaleDTO updateSale(@PathParam("SaleId") Long saleId, SaleDTO sale) throws  BusinessLogicException
+    public SaleDTO updateSale(@PathParam("SaleId") Long saleId, SaleDTO sale) 
     {
         LOGGER.log(Level.INFO, "SaleResource updateSale: input: id:{0} , Sale {1}");
         sale.setId(saleId);

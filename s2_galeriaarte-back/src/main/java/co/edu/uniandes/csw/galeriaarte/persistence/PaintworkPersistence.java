@@ -118,7 +118,7 @@ public class PaintworkPersistence
     {
         LOGGER.log(Level.INFO, "Consultando la obra por nombre = {0}", name);
         // Se crea un query para buscar obras con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From PaintworkEntity e where e.name = :name = {0}", PaintworkEntity.class);
+        TypedQuery query = em.createQuery("Select e From PaintworkEntity e where e.name = :name", PaintworkEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado

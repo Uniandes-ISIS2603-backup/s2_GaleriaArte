@@ -35,7 +35,6 @@ import javax.ws.rs.container.Suspended;
  * @author ja.penat
  * @version 1.0
  */
-
 @Path("extraServices")
 @Produces("application/json")
 @Consumes("application/json")
@@ -148,23 +147,10 @@ public class ExtraServiceResource
         }
         return list;
     }
-    private ExecutorService executorService = java.util.concurrent.Executors.newCachedThreadPool();
 
     @PUT
     @Path(value = "{extraServiceId: \\d+}")
-    public void updateExtraService(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "extraServiceId") final Long extraServiceId, final ExtraServiceDTO extraService) {
-        executorService.submit(new Runnable() {
-            public void run() {
-                try {
-                    asyncResponse.resume(doUpdateExtraService(extraServiceId, extraService));
-                } catch (BusinessLogicException ex) {
-                    Logger.getLogger(ExtraServiceResource.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
-
-    private ExtraServiceDTO doUpdateExtraService(@PathParam("extraServiceId") Long extraServiceId, ExtraServiceDTO extraService) throws BusinessLogicException
+    private ExtraServiceDTO updateExtraService(@PathParam("extraServiceId") Long extraServiceId, ExtraServiceDTO extraService) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "ExtraServiceResource updateExtraService: input: id:{0} , xtraService: {1}", new Object[]{extraServiceId, extraService});
         extraService.setId(extraServiceId);
