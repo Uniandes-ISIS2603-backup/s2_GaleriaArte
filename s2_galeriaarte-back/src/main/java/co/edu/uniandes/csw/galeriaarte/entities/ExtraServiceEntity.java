@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -28,7 +29,7 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     
     @PodamExclude
     @ManyToOne
-    private SaleEntity sale;
+    private List<SaleEntity> sale;
     /**
      * @return the name
      */
@@ -96,7 +97,7 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     /**
      * @return the sale
      */
-    public SaleEntity getSale()
+    public List<SaleEntity> getSale()
     {
         return sale;
     }
@@ -104,7 +105,7 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     /**
      * @param sale the sale to set
      */
-    public void setSale(SaleEntity sale) 
+    public void setSale(List<SaleEntity> sale) 
     {
         this.sale = sale;
     }

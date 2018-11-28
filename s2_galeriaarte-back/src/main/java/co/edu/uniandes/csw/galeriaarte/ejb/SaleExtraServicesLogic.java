@@ -42,7 +42,9 @@ public class SaleExtraServicesLogic
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle un  extraService a el comprador con id = {0}", salesId);
         SaleEntity saleEntity = salePersistence.find(salesId);
         ExtraServiceEntity extraServiceEntity = extraServicePersistence.find(extraServicesId);
-        extraServiceEntity.setSale(saleEntity);
+        List<SaleEntity> sales = extraServiceEntity.getSale();
+        sales.add(saleEntity);
+        extraServiceEntity.setSale(sales);
         LOGGER.log(Level.INFO, "Termina proceso de agregarle un  extraService a el comprador con id = {0}", salesId);
         return extraServiceEntity;
     }
@@ -92,7 +94,9 @@ public class SaleExtraServicesLogic
         List<ExtraServiceEntity> extraServiceList = extraServicePersistence.findAll();
         for (ExtraServiceEntity extraService : extraServiceList) {
             if (extraServices.contains(extraService)) {
-                extraService.setSale(saleEntity);
+                List<SaleEntity> sales = extraService.getSale();
+                sales.add(saleEntity);
+                extraService.setSale(sales);
             } else if (extraService.getSale() != null && extraService.getSale().equals(saleEntity)) {
                 extraService.setSale(null);
             }
