@@ -87,13 +87,12 @@ public class CVResources
      * @param cvId El ID de la hoja que se va a actualizar
      * @param cvDTO {@link CVDTO} - La hoja de vida que se desea guardar.
      * @return JSON {@link CVDTO} - La hoja de vida actualizada.
-     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la hoja de vida
      */
     @PUT
     @Path("{cvId: \\d+}")
-    public CVDTO updateCV(@PathParam("artistsId") Long artistsId, @PathParam("cvId") Long cvId, CVDTO cvDTO) throws BusinessLogicException 
+    public CVDTO updateCV(@PathParam("artistsId") Long artistsId, @PathParam("cvId") Long cvId, CVDTO cvDTO) 
     {
         LOGGER.log(Level.INFO, "CVResource updateCV: input:artistId: {0} , cvId: {1} , cvDTO:{2}", new Object[]{artistsId, cvId, cvDTO});
         CVEntity entity = cvLogic.getCV(artistsId);

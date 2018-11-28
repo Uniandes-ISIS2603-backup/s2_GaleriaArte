@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.galeriaarte.entities.CategoryEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -25,8 +24,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.container.AsyncResponse;
-import javax.ws.rs.container.Suspended;
+
 
 /**
  *
@@ -93,13 +91,14 @@ public class CategoryResource {
      * actualizar. Este debe ser una cadena de dígitos.
      * @param category {@link CategoryDTO} La categoria que se desea guardar.
      * @return JSON {@link CategoryDTO} - La categoria guardada.
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la categoria a
      * actualizar.
      */
     @PUT
     @Path("{categoryId: \\d+}")
-    public CategoryDTO updateCategory(@PathParam("categoryId") Long categoryId, CategoryDTO category) throws WebApplicationException, BusinessLogicException {
+    public CategoryDTO updateCategory(@PathParam("categoryId") Long categoryId, CategoryDTO category) throws  BusinessLogicException {
         LOGGER.log(Level.INFO, "CategoryResource updateCategory: input: id:{0} , editorial: {1}", new Object[]{categoryId, category});
         category.setIdCategory(categoryId);
         if (categoryLogic.getCategory(categoryId) == null)

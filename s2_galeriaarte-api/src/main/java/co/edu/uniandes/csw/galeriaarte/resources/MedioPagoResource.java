@@ -61,8 +61,8 @@ public class MedioPagoResource
     public MedioPagoDTO createMedioPago(MedioPagoDTO medioPago) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "MedioPagoResource createMedioPago: input: {0}", medioPago);
-        MedioPagoEntity MedioPagoEntity = medioPago.toEntity();
-        MedioPagoEntity nuevoMedioPagoEntity = medioPagoLogic.createMedioPago(MedioPagoEntity);
+        MedioPagoEntity medioPagoEntity = medioPago.toEntity();
+        MedioPagoEntity nuevoMedioPagoEntity = medioPagoLogic.createMedioPago(medioPagoEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         MedioPagoDTO nuevoMedioPagoDTO = new MedioPagoDTO(nuevoMedioPagoEntity);
         LOGGER.log(Level.INFO, "MedioPagoResource createMedioPago: output: {0}", nuevoMedioPagoDTO);
@@ -94,7 +94,7 @@ public class MedioPagoResource
      */
     @GET
     @Path("{medioPagoId: \\d+}")
-    public MedioPagoDTO getMedioPago(@PathParam("medioPagoId") Long medioPagoId) throws WebApplicationException
+    public MedioPagoDTO getMedioPago(@PathParam("medioPagoId") Long medioPagoId) 
     {
         LOGGER.log(Level.INFO, "MedioPagoResource getMedioPago: input: {0}", medioPagoId);
         MedioPagoEntity medioPagoEntity = medioPagoLogic.getMedioPago(medioPagoId);
@@ -115,13 +115,14 @@ public class MedioPagoResource
      * actualizar. Este debe ser una cadena de dígitos.
      * @param medioPago {@link MedioPagoDTO} el medio de pago que se desea guardar.
      * @return JSON {@link MedioPagoDTO} - El medio de pago guardado.
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el medio de pago  a
      * actualizar.
      */
     @PUT
     @Path("{medioPagoId: \\d+}")
-    public MedioPagoDTO updateMedioPago(@PathParam("medioPagoId") Long medioPagoId, MedioPagoDTO medioPago) throws WebApplicationException, BusinessLogicException
+    public MedioPagoDTO updateMedioPago(@PathParam("medioPagoId") Long medioPagoId, MedioPagoDTO medioPago) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "MedioPagoResource updateMedioPago: input: id:{0} , MedioPago {1}", new Object[]{medioPagoId, medioPago});
         medioPago.setId(medioPagoId);
@@ -165,7 +166,7 @@ public class MedioPagoResource
      */
     private List<MedioPagoDTO> listEntity2DTO(List<MedioPagoEntity> entityList) 
     {
-        List<MedioPagoDTO> list = new ArrayList<MedioPagoDTO>();
+        List<MedioPagoDTO> list = new ArrayList<>();
         for (MedioPagoEntity entity : entityList) 
         {
             list.add(new MedioPagoDTO(entity));

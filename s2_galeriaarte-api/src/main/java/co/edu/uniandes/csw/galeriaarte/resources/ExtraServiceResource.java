@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.galeriaarte.entities.ExtraServiceEntity;
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 import javax.ws.rs.Path;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
@@ -26,6 +27,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 
 /**
  * Clase que implementa el recurso "ExtraService".
@@ -95,7 +98,7 @@ public class ExtraServiceResource
      */
     @GET
     @Path("{extraServiceId: \\d+}")
-    public ExtraServiceDTO getExtraService(@PathParam("extraServiceId") Long extraServiceId) throws WebApplicationException
+    public ExtraServiceDTO getExtraService(@PathParam("extraServiceId") Long extraServiceId) 
     {
         LOGGER.log(Level.INFO, "ExtraServiceResource getExtraService: input: {0}", extraServiceId);
         ExtraServiceEntity extraServiceEntity = extraServiceLogic.getExtraService(extraServiceId);
@@ -108,32 +111,6 @@ public class ExtraServiceResource
         return detailDTO;
     }
 
-    /**
-     * Actualiza la servicio extra con el id recibido en la URL con la informacion
-     * que se recibe en el cuerpo de la petición.
-     *
-     * @param extraServiceId Identificador de la  que se desea
-     * actualizar. Este debe ser una cadena de dígitos.
-     * @param extraService {@link ExtraServiceDTO} La editorial que se desea guardar.
-     * @return JSON {@link ExtraServiceDTO} - El servicio extra guardado.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el servicio a
-     * actualizar.
-     */
-    @PUT
-    @Path("{extraServiceId: \\d+}")
-    public ExtraServiceDTO updateExtraService(@PathParam("extraServiceId") Long extraServiceId, ExtraServiceDTO extraService) throws WebApplicationException, BusinessLogicException 
-    {
-        LOGGER.log(Level.INFO, "ExtraServiceResource updateExtraService: input: id:{0} , xtraService: {1}", new Object[]{extraServiceId, extraService});
-        extraService.setId(extraServiceId);
-        if (extraServiceLogic.getExtraService(extraServiceId) == null) 
-        {
-            throw new WebApplicationException("El recurso /extraServices/" + extraServiceId + " no se encuentra.", 404);
-        }
-        ExtraServiceDTO detailDTO = new ExtraServiceDTO(extraServiceLogic.updateExtraService(extraServiceId, extraService.toEntity()));
-        LOGGER.log(Level.INFO, "ExtraServiceResource updateExtraService: output: {0}", detailDTO);
-        return detailDTO;
-    }
 
     /**
      * Borra el servicio extra  con el id asociado recibido en la URL.
@@ -170,5 +147,33 @@ public class ExtraServiceResource
             list.add(new ExtraServiceDTO(entity));
         }
         return list;
+    }
+    private ExecutorService executorService = java.util.concurrent.Executors.newCachedThreadPool();
+
+    @PUT
+    @Path(value = "{extraServiceId: \\d+}")
+    public void updateExtraService(@Suspended final AsyncResponse asyncResponse, @PathParam(value = "extraServiceId") final Long extraServiceId, final ExtraServiceDTO extraService) {
+        executorService.submit(new Runnable() {
+            public void run() {
+                try {
+                    asyncResponse.resume(doUpdateExtraService(extraServiceId, extraService));
+                } catch (BusinessLogicException ex) {
+                    Logger.getLogger(ExtraServiceResource.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+
+    private ExtraServiceDTO doUpdateExtraService(@PathParam("extraServiceId") Long extraServiceId, ExtraServiceDTO extraService) throws BusinessLogicException
+    {
+        LOGGER.log(Level.INFO, "ExtraServiceResource updateExtraService: input: id:{0} , xtraService: {1}", new Object[]{extraServiceId, extraService});
+        extraService.setId(extraServiceId);
+        if (extraServiceLogic.getExtraService(extraServiceId) == null)
+        {
+            throw new WebApplicationException("El recurso /extraServices/" + extraServiceId + " no se encuentra.", 404);
+        }
+        ExtraServiceDTO detailDTO = new ExtraServiceDTO(extraServiceLogic.updateExtraService(extraServiceId, extraService.toEntity()));
+        LOGGER.log(Level.INFO, "ExtraServiceResource updateExtraService: output: {0}", detailDTO);
+        return detailDTO;
     }
 }

@@ -36,16 +36,16 @@ KindLogic kindLogic;
     /**
      * Crea una hoja de vida
      *
-     * @param Kind
+     * @param kind
     
      * @return
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @POST
-    public KindDTO createKInd(KindDTO Kind) throws BusinessLogicException {
-         LOGGER.log(Level.INFO, "KindResources createKind: input: {0}", Kind);
+    public KindDTO createKInd(KindDTO kind) throws BusinessLogicException {
+         LOGGER.log(Level.INFO, "KindResources createKind: input: {0}", kind);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        KindEntity kindEntity = Kind.toEntity();
+        KindEntity kindEntity = kind.toEntity();
         // Invoca la lógica para crear la pintura nueva
       
       KindEntity   nuevoKindEntity = kindLogic.createKind(kindEntity);
@@ -83,7 +83,8 @@ KindLogic kindLogic;
      */
     @GET
     @Path("{kindsId: \\d+}")
-    public KindDTO getKind(@PathParam("kindsId") Long kindId) throws WebApplicationException {
+    public KindDTO getKind(@PathParam("kindsId") Long kindId) 
+    {
         LOGGER.log(Level.INFO, "KindResource getKind: input: {0}", kindId);
         KindEntity kindEntity;
         kindEntity = kindLogic.getKindV(kindId);
@@ -109,7 +110,8 @@ KindLogic kindLogic;
      */
     @PUT
     @Path("{kindsId: \\d+}")
-    public KindDTO updateKind(@PathParam("kindsId") Long kindId, KindDTO kind1) throws WebApplicationException {
+    public KindDTO updateKind(@PathParam("kindsId") Long kindId, KindDTO kind1) 
+    {
         LOGGER.log(Level.INFO, "KindResource updateKind: input: id:{0} , Kind: {1}", new Object[]{kindId, kind1});
         kind1.setIdType(kindId);
         if (kindLogic.getKindV(kindId) == null) {

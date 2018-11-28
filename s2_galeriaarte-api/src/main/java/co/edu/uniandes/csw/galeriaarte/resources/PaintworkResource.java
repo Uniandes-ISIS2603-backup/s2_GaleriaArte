@@ -95,7 +95,7 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
      */
     @GET
     @Path("{paintworksId: \\d+}")
-    public PaintworkDTO getPaintwork(@PathParam("paintworksId") Long paintworkId) throws WebApplicationException {
+    public PaintworkDTO getPaintwork(@PathParam("paintworksId") Long paintworkId)  {
         LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: input: {0}", paintworkId);
         PaintworkEntity paintworkEntity = paintworkLogic.getPaintWork(paintworkId);
         if (paintworkEntity == null) {
@@ -120,7 +120,7 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
      */
     @PUT
     @Path("{painworksId: \\d+}")
-    public PaintworkDTO updatePaintwork(@PathParam("painworksId") Long paintworkId, PaintworkDTO paintwork1) throws WebApplicationException {
+    public PaintworkDTO updatePaintwork(@PathParam("painworksId") Long paintworkId, PaintworkDTO paintwork1)  {
         LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: input: id:{0} , paintwork: {1}", new Object[]{paintworkId, paintwork1});
         paintwork1.setIdPaintwork(paintworkId);
         if (paintworkLogic.getPaintWork(paintworkId) == null) {
