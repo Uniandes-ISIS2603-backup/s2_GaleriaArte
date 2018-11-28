@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 import java.util.Collection;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 /**
  *
@@ -32,11 +33,11 @@ public class SaleEntity extends BaseEntity implements Serializable
 	private PaintworkEntity obra;
         
 	@PodamExclude
-        @OneToOne
+        @OneToOne(mappedBy = "sale")
 	private MedioPagoEntity metodo;
         
         @PodamExclude
-	@OneToMany(mappedBy = "sale")
+	@OneToMany(mappedBy = "sale",fetch = FetchType.LAZY)
 	private Collection<ExtraServiceEntity> services;
 	
         @PodamExclude
