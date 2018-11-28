@@ -100,8 +100,7 @@ public class ExtraServiceLogic
         //Valida que el servicio extra este en la base de datos, si no, lo crea.
         if(persistence.find(extraServiceId)== null)
         {
-            ExtraServiceEntity newEntity = persistence.create(extraServiceEntity);
-            return newEntity;
+           return persistence.create(extraServiceEntity);
         }
         // Verifica que el nombre  no sea nulo.
         else if(extraServiceEntity.getName() == null )

@@ -18,7 +18,7 @@ public class CategoryDTO  implements Serializable
 {
     private Long idCategory;
     private String name;
-    private String Description;
+    private String description;
     
     public CategoryDTO(CategoryEntity categoryEntity) {
         if (categoryEntity != null) {
@@ -64,14 +64,14 @@ public class CategoryDTO  implements Serializable
      * @return the Description
      */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     /**
-     * @param Description the Description to set
+     * @param description the Description to set
      */
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
     
     /**
@@ -83,7 +83,7 @@ public class CategoryDTO  implements Serializable
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setId(this.idCategory);
         categoryEntity.setName(this.name);
-        categoryEntity.setDescription(this.Description);
+        categoryEntity.setDescription(this.description);
         return categoryEntity;
     }
 

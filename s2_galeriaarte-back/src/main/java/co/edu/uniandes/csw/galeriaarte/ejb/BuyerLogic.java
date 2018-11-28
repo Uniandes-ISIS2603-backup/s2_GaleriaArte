@@ -23,7 +23,7 @@ public class BuyerLogic
 {
     
     
-    private final static Logger LOGGER = Logger.getLogger(BuyerLogic.class.getName());
+    private  static final Logger LOGGER = Logger.getLogger(BuyerLogic.class.getName());
     
     @Inject
     

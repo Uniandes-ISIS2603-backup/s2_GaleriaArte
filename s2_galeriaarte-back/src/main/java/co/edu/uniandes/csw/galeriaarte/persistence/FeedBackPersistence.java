@@ -90,11 +90,11 @@ public class FeedBackPersistence
         q.setParameter("feedbackId", feedbackId);
         List<FeedBackEntity> results = q.getResultList();
         FeedBackEntity comentario = null;
-        if (results == null || results.isEmpty())
+        if (results == null )
         {
           return comentario;  
         }
-        else if (results.size() >= 1)
+        else if (!results.isEmpty())
         {
             comentario = results.get(0);
         }

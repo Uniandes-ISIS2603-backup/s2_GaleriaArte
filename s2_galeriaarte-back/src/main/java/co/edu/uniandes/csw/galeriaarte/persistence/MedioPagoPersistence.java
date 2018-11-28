@@ -61,8 +61,7 @@ public class MedioPagoPersistence
     public MedioPagoEntity find(Long medioPagoId) 
     {
         LOGGER.log(Level.INFO, "Consultando medio de pago  con id={0}", medioPagoId);
-        MedioPagoEntity entity = em.find(MedioPagoEntity.class, medioPagoId );
-        return entity;
+        return  em.find(MedioPagoEntity.class, medioPagoId );
     }
 
     /**

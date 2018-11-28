@@ -20,7 +20,8 @@ import javax.persistence.TypedQuery;
  * @author estudiante
  */
 @Stateless
-public class PaintworkPersistence {
+public class PaintworkPersistence
+{
     private static final Logger LOGGER = Logger.getLogger(PaintworkPersistence.class.getName());
     @PersistenceContext(unitName = "InterArtPU")
     protected EntityManager em;
@@ -115,7 +116,7 @@ public class PaintworkPersistence {
      */
     public PaintworkEntity findByName(String name) 
     {
-        LOGGER.log(Level.INFO, "Consultando la obra por nombre ", name);
+        LOGGER.log(Level.INFO, "Consultando la obra por nombre = {0}", name);
         // Se crea un query para buscar obras con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
         TypedQuery query = em.createQuery("Select e From PaintworkEntity e where e.name = :name = {0}", PaintworkEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 

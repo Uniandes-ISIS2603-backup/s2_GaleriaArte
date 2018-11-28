@@ -65,15 +65,15 @@ public class SaleLogic
     }
     
     
-    public SaleEntity getSale(Long saleID){
+    public SaleEntity getSale(Long saleId){
         
-        LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", saleID);
-        SaleEntity saleEntity = persistence.find(saleID);
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", saleId);
+        SaleEntity saleEntity = persistence.find(saleId);
         if(saleEntity==null){
-            LOGGER.log(Level.SEVERE, "no existe la entidad con id = {0} no existe", saleID);
+            LOGGER.log(Level.SEVERE, "no existe la entidad con id = {0} no existe", saleId);
         }
         
-        LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", saleID);
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", saleId);
         return saleEntity;
     }
    
