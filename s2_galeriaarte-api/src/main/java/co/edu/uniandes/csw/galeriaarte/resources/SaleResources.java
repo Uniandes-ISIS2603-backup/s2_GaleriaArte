@@ -139,6 +139,13 @@ public class SaleResources
         LOGGER.info("SaleResource deleteSale: output: void");
     }
     
+     @Path("{salesId: \\d+}/extraServices")
+    public Class<SaleExtraServicesResources> getSaleExtraServicesResource(@PathParam("salesId") Long salesId) {
+        if (saleLogic.getSale(salesId) == null) {
+            throw new WebApplicationException("El recurso /sales/" + salesId + " no existe.", 404);
+        }
+        return SaleExtraServicesResources.class;
+    }
     /**
      * Convierte una lista de entidades a DTO.
      *        return list;

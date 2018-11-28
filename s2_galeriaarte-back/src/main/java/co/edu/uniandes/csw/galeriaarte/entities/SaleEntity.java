@@ -38,7 +38,7 @@ public class SaleEntity extends BaseEntity implements Serializable
         
         @PodamExclude
 	@OneToMany(mappedBy = "sale",fetch = FetchType.LAZY)
-	private Collection<ExtraServiceEntity> services;
+	private List<ExtraServiceEntity> services;
 	
         @PodamExclude
         @ManyToOne
@@ -105,7 +105,7 @@ public class SaleEntity extends BaseEntity implements Serializable
     /**
      * @return the services
      */
-    public Collection<ExtraServiceEntity> getServices() {
+    public List<ExtraServiceEntity> getServices() {
         return services;
     }
 
