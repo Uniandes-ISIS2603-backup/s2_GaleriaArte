@@ -19,7 +19,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class CategoryEntity extends BaseEntity implements Serializable{
     
     private String name;
-    private String Description;
+    private String description;
     
     @PodamExclude
     @ManyToMany
@@ -43,14 +43,14 @@ public class CategoryEntity extends BaseEntity implements Serializable{
      * @return the Description
      */
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     /**
      * @param Description the Description to set
      */
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**

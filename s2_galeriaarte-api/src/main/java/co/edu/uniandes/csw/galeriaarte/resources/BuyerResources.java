@@ -38,7 +38,8 @@ public class BuyerResources {
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(BuyerResources.class.getName());
     
     @POST
-    public BuyerDTO createBuyer(BuyerDTO buyer) throws BusinessLogicException{
+    public BuyerDTO createBuyer(BuyerDTO buyer) 
+    {
         //Convierte el DTO (json) es un objeto Entity para ser manejado por la lógica.
     
         LOGGER.log(Level.INFO, "BuyerResource createBuyer: input:{0}", buyer);
@@ -54,7 +55,7 @@ public class BuyerResources {
     
     @GET
     @Path("{buyerId: \\d+}")
-    public BuyerDTO  getBuyer(@PathParam("buyerId") Long idBuyer)throws WebApplicationException
+    public BuyerDTO  getBuyer(@PathParam("buyerId") Long idBuyer)
     {
         LOGGER.log(Level.INFO, "BuyerResource getBuyer: input: {0}", idBuyer);
         BuyerEntity buyerEntity = buyerLogic.getBuyer(idBuyer);

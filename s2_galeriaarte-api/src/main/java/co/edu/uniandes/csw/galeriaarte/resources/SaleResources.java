@@ -34,7 +34,7 @@ public class SaleResources
     
     
     @Inject
-            SaleLogic SaleLogic;
+            SaleLogic saleLogic;
     
     /**
      * Crea un nuevo la venta con la informacion que se recibe en el cuerpo de
@@ -49,10 +49,10 @@ public class SaleResources
      * Error de lógica que se genera cuando ya existe el metodo de pago con el mismo id.
      */
     @POST
-    public void createSale(SaleDTO Sale) throws BusinessLogicException
+    public void createSale(SaleDTO sale) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "SaleResource createSale: input: {0}", Sale);
-          Sale.toEntity();
+        LOGGER.log(Level.INFO, "SaleResource createSale: input: {0}", sale);
+          sale.toEntity();
         
     }
     
@@ -65,7 +65,7 @@ public class SaleResources
     @GET
     public List<SaleDTO> getSales() {
         LOGGER.info("SaleResource Sale: input: void");
-        List<SaleDTO> listaSale = listEntity2DTO(SaleLogic.getSales());
+        List<SaleDTO> listaSale = listEntity2DTO(saleLogic.getSales());
         LOGGER.log(Level.INFO, "SaleResource getSales: output: {0}", listaSale);
         return listaSale;
     }
@@ -73,7 +73,7 @@ public class SaleResources
     /**
      * Busca la medio pago con el id asociado recibido en la URL y la devuelve.
      *
-     * @param SaleId Identificador de medios de pago que se esta buscando.
+     * @param saleId Identificador de medios de pago que se esta buscando.
      * Este debe ser una cadena de dígitos.
      * @return JSON {@link SaleDTO} - ¿El la venta buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
@@ -81,15 +81,15 @@ public class SaleResources
      */
     @GET
     @Path("{SaleId: \\d+}")
-    public SaleDTO getSale(@PathParam("SaleId") Long SaleId) throws WebApplicationException
+    public SaleDTO getSale(@PathParam("SaleId") Long saleId) 
     {
-        LOGGER.log(Level.INFO, "SaleResource getSale: input: {0}", SaleId);
-        SaleEntity SaleEntity = SaleLogic.getSale(SaleId);
-        if (SaleEntity == null)
+        LOGGER.log(Level.INFO, "SaleResource getSale: input: {0}", saleId);
+        SaleEntity saleEntity = saleLogic.getSale(saleId);
+        if (saleEntity == null)
         {
-            throw new WebApplicationException("El recurso /Sales/" + SaleId + " no esta.", 404);
+            throw new WebApplicationException("El recurso /Sales/" + saleId + " no esta.", 404);
         }
-        SaleDTO detailDTO = new SaleDTO(SaleEntity);
+        SaleDTO detailDTO = new SaleDTO(saleEntity);
         LOGGER.log(Level.INFO, "SaleResource getSale: output: {0}", detailDTO);
         return detailDTO;
     }
@@ -98,25 +98,25 @@ public class SaleResources
      * Actualiza el la venta  con el id recibido en la URL con la informacion
      * que se recibe en el cuerpo de la petición.
      *
-     * @param SaleId Identificador de la  que se desea
-     * actualizar. Este debe ser una cadena de dígitos.
-     * @param Sale {@link SaleDTO} el la venta que se desea guardar.
+     * @param saleId
+     * @param sale
      * @return JSON {@link SaleDTO} - El la venta guardado.
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el la venta  a
      * actualizar.
      */
     @PUT
     @Path("{SaleId: \\d+}")
-    public SaleDTO updateSale(@PathParam("SaleId") Long saleId, SaleDTO sale) throws WebApplicationException, BusinessLogicException
+    public SaleDTO updateSale(@PathParam("SaleId") Long saleId, SaleDTO sale) throws  BusinessLogicException
     {
         LOGGER.log(Level.INFO, "SaleResource updateSale: input: id:{0} , Sale {1}");
         sale.setId(saleId);
-        if (SaleLogic.getSale(saleId) == null)
+        if (saleLogic.getSale(saleId) == null)
         {
             throw new WebApplicationException("El recurso no esta", 404);
         }
-        SaleDTO detailDTO = new SaleDTO(SaleLogic.updateSale(saleId, sale.toEntity()));
+        SaleDTO detailDTO = new SaleDTO(saleLogic.updateSale(saleId, sale.toEntity()));
         LOGGER.log(Level.INFO, "SaleResource updateSale: output: {0}", detailDTO);
         return detailDTO;
     }
@@ -131,11 +131,11 @@ public class SaleResources
     public void deleteSale(@PathParam("SaleId") Long saleId)
     {
         LOGGER.log(Level.INFO, "SaleResource deleteSale: input: {0}", saleId);
-        if (SaleLogic.getSale(saleId) == null)
+        if (saleLogic.getSale(saleId) == null)
         {
             throw new WebApplicationException("El recurso /Sales/" + saleId + " no existe.", 404);
         }
-        SaleLogic.deleteSale(saleId);
+        saleLogic.deleteSale(saleId);
         LOGGER.info("SaleResource deleteSale: output: void");
     }
     
@@ -152,7 +152,7 @@ public class SaleResources
      */
     private List<SaleDTO> listEntity2DTO(List<SaleEntity> entityList) 
     {
-        List<SaleDTO> list = new ArrayList<SaleDTO>();
+        List<SaleDTO> list = new ArrayList<>();
         for (SaleEntity entity : entityList) 
         {
             list.add(new SaleDTO(entity));

@@ -38,14 +38,16 @@ ArtistLogic artistLogic;
     /**
      * Crea un Artista
      *
-     * @param Artist
+     * @param artist
      * @return el dto del artista
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @POST
-    public ArtistDTO createArtist(ArtistDTO Artist) throws BusinessLogicException {
-         LOGGER.log(Level.INFO, "ArtistResources createArtist: input: {0}", Artist);
+    public ArtistDTO createArtist(ArtistDTO artist) throws BusinessLogicException 
+    {
+         LOGGER.log(Level.INFO, "ArtistResources createArtist: input: {0}", artist);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        ArtistEntity artistEntity = Artist.toEntity();
+        ArtistEntity artistEntity = artist.toEntity();
         // Invoca la lógica para crear la pintura nueva
       
       ArtistEntity   nuevoArtistEntity = artistLogic.createArtist(artistEntity);
@@ -82,7 +84,8 @@ ArtistLogic artistLogic;
      */
     @GET
     @Path("{artistsId: \\d+}")
-    public ArtistDTO getArtist(@PathParam("artistsId") Long artistId) throws WebApplicationException {
+    public ArtistDTO getArtist(@PathParam("artistsId") Long artistId) 
+    {
         LOGGER.log(Level.INFO, "ArtistResource getArtist: input: {0}", artistId);
         ArtistEntity artistEntity;
         artistEntity = artistLogic.getArtist(artistId);
@@ -109,7 +112,7 @@ ArtistLogic artistLogic;
      */
     @PUT
     @Path("{artistsId: \\d+}")
-    public ArtistDTO updateArtist(@PathParam("artistsId") Long artistId, ArtistDTO artistdto) throws WebApplicationException, BusinessLogicException 
+    public ArtistDTO updateArtist(@PathParam("artistsId") Long artistId, ArtistDTO artistdto) throws BusinessLogicException 
     {
         LOGGER.log(Level.INFO, "ArtistResource updateArtist: input: id:{0} , Artist: {1}", new Object[]{artistId, artistdto});
         artistdto.setId(artistId);

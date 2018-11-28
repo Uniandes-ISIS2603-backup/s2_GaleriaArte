@@ -169,7 +169,7 @@ public class FeedBackResources
      */
     private List<FeedBackDTO> listEntity2DTO(List<FeedBackEntity> entityList)
     {
-        List<FeedBackDTO> list = new ArrayList<FeedBackDTO>();
+        List<FeedBackDTO> list = new ArrayList<>();
         for (FeedBackEntity entity : entityList)
         {
             list.add(new FeedBackDTO(entity));

@@ -35,10 +35,10 @@ public class SalePersistence
         return saleEntity;
     }
     
-    public SaleEntity find(Long Id) {
-        LOGGER.log(Level.INFO, "Consultando el comprador con id={0}", Id);
+    public SaleEntity find(Long id) {
+        LOGGER.log(Level.INFO, "Consultando el comprador con id={0}", id);
 
-        return em.find(SaleEntity.class, Id);
+        return em.find(SaleEntity.class, id);
     }
     
     public SaleEntity update(SaleEntity saleEntity) {

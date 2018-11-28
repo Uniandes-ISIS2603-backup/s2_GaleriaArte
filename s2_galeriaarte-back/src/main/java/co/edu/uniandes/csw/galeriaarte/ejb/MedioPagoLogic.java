@@ -83,6 +83,7 @@ public class MedioPagoLogic
      * @param medioPagoEntity: medioPago con los cambios para ser actualizada,
      * por ejemplo el numero.
      * @return el medio de pago con los cambios actualizados en la base de datos.
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     public MedioPagoEntity updateMedioPago(Long medioPagoId, MedioPagoEntity medioPagoEntity) throws BusinessLogicException
     {
@@ -93,8 +94,7 @@ public class MedioPagoLogic
         
         if(persistence.find(medioPagoId)== null)
         {
-            MedioPagoEntity newEntity = persistence.create(medioPagoEntity);
-            return newEntity;
+           return persistence.create(medioPagoEntity);
         }
         else if (medioPagoEntity.getNumber() == null && medioPagoEntity.getNumber().toString().length() != 15 )
         {
