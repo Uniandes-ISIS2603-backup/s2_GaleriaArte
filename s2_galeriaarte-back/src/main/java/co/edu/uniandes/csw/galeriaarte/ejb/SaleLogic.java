@@ -78,10 +78,10 @@ public class SaleLogic
     }
    
  
-     public SaleEntity updateSale(Long Id, SaleEntity saleEntity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", Id);
+     public SaleEntity updateSale(Long id, SaleEntity saleEntity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el artista con id = {0}", id);
         SaleEntity newBuyerEntity = persistence.update(saleEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el artista con id = {0}", Id);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el artista con id = {0}", id);
         return newBuyerEntity;
     }
      

@@ -60,7 +60,7 @@ public class BuyerResources {
         BuyerEntity buyerEntity = buyerLogic.getBuyer(idBuyer);
         if(buyerEntity==null)
         {
-            throw new WebApplicationException("El recurso /buyers/"+idBuyer+"no se encuentra", 404);
+            throw new WebApplicationException("El recurso con "+idBuyer+"no se encuentra", 404);
         }
         
         BuyerDTO buyerDTO = new BuyerDTO(buyerEntity);
@@ -106,7 +106,7 @@ public class BuyerResources {
         buyer.setId(buyerID);
         if(buyerLogic.getBuyer(buyerID)==null)
         {
-            throw new WebApplicationException("El recurso /buyer/"+buyerID+"no existe", 404);
+            throw new WebApplicationException("El recursocon el path/buyer/"+buyerID+"no existe", 404);
         }
         
         BuyerDTO buyerDTO = new BuyerDTO(buyerLogic.updateBuyer(buyerID, buyer.toEntity()));

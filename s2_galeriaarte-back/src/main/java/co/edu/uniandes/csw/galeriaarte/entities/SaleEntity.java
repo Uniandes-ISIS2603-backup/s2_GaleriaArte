@@ -14,6 +14,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 import java.util.Collection;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  *
  * @author s.restrepos1
@@ -116,5 +118,9 @@ public class SaleEntity extends BaseEntity implements Serializable
         this.services = services;
     }
 
-   
+     @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 }

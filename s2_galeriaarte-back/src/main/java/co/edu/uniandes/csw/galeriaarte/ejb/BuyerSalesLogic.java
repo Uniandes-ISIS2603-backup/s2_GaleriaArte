@@ -67,7 +67,7 @@ public class BuyerSalesLogic {
      * buyer
      */
     public SaleEntity getSale(Long buyersId, Long salesId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "{0}Inicia proceso de consultar elobracon id = {0} de el comprador con id = {1}", new Object[]{salesId, salesId, buyersId});
+        LOGGER.log(Level.INFO, "{0}Inicia proceso de consultar elobracon id = {0} de el comprador con id = {1}", new Object[]{salesId,  buyersId});
         List<SaleEntity> sales = buyerPersistence.find(buyersId).getSales();
         SaleEntity saleEntity = salePersistence.find(salesId);
         int index = sales.indexOf(saleEntity);
