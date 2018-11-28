@@ -10,7 +10,10 @@
     <packaging>pom</packaging>
     <name>s2_interart</name>
  
-    <modules></modules>
+    <modules>
+        <module>s2_galeriaarte-api</module>
+        <module>s2_galeriaarte-back</module>
+    </modules>
     
     <repositories>
         <repository>

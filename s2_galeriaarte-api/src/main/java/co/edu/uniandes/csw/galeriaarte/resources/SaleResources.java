@@ -125,8 +125,6 @@ public class SaleResources
     /**
      * Borra el la venta con el id asociado recibido en la URL.
      * @param saleId
-     * @param SaleId Identificador del la venta que se desea borrar.
-     * Este debe ser una cadena de dígitos.
      */
     @DELETE
     @Path("{SaleId: \\d+}")
