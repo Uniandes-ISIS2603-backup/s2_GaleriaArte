@@ -91,7 +91,7 @@ public class SaleResources
         SaleEntity SaleEntity = SaleLogic.getSale(SaleId);
         if (SaleEntity == null)
         {
-            throw new WebApplicationException("El recurso /Sales/" + SaleId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Sales/" + SaleId + " no esta.", 404);
         }
         SaleDTO detailDTO = new SaleDTO(SaleEntity);
         LOGGER.log(Level.INFO, "SaleResource getSale: output: {0}", detailDTO.toString());
@@ -118,7 +118,7 @@ public class SaleResources
         sale.setId(saleId);
         if (SaleLogic.getSale(saleId) == null)
         {
-            throw new WebApplicationException("El recurso /Sales/" + saleId + " no existe.", 404);
+            throw new WebApplicationException("El recurso no esta", 404);
         }
         SaleDTO detailDTO = new SaleDTO(SaleLogic.updateSale(saleId, sale.toEntity()));
         LOGGER.log(Level.INFO, "SaleResource updateSale: output: {0}", detailDTO.toString());

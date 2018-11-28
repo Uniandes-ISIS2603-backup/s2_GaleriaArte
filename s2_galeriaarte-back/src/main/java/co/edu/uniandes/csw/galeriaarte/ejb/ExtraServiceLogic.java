@@ -37,12 +37,12 @@ public class ExtraServiceLogic
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del servicio extra ");
         // Verifica que el nombre no exista ya en la base de datos o que no sea nulo.
-        if(extraServiceEntity == null && (extraServiceEntity.getName() == null && persistence.findByName(extraServiceEntity.getName()) != null))
+        if( (extraServiceEntity.getName() == null && persistence.findByName(extraServiceEntity.getName()) != null))
         {
             throw new BusinessLogicException("El nombre del servicio extra no es valido o ya esta en la base de datos\"" + extraServiceEntity.getName() + "\"");
         }
         // Verifica que el precio no sea negativo.
-        else if(extraServiceEntity != null && extraServiceEntity.getPrice() < 0)
+        else if(  extraServiceEntity.getPrice() < 0)
         {
             throw new BusinessLogicException("El precio  del servicio extra no es valido \"" + extraServiceEntity.getPrice() + "\"");
         }

@@ -119,13 +119,13 @@ public class CVLogic
      */
     public void deleteCV(Long artistId) throws BusinessLogicException 
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar la hoja de vida del artista con id = " , artistId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la hoja de vida del artista con id " + artistId);
         CVEntity old = getCV(artistId);
         if (old == null) 
         {
             throw new BusinessLogicException("La hojo de vida  del artista con id = " + artistId + "no existe");
         }
         persistence.delete(old.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la hoja de vida para el artista del artista con id = " , artistId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la hoja de vida para el artista del artista con id  " +  artistId);
     }
 }
