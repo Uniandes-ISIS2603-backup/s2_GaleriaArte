@@ -100,7 +100,7 @@ public class MedioPagoResource
         MedioPagoEntity medioPagoEntity = medioPagoLogic.getMedioPago(medioPagoId);
         if (medioPagoEntity == null)
         {
-            throw new WebApplicationException("El recurso /MedioPagos/" + medioPagoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /MedioPagos/" + medioPagoId + " no se encontro", 404);
         }
         MedioPagoDTO detailDTO = new MedioPagoDTO(medioPagoEntity);
         LOGGER.log(Level.INFO, "MedioPagoResource getMedioPago: output: {0}", detailDTO.toString());
@@ -127,7 +127,7 @@ public class MedioPagoResource
         medioPago.setId(medioPagoId);
         if (medioPagoLogic.getMedioPago(medioPagoId) == null)
         {
-            throw new WebApplicationException("El recurso /medioPagos/" + medioPagoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso con el path /medioPagos/" + medioPagoId + " no esta.", 404);
         }
         MedioPagoDTO detailDTO = new MedioPagoDTO(medioPagoLogic.updateMedioPago(medioPagoId, medioPago.toEntity()));
         LOGGER.log(Level.INFO, "MedioPagoResource updateMedioPago: output: {0}", detailDTO.toString());
@@ -147,7 +147,7 @@ public class MedioPagoResource
         LOGGER.log(Level.INFO, "MedioPagoResource deleteMedioPago: input: {0}", medioPagoId);
         if (medioPagoLogic.getMedioPago(medioPagoId) == null)
         {
-            throw new WebApplicationException("El recurso /medioPagos/" + medioPagoId + " no existe.", 404);
+            throw new WebApplicationException("El recurso no existe.", 404);
         }
         medioPagoLogic.deleteMedioPago(medioPagoId);
         LOGGER.info("MedioPagoResource deleteMedioPago: output: void");

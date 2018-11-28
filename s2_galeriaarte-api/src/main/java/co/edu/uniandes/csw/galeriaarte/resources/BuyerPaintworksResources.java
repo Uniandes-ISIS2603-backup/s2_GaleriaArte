@@ -48,7 +48,7 @@ public class BuyerPaintworksResources {
     public PaintworkDTO addPaintwork(@PathParam("buyersId") Long buyersId, @PathParam("paintworksId") Long paintworksId) {
         LOGGER.log(Level.INFO, "BuyerPaintworksResource addPaintwork: input: buyersID: {0} , paintworksId: {1}", new Object[]{buyersId, paintworksId});
         if (paintworkLogic.getPaintWork(paintworksId) == null) {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworksId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /paintworks/" + paintworksId + " no esta disponible.", 404);
         }
         
         PaintworkDTO paintworkDTO = new PaintworkDTO(buyerPaintworksLogic.addPaintwork(buyersId, paintworksId));
@@ -81,7 +81,7 @@ public class BuyerPaintworksResources {
         LOGGER.log(Level.INFO, "BuyerPaintworksResource replacePaintworks: input: buyersId: {0} , paintworks: {1}", new Object[]{buyersId, paintworks});
         for (PaintworkDetailDTO paintwork : paintworks) {
             if (paintworkLogic.getPaintWork(paintwork.getIdPaintwork()) == null) {
-                throw new WebApplicationException("El recurso /paintworks/" + paintwork.getIdPaintwork() + " no existe.", 404);
+                throw new WebApplicationException("El recurso /paintworks/" + paintwork.getIdPaintwork() + " no se encuentra.", 404);
             }
         }
         List<PaintworkDetailDTO> listaDetailDTOs = paintworksListEntity2DTO(buyerPaintworksLogic.replacePaintworks(buyersId, paintworksListDTO2Entity(paintworks)));

@@ -104,7 +104,7 @@ public class CategoryResource {
         category.setIdCategory(categoryId);
         if (categoryLogic.getCategory(categoryId) == null)
         {
-            throw new WebApplicationException("El recurso /categories/" + categoryId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /categories/" + categoryId + "no esta", 404);
         }
         CategoryDTO detailDTO = new CategoryDTO(categoryLogic.updateCategory(categoryId, category.toEntity()));
         LOGGER.log(Level.INFO, "CategoryResource updateCategory: output: {0}", detailDTO.toString());
@@ -126,7 +126,7 @@ public class CategoryResource {
     public void deleteEditorial(@PathParam("categoryId") Long categoryId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CategoryResource deleteCategory: input: {0}", categoryId);
         if (categoryLogic.getCategory(categoryId) == null) {
-            throw new WebApplicationException("El recurso /editorials/" + categoryId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /editorials/" + categoryId + " no se encuentra.", 404);
         }
         categoryLogic.deleteCategory(categoryId);
         LOGGER.info("CategoryResource deleteCategory: output: void");

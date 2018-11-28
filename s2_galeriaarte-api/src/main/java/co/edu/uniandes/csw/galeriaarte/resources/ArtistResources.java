@@ -87,7 +87,7 @@ ArtistLogic artistLogic;
         ArtistEntity artistEntity;
         artistEntity = artistLogic.getArtist(artistId);
         if (artistEntity == null) {
-            throw new WebApplicationException("El recurso /artists/" + artistId + " no existe.", 404);
+            throw new WebApplicationException("no existe el artista con id: " + artistId , 404);
         }
         ArtistDTO detailDTO = new ArtistDTO(artistEntity);
         LOGGER.log(Level.INFO, "ArtistResource getArtist: output: {0}", detailDTO.toString());
@@ -136,7 +136,7 @@ ArtistLogic artistLogic;
     public void deleteArtist(@PathParam("artistsId") Long artistId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ArtistResource updateArtist: input: {0}", artistId);
         if (artistLogic.getArtist(artistId) == null) {
-            throw new WebApplicationException("El recurso /artists/" + artistId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /artists/ con id " + artistId + " no se encuentra.", 404);
         }
         artistLogic.deleteArtist(artistId);
         LOGGER.info("ArtistResource updateArtist: output: void");

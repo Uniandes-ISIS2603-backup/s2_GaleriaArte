@@ -94,7 +94,7 @@ public class FeedBackResources
         FeedBackEntity entity = feedBackLogic.getFeedBack(paintworksId, feedBacksId);
         if (entity == null) 
         {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworksId + "/feedbacks/" + feedBacksId + " no existe.", 404);
+            throw new WebApplicationException("El recurso con el id" + paintworksId + "/feedbacks/" + feedBacksId + " no existe.", 404);
         }
         FeedBackDTO feedBackDTO = new FeedBackDTO(entity);
         LOGGER.log(Level.INFO, "feedbackResource getfeedback: output: {0}", feedBackDTO);
@@ -126,7 +126,7 @@ public class FeedBackResources
         FeedBackEntity entity = feedBackLogic.getFeedBack(paintworksId, feedBacksId);
         if (entity == null) 
         {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworksId + "/feedbacks/" + feedBacksId + " no existe.", 404);
+            throw new WebApplicationException("No se encuentra el  recurso  con el path/paintworks/" + paintworksId + "/feedbacks/" + feedBacksId + " no existe.", 404);
 
         }
         FeedBackDTO feedBackDTO = new FeedBackDTO(feedBackLogic.updateFeedBack(paintworksId, feedBack.toEntity()));
@@ -152,7 +152,7 @@ public class FeedBackResources
         FeedBackEntity entity = feedBackLogic.getFeedBack(paintworksId, feedBacksId);
         if (entity == null)
         {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworksId + "/feedbacks/" + feedBacksId + " no existe.", 404);
+            throw new WebApplicationException("El recurso no se enconttro", 404);
         }
         feedBackLogic.deleteFeedBack(paintworksId, feedBacksId);
     }

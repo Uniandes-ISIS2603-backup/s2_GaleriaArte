@@ -99,7 +99,7 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
         LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: input: {0}", paintworkId);
         PaintworkEntity paintworkEntity = paintworkLogic.getPaintWork(paintworkId);
         if (paintworkEntity == null) {
-            throw new WebApplicationException("El recurso /editorials/" + paintworkId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /editorials/" + paintworkId + " no se encuentra.", 404);
         }
         PaintworkDTO detailDTO = new PaintworkDTO(paintworkEntity);
         LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: output: {0}", detailDTO.toString());
@@ -124,7 +124,7 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
         LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: input: id:{0} , paintwork: {1}", new Object[]{paintworkId, paintwork1.toString()});
         paintwork1.setIdPaintwork(paintworkId);
         if (paintworkLogic.getPaintWork(paintworkId) == null) {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworkId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /paintworks/" + paintworkId + " no esta", 404);
         }
         PaintworkDTO detailDTO = new PaintworkDTO(paintworkLogic.updatePaintWork(paintworkId, paintwork1.toEntity()));
         LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: output: {0}", detailDTO.toString());
@@ -146,7 +146,7 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
     public void deletePaintwork(@PathParam("painworksId") Long paintworkId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: input: {0}", paintworkId);
         if (paintworkLogic.getPaintWork(paintworkId) == null) {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworkId + " no existe.", 404);
+            throw new WebApplicationException("El recursocon el path  /paintworks/" + paintworkId + " no existe.", 404);
         }
         paintworkLogic.deletePaintWork(paintworkId);
         LOGGER.info("PaintworkResource updatePaintwork: output: void");

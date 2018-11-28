@@ -86,7 +86,7 @@ KindLogic kindLogic;
         KindEntity kindEntity;
         kindEntity = kindLogic.getKindV(kindId);
         if (kindEntity == null) {
-            throw new WebApplicationException("El recurso /kinds/" + kindId + " no existe.", 404);
+            throw new WebApplicationException("El recurso  no existe.", 404);
         }
         KindDTO detailDTO = new KindDTO(kindEntity);
         LOGGER.log(Level.INFO, "KindResource getKind: output: {0}", detailDTO.toString());
@@ -133,7 +133,7 @@ KindLogic kindLogic;
     public void deleteKind(@PathParam("kindsId") Long kindId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "KindResource updateKind: input: {0}", kindId);
         if (kindLogic.getKindV(kindId) == null) {
-            throw new WebApplicationException("El recurso /kinds/" + kindId + " no existe.", 404);
+            throw new WebApplicationException("El recurso con el path /kinds/" + kindId + " no se encontro", 404);
         }
         kindLogic.deleteKind(kindId);
         LOGGER.info("KindResource updateKind: output: void");

@@ -101,7 +101,7 @@ public class ExtraServiceResource
         ExtraServiceEntity extraServiceEntity = extraServiceLogic.getExtraService(extraServiceId);
         if (extraServiceEntity == null)
         {
-            throw new WebApplicationException("El recurso /extraServices/" + extraServiceId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /extraServices/" + extraServiceId + " no esta.", 404);
         }
         ExtraServiceDTO detailDTO = new ExtraServiceDTO(extraServiceEntity);
         LOGGER.log(Level.INFO, "ExtraServiceResource getExtraService: output: {0}", detailDTO.toString());
@@ -128,7 +128,7 @@ public class ExtraServiceResource
         extraService.setId(extraServiceId);
         if (extraServiceLogic.getExtraService(extraServiceId) == null) 
         {
-            throw new WebApplicationException("El recurso /extraServices/" + extraServiceId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /extraServices/" + extraServiceId + " no se encuentra.", 404);
         }
         ExtraServiceDTO detailDTO = new ExtraServiceDTO(extraServiceLogic.updateExtraService(extraServiceId, extraService.toEntity()));
         LOGGER.log(Level.INFO, "ExtraServiceResource updateExtraService: output: {0}", detailDTO.toString());

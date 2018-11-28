@@ -1,29 +1,27 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
 import java.io.Serializable;
 import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-
-
 /**
  *
  * @author s.acostav
  */
 public class BuyerDTO implements Serializable {
-
+    
     /**
      * @return the creditcard
      */
     public String getCreditcard() {
         return creditcard;
     }
-
+    
     /**
      * @param creditcard the creditcard to set
      */
@@ -39,8 +37,8 @@ public class BuyerDTO implements Serializable {
     private String phone;
     private String creditcard;
     private String country;
-    private long id; 
-   
+    private long id;
+    
     
     
     
@@ -68,17 +66,17 @@ public class BuyerDTO implements Serializable {
             this.phone = buyerEntity.getPhone();
             this.id = buyerEntity.getId();
             
-   
+            
         }
     }
     
     /**
      * Convertir DTO a Entity
-    */
-  
-    public BuyerEntity toEntity() 
-     {
+     */
     
+    public BuyerEntity toEntity()
+    {
+        
         BuyerEntity entidad = new BuyerEntity();
         entidad.setAdress(this.adress);
         entidad.setCountry(this.country);
@@ -88,14 +86,14 @@ public class BuyerDTO implements Serializable {
         entidad.setPassword(this.password);
         entidad.setPhone(this.phone);
         entidad.setId(this.id);
- 
         
         
-       
+        
+        
         return entidad;
     }
     /**
-     * @return clave del usuario  
+     * @return clave del usuario
      */
     
     public String getPassword(){
@@ -103,8 +101,8 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * @param  nueva contraseña del usuario  
-     * 
+     * @param  nueva contraseña del usuario
+     *
      */
     
     public void setPassword(String newPassword){
@@ -112,18 +110,18 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * @return nombre del usuario 
+     * @return nombre del usuario
      */
     
     public String getName(){
         return name;
     }
     
-   
+    
     
     /**
-     * 
-     * @param the  nuevo nombre del usuario  
+     *
+     * @param the  nuevo nombre del usuario
      */
     
     public void setName(String newName){
@@ -131,7 +129,7 @@ public class BuyerDTO implements Serializable {
         name = newName;
     }
     /**
-     * 
+     *
      * @return login del usuario
      */
     public String getUsuario(){
@@ -139,15 +137,15 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * @param nuevo login del usuario  
+     * @param nuevo login del usuario
      */
     public void setUsuario(String newUsuario){
         usuario = newUsuario;
     }
     
-   
+    
     /**
-     * @return País de origen del usuario 
+     * @return País de origen del usuario
      */
     
     public String getCountry(){
@@ -155,7 +153,7 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * @param nuevo país del usuario 
+     * @param nuevo país del usuario
      */
     public void setCountry(String newCountry){
         
@@ -164,8 +162,8 @@ public class BuyerDTO implements Serializable {
     
     
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public String getAdress(){
         return adress;
@@ -176,25 +174,25 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * 
-     * @return email del usuario 
+     *
+     * @return email del usuario
      */
-            
+    
     public String getEmail(){
         return email;
     }
     
     /**
      *
-     * @param nuevo email del usuario 
+     * @param nuevo email del usuario
      */
     public void setEmail(String newEmail){
         email = newEmail;
     }
     
     /**
-     * 
-     * @return telefono del usuario  
+     *
+     * @return telefono del usuario
      */
     
     public String getPhone(){
@@ -202,27 +200,27 @@ public class BuyerDTO implements Serializable {
     }
     
     /**
-     * 
-     * @param nuevo telefono del usuario 
+     *
+     * @param nuevo telefono del usuario
      */
     
     public void setPhone(String newPhone){
         phone = newPhone;
     }
-
-    @Override 
+    
+    @Override
     
     public String toString(){
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
-
+    
     /**
      * @return the id
      */
     public long getId() {
         return id;
     }
-
+    
     /**
      * @param id the id to set
      */
@@ -230,4 +228,3 @@ public class BuyerDTO implements Serializable {
         this.id = id;
     }
 }
-

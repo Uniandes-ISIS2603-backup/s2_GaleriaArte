@@ -61,7 +61,7 @@ public class BuyerResources {
         BuyerEntity buyerEntity = buyerLogic.getBuyer(idBuyer);
         if(buyerEntity==null)
         {
-            throw new WebApplicationException("El recurso /buyers/"+idBuyer+"no existe", 404);
+            throw new WebApplicationException("El recurso /buyers/"+idBuyer+"no se encuentra", 404);
         }
         
         BuyerDTO buyerDTO = new BuyerDTO(buyerEntity);
@@ -92,7 +92,7 @@ public class BuyerResources {
     { 
              LOGGER.log(Level.INFO, "BuyerResource deleteBuyer input: {0}", buyerID);
             if(buyerLogic.getBuyer(buyerID)==null){
-                throw new WebApplicationException("El recurso /buyer/"+buyerID+"no existe", 404);
+                throw new WebApplicationException("El recurso /buyer/"+buyerID+"no esta", 404);
             }
             
             buyerLogic.deleteBuyer(buyerID);
