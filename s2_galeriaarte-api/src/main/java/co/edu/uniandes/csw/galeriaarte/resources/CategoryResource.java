@@ -58,14 +58,14 @@ public class CategoryResource {
      */
     @POST
     public CategoryDTO createCategory(CategoryDTO category) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "CategoryResource createCategory: input: {0}", category.toString());
+        LOGGER.log(Level.INFO, "CategoryResource createCategory: input: {0}", category);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         CategoryEntity categoryEntity = category.toEntity();
         // Invoca la lógica para crear la editorial nueva
         CategoryEntity nuevoEditorialEntity = categoryLogic.createCategory(categoryEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         CategoryDTO nuevoEditorialDTO = new CategoryDTO(nuevoEditorialEntity);
-        LOGGER.log(Level.INFO, "CategoryResource createCategory: output: {0}", nuevoEditorialDTO.toString());
+        LOGGER.log(Level.INFO, "CategoryResource createCategory: output: {0}", nuevoEditorialDTO);
         return nuevoEditorialDTO;
     }
 
@@ -80,7 +80,7 @@ public class CategoryResource {
     {
         LOGGER.info("CategoryResource getCategories: input: void");
         List<CategoryDTO> listaCategories = listEntity2DetailDTO(categoryLogic.getCategories());
-        LOGGER.log(Level.INFO, "CategoryResource getCategories: output: {0}", listaCategories.toString());
+        LOGGER.log(Level.INFO, "CategoryResource getCategories: output: {0}", listaCategories);
         return listaCategories;
     }
 
@@ -100,14 +100,14 @@ public class CategoryResource {
     @PUT
     @Path("{categoryId: \\d+}")
     public CategoryDTO updateCategory(@PathParam("categoryId") Long categoryId, CategoryDTO category) throws WebApplicationException, BusinessLogicException {
-        LOGGER.log(Level.INFO, "CategoryResource updateCategory: input: id:{0} , editorial: {1}", new Object[]{categoryId, category.toString()});
+        LOGGER.log(Level.INFO, "CategoryResource updateCategory: input: id:{0} , editorial: {1}", new Object[]{categoryId, category});
         category.setIdCategory(categoryId);
         if (categoryLogic.getCategory(categoryId) == null)
         {
-            throw new WebApplicationException("El recurso /categories/" + categoryId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /categories/" + categoryId + "no esta", 404);
         }
         CategoryDTO detailDTO = new CategoryDTO(categoryLogic.updateCategory(categoryId, category.toEntity()));
-        LOGGER.log(Level.INFO, "CategoryResource updateCategory: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "CategoryResource updateCategory: output: {0}", detailDTO);
         return detailDTO;
     }
 
@@ -126,7 +126,7 @@ public class CategoryResource {
     public void deleteEditorial(@PathParam("categoryId") Long categoryId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CategoryResource deleteCategory: input: {0}", categoryId);
         if (categoryLogic.getCategory(categoryId) == null) {
-            throw new WebApplicationException("El recurso /editorials/" + categoryId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /editorials/" + categoryId + " no se encuentra.", 404);
         }
         categoryLogic.deleteCategory(categoryId);
         LOGGER.info("CategoryResource deleteCategory: output: void");
@@ -150,7 +150,7 @@ public class CategoryResource {
         return list;
     }
     
-    private ExecutorService executorService = java.util.concurrent.Executors.newCachedThreadPool();
+  
 
     @GET
     @Path(value = "{categoryId: \\d+}")
@@ -163,7 +163,7 @@ public class CategoryResource {
             throw new WebApplicationException("El recurso /categories/" + categoryId + " no existe.", 404);
         }
         CategoryDTO detailDTO = new CategoryDTO(categoryEntity);
-        LOGGER.log(Level.INFO, "CategoryResource getCategoria: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "CategoryResource getCategoria: output: {0}", detailDTO);
         return detailDTO;
     }
 }

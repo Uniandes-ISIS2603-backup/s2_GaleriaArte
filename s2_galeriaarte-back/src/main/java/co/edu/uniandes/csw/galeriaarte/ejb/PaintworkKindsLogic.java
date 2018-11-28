@@ -74,11 +74,11 @@ public class PaintworkKindsLogic
      */
     public KindEntity getKind(Long paintworksId, Long kindsId) throws BusinessLogicException 
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el tipo con id = {0} del obra con id = " + paintworksId, kindsId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el tipo con id ={0} del obra con id = {1}", new Object[]{kindsId, paintworksId});
         List<KindEntity> kinds = paintworkPersistence.find(paintworksId).getKind();
         KindEntity kindEntity = kindPersistence.find(kindsId);
         int index = kinds.indexOf(kindEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el tipo con id = {0} del obra con id = " + paintworksId, kindsId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar  el tipo con id ={0} del obra con id = {1}", new Object[]{kindsId, paintworksId});
         if (index >= 0)
         {
             return kinds.get(index);

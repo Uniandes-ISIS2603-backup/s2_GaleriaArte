@@ -39,7 +39,7 @@ public class MedioPagoLogic
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del medio de pago");
        
-         if(medioPagoEntity == null && (medioPagoEntity.getBank() == null || medioPagoEntity.getBank().equals("")))
+         if( (medioPagoEntity.getBank() == null || medioPagoEntity.getBank().equals("")))
         {
             throw new BusinessLogicException("El nombre del banco  no es valido  \"" + medioPagoEntity.getBank() + "\"");
         }

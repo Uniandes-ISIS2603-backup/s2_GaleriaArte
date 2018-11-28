@@ -43,7 +43,7 @@ ArtistLogic artistLogic;
      */
     @POST
     public ArtistDTO createArtist(ArtistDTO Artist) throws BusinessLogicException {
-         LOGGER.log(Level.INFO, "ArtistResources createArtist: input: {0}", Artist.toString());
+         LOGGER.log(Level.INFO, "ArtistResources createArtist: input: {0}", Artist);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         ArtistEntity artistEntity = Artist.toEntity();
         // Invoca la lógica para crear la pintura nueva
@@ -51,7 +51,7 @@ ArtistLogic artistLogic;
       ArtistEntity   nuevoArtistEntity = artistLogic.createArtist(artistEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         ArtistDTO nuevoArtistDTO = new ArtistDTO(nuevoArtistEntity);
-        LOGGER.log(Level.INFO, "ArtistResoruces createArtist: input: {0}", nuevoArtistDTO.toString());
+        LOGGER.log(Level.INFO, "ArtistResoruces createArtist: input: {0}", nuevoArtistDTO);
         return nuevoArtistDTO;
     }
 
@@ -67,7 +67,7 @@ ArtistLogic artistLogic;
     public List<ArtistDTO> getArtists() {
         LOGGER.info("ArtistResource getArtists: input: void");
         List<ArtistDTO> listartistas = listEntity2DTO(artistLogic.getArtists());
-        LOGGER.log(Level.INFO, "ArtistResource getArtists: output: {0}", listartistas.toString());
+        LOGGER.log(Level.INFO, "ArtistResource getArtists: output: {0}", listartistas);
         return listartistas;
     }
 
@@ -87,10 +87,10 @@ ArtistLogic artistLogic;
         ArtistEntity artistEntity;
         artistEntity = artistLogic.getArtist(artistId);
         if (artistEntity == null) {
-            throw new WebApplicationException("El recurso /artists/" + artistId + " no existe.", 404);
+            throw new WebApplicationException("no existe el artista con id: " + artistId , 404);
         }
         ArtistDTO detailDTO = new ArtistDTO(artistEntity);
-        LOGGER.log(Level.INFO, "ArtistResource getArtist: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "ArtistResource getArtist: output: {0}", detailDTO);
         return detailDTO;
     }
 
@@ -111,13 +111,13 @@ ArtistLogic artistLogic;
     @Path("{artistsId: \\d+}")
     public ArtistDTO updateArtist(@PathParam("artistsId") Long artistId, ArtistDTO artistdto) throws WebApplicationException, BusinessLogicException 
     {
-        LOGGER.log(Level.INFO, "ArtistResource updateArtist: input: id:{0} , Artist: {1}", new Object[]{artistId, artistdto.toString()});
+        LOGGER.log(Level.INFO, "ArtistResource updateArtist: input: id:{0} , Artist: {1}", new Object[]{artistId, artistdto});
         artistdto.setId(artistId);
         if (artistLogic.getArtist(artistId) == null) {
             throw new WebApplicationException("El recurso /artists/" + artistId + " no existe.", 404);
         }
         ArtistDTO detailDTO = new ArtistDTO(artistLogic.updateArtist(artistdto.toEntity()));
-        LOGGER.log(Level.INFO, "ArtistResource updateArtist: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "ArtistResource updateArtist: output: {0}", detailDTO);
         return detailDTO;
     }
 
@@ -136,7 +136,7 @@ ArtistLogic artistLogic;
     public void deleteArtist(@PathParam("artistsId") Long artistId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ArtistResource updateArtist: input: {0}", artistId);
         if (artistLogic.getArtist(artistId) == null) {
-            throw new WebApplicationException("El recurso /artists/" + artistId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /artists/ con id " + artistId + " no se encuentra.", 404);
         }
         artistLogic.deleteArtist(artistId);
         LOGGER.info("ArtistResource updateArtist: output: void");

@@ -115,8 +115,9 @@ public class CategoryPersistence {
      * @return null si no existe ninguna editorial con el nombre del argumento.
      * Si existe alguna devuelve la primera.
      */
-    public CategoryEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando categoria por nombre ", name);
+    public CategoryEntity findByName(String name)
+    {
+        LOGGER.log(Level.INFO, "Consultando categoria por nombre ={0}", name);
         // Se crea un query para buscar editoriales con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
         TypedQuery query = em.createQuery("Select e From CategoryEntity e where e.name = :name", CategoryEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
@@ -131,7 +132,7 @@ public class CategoryPersistence {
         } else {
             result = sameName.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar categoria por nombre ", name);
+        LOGGER.log(Level.INFO, "Saliendo de consultar categoria por nombre  ={0}", name);
         return result;
     }
 }

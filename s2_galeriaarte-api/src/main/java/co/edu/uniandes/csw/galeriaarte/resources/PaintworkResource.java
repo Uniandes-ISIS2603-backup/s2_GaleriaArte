@@ -57,14 +57,14 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
     @POST
     public PaintworkDTO createPaintWork(PaintworkDTO paintwork) throws BusinessLogicException 
     {
-        LOGGER.log(Level.INFO, "PaintworkResource createPaintwork: input: {0}", paintwork.toString());
+        LOGGER.log(Level.INFO, "PaintworkResource createPaintwork: input: {0}", paintwork.getName());
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         PaintworkEntity paintworkEntity = paintwork.toEntity();
         // Invoca la lógica para crear la pintura nueva
-        PaintworkEntity nuevoPaintworkEntity = paintworkLogic.createPaintWork(paintworkEntity);
+        paintworkLogic.createPaintWork(paintworkEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         PaintworkDTO nuevoPaintworkDTO = new PaintworkDTO(paintworkEntity);
-        LOGGER.log(Level.INFO, "PaintworkResource createPaintWork: input: {0}", nuevoPaintworkDTO.toString());
+        LOGGER.log(Level.INFO, "PaintworkResource createPaintWork: input: {0}", nuevoPaintworkDTO);
         return nuevoPaintworkDTO;
     }
 
@@ -80,7 +80,7 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
     public List<PaintworkDTO> getPaintworks() {
         LOGGER.info("PaintworkResource getPaintworks: input: void");
         List<PaintworkDTO> listaPaintworks = listEntity2DetailDTO(paintworkLogic.getPaintworks());
-        LOGGER.log(Level.INFO, "PaintworkResource getPaintworks: output: {0}", listaPaintworks.toString());
+        LOGGER.log(Level.INFO, "PaintworkResource getPaintworks: output: {0}", listaPaintworks);
         return listaPaintworks;
     }
 
@@ -99,10 +99,10 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
         LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: input: {0}", paintworkId);
         PaintworkEntity paintworkEntity = paintworkLogic.getPaintWork(paintworkId);
         if (paintworkEntity == null) {
-            throw new WebApplicationException("El recurso /editorials/" + paintworkId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /editorials/" + paintworkId + " no se encuentra.", 404);
         }
         PaintworkDTO detailDTO = new PaintworkDTO(paintworkEntity);
-        LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "PaintworkResource getPaintwork: output: {0}", detailDTO);
         return detailDTO;
     }
 
@@ -121,13 +121,13 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
     @PUT
     @Path("{painworksId: \\d+}")
     public PaintworkDTO updatePaintwork(@PathParam("painworksId") Long paintworkId, PaintworkDTO paintwork1) throws WebApplicationException {
-        LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: input: id:{0} , paintwork: {1}", new Object[]{paintworkId, paintwork1.toString()});
+        LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: input: id:{0} , paintwork: {1}", new Object[]{paintworkId, paintwork1});
         paintwork1.setIdPaintwork(paintworkId);
         if (paintworkLogic.getPaintWork(paintworkId) == null) {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworkId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /paintworks/" + paintworkId + " no esta", 404);
         }
         PaintworkDTO detailDTO = new PaintworkDTO(paintworkLogic.updatePaintWork(paintworkId, paintwork1.toEntity()));
-        LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: output: {0}", detailDTO);
         return detailDTO;
     }
 
@@ -146,7 +146,7 @@ private static final Logger LOGGER = Logger.getLogger(PaintworkResource.class.ge
     public void deletePaintwork(@PathParam("painworksId") Long paintworkId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "PaintworkResource updatePaintwork: input: {0}", paintworkId);
         if (paintworkLogic.getPaintWork(paintworkId) == null) {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworkId + " no existe.", 404);
+            throw new WebApplicationException("El recursocon el path  /paintworks/" + paintworkId + " no existe.", 404);
         }
         paintworkLogic.deletePaintWork(paintworkId);
         LOGGER.info("PaintworkResource updatePaintwork: output: void");

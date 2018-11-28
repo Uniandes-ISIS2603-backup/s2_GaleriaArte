@@ -18,6 +18,7 @@ import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
  *
  * @author estudiante
  */
+@Stateless
 public class BuyerPaintworksLogic
 {
     
@@ -67,11 +68,11 @@ public class BuyerPaintworksLogic
      * buyer
      */
     public PaintworkEntity getPaintwork(Long buyersId, Long paintworksId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar elobracon id = {0} de el comprador con id = " + buyersId, paintworksId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar elobracon id {0} de el comprador con id = {1}", new Object[]{paintworksId, buyersId});
         List<PaintworkEntity> paintworks = buyerPersistence.find(buyersId).getPaintworks();
         PaintworkEntity paintworkEntity = paintworkPersistence.find(paintworksId);
         int index = paintworks.indexOf(paintworkEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar elobracon id = {0} de el comprador con id = " + buyersId, paintworksId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar elobracon id {0} de el comprador con id = {1}", new Object[]{paintworksId, buyersId});
         if (index >= 0) {
             return paintworks.get(index);
         }

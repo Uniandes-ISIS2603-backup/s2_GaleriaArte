@@ -19,7 +19,8 @@ import co.edu.uniandes.csw.galeriaarte.persistence.BuyerPersistence;
 
 @Stateless
 
-public class BuyerLogic {
+public class BuyerLogic 
+{
     
     
     private final static Logger LOGGER = Logger.getLogger(BuyerLogic.class.getName());
@@ -31,8 +32,7 @@ public class BuyerLogic {
     public BuyerEntity createBuyer (BuyerEntity buyerEntity){
         
         LOGGER.log(Level.INFO, "Inicia el proceso de creacion de la editorial");
-        // Verifica la regla de negocio que dice que no pueden existir dos compradores con el mismo login
-        //if( ) 
+     
         
         //Invoca la persistencia para crear el comprador 
         persistence.create(buyerEntity);

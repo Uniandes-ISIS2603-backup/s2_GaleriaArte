@@ -34,6 +34,7 @@ public class FeedBackDTO implements Serializable
     }
      /**
     * constructor de la calificacion
+     * @param entidad
     */
     public FeedBackDTO(FeedBackEntity entidad)
     {
@@ -55,7 +56,6 @@ public class FeedBackDTO implements Serializable
         entidad.setId(this.getId());
         entidad.setName(this.getName());
         entidad.setComentario(this.comentario);
-        //entidad.setUsuario(this.usuario);
         return entidad;
     }
       /**
@@ -92,10 +92,6 @@ public class FeedBackDTO implements Serializable
     {
         this.name= pString;
     }
-    /**
-    * establece la obra de la calificacion
-    */
- 
    
     /**
     * retorna el comentario de la calificacion

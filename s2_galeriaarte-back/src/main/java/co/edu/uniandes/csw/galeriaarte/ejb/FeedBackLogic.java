@@ -77,7 +77,7 @@ public class FeedBackLogic
      */
     public FeedBackEntity getFeedBack(Long paintworksId, Long feedBacksId)
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el feedBack con id = {0} del paintwork con id = " + paintworksId, feedBacksId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el feedBack con id {0} del paintwork con id  {1}", new Object[]{feedBacksId, paintworksId});
         return persistence.find(paintworksId, feedBacksId);
     }
     
@@ -91,11 +91,11 @@ public class FeedBackLogic
      */
     public FeedBackEntity updateFeedBack(Long paintworksId, FeedBackEntity feedBackEntity)
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el feedBack con id = {0} del paintwork con id = " + paintworksId, feedBackEntity.getId());
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el feedBack con id {0} del paintwork con id  {1}", new Object[]{feedBackEntity.getId(), paintworksId});
         PaintworkEntity paintworkEntity = paintworkPersistence.find(paintworksId);
         feedBackEntity.setObra(paintworkEntity);
         persistence.update(feedBackEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el feedBack con id = {0} del paintwork con id = " + paintworksId, feedBackEntity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el el feedBack con id {0} del paintwork con id  {1}", new Object[]{feedBackEntity.getId(), paintworksId});
         return feedBackEntity;
     }
     
@@ -109,12 +109,12 @@ public class FeedBackLogic
      */
     public void deleteFeedBack(Long paintworksId, Long feedBacksId) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el feedBack con id = {0} del paintwork con id = " + paintworksId, feedBacksId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el  el feedBack con id {0} del paintwork con id  {1}", new Object[]{feedBacksId, paintworksId});
         FeedBackEntity old = getFeedBack(paintworksId, feedBacksId);
         if (old == null) {
             throw new BusinessLogicException("El feedBack con id = " + feedBacksId + " no esta asociado a el paintwork con id = " + paintworksId);
         }
         persistence.delete(old.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el feedBack con id = {0} del paintwork con id = " + paintworksId, feedBacksId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el feedBack con id {0} del paintwork con id  {1}", new Object[]{feedBacksId, paintworksId});
     }
 }

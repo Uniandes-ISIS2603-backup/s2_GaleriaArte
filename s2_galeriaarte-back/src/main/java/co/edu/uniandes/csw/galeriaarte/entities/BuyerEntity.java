@@ -37,9 +37,7 @@ public class BuyerEntity extends BaseEntity implements Serializable
     private List<PaintworkEntity> paintworks;
     private String adress;
     
-    public BuyerEntity(){
-        
-    }
+ 
     public String getName(){
         return this.name;
     }

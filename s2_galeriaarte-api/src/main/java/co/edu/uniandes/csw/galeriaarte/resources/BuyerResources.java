@@ -22,8 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-
-/**
+ /**
  *
  * @author Sara Acosta s.acostav
  */
@@ -42,13 +41,13 @@ public class BuyerResources {
     public BuyerDTO createBuyer(BuyerDTO buyer) throws BusinessLogicException{
         //Convierte el DTO (json) es un objeto Entity para ser manejado por la lógica.
     
-        LOGGER.info("BuyerResource createBuyer: input:"+buyer.toString());
+        LOGGER.log(Level.INFO, "BuyerResource createBuyer: input:{0}", buyer);
         BuyerEntity buyerEntity = buyer.toEntity( );
         // Invoca la lógica para crear el comprador nuevo
         BuyerEntity nuevoBuyerEntity = buyerLogic.createBuyer(buyerEntity);
         // Como debe retornar un DTO(jso) se invoca el constructor del DTO con el argumento el entity nuevo
         BuyerDTO nuevoBuyerDTO = new BuyerDTO(nuevoBuyerEntity);
-        LOGGER.info("BuyerResource createBuyer: output:"+nuevoBuyerDTO.toString());
+        LOGGER.log(Level.INFO, "BuyerResource createBuyer: output:{0}", nuevoBuyerDTO);
         
         return nuevoBuyerDTO;
     }
@@ -61,11 +60,11 @@ public class BuyerResources {
         BuyerEntity buyerEntity = buyerLogic.getBuyer(idBuyer);
         if(buyerEntity==null)
         {
-            throw new WebApplicationException("El recurso /buyers/"+idBuyer+"no existe", 404);
+            throw new WebApplicationException("El recurso /buyers/"+idBuyer+"no se encuentra", 404);
         }
         
         BuyerDTO buyerDTO = new BuyerDTO(buyerEntity);
-        LOGGER.log(Level.INFO,"BuyerResource getBuyer : output : {0}", buyerDTO.toString());
+        LOGGER.log(Level.INFO,"BuyerResource getBuyer : output : {0}", buyerDTO);
         
         return buyerDTO;
     }
@@ -81,7 +80,7 @@ public class BuyerResources {
     {
         LOGGER.info("BuyerResource getBuyers: input: void");
         List<BuyerDTO> listaBuyers = listEntity2DetailDTO(buyerLogic.getBuyers());
-        LOGGER.log(Level.INFO, "BuyerResource getBuyers: output: {0}", listaBuyers.toString());
+        LOGGER.log(Level.INFO, "BuyerResource getBuyers: output: {0}", listaBuyers);
         return listaBuyers;
     }
     
@@ -92,7 +91,7 @@ public class BuyerResources {
     { 
              LOGGER.log(Level.INFO, "BuyerResource deleteBuyer input: {0}", buyerID);
             if(buyerLogic.getBuyer(buyerID)==null){
-                throw new WebApplicationException("El recurso /buyer/"+buyerID+"no existe", 404);
+                throw new WebApplicationException("El recurso /buyer/"+buyerID+"no esta", 404);
             }
             
             buyerLogic.deleteBuyer(buyerID);
@@ -103,7 +102,7 @@ public class BuyerResources {
     @Path("{buyerID: \\d+}")
     public BuyerDTO updateBuyer(@PathParam("buyerID") Long buyerID, BuyerDTO buyer)
     {    
-        LOGGER.log(Level.INFO, "BuyerResource updateBuyer: input: buyerID: {0}, buyer: {1}", new Object[]{buyerID, buyer.toString()});
+        LOGGER.log(Level.INFO, "BuyerResource updateBuyer: input: buyerID: {0}, buyer: {1}", new Object[]{buyerID, buyer});
         buyer.setId(buyerID);
         if(buyerLogic.getBuyer(buyerID)==null)
         {
@@ -112,19 +111,12 @@ public class BuyerResources {
         
         BuyerDTO buyerDTO = new BuyerDTO(buyerLogic.updateBuyer(buyerID, buyer.toEntity()));
         
-        LOGGER.log(Level.INFO, "BuyerResource updateBuyer: output: {0}", buyerDTO.toString());
+        LOGGER.log(Level.INFO, "BuyerResource updateBuyer: output: {0}", buyerDTO);
         
         return buyerDTO;
     }
     
-    private List<BuyerDTO> listEntiy(List<BuyerEntity> entityList){
-        List<BuyerDTO> lista = new ArrayList<>();
-        for(BuyerEntity entity: entityList){
-            lista.add(new BuyerDTO(entity));
-        }
-        return lista;
-    }
- 
+  
     /**
      * Convierte una lista de entidades a DTO.
      *

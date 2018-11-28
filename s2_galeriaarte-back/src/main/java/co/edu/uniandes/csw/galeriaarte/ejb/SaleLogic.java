@@ -40,8 +40,16 @@ public class SaleLogic
  *
  * crea una compra siguiendo las reglas de negocio, una compra debe tener un artista, un comprador y una obra asociada, el precio de venta debe ser mayor 
  * a cero
+     * @param saleEntity
+     * @param artistId
+     * @param buyerId
+     * @return 
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException 
  */
+
     public SaleEntity createSale(SaleEntity saleEntity,  long buyerId, long paintworkId) throws BusinessLogicException
+
+
     {
         
         LOGGER.log(Level.INFO, "Inicia proceso de creación del cv");

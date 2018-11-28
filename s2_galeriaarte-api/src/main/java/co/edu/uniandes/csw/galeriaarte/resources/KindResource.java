@@ -36,12 +36,14 @@ KindLogic kindLogic;
     /**
      * Crea una hoja de vida
      *
-     * @param kindDTO
+     * @param Kind
+    
      * @return
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
      */
     @POST
     public KindDTO createKInd(KindDTO Kind) throws BusinessLogicException {
-         LOGGER.log(Level.INFO, "KindResources createKind: input: {0}", Kind.toString());
+         LOGGER.log(Level.INFO, "KindResources createKind: input: {0}", Kind);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         KindEntity kindEntity = Kind.toEntity();
         // Invoca la lógica para crear la pintura nueva
@@ -49,7 +51,7 @@ KindLogic kindLogic;
       KindEntity   nuevoKindEntity = kindLogic.createKind(kindEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         KindDTO nuevoKindDTO = new KindDTO(nuevoKindEntity);
-        LOGGER.log(Level.INFO, "KindResoruces createKind: input: {0}", nuevoKindDTO.toString());
+        LOGGER.log(Level.INFO, "KindResoruces createKind: input: {0}", nuevoKindDTO);
         return nuevoKindDTO;
     }
 
@@ -66,7 +68,7 @@ KindLogic kindLogic;
         LOGGER.info("KindResource getkinds: input: void");
         List<KindDTO> listakinds;
         listakinds = listEntity2DetailDTO(kindLogic.getKInds());
-        LOGGER.log(Level.INFO, "KindResource getkinds: output: {0}", listakinds.toString());
+        LOGGER.log(Level.INFO, "KindResource getkinds: output: {0}", listakinds);
         return listakinds;
     }
 
@@ -86,10 +88,10 @@ KindLogic kindLogic;
         KindEntity kindEntity;
         kindEntity = kindLogic.getKindV(kindId);
         if (kindEntity == null) {
-            throw new WebApplicationException("El recurso /kinds/" + kindId + " no existe.", 404);
+            throw new WebApplicationException("El recurso  no existe.", 404);
         }
         KindDTO detailDTO = new KindDTO(kindEntity);
-        LOGGER.log(Level.INFO, "KindResource getKind: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "KindResource getKind: output: {0}", detailDTO);
         return detailDTO;
     }
 
@@ -108,13 +110,13 @@ KindLogic kindLogic;
     @PUT
     @Path("{kindsId: \\d+}")
     public KindDTO updateKind(@PathParam("kindsId") Long kindId, KindDTO kind1) throws WebApplicationException {
-        LOGGER.log(Level.INFO, "KindResource updateKind: input: id:{0} , Kind: {1}", new Object[]{kindId, kind1.toString()});
+        LOGGER.log(Level.INFO, "KindResource updateKind: input: id:{0} , Kind: {1}", new Object[]{kindId, kind1});
         kind1.setIdType(kindId);
         if (kindLogic.getKindV(kindId) == null) {
             throw new WebApplicationException("El recurso /kinds/" + kindId + " no existe.", 404);
         }
         KindDTO detailDTO = new KindDTO(kindLogic.updateKind( kind1.toEntity()));
-        LOGGER.log(Level.INFO, "KindResource updateKind: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "KindResource updateKind: output: {0}", detailDTO);
         return detailDTO;
     }
 
@@ -133,7 +135,7 @@ KindLogic kindLogic;
     public void deleteKind(@PathParam("kindsId") Long kindId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "KindResource updateKind: input: {0}", kindId);
         if (kindLogic.getKindV(kindId) == null) {
-            throw new WebApplicationException("El recurso /kinds/" + kindId + " no existe.", 404);
+            throw new WebApplicationException("El recurso con el path /kinds/" + kindId + " no se encontro", 404);
         }
         kindLogic.deleteKind(kindId);
         LOGGER.info("KindResource updateKind: output: void");

@@ -33,10 +33,8 @@ public class KindEntity extends BaseEntity implements Serializable
      */
     private String description;
     
-    public  KindEntity()
-    {
-        
-    }
+    
+   
     
     public String getName() 
     {

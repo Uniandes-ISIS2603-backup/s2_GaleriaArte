@@ -105,6 +105,7 @@ public class PaintworkPersistenceTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
 
+    
     /**
      * Prueba para consultar la lista de Paintworks.
      */
@@ -124,14 +125,43 @@ public class PaintworkPersistenceTest {
     }
 
     /**
+     * Prueba para consultar una obra por su nombre
+     */
+    @Test
+    public void getPaintworkByNameTest()
+    {
+         PaintworkEntity entity = data.get(0);
+        PaintworkEntity newEntity = paintworkPersistence.findByName(entity.getName());
+        Assert.assertNotNull(newEntity);
+       
+          Assert.assertEquals(newEntity.getId(), entity.getId());
+         Assert.assertEquals(newEntity.getName(), entity.getName());
+         Assert.assertEquals(newEntity.getCountry(), entity.getCountry());
+         Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
+         Assert.assertEquals(newEntity.getValor(), entity.getValor());
+           Assert.assertEquals(newEntity.getVerificacionObra(), entity.getVerificacionObra() );
+           Assert.assertEquals(newEntity.getImagePath(), entity.getImagePath());
+           Assert.assertEquals(newEntity.getVideoPath(), entity.getVideoPath());
+        
+    }
+    
+    /**
      * Prueba para consultar un Paintwork.
      */
     @Test
     public void getPaintworkTest() {
         PaintworkEntity entity = data.get(0);
         PaintworkEntity newEntity = paintworkPersistence.find(entity.getId());
+        
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+         Assert.assertEquals(newEntity.getId(), entity.getId());
+         Assert.assertEquals(newEntity.getName(), entity.getName());
+         Assert.assertEquals(newEntity.getCountry(), entity.getCountry());
+         Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
+         Assert.assertEquals(newEntity.getValor(), entity.getValor());
+           Assert.assertEquals(newEntity.getVerificacionObra(), entity.getVerificacionObra() );
+           Assert.assertEquals(newEntity.getImagePath(), entity.getImagePath());
+           Assert.assertEquals(newEntity.getVideoPath(), entity.getVideoPath());
     }
 
     /**
@@ -150,6 +180,14 @@ public class PaintworkPersistenceTest {
         PaintworkEntity resp = em.find(PaintworkEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
+          Assert.assertEquals(newEntity.getId(), resp.getId());
+         Assert.assertEquals(newEntity.getName(), resp.getName());
+         Assert.assertEquals(newEntity.getCountry(), resp.getCountry());
+         Assert.assertEquals(newEntity.getDescription(), resp.getDescription());
+         Assert.assertEquals(newEntity.getValor(), resp.getValor());
+           Assert.assertEquals(newEntity.getVerificacionObra(), resp.getVerificacionObra() );
+           Assert.assertEquals(newEntity.getImagePath(), resp.getImagePath());
+           Assert.assertEquals(newEntity.getVideoPath(), resp.getVideoPath());
     }
 
     /**

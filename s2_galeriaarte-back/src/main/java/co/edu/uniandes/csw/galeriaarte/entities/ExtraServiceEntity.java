@@ -94,7 +94,8 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     /**
      * @return the sale
      */
-    public SaleEntity getSale() {
+    public SaleEntity getSale()
+    {
         return sale;
     }
 

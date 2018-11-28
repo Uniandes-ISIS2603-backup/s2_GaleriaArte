@@ -94,7 +94,7 @@ public class FeedBackResources
         FeedBackEntity entity = feedBackLogic.getFeedBack(paintworksId, feedBacksId);
         if (entity == null) 
         {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworksId + "/feedbacks/" + feedBacksId + " no existe.", 404);
+            throw new WebApplicationException("El recurso con el id" + paintworksId + "/feedbacks/" + feedBacksId + " no existe.", 404);
         }
         FeedBackDTO feedBackDTO = new FeedBackDTO(entity);
         LOGGER.log(Level.INFO, "feedbackResource getfeedback: output: {0}", feedBackDTO);
@@ -126,7 +126,7 @@ public class FeedBackResources
         FeedBackEntity entity = feedBackLogic.getFeedBack(paintworksId, feedBacksId);
         if (entity == null) 
         {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworksId + "/feedbacks/" + feedBacksId + " no existe.", 404);
+            throw new WebApplicationException("No se encuentra el  recurso  con el path/paintworks/" + paintworksId + "/feedbacks/" + feedBacksId + " no existe.", 404);
 
         }
         FeedBackDTO feedBackDTO = new FeedBackDTO(feedBackLogic.updateFeedBack(paintworksId, feedBack.toEntity()));
@@ -152,7 +152,7 @@ public class FeedBackResources
         FeedBackEntity entity = feedBackLogic.getFeedBack(paintworksId, feedBacksId);
         if (entity == null)
         {
-            throw new WebApplicationException("El recurso /paintworks/" + paintworksId + "/feedbacks/" + feedBacksId + " no existe.", 404);
+            throw new WebApplicationException("El recurso no se enconttro", 404);
         }
         feedBackLogic.deleteFeedBack(paintworksId, feedBacksId);
     }
@@ -176,23 +176,5 @@ public class FeedBackResources
         }
         return list;
     }
-    /**
-     * Convierte una lista de entidades a DTO.
-     *
-     * Este método convierte una lista de objetos FeedBacklEntity a una lista de
-     * objetos FeedBackDTO (json)
-     *
-     * @param entityList corresponde a la lista de comentarios de tipo Entity
-     * que vamos a convertir a DTO.
-     * @return la lista de comentarios en forma DTO (json)
-     */
-    private List<FeedBackDTO> listEntity2DetailDTO(List<FeedBackEntity> entityList)
-    {
-        List<FeedBackDTO> list = new ArrayList<>();
-        for (FeedBackEntity entity : entityList)
-        {
-            list.add(new FeedBackDTO(entity));
-        }
-        return list;
-    }
+  
 }

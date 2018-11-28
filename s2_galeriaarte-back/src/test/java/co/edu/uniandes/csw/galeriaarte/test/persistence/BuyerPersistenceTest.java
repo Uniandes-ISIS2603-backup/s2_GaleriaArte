@@ -109,6 +109,14 @@ public class BuyerPersistenceTest {
         BuyerEntity entity = em.find(BuyerEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(entity.getAdress(), newEntity.getAdress());
+            Assert.assertEquals(entity.getCreditCard(), newEntity.getCreditCard());
+                Assert.assertEquals(entity.getEmail(), newEntity.getEmail());
+                    Assert.assertEquals(entity.getPassword(), newEntity.getPassword());
+                        Assert.assertEquals(entity.getPhone(), newEntity.getPhone());
+                            Assert.assertEquals(entity.getCountry(), newEntity.getCountry());
+                               Assert.assertEquals(entity.getId(), newEntity.getId());
+                            
     }
 
     /**
@@ -138,6 +146,14 @@ public class BuyerPersistenceTest {
         BuyerEntity newEntity = buyerPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getAdress(), newEntity.getAdress());
+            Assert.assertEquals(entity.getCreditCard(), newEntity.getCreditCard());
+                Assert.assertEquals(entity.getEmail(), newEntity.getEmail());
+                    Assert.assertEquals(entity.getPassword(), newEntity.getPassword());
+                        Assert.assertEquals(entity.getPhone(), newEntity.getPhone());
+                            Assert.assertEquals(entity.getCountry(), newEntity.getCountry());
+                               Assert.assertEquals(entity.getId(), newEntity.getId());
+                            
     }
 
     /**
@@ -156,6 +172,14 @@ public class BuyerPersistenceTest {
         BuyerEntity resp = em.find(BuyerEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(resp.getAdress(), newEntity.getAdress());
+            Assert.assertEquals(resp.getCreditCard(), newEntity.getCreditCard());
+                Assert.assertEquals(resp.getEmail(), newEntity.getEmail());
+                    Assert.assertEquals(resp.getPassword(), newEntity.getPassword());
+                        Assert.assertEquals(resp.getPhone(), newEntity.getPhone());
+                            Assert.assertEquals(resp.getCountry(), newEntity.getCountry());
+                               Assert.assertEquals(resp.getId(), newEntity.getId());
+                            
     }
 
     /**
