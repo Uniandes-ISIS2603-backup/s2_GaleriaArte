@@ -54,7 +54,7 @@ public class PaintworkKindsResource {
     public KindDetailDTO addKind(@PathParam("PaintworksId") Long paintworksId, @PathParam("KindsId") Long kindsId) {
         LOGGER.log(Level.INFO, "PaintworkKindsResource addKind: input: PaintworksId {0} , KindsId {1}", new Object[]{paintworksId, kindsId});
         if (kindLogic.getKindV(kindsId) == null) {
-            throw new WebApplicationException("El recurso /Kinds/" + kindsId + " no existe.", 404);
+            throw new WebApplicationException("El recurso con el path /Kinds/" + kindsId + " no existe.", 404);
         }
         KindDetailDTO detailDTO = new KindDetailDTO(paintworkKindLogic.addKind(paintworksId, kindsId));
         LOGGER.log(Level.INFO, "PaintworkKindsResource addKind: output: {0}", detailDTO);
@@ -93,7 +93,7 @@ public class PaintworkKindsResource {
     {
         LOGGER.log(Level.INFO, "PaintworkKindsResource getKind: input: PaintworksId {0} , KindsId {1}", new Object[]{paintworksId, kindsId});
         if (kindLogic.getKindV(kindsId) == null) {
-            throw new WebApplicationException("El recurso /Kinds/" + kindsId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Kinds/" + kindsId + " no esta.", 404);
         }
         KindDetailDTO detailDTO = new KindDetailDTO(paintworkKindLogic.getKind(paintworksId, kindsId));
         LOGGER.log(Level.INFO, "PaintworkKindsResource getKind: output: {0}", detailDTO);
@@ -116,7 +116,7 @@ public class PaintworkKindsResource {
         LOGGER.log(Level.INFO, "PaintworkKindsResource replaceKinds: input: PaintworksId {0} , Kinds {1}", new Object[]{paintworksId, kinds});
         for (KindDetailDTO kind : kinds) {
             if (kindLogic.getKindV(kind.getIdType()) == null) {
-                throw new WebApplicationException("El recurso /Kinds/" + kind.getIdType()+ " no existe.", 404);
+                throw new WebApplicationException("El recurso /Kinds/no existe.", 404);
             }
         }
         List<KindDetailDTO> lista = KindsListEntity2DTO(paintworkKindLogic.replaceKinds(paintworksId, KindsListDTO2Entity(kinds)));

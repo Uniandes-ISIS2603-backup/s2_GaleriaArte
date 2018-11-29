@@ -117,7 +117,7 @@ ArtistLogic artistLogic;
         LOGGER.log(Level.INFO, "ArtistResource updateArtist: input: id:{0} , Artist: {1}", new Object[]{artistId, artistdto});
         artistdto.setId(artistId);
         if (artistLogic.getArtist(artistId) == null) {
-            throw new WebApplicationException("El recurso /artists/" + artistId + " no existe.", 404);
+            throw new WebApplicationException("El recurso con el path  /artists/" + artistId + " no existe.", 404);
         }
         ArtistDTO detailDTO = new ArtistDTO(artistLogic.updateArtist(artistdto.toEntity()));
         LOGGER.log(Level.INFO, "ArtistResource updateArtist: output: {0}", detailDTO);
@@ -164,7 +164,7 @@ ArtistLogic artistLogic;
     {
         if (artistLogic.getArtist(artistId) == null)
         {
-            throw new WebApplicationException("El recurso /artists/" + artistId + "/cv no existe.", 404);
+            throw new WebApplicationException("El recurso para el id " + artistId + "/cv no existe.", 404);
         }
         return CVResources.class;
     }

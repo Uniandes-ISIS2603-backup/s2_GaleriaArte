@@ -103,7 +103,7 @@ public class CategoryResource {
         category.setIdCategory(categoryId);
         if (categoryLogic.getCategory(categoryId) == null)
         {
-            throw new WebApplicationException("El recurso /categories/" + categoryId + "no esta", 404);
+            throw new WebApplicationException("El recurso para el path  /categories/" + categoryId + "no esta", 404);
         }
         CategoryDTO detailDTO = new CategoryDTO(categoryLogic.updateCategory(categoryId, category.toEntity()));
         LOGGER.log(Level.INFO, "CategoryResource updateCategory: output: {0}", detailDTO);

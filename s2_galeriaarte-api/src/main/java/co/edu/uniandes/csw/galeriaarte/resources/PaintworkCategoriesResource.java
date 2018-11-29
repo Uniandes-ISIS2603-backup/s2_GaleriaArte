@@ -57,7 +57,7 @@ public class PaintworkCategoriesResource {
     public CategoryDetailDTO addCategory(@PathParam("PaintworksId") Long paintworksId, @PathParam("CategoriesId") Long categorysId) {
         LOGGER.log(Level.INFO, "PaintworkCategoriesResource addCategory: input: PaintworksId {0} , CategoriesId {1}", new Object[]{paintworksId, categorysId});
         if (categoryLogic.getCategory(categorysId) == null) {
-            throw new WebApplicationException("El recurso /Categories/" + categorysId + " no existe.", 404);
+            throw new WebApplicationException("El recurso con el path /Categories/" + categorysId + " no existe.", 404);
         }
         CategoryDetailDTO detailDTO = new CategoryDetailDTO(paintworkCategoryLogic.addCategory(paintworksId, categorysId));
         LOGGER.log(Level.INFO, "PaintworkCategoriesResource addCategory: output: {0}", detailDTO);
@@ -96,7 +96,7 @@ public class PaintworkCategoriesResource {
     {
         LOGGER.log(Level.INFO, "PaintworkCategoriesResource getCategory: input: PaintworksId {0} , CategoriesId {1}", new Object[]{paintworksId, categorysId});
         if (categoryLogic.getCategory(categorysId) == null) {
-            throw new WebApplicationException("El recurso /Categories/" + categorysId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Categories/" + categorysId + " no esta", 404);
         }
         CategoryDetailDTO detailDTO = new CategoryDetailDTO(paintworkCategoryLogic.getCategory(paintworksId, categorysId));
         LOGGER.log(Level.INFO, "PaintworkCategoriesResource getCategory: output: {0}", detailDTO);
@@ -119,7 +119,7 @@ public class PaintworkCategoriesResource {
         LOGGER.log(Level.INFO, "PaintworkCategoriesResource replaceCategories: input: PaintworksId {0} , Categories {1}", new Object[]{paintworksId, categorys});
         for (CategoryDetailDTO category : categorys) {
             if (categoryLogic.getCategory(category.getIdCategory()) == null) {
-                throw new WebApplicationException("El recurso /Categories/" + category.getIdCategory()+ " no existe.", 404);
+                throw new WebApplicationException("El recurso /Categories no existe.", 404);
             }
         }
         List<CategoryDetailDTO> lista = CategoriesListEntity2DTO(paintworkCategoryLogic.replaceCategories(paintworksId, CategoriesListDTO2Entity(categorys)));
