@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.galeriaarte.resources;
 import co.edu.uniandes.csw.galeriaarte.dtos.BuyerDTO;
-import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
 import co.edu.uniandes.csw.galeriaarte.ejb.BuyerLogic;
+import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
 import java.util.logging.Level;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
