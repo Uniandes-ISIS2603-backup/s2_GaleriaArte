@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
-import java.util.Collection;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import org.apache.commons.lang3.builder.ToStringBuilder;

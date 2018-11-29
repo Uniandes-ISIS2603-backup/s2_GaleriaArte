@@ -178,20 +178,5 @@ public class BuyerSalesLogicTest
         buyerSalesLogic.getSale(entity.getId(), saleEntity.getId());
     }
     
-    /**
-     * Prueba para remplazar las instancias de Sales asociadas a una instancia
-     * de Buyer.
-     */
-    @Test
-    public void replaceSalesTest() 
-    {
-        BuyerEntity entity = data.get(0);
-        List<SaleEntity> list = salesData.subList(1, 3);
-        buyerSalesLogic.replaceSales(entity.getId(), list);
-        
-        entity = buyerLogic.getBuyer(entity.getId());
-        Assert.assertFalse(entity.getSales().contains(salesData.get(0)));
-        Assert.assertTrue(entity.getSales().contains(salesData.get(1)));
-        Assert.assertTrue(entity.getSales().contains(salesData.get(2)));
-    }
+    
 }
