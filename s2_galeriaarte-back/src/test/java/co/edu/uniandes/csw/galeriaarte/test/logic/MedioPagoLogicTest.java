@@ -128,6 +128,21 @@ public class MedioPagoLogicTest
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
     
+     /**
+     * Prueba para crear un medio de pago fallido
+     *
+     * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
+     */
+       @Test(expected = BusinessLogicException.class)
+    public void createMedioPagoTestError() throws BusinessLogicException 
+    {
+        MedioPagoEntity newEntity = factory.manufacturePojo(MedioPagoEntity.class);
+        long a= 10000000;
+        String bank ="";
+        newEntity.setNumber(a);
+        newEntity.setBank(bank);
+        MedioPagoEntity result = medioPagoLogic.createMedioPago(newEntity);
+    }
     /**
     
     
@@ -167,6 +182,7 @@ public class MedioPagoLogicTest
       
         
     }
+    
     
     /**
      * Prueba para actualizar un MedioPago.
