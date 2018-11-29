@@ -52,7 +52,7 @@ public class KindPaintworksResource
     public PaintworkDetailDTO addPaintwork(@PathParam("KindsId") Long kindsId, @PathParam("PaintworksId") Long paintworksId) {
         LOGGER.log(Level.INFO, "KindPaintworksResource addPaintwork: input: KindsId {0} , PaintworksId {1}", new Object[]{kindsId, paintworksId});
         if (paintworkLogic.getPaintWork(paintworksId) == null) {
-            throw new WebApplicationException("El recurso con el path /Paintworks/" + paintworksId + " no esta", 404);
+            throw new WebApplicationException("El recurso con el path /Paintworks/" + paintworksId + " no estan", 404);
         }
         PaintworkDetailDTO detailDTO = new PaintworkDetailDTO(kindPaintworkLogic.addPaintwork(kindsId, paintworksId));
         LOGGER.log(Level.INFO, "KindPaintworksResource addPaintwork: output: {0}", detailDTO);
