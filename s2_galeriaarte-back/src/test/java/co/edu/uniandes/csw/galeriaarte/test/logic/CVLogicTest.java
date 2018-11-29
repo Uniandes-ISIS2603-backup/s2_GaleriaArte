@@ -118,6 +118,17 @@ public class CVLogicTest
         
     }
     
+     @Test(expected = BusinessLogicException.class)
+     public void createCVTestFail()throws BusinessLogicException
+     {
+        CVEntity newEntity = factory.manufacturePojo(CVEntity.class);
+        newEntity.setArtist(dataArtist.get(4));
+        newEntity.setEducation(null);
+        CVEntity  result = cvLogic.createCV(dataArtist.get(4).getId(), newEntity);
+     }
+     
+    
+    
     /**
      * Prueba para crear un CV.
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
@@ -222,4 +233,7 @@ public class CVLogicTest
         CVEntity deleted = em.find(CVEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+    
+     
+    
 }
