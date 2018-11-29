@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "c90f836b-fc14-484b-96b8-d96b7e181ea5",
+		"name": "Paintwork",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear obra de arte",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idPaintwork\" : 100,\n\t\"name\" : \"Mona Lisa\",\n\t\"country\" : \"Italia\",\n\t\"description\" : \"El Retrato de Lisa Gherardini, esposa de Francesco del Giocondo,1​más conocido como La Gioconda (La Joconde en francés) o La Mona Lisa, es una obra pictórica del polímata renacentista italiano Leonardo da Vinci\",\n\t\"value\":  200000 ,\n\t\"verificacionObra\": true,\n\t\"imagePath\" : \"imagen2\",\n\t\"videoPath\" : \"imagen3\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/paintworks",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"paintworks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un Paintwork",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08f9e2bb-fd32-41ea-a185-7ba8d7f68f0f",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idPaintwork\" : 100,\n\t\"name\" : \"Mona Risada\",\n\t\"country\" : \"Colombia\",\n\t\"description\" : \"El Retrato de Lisa Gherardini, esposa de Francesco del Giocondo,1​más conocido como La Gioconda (La Joconde en francés) o La Mona Lisa, es una obra pictórica del polímata renacentista italiano Leonardo da Vinci\",\n\t\"value\":  200000 ,\n\t\"verificacionObra\": true,\n\t\"imagePath\" : \"imagen2\",\n\t\"videoPath\" : \"imagen3\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/paintworks/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"paintworks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener obras",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7ac0d765-5259-41a4-8ddd-48fea7a6b7dd",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"obrass count\"] = data.length > 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/paintworks",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"paintworks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un Paintwork",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b90f60f9-e68d-4f52-85dd-b0ba9560fb77",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/paintworks/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"paintworks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un paintwork",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4999d93b-b427-421c-aeae-fd72079aa17e",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/paintworks/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"paintworks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

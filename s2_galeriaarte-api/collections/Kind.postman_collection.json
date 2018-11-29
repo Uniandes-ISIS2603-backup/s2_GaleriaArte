@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "eef4f100-d09c-44d4-aad9-ee50e320f22b",
+		"name": "Kind",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un Tipo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 0,\n\t\"name\": \"Escultura de Marmol\",\n\t\"description\": \"Escultura de Calamardo hecha en marmol por Bob Esponja\" \n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/kinds",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"kinds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Tipo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e10e75f-c4ce-4286-b18a-3fef788997b4",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 2,\n\t\"name\": \"Escultura de Madera\",\n\t\"description\": \"Un caballo tallado en madera\" \n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/kinds/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"kinds",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Kinds",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d0a93659-51af-41ae-9157-b3deedcb141f",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"categories count\"] = data.length > 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/kinds",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"kinds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un Tipo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a26831cb-6211-4aac-afbd-132c8a09b533",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/kinds/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"kinds",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Tipo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a18bf46b-0d73-4ef5-9675-59b2ad9cac99",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/kinds/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"kinds",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

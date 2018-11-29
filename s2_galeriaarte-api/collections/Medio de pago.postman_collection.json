@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "0116dfeb-fc16-482e-843d-b063c0a90771",
+		"name": "Medio de pago",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un medio de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bd936b0-fa71-4f8e-9d07-f8f6d0fa3393",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\" : 100,\n   \"description\" : \"Tarjeta de credito\",\n   \"number\": 1000000000000000 ,\n   \"bank\" :  \"Bancolombia\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/medioPagos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Medio de Pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c16dad8-290e-4a4c-8859-02bfc789d82e",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bank\": \"CityBank\",\n    \"description\": \"Tarjeta de credito\",\n    \"id\": 5,\n    \"number\": 1000000000000002\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/medioPagos/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Medios de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a19e16f-03e3-4250-9fd4-5e74a5e47698",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"medios count\"] = data.length > 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/medioPagos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un Medio de Pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "32876de7-53d3-4af0-8e9b-1d3f82b49664",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/medioPagos/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un medio de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d574ce04-9ff2-443e-979c-106c09995e4f",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/medioPagos/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"medioPagos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

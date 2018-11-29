@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "458e3c7a-d5fe-4fc6-a2cf-c967c4af803e",
+		"name": "CV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear  Hoja de Vida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b05157e3-0d13-43eb-ab6b-e25c46d13a27",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 1,\n\t\"education\" : \"Universidad de los Andes\",\n\t\"nombreObraMasConocida\" : \"Escultura del bobo\",\n\t\"fechaNacimiento\" : \"19-Ago-1998\",\n\t\"informacionAdicional\" : \"Programador de medio tiempo\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/artists/1/cvs",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"artists",
+						"1",
+						"cvs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una hoja de vida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bb4ee586-d535-4ce7-ab57-fc1f49c8ed5b",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/artists/1/cvs",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"artists",
+						"1",
+						"cvs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Hoja de Vida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "79063fd4-34f1-41c3-a856-5b583b5ffd0e",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : 1,\n\t\"education\" : \"Universidad Nacional\",\n\t\"nombreObraMasConocida\" : \"Edificio de Arquitectura\",\n\t\"fechaNacimiento\" : \"01-Jan-1999\",\n\t\"informacionAdicional\" : \"Ninguna\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/artists/1/cvs/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"artists",
+						"1",
+						"cvs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Hoja de Vida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fc3202b1-03b9-4252-b99c-c4a26ba4a49f",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_galeriaarte-api/api/artists/1/cvs/1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_galeriaarte-api",
+						"api",
+						"artists",
+						"1",
+						"cvs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
