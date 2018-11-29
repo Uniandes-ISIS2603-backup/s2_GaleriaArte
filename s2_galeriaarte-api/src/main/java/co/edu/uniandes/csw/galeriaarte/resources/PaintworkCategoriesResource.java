@@ -74,7 +74,7 @@ public class PaintworkCategoriesResource {
     @GET
     public List<CategoryDetailDTO> getCategories(@PathParam("PaintworksId") Long paintworksId) {
         LOGGER.log(Level.INFO, "PaintworkCategoriesResource getCategories: input: {0}", paintworksId);
-        List<CategoryDetailDTO> lista = CategoriesListEntity2DTO(paintworkCategoryLogic.getCategories(paintworksId));
+        List<CategoryDetailDTO> lista = categoriesListEntity2DTO(paintworkCategoryLogic.getCategories(paintworksId));
         LOGGER.log(Level.INFO, "PaintworkCategoriesResource getCategories: output: {0}", lista);
         return lista;
     }
@@ -122,7 +122,7 @@ public class PaintworkCategoriesResource {
                 throw new WebApplicationException("El recurso /Categories no existe.", 404);
             }
         }
-        List<CategoryDetailDTO> lista = CategoriesListEntity2DTO(paintworkCategoryLogic.replaceCategories(paintworksId, CategoriesListDTO2Entity(categorys)));
+        List<CategoryDetailDTO> lista = categoriesListEntity2DTO(paintworkCategoryLogic.replaceCategories(paintworksId, categoriesListDTO2Entity(categorys)));
         LOGGER.log(Level.INFO, "PaintworkCategoriesResource replaceCategories: output: {0}", lista);
         return lista;
     }
@@ -153,7 +153,7 @@ public class PaintworkCategoriesResource {
      * @param entityList Lista de CategoryEntity a convertir.
      * @return Lista de CategoryDetailDTO convertida.
      */
-    private List<CategoryDetailDTO> CategoriesListEntity2DTO(List<CategoryEntity> entityList) {
+    private List<CategoryDetailDTO> categoriesListEntity2DTO(List<CategoryEntity> entityList) {
         List<CategoryDetailDTO> list = new ArrayList<>();
         for (CategoryEntity entity : entityList) {
             list.add(new CategoryDetailDTO(entity));
@@ -167,7 +167,7 @@ public class PaintworkCategoriesResource {
      * @param dtos Lista de CategoryDetailDTO a convertir.
      * @return Lista de CategoryEntity convertida.
      */
-    private List<CategoryEntity> CategoriesListDTO2Entity(List<CategoryDetailDTO> dtos) {
+    private List<CategoryEntity> categoriesListDTO2Entity(List<CategoryDetailDTO> dtos) {
         List<CategoryEntity> list = new ArrayList<>();
         for (CategoryDetailDTO dto : dtos) {
             list.add(dto.toEntity());

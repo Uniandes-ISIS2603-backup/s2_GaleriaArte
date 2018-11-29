@@ -71,7 +71,7 @@ public class PaintworkKindsResource {
     @GET
     public List<KindDetailDTO> getKinds(@PathParam("PaintworksId") Long paintworksId) {
         LOGGER.log(Level.INFO, "PaintworkKindsResource getKinds: input: {0}", paintworksId);
-        List<KindDetailDTO> lista = KindsListEntity2DTO(paintworkKindLogic.getKinds(paintworksId));
+        List<KindDetailDTO> lista = kindsListEntity2DTO(paintworkKindLogic.getKinds(paintworksId));
         LOGGER.log(Level.INFO, "PaintworkKindsResource getKinds: output: {0}", lista);
         return lista;
     }
@@ -119,7 +119,7 @@ public class PaintworkKindsResource {
                 throw new WebApplicationException("El recurso /Kinds/no existe.", 404);
             }
         }
-        List<KindDetailDTO> lista = KindsListEntity2DTO(paintworkKindLogic.replaceKinds(paintworksId, KindsListDTO2Entity(kinds)));
+        List<KindDetailDTO> lista = kindsListEntity2DTO(paintworkKindLogic.replaceKinds(paintworksId, kindsListDTO2Entity(kinds)));
         LOGGER.log(Level.INFO, "PaintworkKindsResource replaceKinds: output: {0}", lista);
         return lista;
     }
@@ -150,7 +150,7 @@ public class PaintworkKindsResource {
      * @param entityList Lista de KindEntity a convertir.
      * @return Lista de KindDetailDTO convertida.
      */
-    private List<KindDetailDTO> KindsListEntity2DTO(List<KindEntity> entityList) {
+    private List<KindDetailDTO> kindsListEntity2DTO(List<KindEntity> entityList) {
         List<KindDetailDTO> list = new ArrayList<>();
         for (KindEntity entity : entityList) {
             list.add(new KindDetailDTO(entity));
@@ -164,7 +164,7 @@ public class PaintworkKindsResource {
      * @param dtos Lista de KindDetailDTO a convertir.
      * @return Lista de KindEntity convertida.
      */
-    private List<KindEntity> KindsListDTO2Entity(List<KindDetailDTO> dtos) {
+    private List<KindEntity> kindsListDTO2Entity(List<KindDetailDTO> dtos) {
         List<KindEntity> list = new ArrayList<>();
         for (KindDetailDTO dto : dtos) {
             list.add(dto.toEntity());

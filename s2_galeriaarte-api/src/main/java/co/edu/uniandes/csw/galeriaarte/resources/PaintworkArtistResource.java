@@ -67,8 +67,8 @@ public class PaintworkArtistResource
         {
             throw new WebApplicationException("El recurso /artist/" + artist.getId() + " no esta.", 404);
         }
-        PaintworkDetailDTO PaintworkDetailDTO = new PaintworkDetailDTO(paintworkArtistLogic.replaceArtist(paintworksId, artist.getId()));
-        LOGGER.log(Level.INFO, "PaintworkEditorialResource replaceEditorial: output: {0}", PaintworkDetailDTO);
-        return PaintworkDetailDTO;
+        PaintworkDetailDTO paintworkDetailDTO = new PaintworkDetailDTO(paintworkArtistLogic.replaceArtist(paintworksId, artist.getId()));
+        LOGGER.log(Level.INFO, "PaintworkEditorialResource replaceEditorial: output: {0}", paintworkDetailDTO);
+        return paintworkDetailDTO;
     }
 }
