@@ -47,6 +47,12 @@ public class CategoryDetailDTO extends CategoryDTO implements Serializable {
         }
     }
 
+      /**
+     * @param paintworks the paintworks to set
+     */
+    public void setPaintworks(List<PaintworkDTO> paintworks) {
+        this.paintworks = paintworks;
+    }
     /**
      * @return the paintworks
      */
@@ -54,12 +60,7 @@ public class CategoryDetailDTO extends CategoryDTO implements Serializable {
         return paintworks;
     }
 
-    /**
-     * @param paintworks the paintworks to set
-     */
-    public void setPaintworks(List<PaintworkDTO> paintworks) {
-        this.paintworks = paintworks;
-    }
+    
     
       @Override
     public String toString()
