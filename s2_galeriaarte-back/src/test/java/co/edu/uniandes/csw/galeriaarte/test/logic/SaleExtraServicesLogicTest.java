@@ -114,9 +114,7 @@ public class SaleExtraServicesLogicTest
             SaleEntity entity = factory.manufacturePojo(SaleEntity.class);
             em.persist(entity);
             data.add(entity); 
-            List<SaleEntity> s =  extraServicesData.get(i).getSale();
-            s.add(entity);
-             extraServicesData.get(i).setSale(s);
+             extraServicesData.get(i).setSale(entity);
         }
     }
     

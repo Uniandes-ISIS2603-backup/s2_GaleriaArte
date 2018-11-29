@@ -29,7 +29,7 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     
     @PodamExclude
     @ManyToOne
-    private List<SaleEntity> sale;
+    private SaleEntity sale;
     /**
      * @return the name
      */
@@ -97,7 +97,7 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     /**
      * @return the sale
      */
-    public List<SaleEntity> getSale()
+    public SaleEntity getSale()
     {
         return sale;
     }
@@ -105,7 +105,7 @@ public class ExtraServiceEntity extends BaseEntity implements Serializable
     /**
      * @param sale the sale to set
      */
-    public void setSale(List<SaleEntity> sale) 
+    public void setSale(SaleEntity sale) 
     {
         this.sale = sale;
     }
