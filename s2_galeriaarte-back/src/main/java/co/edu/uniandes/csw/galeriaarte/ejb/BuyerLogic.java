@@ -51,10 +51,7 @@ public class BuyerLogic
     public BuyerEntity getBuyer(Long buyerID){
         
         LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", buyerID);
-        BuyerEntity buyerEntity = persistence.find(buyerID);
-        if(buyerEntity==null){
-            LOGGER.log(Level.SEVERE, "no existe la entidad con id = {0} no existe", buyerID);
-        }
+        BuyerEntity buyerEntity = persistence.find(buyerID);  
         
         LOGGER.log(Level.INFO, "Termina el proceso de consultar el artista con id = {0}", buyerID);
         return buyerEntity;

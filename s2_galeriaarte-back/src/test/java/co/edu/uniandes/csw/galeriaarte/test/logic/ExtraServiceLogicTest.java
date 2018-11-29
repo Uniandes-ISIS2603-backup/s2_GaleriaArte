@@ -107,6 +107,21 @@ public class ExtraServiceLogicTest
     }
     
     
+    @Test(expected = BusinessLogicException.class)
+    public void createExtraServiceTestFail() throws BusinessLogicException
+    {
+        ExtraServiceEntity newEntity = factory.manufacturePojo(ExtraServiceEntity.class);
+        newEntity.setName(null);
+        ExtraServiceEntity result = extraServiceLogic.createExtraService(newEntity);
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void createExtraServiceTestFail2() throws BusinessLogicException
+    {
+        ExtraServiceEntity newEntity = factory.manufacturePojo(ExtraServiceEntity.class);
+        newEntity.setPrice(-10);
+        ExtraServiceEntity result = extraServiceLogic.createExtraService(newEntity);
+    }
     /**
      * Prueba para crear un extra service.
      *
@@ -184,6 +199,29 @@ public class ExtraServiceLogicTest
         Assert.assertEquals(pojoEntity.getDescription(), resp.getDescription());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void updateExtraServiceTestFail() throws BusinessLogicException
+    {
+        ExtraServiceEntity entity = data.get(0);
+        ExtraServiceEntity pojoEntity = factory.manufacturePojo(ExtraServiceEntity.class);
+        pojoEntity.setName(null);
+        pojoEntity.setId(entity.getId());
+        
+        extraServiceLogic.updateExtraService(pojoEntity.getId(), pojoEntity);
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void updateExtraServiceTestFail2() throws BusinessLogicException
+    {
+         ExtraServiceEntity entity = data.get(0);
+        ExtraServiceEntity pojoEntity = factory.manufacturePojo(ExtraServiceEntity.class);
+        pojoEntity.setPrice(-1);
+        
+        pojoEntity.setId(entity.getId());
+        
+        extraServiceLogic.updateExtraService(pojoEntity.getId(), pojoEntity);
     }
     
     /**
