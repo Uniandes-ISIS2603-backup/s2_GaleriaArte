@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.galeriaarte.dtos;
 
 import co.edu.uniandes.csw.galeriaarte.entities.ExtraServiceEntity;
-import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
+
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,6 +41,7 @@ public class SaleDetailDTO extends SaleDTO implements Serializable {
         }
     }
     
+    @Override
     public SaleEntity toEntity() 
     {
         SaleEntity saleEntity = super.toEntity();

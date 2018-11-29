@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.galeriaarte.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import org.apache.commons.lang3.builder.ToStringBuilder;
