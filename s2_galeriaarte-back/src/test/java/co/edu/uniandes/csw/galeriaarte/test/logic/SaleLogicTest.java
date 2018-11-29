@@ -5,13 +5,13 @@
  */
 package co.edu.uniandes.csw.galeriaarte.test.logic;
 import co.edu.uniandes.csw.galeriaarte.ejb.SaleLogic;
-import co.edu.uniandes.csw.galeriaarte.entities.ArtistEntity;
+
 import co.edu.uniandes.csw.galeriaarte.entities.BuyerEntity;
-import co.edu.uniandes.csw.galeriaarte.entities.CVEntity;
+
 import co.edu.uniandes.csw.galeriaarte.entities.PaintworkEntity;
-import co.edu.uniandes.csw.galeriaarte.entities.MedioPagoEntity;
+
 import co.edu.uniandes.csw.galeriaarte.entities.SaleEntity;
-import co.edu.uniandes.csw.galeriaarte.entities.CategoryEntity;
+
 import co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.galeriaarte.persistence.SalePersistence;
 import java.util.ArrayList;
@@ -127,6 +127,15 @@ public class SaleLogicTest
   
     }
     
+    @Test(expected = BusinessLogicException.class)
+   public void createSaleTestFailure() throws BusinessLogicException
+   {
+       SaleEntity newEntity = factory.manufacturePojo(SaleEntity.class);
+         BuyerEntity b = buyerData.get(1);
+        PaintworkEntity p = paintworkData.get(1);
+       newEntity.setPrice(-3);
+       SaleEntity  result = saleLogic.createSale(newEntity,b.getId(), p.getId());
+   }
     /**
      * Prueba para crear una compra.
      * @throws co.edu.uniandes.csw.galeriaarte.exceptions.BusinessLogicException
@@ -159,8 +168,11 @@ public class SaleLogicTest
         Assert.assertEquals(entity.getTaxes(), resultEntity.getTaxes(),0.0002);
         
     }
+    //@Test(expected = BusinessLogicException.class)
 
-
+    
+    
+    
      @Test
     public void updateSaleTest()
     {
