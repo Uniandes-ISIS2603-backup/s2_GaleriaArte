@@ -69,7 +69,7 @@ public class KindPaintworksResource
     @GET
     public List<PaintworkDetailDTO> getPaintworks(@PathParam("KindsId") Long kindsId) {
         LOGGER.log(Level.INFO, "KindPaintworksResource getPaintworks: input: {0}", kindsId);
-        List<PaintworkDetailDTO> lista = PaintworksListEntity2DTO(kindPaintworkLogic.getPaintworks(kindsId));
+        List<PaintworkDetailDTO> lista = paintworksListEntity2DTO(kindPaintworkLogic.getPaintworks(kindsId));
         LOGGER.log(Level.INFO, "KindPaintworksResource getPaintworks: output: {0}", lista);
         return lista;
     }
@@ -116,7 +116,7 @@ public class KindPaintworksResource
                 throw new WebApplicationException("El recurso /Paintworks no existe.", 404);
             }
         }
-        List<PaintworkDetailDTO> lista = PaintworksListEntity2DTO(kindPaintworkLogic.replacePaintworks(kindsId, PaintworksListDTO2Entity(paintworks)));
+        List<PaintworkDetailDTO> lista = paintworksListEntity2DTO(kindPaintworkLogic.replacePaintworks(kindsId, paintworksListDTO2Entity(paintworks)));
         LOGGER.log(Level.INFO, "KindPaintworksResource replacePaintworks: output:{0}", lista);
         return lista;
     }
@@ -146,7 +146,7 @@ public class KindPaintworksResource
      * @param entityList Lista de PaintworkEntity a convertir.
      * @return Lista de PaintworkDetailDTO convertida.
      */
-    private List<PaintworkDetailDTO> PaintworksListEntity2DTO(List<PaintworkEntity> entityList) {
+    private List<PaintworkDetailDTO> paintworksListEntity2DTO(List<PaintworkEntity> entityList) {
         List<PaintworkDetailDTO> list = new ArrayList<>();
         for (PaintworkEntity entity : entityList) {
             list.add(new PaintworkDetailDTO(entity));
@@ -160,7 +160,7 @@ public class KindPaintworksResource
      * @param dtos Lista de PaintworkDetailDTO a convertir.
      * @return Lista de PaintworkEntity convertida.
      */
-    private List<PaintworkEntity> PaintworksListDTO2Entity(List<PaintworkDetailDTO> dtos) {
+    private List<PaintworkEntity> paintworksListDTO2Entity(List<PaintworkDetailDTO> dtos) {
         List<PaintworkEntity> list = new ArrayList<>();
         for (PaintworkDetailDTO dto : dtos) {
             list.add(dto.toEntity());
