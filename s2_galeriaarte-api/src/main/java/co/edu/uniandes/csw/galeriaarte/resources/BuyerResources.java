@@ -41,7 +41,7 @@ public class BuyerResources {
     {
         //Convierte el DTO (json) es un objeto Entity para ser manejado por la lógica.
     
-        LOGGER.log(Level.INFO, "BuyerResource createBuyer: input:{0}", buyer);
+        LOGGER.log(Level.INFO, "BuyerResource create Buyer: input:{0}", buyer);
         BuyerEntity buyerEntity = buyer.toEntity( );
         // Invoca la lógica para crear el comprador nuevo
         BuyerEntity nuevoBuyerEntity = buyerLogic.createBuyer(buyerEntity);
